@@ -7,7 +7,7 @@ namespace animaltactics4
 {
     static class Divers
     {
-        static public int X = 800;
+        static public int X = 80;
         static public int Y = 600;
     }
 }
