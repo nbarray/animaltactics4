@@ -116,6 +116,7 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuPrincipal.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\Scene.cs" />
     <Compile Include="tools_folder\extra_folder\Contents.cs" />
+    <Compile Include="tools_folder\extra_folder\Divers.cs" />
     <Compile Include="tools_folder\extra_folder\Resolution.cs" />
   </ItemGroup>
   <ItemGroup>

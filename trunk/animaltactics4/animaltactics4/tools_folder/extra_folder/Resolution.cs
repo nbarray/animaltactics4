@@ -5,9 +5,7 @@ using System.Text;
 
 namespace animaltactics4
 {
-    static class Divers
+    class Resolution
     {
-        static public int X = 1200;
-        static public int Y = 900;
     }
 }
