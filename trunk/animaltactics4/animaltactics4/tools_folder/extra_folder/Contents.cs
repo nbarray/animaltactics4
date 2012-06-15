@@ -34,6 +34,7 @@ namespace animaltactics4
             textures.Add("bouton_selected", content_.Load<Texture2D>("Image\\Bouton\\bouton_selected"));
             textures.Add("space", content_.Load<Texture2D>("Image\\Fond\\SpaceArt"));
             textures.Add("grosse", content_.Load<Texture2D>("Image\\Divers\\bite"));
+            textures.Add("aura", content_.Load<Texture2D>("Image\\Info\\aura"));
             fonts.Add("bouton", content_.Load<SpriteFont>("SPriteFont\\sfBouton"));
         }
 
