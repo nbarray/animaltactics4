@@ -11,7 +11,7 @@ namespace animaltactics4
     static class Engine
     {
         static public Stack<Scene> scenes;
-
+         
         static public void Initialize()
         {
             scenes = new Stack<Scene>();
@@ -22,8 +22,6 @@ namespace animaltactics4
             if (scenes.Count > 0)
             {
                 scenes.Peek().UpdateScene(gameTime);
-
-
             }
             if (Mouse.GetState().LeftButton == ButtonState.Released)
             {
