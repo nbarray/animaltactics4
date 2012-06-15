@@ -67,6 +67,27 @@ namespace animaltactics4
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), c_);
             Atsushi_Okhubo.End();
         }
+        //Loohy
+        static public void Draw(string name_, Rectangle rect_, Color c_, Rectangle subrect_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures[name_],
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_);
+            Atsushi_Okhubo.End();
+        }
+        //Loohy
+        static public void Draw(string name_, Rectangle rect_, Color c_, Rectangle subrect_, float rot_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures[name_],
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) - (int)(rect_.Width * pprc / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) - (int)(rect_.Height * pprc / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_, 
+                    new Vector2(rect_.Width * pprc/2 ,rect_.Height * pprc/2), SpriteEffects.None, 0);
+            Atsushi_Okhubo.End();
+        }
         //Coldman & Loohy
         static public void DrawStringInBox(string text_, Rectangle rect_)
         {

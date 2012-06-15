@@ -38,11 +38,11 @@ namespace animaltactics4
     {
         ToutVisible, ToutVisite, Normal
     }
-    public enum e_menu
+    enum e_menu
     {
         Principal, Jeu, Editeur, Extra, Option
     }
-    public enum e_race
+    enum e_race
     {
         Fenrir,
         Krissa,
@@ -50,7 +50,7 @@ namespace animaltactics4
         Pingvin,
         Random
     }
-    public enum e_classe
+    enum e_classe
     {
         PingvinWalkyrie,//37
         PingvinLanceFlammes,//30
@@ -90,14 +90,14 @@ namespace animaltactics4
         Krissa9,//30
         Overlord//0
     }
-    public enum e_pouvoir
+    enum e_pouvoir
     {
         PandaSceau, PandaSniper, PandaNinja,
         PingvinSoin, PingvinThor, PingvinRage,
         FenrirMissiles, FenrirBoost, FenrirRailgun,
         Krissa1, Krissa2, Krissa3
     }
-    public enum e_typedAura
+    enum e_typedAura
     {
         BoostAttaque,
         BoostArmure,
@@ -108,13 +108,13 @@ namespace animaltactics4
         BoostEsquive,
         BoostInitiative
     }
-    public enum e_typeDePouvoir
+    enum e_typeDePouvoir
     {
         Degat,
         Soin,
         Boost
     }
-    public enum e_typeDeBoost
+    enum e_typeDeBoost
     {
         BonusAttaque,
         BonusArmure,
@@ -125,11 +125,11 @@ namespace animaltactics4
         BonusEsquive,
         BonusInitiative
     }
-    public enum e_modeAction
+    enum e_modeAction
     {
         Attaque, Mouvement, Pouvoir
     }
-    public enum e_typeDePartie
+    enum e_typeDePartie
     {
         Echiquier, Joute, Tresor, Colline
     }
