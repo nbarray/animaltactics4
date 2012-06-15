@@ -12,17 +12,18 @@ namespace animaltactics4
 {
     static class Contents
     {
-        static public Dictionary<string, Texture2D> textures = new Dictionary<string,Texture2D>();
-        static public Dictionary<string, SpriteFont> fonts = new Dictionary<string,SpriteFont>();
+        static public Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
+        static public Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
         static public Dictionary<string, Video> videos = new Dictionary<string, Video>();
         static private SpriteBatch Atsushi_Okhubo;
         static private float screenWidth, screenHeight, pprc;
         static public VideoPlayer Miyazaki;
+        static public float ouvertureDePorte; //Ferme la porte !!!
 
         //Coldman
         static public Vector2 GetResolution
         {
-            get { return new Vector2(screenWidth, screenHeight);}
+            get { return new Vector2(screenWidth, screenHeight); }
         }
 
         static public void Initialize(GraphicsDevice device_)
@@ -30,6 +31,7 @@ namespace animaltactics4
             Atsushi_Okhubo = new SpriteBatch(device_);
             Miyazaki = new VideoPlayer();
             adapter(device_.DisplayMode.Width, device_.DisplayMode.Height);
+            ouvertureDePorte = 0;
         }
 
         //Coldman
@@ -40,6 +42,12 @@ namespace animaltactics4
             textures.Add("bouton_selected", content_.Load<Texture2D>("Image\\Bouton\\bouton_selected"));
             textures.Add("space", content_.Load<Texture2D>("Image\\Fond\\SpaceArt"));
             textures.Add("grosse", content_.Load<Texture2D>("Image\\Divers\\bite"));
+            textures.Add("porte", content_.Load<Texture2D>("Image\\Divers\\Porte"));
+            textures.Add("porteN", content_.Load<Texture2D>("Image\\Divers\\porteN"));
+            textures.Add("porteS", content_.Load<Texture2D>("Image\\Divers\\porteS"));
+            textures.Add("porteE", content_.Load<Texture2D>("Image\\Divers\\porteE"));
+            textures.Add("porteO", content_.Load<Texture2D>("Image\\Divers\\porteO"));
+            textures.Add("porteC", content_.Load<Texture2D>("Image\\Divers\\porteC"));
             textures.Add("aura", content_.Load<Texture2D>("Image\\Info\\aura"));
 
             fonts.Add("bouton", content_.Load<SpriteFont>("SpriteFont\\sfBouton"));
@@ -50,7 +58,7 @@ namespace animaltactics4
             videos.Add("intro", content_.Load<Video>("Video\\intro"));
             textures.Add("mouvement", content_.Load<Texture2D>("Image\\Info\\BarreDeMouvement"));
             textures.Add("flag1", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
-            
+
             textures.Add("flag2", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
             textures.Add("flag3", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
             textures.Add("flag4", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
@@ -129,7 +137,7 @@ namespace animaltactics4
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, Color.White, rot_,
                     new Vector2(rect_.Width * pprc / 2, rect_.Height * pprc / 2), SpriteEffects.None, 0);
             Atsushi_Okhubo.End();
-        } 
+        }
         #endregion
 
         //Coldman & Loohy
@@ -175,6 +183,76 @@ namespace animaltactics4
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)).Contains(Mouse.GetState().X, Mouse.GetState().Y);
 
+        }
+
+        static public void DrawGates(int t_)
+        {
+            if (t_ < 0)//Fermeture
+            {
+                if (ouvertureDePorte > 0)
+                {
+                    ouvertureDePorte -= 15f;
+                }
+                #region Switch
+                switch (t_)
+                {
+                    case -1:
+                        Draw("porteO", new Rectangle(0 - (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteS", new Rectangle(0 - (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteE", new Rectangle(0 + (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteN", new Rectangle(0 + (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteC", new Rectangle(0 + (int)ouvertureDePorte, 0, 1200, 900));
+                        break;
+                    case -2:
+                        Draw("porteO", new Rectangle(0, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteS", new Rectangle(0, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteE", new Rectangle(0, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteN", new Rectangle(0, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteC", new Rectangle(0, 0 - (int)ouvertureDePorte, 1200, 900));
+                        break;
+                    default:
+                        Draw("porteO", new Rectangle(0 - (int)ouvertureDePorte, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteS", new Rectangle(0 - (int)ouvertureDePorte, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteE", new Rectangle(0 + (int)ouvertureDePorte, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteN", new Rectangle(0 + (int)ouvertureDePorte, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteC", new Rectangle(0 + (int)ouvertureDePorte, 0 - (int)ouvertureDePorte, 1200, 900));
+                        break;
+                }
+                #endregion
+            }
+            else//Ouverture
+            {
+                if (ouvertureDePorte < 400)
+                {
+                    ouvertureDePorte += 15f;
+                }
+                #region Switch
+                switch (t_)
+                {
+                    case 1:
+                        Draw("porteO", new Rectangle(0 - (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteS", new Rectangle(0 - (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteE", new Rectangle(0 + (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteN", new Rectangle(0 + (int)ouvertureDePorte, 0, 1200, 900));
+                        Draw("porteC", new Rectangle(0 + (int)ouvertureDePorte, 0, 1200, 900));
+                        break;
+                    case 2:
+                        Draw("porteO", new Rectangle(0, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteS", new Rectangle(0, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteE", new Rectangle(0, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteN", new Rectangle(0, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteC", new Rectangle(0, 0 - (int)ouvertureDePorte, 1200, 900));
+                        break;
+                    default:
+                        Draw("porteO", new Rectangle(0 - (int)ouvertureDePorte, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteS", new Rectangle(0 - (int)ouvertureDePorte, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteE", new Rectangle(0 + (int)ouvertureDePorte, 0 + (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteN", new Rectangle(0 + (int)ouvertureDePorte, 0 - (int)ouvertureDePorte, 1200, 900));
+                        Draw("porteC", new Rectangle(0 + (int)ouvertureDePorte, 0 - (int)ouvertureDePorte, 1200, 900));
+                        break;
+                }
+                #endregion
+            }
         }
     }
 }
