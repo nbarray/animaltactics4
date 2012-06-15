@@ -45,7 +45,6 @@
     <Folder Include="Image\Animation\" />
     <Folder Include="Image\Lecteur\" />
     <Folder Include="Image\Porte\" />
-    <Folder Include="Son\Bruitage\" />
     <Folder Include="Son\Musique\" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +314,23 @@
       <Name>Tiles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Son\Bruitage\depriemPorte.wav">
+      <Name>depriemPorte</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Son\Bruitage\son_bouton.mp3">
+      <Name>son_bouton</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Son\Bruitage\son_porte.mp3">
+      <Name>son_porte</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
