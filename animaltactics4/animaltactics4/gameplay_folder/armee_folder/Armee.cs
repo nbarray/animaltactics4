@@ -182,7 +182,7 @@ namespace animaltactics4
             int numeroImage_, int mouvement_, int ia_)
         {
             bataillon.Add(new Unite(typeUnite_, SHORYUKEN_, aura_, nom_, force_, dexterite_, constitution_, defense_,
-            esprit_, chance_, vitesse_, portee_, typedAttaque_, effectif, numeroArmee_, numeroImage_, mouvement_, ia_));
+            esprit_, chance_, vitesse_, portee_, typedAttaque_, effectif, numeroArmee_, mouvement_, ia_));
             effectif++;
             atLeastOneAlive = true;
             if (typeUnite_ == TypeUnite.Heros)
@@ -521,7 +521,7 @@ namespace animaltactics4
                         }
                         break;
                     default:
-                        bataillon[uniteselect].Mouvement(loohy_, gameplay_.armees[gameplay_.tourencours], gameplay_);
+                        bataillon[uniteselect].Mouvement(loohy_, gameplay_.listeDesJoueurs[gameplay_.tourencours], gameplay_);
                         break;
                 }
             }
@@ -541,7 +541,7 @@ namespace animaltactics4
             }
             foreach (Unite item in bataillon)
             {
-                item.lireLaFile(loohy_, gameplay_.armees[gameplay_.tourencours], gameplay_);
+                item.lireLaFile(loohy_, gameplay_.listeDesJoueurs[gameplay_.tourencours], gameplay_);
             }
         }
         public void UpdateSelonIAouNon(MoteurGraphique loohy_, SystemeDeJeu gameplay_, ref e_modeAction mood_,
@@ -560,7 +560,7 @@ namespace animaltactics4
         {
             foreach (Unite item in bataillon)
             {
-                item.lireLaFile(loohy_, gameplay_.armees[gameplay_.tourencours], gameplay_);
+                item.lireLaFile(loohy_, gameplay_.listeDesJoueurs[gameplay_.tourencours], gameplay_);
             }
         }
 
@@ -602,9 +602,9 @@ namespace animaltactics4
             int p = bataillon[numeroDelUnite_].Agonie(moteurgraphique_);
             if (gameplay_.conditionsDeVictoire != e_typeDePartie.Colline)
             {
-                gameplay_.armees[(numeroarmee + 1) % 2].score += p;
+                gameplay_.listeDesJoueurs[(numeroarmee + 1) % 2].score += p;
             }
-            gameplay_.armees[gameplay_.tourencours].soeurAnne(moteurgraphique_, gameplay_);
+            gameplay_.listeDesJoueurs[gameplay_.tourencours].soeurAnne(moteurgraphique_, gameplay_);
         }
 
         public void checkPV(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_)
@@ -947,14 +947,14 @@ namespace animaltactics4
             }
         }
 
-        /*public void ConvertFromList(ListeArmee list_, int difficulte_)
+        public void ConvertFromList(ListeArmee list_, int difficulte_)
         {
             vider(casesVisitees.GetLength(0), casesVisitees.GetLength(1));
-            NEW(list_.espece, list_.couleur, Race.Random, difficulte_);
+            NEW(list_.espece, list_.couleur, e_race.Random, difficulte_);
             foreach (FausseUnite item in list_.bataillon)
             {
                 AddUnite(item.classe, difficulte_);
             }
-        }*/
+        }
     }
 }

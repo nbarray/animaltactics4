@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace animaltactics4
 {
-    public enum TypedAura
+    #region ENUMERATIONS
+    enum TypedAura
     {
         BoostAttaque,
         BoostArmure,
@@ -17,16 +21,16 @@ namespace animaltactics4
         BoostEsquive,
         BoostInitiative
     }
-    public enum e_EtatAnim
+    enum e_EtatAnim
     {
         mouvement1, mouvement2, mouvement3,
         repos1, repos2
     }
-    public enum mouv
+    enum mouv
     {
         Sud, Nord, Est, Ouest
     }
-    public enum TypeUnite
+    enum TypeUnite
     {
         Base,
         Elite,
@@ -34,7 +38,7 @@ namespace animaltactics4
         PNJ,
         Overlord
     }
-    public enum brouillardDeGuerre
+    enum brouillardDeGuerre
     {
         ToutVisible, ToutVisite, Normal
     }
@@ -133,7 +137,7 @@ namespace animaltactics4
     {
         Echiquier, Joute, Tresor, Colline
     }
-    public enum e_Typedesol
+    enum e_Typedesol
     {
         herbe,
         sable,
@@ -143,18 +147,18 @@ namespace animaltactics4
         desert,
         vide
     }
-    public enum e_Typederoute
+    enum e_Typederoute
     {
         route,
         pont,
         vide
     }
-    public enum e_Riviere
+    enum e_Riviere
     {
         riviere,
         vide
     }
-    public enum e_Decorarriere
+    enum e_Decorarriere
     {
         foret,
         bunker,
@@ -167,21 +171,75 @@ namespace animaltactics4
         cratere,
         vide
     }
-    public enum e_Decoravant
+    enum e_Decoravant
     {
         foret,
         bunker,
         iceBunker,
         vide
     }
-    public enum e_Cache
+    enum e_Cache
     {
         Invisible, InvisibleAmi, Visible
-    }
+    } 
+    #endregion
 
     static class Divers
     {
         static public readonly int X = 1200;
         static public readonly int Y = 900;
+
+        public static void serializer(object o, string file)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(file, FileMode.Create);
+            formatter.Serialize(stream, o);
+            stream.Close();
+        }
+        public static object deserializer(string file)
+        {
+            BinaryFormatter binary = new BinaryFormatter();
+            FileStream filestream = new FileStream(file, FileMode.Open);
+            object r = binary.Deserialize(filestream);
+            filestream.Close();
+            return r;
+        }
+        public static void telechargerList(ref ListeArmee list_, string file_)
+        {
+            try
+            {
+                list_ = (ListeArmee)deserializer(file_);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static ListeArmee obtenirList(string file_)
+        {
+            try
+            {
+                return (ListeArmee)deserializer(file_);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static void telechargerMap(ref MoteurGraphique earthPenguin_, string file_)
+        {
+            try
+            {
+                earthPenguin_ = (MoteurGraphique)deserializer(file_);
+            }
+            catch (Exception)
+            {
+                earthPenguin_ = new MoteurGraphique(32, 32);
+                earthPenguin_.mapAleaFaceToFace(32, 32, 4, 5, 4);
+                throw;
+            }
+        }
     }
 }

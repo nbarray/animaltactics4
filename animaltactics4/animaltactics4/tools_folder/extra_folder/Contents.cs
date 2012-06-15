@@ -42,9 +42,19 @@ namespace animaltactics4
             textures.Add("grosse", content_.Load<Texture2D>("Image\\Divers\\bite"));
             textures.Add("aura", content_.Load<Texture2D>("Image\\Info\\aura"));
             fonts.Add("bouton", content_.Load<SpriteFont>("SpriteFont\\sfBouton"));
-
+            textures.Add("tresor", content_.Load<Texture2D>("Image\\Info\\tresor"));
+            textures.Add("grade", content_.Load<Texture2D>("Image\\Info\\Grade"));
             videos.Add("intro", content_.Load<Video>("Video\\intro"));
+            textures.Add("mouvement", content_.Load<Texture2D>("Image\\Info\\BarreDeMouvement"));
+            textures.Add("flag1", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
             
+            textures.Add("flag2", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
+            textures.Add("flag3", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
+            textures.Add("flag4", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
+            textures.Add("Tiles", content_.Load<Texture2D>("Image\\Tuile\\Tiles"));
+            textures.Add("Bridges", content_.Load<Texture2D>("Image\\Tuile\\bridges"));
+
+            fonts.Add("bouton", content_.Load<SpriteFont>("SPriteFont\\sfBouton"));
         }
 
         //Loohy
@@ -65,6 +75,7 @@ namespace animaltactics4
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), Color.White);
             Atsushi_Okhubo.End();
         }
+        #region Surcharges
 
         //Coldman
         static public void Draw(string name_, Rectangle rect_, Color c_)
@@ -93,10 +104,33 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) - (int)(rect_.Width * pprc / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) - (int)(rect_.Height * pprc / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_, 
-                    new Vector2(rect_.Width * pprc/2 ,rect_.Height * pprc/2), SpriteEffects.None, 0);
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_,
+                    new Vector2(rect_.Width * pprc / 2, rect_.Height * pprc / 2), SpriteEffects.None, 0);
             Atsushi_Okhubo.End();
         }
+        //Loohy
+        static public void Draw(string name_, Rectangle rect_, Rectangle subrect_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures[name_],
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, Color.White);
+            Atsushi_Okhubo.End();
+        }
+        //Loohy
+        static public void Draw(string name_, Rectangle rect_, Rectangle subrect_, float rot_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures[name_],
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) - (int)(rect_.Width * pprc / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) - (int)(rect_.Height * pprc / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, Color.White, rot_,
+                    new Vector2(rect_.Width * pprc / 2, rect_.Height * pprc / 2), SpriteEffects.None, 0);
+            Atsushi_Okhubo.End();
+        } 
+        #endregion
+
         //Coldman & Loohy
         static public void DrawStringInBox(string text_, Rectangle rect_)
         {

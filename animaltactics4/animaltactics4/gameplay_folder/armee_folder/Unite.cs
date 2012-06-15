@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    //Loohy & Marvin
     class Unite
     {
         #region stats
@@ -56,7 +57,7 @@ namespace animaltactics4
         public TypeUnite typeUnite;
         public Pouvoir SHORYUKEN;
         public Aura aura;
-        public int image;
+        public string image;
         Rectangle sousrect;
         private float Anim;
         private float vitesseAnim;
@@ -95,7 +96,7 @@ namespace animaltactics4
         public Unite(TypeUnite typeUnite_, Pouvoir SHORYUKEN_, Aura aura_,
             string nom_, int force_, int dexterite_, int constitution_, int defense_,
             int esprit_, int chance_, int vitesse_, int[] portee_, bool[] typedAttaque_, int numeroUnite_,
-            int numeroArmee_, int image_, int mouvement_, int ia_ = 0, e_typeDePartie etat_ = e_typeDePartie.Joute)
+            int numeroArmee_, int mouvement_, int ia_ = 0, e_typeDePartie etat_ = e_typeDePartie.Joute)
         {
             debug = 0;
             nom = nom_;
@@ -183,7 +184,7 @@ namespace animaltactics4
 
             een = true;
 
-            image = image_;
+            image = nom_;
 
             //IA = new IntelligenceArtificielle(ia_, this);
             //Console.WriteLine(nom + " : " + points);
@@ -315,8 +316,8 @@ namespace animaltactics4
             dgts1 = dgts_;
             clr1 = clr_;
             e_race1 = e_race_;
-            clr2 = gameplay_.armees[numeroArmee].couleur;
-            e_race2 = gameplay_.armees[numeroArmee].espece;
+            clr2 = gameplay_.listeDesJoueurs[numeroArmee].couleur;
+            e_race2 = gameplay_.listeDesJoueurs[numeroArmee].espece;
             hud_.fight(ennemi_, this, txt1, dgts1, clr1, txt2, dgts2, clr2, e_race1, e_race2);
             gameplay_.CheckPV(moteurgraphique_, hud_);
         }
@@ -435,8 +436,8 @@ namespace animaltactics4
                 #endregion
             }
             #endregion
-            clr1 = gameplay_.armees[numeroArmee].couleur;
-            race1 = gameplay_.armees[numeroArmee].espece;
+            clr1 = gameplay_.listeDesJoueurs[numeroArmee].couleur;
+            race1 = gameplay_.listeDesJoueurs[numeroArmee].espece;
             ennemi_.Riposte(this, porteeDeFrappe_, moteurgraphique_, gameplay_, txt1, dgts1, clr1, race1, hud_);
         }//--
         public void Initiative(Unite ennemi_, int porteDeFrappe_, MoteurGraphique moteurgraphique_,
@@ -699,7 +700,7 @@ namespace animaltactics4
                                        attaqOrNot)
                                 {
                                     mouvOrNot = false;
-                                    Initiative(gameplay_.armees[moteurgraphique_.map[i + k, j + (portee_ - k)].
+                                    Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i + k, j + (portee_ - k)].
                                          pointeurArmee].bataillon[moteurgraphique_.map[i + k, j + (portee_ - k)].pointeurUnite],
                                          portee_, moteurgraphique_, gameplay_, ref mood_, hud_);
                                     gameplay_.CheckPV(moteurgraphique_, hud_);
@@ -714,7 +715,7 @@ namespace animaltactics4
                                        attaqOrNot)
                                 {
                                     mouvOrNot = false;
-                                    Initiative(gameplay_.armees[moteurgraphique_.map[i - k, j - (portee_ - k)].
+                                    Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i - k, j - (portee_ - k)].
                                         pointeurArmee].bataillon[moteurgraphique_.map[i - k, j - (portee_ - k)].pointeurUnite],
                                         portee_, moteurgraphique_, gameplay_, ref mood_, hud_);
                                     gameplay_.CheckPV(moteurgraphique_, hud_);
@@ -729,7 +730,7 @@ namespace animaltactics4
                                        attaqOrNot)
                                 {
                                     mouvOrNot = false;
-                                    Initiative(gameplay_.armees[moteurgraphique_.map[i + (portee_ - k), j - k].
+                                    Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i + (portee_ - k), j - k].
                                         pointeurArmee].bataillon[moteurgraphique_.map[i + (portee_ - k), j - k].pointeurUnite],
                                         portee_, moteurgraphique_, gameplay_, ref mood_, hud_);
                                     gameplay_.CheckPV(moteurgraphique_, hud_);
@@ -744,7 +745,7 @@ namespace animaltactics4
                                        attaqOrNot)
                                 {
                                     mouvOrNot = false;
-                                    Initiative(gameplay_.armees[moteurgraphique_.map[i - (portee_ - k), j + k].
+                                    Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i - (portee_ - k), j + k].
                                         pointeurArmee].bataillon[moteurgraphique_.map[i - (portee_ - k), j + k].pointeurUnite],
                                         portee_, moteurgraphique_, gameplay_, ref mood_, hud_);
                                     gameplay_.CheckPV(moteurgraphique_, hud_);
@@ -762,7 +763,7 @@ namespace animaltactics4
             if (j + 1 < moteurgraphique_.largeur && moteurgraphique_.map[i, j + 1].presence)
             {
                 mouvOrNot = false;
-                Initiative(gameplay_.armees[moteurgraphique_.map[i, j + 1].
+                Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i, j + 1].
                     pointeurArmee].bataillon[moteurgraphique_.map[i, j + 1].pointeurUnite], 1,
                     moteurgraphique_, gameplay_, ref mood_, hud_);
                 sousrect.X = 128;
@@ -773,7 +774,7 @@ namespace animaltactics4
             if (j > 0 && moteurgraphique_.map[i, j - 1].presence)
             {
                 mouvOrNot = false;
-                Initiative(gameplay_.armees[moteurgraphique_.map[i, j - 1].
+                Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i, j - 1].
                     pointeurArmee].bataillon[moteurgraphique_.map[i, j - 1].pointeurUnite], 1,
                     moteurgraphique_, gameplay_, ref mood_, hud_);
                 sousrect.X = 128 * 3;
@@ -782,7 +783,7 @@ namespace animaltactics4
         public void AttaqueOuest(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_, ref e_modeAction mood_, HUD hud_)
         {
             mouvOrNot = false;
-            Initiative(gameplay_.armees[moteurgraphique_.map[i - 1, j].
+            Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i - 1, j].
                 pointeurArmee].bataillon[moteurgraphique_.map[i - 1, j].pointeurUnite], 1,
                 moteurgraphique_, gameplay_, ref mood_, hud_);
             sousrect.X = 256;
@@ -790,7 +791,7 @@ namespace animaltactics4
         public void AttaqueEst(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_, ref e_modeAction mood_, HUD hud_)
         {
             mouvOrNot = false;
-            Initiative(gameplay_.armees[moteurgraphique_.map[i + 1, j].
+            Initiative(gameplay_.listeDesJoueurs[moteurgraphique_.map[i + 1, j].
                 pointeurArmee].bataillon[moteurgraphique_.map[i + 1, j].pointeurUnite], 1,
                 moteurgraphique_, gameplay_, ref mood_, hud_);
             sousrect.X = 0;
@@ -1071,10 +1072,10 @@ namespace animaltactics4
                                 && (p != 0 || q != 0) && moteurgraphique_.map[i + p, j + q].visible
                                 && moteurgraphique_.map[i + p, j + q].presence)
                             {
-                                if (gameplay_.armees[moteurgraphique_.map[i + p, j + q].pointeurArmee].
+                                if (gameplay_.listeDesJoueurs[moteurgraphique_.map[i + p, j + q].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i + p, j + q].pointeurUnite].numeroArmee != numeroArmee)
                                 {
-                                    gameplay_.armees[moteurgraphique_.map[i + p, j + q].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i + p, j + q].pointeurArmee].
                                     bataillon[moteurgraphique_.map[i + p, j + q].pointeurUnite].estInvisible = false;
                                 }
                             }

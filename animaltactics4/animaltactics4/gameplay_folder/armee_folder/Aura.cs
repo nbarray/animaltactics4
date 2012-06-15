@@ -29,7 +29,7 @@ namespace animaltactics4
                     {
                         if (moteurgraphique_.map[moi_.i + k, moi_.j + (porteeAura - k)].presence)
                         {
-                            auraAt(gameplay_.armees[moteurgraphique_.map[moi_.i + k, moi_.j + (porteeAura - k)].pointeurArmee].
+                            auraAt(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (porteeAura - k)].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i + k, moi_.j + (porteeAura - k)].pointeurUnite], coef_,
                                 moi_.numeroArmee);
                         }
@@ -39,7 +39,7 @@ namespace animaltactics4
                     {
                         if (moteurgraphique_.map[moi_.i - k, moi_.j - (porteeAura - k)].presence)
                         {
-                            auraAt(gameplay_.armees[moteurgraphique_.map[moi_.i - k, moi_.j - (porteeAura - k)].pointeurArmee].
+                            auraAt(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (porteeAura - k)].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i - k, moi_.j - (porteeAura - k)].pointeurUnite], coef_,
                                 moi_.numeroArmee);
                         }
@@ -49,7 +49,7 @@ namespace animaltactics4
                     {
                         if (moteurgraphique_.map[moi_.i + (porteeAura - k), moi_.j - k].presence)
                         {
-                            auraAt(gameplay_.armees[moteurgraphique_.map[moi_.i + (porteeAura - k), moi_.j - k].pointeurArmee].
+                            auraAt(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (porteeAura - k), moi_.j - k].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i + (porteeAura - k), moi_.j - k].pointeurUnite], coef_,
                                 moi_.numeroArmee);
                         }
@@ -59,7 +59,7 @@ namespace animaltactics4
                     {
                         if (moteurgraphique_.map[moi_.i - (porteeAura - k), moi_.j + k].presence)
                         {
-                            auraAt(gameplay_.armees[moteurgraphique_.map[moi_.i - (porteeAura - k), moi_.j + k].pointeurArmee].
+                            auraAt(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (porteeAura - k), moi_.j + k].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i - (porteeAura - k), moi_.j + k].pointeurUnite], coef_,
                                 moi_.numeroArmee);
                         }

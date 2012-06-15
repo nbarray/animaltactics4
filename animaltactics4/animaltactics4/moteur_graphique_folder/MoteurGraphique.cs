@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    //Loohy
+    [Serializable]
     class MoteurGraphique
     {
         public int direction;//0n, 1o, 2s, 3e
@@ -20,7 +22,8 @@ namespace animaltactics4
         bool pvOrNot;
         bool clicOrNot;
 
-        public MoteurGraphique(int longueur_, int largeur_, Vector2 resolution_, HUD hud_)
+        //Loohy
+        public MoteurGraphique(int longueur_, int largeur_)
         {
             longueur = longueur_;
             largeur = largeur_;
@@ -43,7 +46,7 @@ namespace animaltactics4
                 compteur1++;
                 compteur2 = 0;
             }
-            mapAleaFaceToFaceGlace(32, 32, 4, 4, 4);
+            mapAleaFaceToFaceGlace(longueur_, largeur_, 4, 4, 4);
             //if (r.Next(100) % 2 == 0)
             //{
             //    mapAleaFaceToFace(32, 32, 3, 3, 2);
@@ -52,10 +55,10 @@ namespace animaltactics4
             //{
             //    mapAleaFaceToFaceGlace(32, 32, 1, 3, 8);
             //}
-            centrerSur(16, 16, hud_);
             fog = brouillardDeGuerre.Normal;
         }
 
+        //Loohy
         public void Draw(SystemeDeJeu gameplay_)
         {
             if (flammiches > 100)
@@ -81,7 +84,7 @@ namespace animaltactics4
                     DrawTilesEst(gameplay_);
                     break;
             }
-            switch (gameplay_.armees[gameplay_.tourencours].espece)
+            switch (gameplay_.listeDesJoueurs[gameplay_.tourencours].espece)
             {
                 case e_race.Fenrir:
                     //map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
@@ -106,7 +109,7 @@ namespace animaltactics4
                 default:
                     break;
             }
-            if (gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].alive)
+            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
             {
                 //map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
                 //    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
@@ -117,6 +120,7 @@ namespace animaltactics4
                 DrawTresor(gameplay_.tresor_i, gameplay_.tresor_j);
             }
         }
+        //Loohy
         public void Draw(SystemeDeJeu gameplay_, Vector2 reso_)
         {
             if (flammiches > 100)
@@ -143,37 +147,37 @@ namespace animaltactics4
                     break;
             }
             #region Draw pv
-            switch (gameplay_.armees[gameplay_.tourencours].espece)
+            switch (gameplay_.listeDesJoueurs[gameplay_.tourencours].espece)
             {
                 case e_race.Fenrir:
-                    map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, 15, direction);
+                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
+                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
+                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 15, direction);
                     break;
                 case e_race.Krissa:
-                    map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, 16, direction);
+                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
+                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
+                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 16, direction);
                     break;
                 case e_race.Pandawan:
-                    map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, 14, direction);
+                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
+                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
+                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 14, direction);
                     break;
                 case e_race.Pingvin:
-                    map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, 17, direction);
+                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
+                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
+                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 17, direction);
                     break;
                 default:
                     break;
             }
             #endregion
             #region Unite en cours
-            if (gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].alive)
+            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
             {
-                map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
+                map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
+                    gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
                     .Drawmouv(camerax, cameray, direction);
             }
             #endregion
@@ -183,6 +187,7 @@ namespace animaltactics4
                 DrawTresor(gameplay_.tresor_i, gameplay_.tresor_j);
             }
         }
+        //Loohy
         private void DrawTilesNord(SystemeDeJeu gameplay_)
         {
             for (int i = 0; i < longueur; i++)
@@ -194,23 +199,23 @@ namespace animaltactics4
                     {
                         if (map[i, j].presence)
                         {
-                            switch (gameplay_.armees[map[i, j].pointeurArmee].espece)
+                            switch (gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].espece)
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
                                     break;
                                 default:
                                     break;
@@ -218,13 +223,14 @@ namespace animaltactics4
                             if (gameplay_.conditionsDeVictoire == e_typeDePartie.Echiquier)
                             {
                                 map[i, j].DrawCrown(camerax, cameray,
-                                                gameplay_.armees[map[i, j].pointeurArmee].couleur, direction);
+                                                gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, direction);
                             }
                         }
                     }
                 }
             }
         }
+        //Loohy
         private void DrawTilesOuest(SystemeDeJeu gameplay_)
         {
             for (int i = 0; i < longueur; i++)
@@ -236,23 +242,23 @@ namespace animaltactics4
                     {
                         if (map[i, j].presence)
                         {
-                            switch (gameplay_.armees[map[i, j].pointeurArmee].espece)
+                            switch (gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].espece)
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
                                     break;
                                 default:
                                     break;
@@ -260,13 +266,14 @@ namespace animaltactics4
                             if (gameplay_.conditionsDeVictoire == e_typeDePartie.Echiquier)
                             {
                                 map[i, j].DrawCrown(camerax, cameray,
-                                                gameplay_.armees[map[i, j].pointeurArmee].couleur, direction);
+                                                gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, direction);
                             }
                         }
                     }
                 }
             }
         }
+        //Loohy
         private void DrawTilesSud(SystemeDeJeu gameplay_)
         {
             for (int i = longueur - 1; i >= 0; i--)
@@ -278,23 +285,23 @@ namespace animaltactics4
                     {
                         if (map[i, j].presence)
                         {
-                            switch (gameplay_.armees[map[i, j].pointeurArmee].espece)
+                            switch (gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].espece)
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
                                     break;
                                 default:
                                     break;
@@ -302,13 +309,14 @@ namespace animaltactics4
                             if (gameplay_.conditionsDeVictoire == e_typeDePartie.Echiquier)
                             {
                                 map[i, j].DrawCrown(camerax, cameray,
-                                                gameplay_.armees[map[i, j].pointeurArmee].couleur, direction);
+                                                gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, direction);
                             }
                         }
                     }
                 }
             }
         }
+        //Loohy
         private void DrawTilesEst(SystemeDeJeu gameplay_)
         {
             for (int i = longueur - 1; i >= 0; i--)
@@ -320,23 +328,23 @@ namespace animaltactics4
                     {
                         if (map[i, j].presence)
                         {
-                            switch (gameplay_.armees[map[i, j].pointeurArmee].espece)
+                            switch (gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].espece)
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.armees[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
                                     break;
                                 default:
                                     break;
@@ -344,7 +352,7 @@ namespace animaltactics4
                             if (gameplay_.conditionsDeVictoire == e_typeDePartie.Echiquier)
                             {
                                 map[i, j].DrawCrown(camerax, cameray,
-                                                gameplay_.armees[map[i, j].pointeurArmee].couleur, direction);
+                                                gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, direction);
                             }
                         }
                     }
@@ -352,11 +360,13 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void DrawTresor(int i_, int j_)
         {
             map[i_, j_].DrawTresor(camerax, cameray, direction);
         }
 
+        //Loohy
         public void Update(SystemeDeJeu gameplay_, HUD hud_)
         {
             Camera();
@@ -388,15 +398,15 @@ namespace animaltactics4
             #endregion
             #region Ctrl
             if (Keyboard.GetState().IsKeyDown(Keys.LeftControl) && clicOrNot &&
-                gameplay_.armees[gameplay_.tourencours].
-                            bataillon[gameplay_.armees[gameplay_.tourencours].
+                gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                            bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].
                             uniteselect].attaqOrNot)
             {
                 switch (gameplay_.mood)
                 {
                     case e_modeAction.Attaque:
-                        if (gameplay_.armees[gameplay_.tourencours].
-                            bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].
+                        if (gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                            bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].
                             typeUnite == TypeUnite.Elite)
                         {
                             gameplay_.mood = e_modeAction.Pouvoir;
@@ -427,6 +437,7 @@ namespace animaltactics4
             #endregion
         }
 
+        //Loohy
         public void surbrillance(int i_, int j_, HUD hud_)
         {
             if ((i_ + 1 == longueur || !map[i_ + 1, j_].estEnSurbrillance)
@@ -442,6 +453,7 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         private void Camera()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
@@ -465,6 +477,8 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
+        #region generateurs de decor
         public void montagne(int i_, int j_)
         {
             for (int d = 0; d < 10; d++)
@@ -750,7 +764,10 @@ namespace animaltactics4
                 map[i_, j_].coutEnMouvement = 3;
             }
         }
+        #endregion
 
+        //Loohy
+        #region generateurs de villages
         public void VillagePanda(int i_, int j_)
         {
             if ((map[i_, j_].E_Sol != e_Typedesol.mer && map[i_, j_].E_Sol != e_Typedesol.banquise)
@@ -844,8 +861,10 @@ namespace animaltactics4
                     }
                 }
             }
-        }
+        } 
+        #endregion
 
+        //Loohy
         public void mapDef()
         {
 
@@ -869,6 +888,8 @@ namespace animaltactics4
             viderVue();
         }
 
+        //Loohy
+        #region generateurs de maps
         public void mapAleaHerbe(int i_, int j_, int nombreDeMontagne_,
             int nombreDeForet_, int nombreDeBunker_, int nombreDeRivieres_)
         {
@@ -1222,8 +1243,10 @@ namespace animaltactics4
                     (int)villes[(k + 1) % villes.Count].X, (int)villes[(k + 1) % villes.Count].Y);
             }
             Adapt();
-        }
+        } 
+        #endregion
 
+        //Loohy
         public void Adapt()
         {
             for (int p = 0; p < longueur; p++)
@@ -1235,6 +1258,7 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void porteeEgal0()
         {
             for (int i = 0; i < longueur; i++)
@@ -1246,12 +1270,14 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void centrerSur(int i_, int j_, HUD hud_)
         {
             camerax = (int)(-450 * hud_.resolution_x) + 32 * i_ - 32 * j_;
             cameray = (int)(-450 * hud_.resolution_y) + 16 * i_ + 16 * j_;
         }
 
+        //Loohy
         public void viderChemin()
         {
             for (int i = 0; i < longueur; i++)
@@ -1263,6 +1289,7 @@ namespace animaltactics4
                 }
             }
         }
+        //Loohy
         public void viderVue()
         {
             for (int i = 0; i < longueur; i++)

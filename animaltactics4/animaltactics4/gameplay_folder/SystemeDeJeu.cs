@@ -14,18 +14,16 @@ namespace animaltactics4
 
         public int tourencours;
         public float limiteDeTours, numeroDeTour;
-        public Armee[] armees;
+        public List<Armee> listeDesJoueurs;
         bool clic, waitForFinDeTour;
         public e_modeAction mood;
         public e_typeDePartie conditionsDeVictoire;
 
-        public SystemeDeJeu(e_race race1_, e_race race2_, Color couleur1_, Color couleur2_, int sizeX_, int sizeY_)
+        public SystemeDeJeu()
         {
             tourencours = 0;
             numeroDeTour = 1;
-            armees = new Armee[2];
-            armees[0] = new Armee(0, race1_, couleur1_, sizeX_, sizeY_);
-            armees[1] = new Armee(1, race2_, couleur2_, sizeX_, sizeY_);
+            listeDesJoueurs = new List<Armee>();
             waitForFinDeTour = false;
             mood = e_modeAction.Mouvement;
             conditionsDeVictoire = e_typeDePartie.Joute; // HO LA LA probleme resolu ?
@@ -35,22 +33,25 @@ namespace animaltactics4
         public void AddUnite(int armee_, TypeUnite typeUnite_, Pouvoir SHORYUKEN_, Aura aura_, string nom_, int force_, int dexterite_, int constitution_, int defense_,
             int esprit_, int chance_, int vitesse_, int[] portee_, bool[] typedAttaque_, int numeroImage, int mouvement, int ia_)
         {
-            armees[armee_].AddUnite(typeUnite_, SHORYUKEN_, aura_, nom_, force_, dexterite_, constitution_, defense_,
+            listeDesJoueurs[armee_].AddUnite(typeUnite_, SHORYUKEN_, aura_, nom_, force_, dexterite_, constitution_, defense_,
             esprit_, chance_, vitesse_, portee_, typedAttaque_, armee_, numeroImage, mouvement, ia_);
         }
         public void AddUnite(int armee_, e_classe classe_)
         {
-            armees[armee_].AddUnite(classe_);
+            listeDesJoueurs[armee_].AddUnite(classe_);
         }
         public void AddUnite(int armee_, e_classe classe_, int ia_)
         {
-            armees[armee_].AddUnite(classe_, ia_);
+            listeDesJoueurs[armee_].AddUnite(classe_, ia_);
         }
 
+        //Loohy
         public void Afficher(MoteurGraphique loohy_)
         {
-            armees[1].Afficher(loohy_, this);
-            armees[0].Afficher(loohy_, this);
+            foreach (Armee item in listeDesJoueurs)
+            {
+                item.Afficher(loohy_, this);
+            }
         }
 
         public void Update(MoteurGraphique loohy_, /*Lecteur coldman_,*/ HUD hud_)
@@ -60,12 +61,12 @@ namespace animaltactics4
                 FinDeTour(loohy_, /*coldman_,*/ hud_);
                 if (waitForFinDeTour)
                 {
-                    armees[tourencours].UpdateSansClicSelonIAouNon(loohy_, this);
+                    listeDesJoueurs[tourencours].UpdateSansClicSelonIAouNon(loohy_, this);
                 }
             }
             else
             {
-                armees[tourencours].UpdateSelonIAouNon(loohy_, this, ref mood, /*coldman_,*/ hud_);
+                listeDesJoueurs[tourencours].UpdateSelonIAouNon(loohy_, this, ref mood, /*coldman_,*/ hud_);
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && clic)
                 {
                     FinDeTour(loohy_, /*coldman_,*/ hud_);
@@ -87,7 +88,7 @@ namespace animaltactics4
             numeroDeTour += 0.5f;
             //coldman_.Play(Lecteur.EffectKey.laser);
             bool vousAvezTousFini = true;
-            foreach (Unite bob in armees[tourencours].bataillon)
+            foreach (Unite bob in listeDesJoueurs[tourencours].bataillon)
             {
                 vousAvezTousFini = vousAvezTousFini && bob.fileDeMouvements.Count == 0;
             }
@@ -100,27 +101,27 @@ namespace animaltactics4
                     if (limiteDeTours > 0)
                     {
                         waitForFinDeTour = false;
-                        armees[tourencours].FindeTour();
-                        tourencours = (tourencours + 1) % 2;
-                        armees[tourencours].reactiverIA();
+                        listeDesJoueurs[tourencours].FindeTour();
+                        tourencours = (tourencours + 1) % listeDesJoueurs.Count;
+                        listeDesJoueurs[tourencours].reactiverIA();
                         hud_.time = 0;
-                        hud_.DoAFlash(armees[tourencours].couleur);
-                        armees[tourencours].soeurAnne(moteurgraphique_, this);
-                        armees[tourencours].appliquerVues(moteurgraphique_);
-                        armees[tourencours].soeurAnne(moteurgraphique_, this);
-                        armees[tourencours].auras(moteurgraphique_, this);
+                        hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
+                        listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
+                        listeDesJoueurs[tourencours].appliquerVues(moteurgraphique_);
+                        listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
+                        listeDesJoueurs[tourencours].auras(moteurgraphique_, this);
                         mood = e_modeAction.Mouvement;
                         if (moteurgraphique_.map[tresor_i, tresor_j].presence
-                            && armees[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
+                            && listeDesJoueurs[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
                             bataillon[moteurgraphique_.map[tresor_i, tresor_j].pointeurUnite].alive)
                         {
-                            armees[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].score +=
+                            listeDesJoueurs[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].score +=
                                 Math.Max(50 - (int)limiteDeTours, 0);
                         }
                     }
                     else
                     {
-                        if (armees[0].score > armees[1].score)
+                        if (listeDesJoueurs[0].score > listeDesJoueurs[1].score)
                         {
                             victory(0, hud_);
                         }
@@ -135,16 +136,16 @@ namespace animaltactics4
                 else
                 {
                     waitForFinDeTour = false;
-                    armees[tourencours].FindeTour();
+                    listeDesJoueurs[tourencours].FindeTour();
                     moteurgraphique_.viderChemin();
-                    tourencours = (tourencours + 1) % 2;
-                    armees[tourencours].reactiverIA();
+                    tourencours = (tourencours + 1) % listeDesJoueurs.Count;
+                    listeDesJoueurs[tourencours].reactiverIA();
                     hud_.time = 0;
-                    hud_.DoAFlash(armees[tourencours].couleur);
-                    armees[tourencours].soeurAnne(moteurgraphique_, this);
-                    armees[tourencours].appliquerVues(moteurgraphique_);
-                    armees[tourencours].soeurAnne(moteurgraphique_, this);
-                    armees[tourencours].auras(moteurgraphique_, this);
+                    hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
+                    listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
+                    listeDesJoueurs[tourencours].appliquerVues(moteurgraphique_);
+                    listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
+                    listeDesJoueurs[tourencours].auras(moteurgraphique_, this);
                     mood = e_modeAction.Mouvement;
                 }
                 #endregion
@@ -155,68 +156,78 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void CheckPV(MoteurGraphique moteurgraphique_, HUD hud_)
         {
-            armees[0].checkPV(moteurgraphique_, this);
-            armees[1].checkPV(moteurgraphique_, this);
+            foreach (Armee item in listeDesJoueurs)
+            {
+                item.checkPV(moteurgraphique_, this);
+            }
             CheckVictoire(hud_);
         }
 
+        //Loohy
         public void pop(MoteurGraphique moteurgraphique_)
         {
-            armees[0].pop(moteurgraphique_, this);
-            armees[1].pop(moteurgraphique_, this);
+            foreach (Armee item in listeDesJoueurs)
+            {
+                item.pop(moteurgraphique_, this);
+            }
         }
 
-        public void initialize(MoteurGraphique moteurgraphique_, e_typeDePartie conditionsDeVictoire_, HUD hud_, float limiteDeTours_ = 0)
+        //Loohy
+        /*public void initialize(MoteurGraphique moteurgraphique_, e_typeDePartie conditionsDeVictoire_, HUD hud_, float limiteDeTours_ = 0)
         {
             numeroDeTour = 1;
-            armees[0].vider(moteurgraphique_.longueur, moteurgraphique_.largeur);
-            armees[1].vider(moteurgraphique_.longueur, moteurgraphique_.largeur);
-            armees[0].QG = new Vector2((int)(moteurgraphique_.longueur / 4), (int)(moteurgraphique_.largeur / 4));
-            armees[1].QG = new Vector2((int)((moteurgraphique_.longueur * 3) / 4), (int)((moteurgraphique_.largeur * 3) / 4));
+            foreach (Armee item in listeDesJoueurs)
+            {
+                item.vider(moteurgraphique_.longueur, moteurgraphique_.largeur);
+            }
+            //TODO
+            listeDesJoueurs[0].QG = new Vector2((int)(moteurgraphique_.longueur / 4), (int)(moteurgraphique_.largeur / 4));
+            listeDesJoueurs[1].QG = new Vector2((int)((moteurgraphique_.longueur * 3) / 4), (int)((moteurgraphique_.largeur * 3) / 4));
             conditionsDeVictoire = conditionsDeVictoire_;
             #region Unites
             for (int m = 0; m < 2; m++)
             {
-                switch (armees[m].espece)
+                switch (listeDesJoueurs[m].espece)
                 {
                     case e_race.Fenrir:
-                        AddUnite(m, e_classe.FenrirOkami, armees[m].difficulte);
-                        AddUnite(m, e_classe.FenrirRailgun, armees[m].difficulte);
-                        AddUnite(m, e_classe.FenrirDreadnought, armees[m].difficulte);
-                        AddUnite(m, e_classe.FenrirWarBlade, armees[m].difficulte);
-                        AddUnite(m, e_classe.FenrirWarBlade, armees[m].difficulte);
-                        AddUnite(m, e_classe.FenrirTireur, armees[m].difficulte);
-                        AddUnite(m, e_classe.FenrirEclaireur, armees[m].difficulte);
+                        AddUnite(m, e_classe.FenrirOkami, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.FenrirRailgun, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.FenrirDreadnought, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.FenrirWarBlade, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.FenrirWarBlade, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.FenrirTireur, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.FenrirEclaireur, listeDesJoueurs[m].difficulte);
                         break;
                     case e_race.Pandawan:
-                        AddUnite(m, e_classe.PandawanSayan, armees[m].difficulte);
-                        AddUnite(m, e_classe.PandawanNinja, armees[m].difficulte);
-                        AddUnite(m, e_classe.PandawanSniper, armees[m].difficulte);
-                        AddUnite(m, e_classe.PandawanBushi, armees[m].difficulte);
-                        AddUnite(m, e_classe.PandawanYabusame, armees[m].difficulte);
-                        AddUnite(m, e_classe.PandawanCharDragon, armees[m].difficulte);
-                        AddUnite(m, e_classe.PandawanSokei, armees[m].difficulte);
+                        AddUnite(m, e_classe.PandawanSayan, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PandawanNinja, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PandawanSniper, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PandawanBushi, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PandawanYabusame, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PandawanCharDragon, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PandawanSokei, listeDesJoueurs[m].difficulte);
                         break;
                     case e_race.Krissa:
-                        AddUnite(m, e_classe.ChefKrissa, armees[m].difficulte);
-                        AddUnite(m, e_classe.Assassin, armees[m].difficulte);
-                        AddUnite(m, e_classe.Abomination, armees[m].difficulte);
-                        AddUnite(m, e_classe.Legionnaire, armees[m].difficulte);
-                        AddUnite(m, e_classe.Maraudeur, armees[m].difficulte);
-                        AddUnite(m, e_classe.Vermine, armees[m].difficulte);
-                        AddUnite(m, e_classe.Vermine, armees[m].difficulte);
+                        AddUnite(m, e_classe.ChefKrissa, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.Assassin, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.Abomination, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.Legionnaire, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.Maraudeur, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.Vermine, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.Vermine, listeDesJoueurs[m].difficulte);
                         break;
                     default:
-                        AddUnite(m, e_classe.PingvinOdin, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinThor, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinWalkyrie, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinWalkyrie, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinLanceFlammes, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinLanceFlammes, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinChar, armees[m].difficulte);
-                        AddUnite(m, e_classe.PingvinUgin, armees[m].difficulte);
+                        AddUnite(m, e_classe.PingvinOdin, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinThor, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinWalkyrie, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinWalkyrie, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinLanceFlammes, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinLanceFlammes, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinChar, listeDesJoueurs[m].difficulte);
+                        AddUnite(m, e_classe.PingvinUgin, listeDesJoueurs[m].difficulte);
                         break;
                 }
             }
@@ -253,12 +264,22 @@ namespace animaltactics4
             //    kikoo++;
             //} while (kikoo != Classe.Overlord);
         }
-        public void initializeWithListedArmies(MoteurGraphique moteurgraphique_,
+        */
+        //Loohy
+        public void initializeWithListedArmies(List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
+            MoteurGraphique moteurgraphique_,
             e_typeDePartie conditionsDeVictoire_, HUD hud_, float limiteDeTours_ = 0)
         {
             numeroDeTour = 1;
-            armees[0].QG = new Vector2((int)(moteurgraphique_.longueur / 4), (int)(moteurgraphique_.largeur / 4));
-            armees[1].QG = new Vector2((int)((moteurgraphique_.longueur * 3) / 4), (int)((moteurgraphique_.largeur * 3) / 4));
+            //TODO
+            //listeDesJoueurs[0].QG = new Vector2((int)(moteurgraphique_.longueur / 4), (int)(moteurgraphique_.largeur / 4));
+            //listeDesJoueurs[1].QG = new Vector2((int)((moteurgraphique_.longueur * 3) / 4), (int)((moteurgraphique_.largeur * 3) / 4));
+            listeDesJoueurs = new List<Armee>();
+            for (int p = 0; p < nomDesArmees_.Count; p++)
+            {
+                listeDesJoueurs.Add(new Armee(p, e_race.Random, couleurs_[p], moteurgraphique_.longueur, moteurgraphique_.largeur));
+                listeDesJoueurs[p].ConvertFromList(Divers.obtenirList(nomDesArmees_[p]), difficultes_[p]);
+            }
             conditionsDeVictoire = conditionsDeVictoire_;
             pop(moteurgraphique_);
             hud_.Victory_ = false;
@@ -298,53 +319,76 @@ namespace animaltactics4
             //} while (kikoo != Classe.Overlord);
         }
 
+        //Loohy
         public void finDePartie(Color color_, HUD hud_)
         {
             hud_.DoAFlash(color_);
         }
 
+        //Loohy
         public void CheckVictoire(HUD hud_)
         {
             switch (conditionsDeVictoire)
             {
                 case e_typeDePartie.Echiquier:
-                    #region Joute
-                    if (!armees[0].atLeastOneHeroAlive)
+                    #region Joute/Hero
+                    for (int p = 0; p < listeDesJoueurs.Count; p++)
                     {
-                        victory(1, hud_);
-                    }
-                    if (!armees[1].atLeastOneHeroAlive)
-                    {
-                        victory(0, hud_);
+                        bool een = true;
+                        for (int k = 0; k < listeDesJoueurs.Count; k++)
+                        {
+                            if (k != p)
+                            {
+                                een = een && !listeDesJoueurs[k].atLeastOneHeroAlive;
+                            }
+                            if (een)
+                            {
+                                victory(p, hud_);
+                            }
+                        }
                     }
                     #endregion
                     break;
                 case e_typeDePartie.Joute:
                     #region Joute
-                    if (!armees[0].atLeastOneAlive)
+                    for (int p = 0; p < listeDesJoueurs.Count; p++)
                     {
-                        victory(1, hud_);
-                    }
-                    if (!armees[1].atLeastOneAlive)
-                    {
-                        victory(0, hud_);
+                        bool een = true;
+                        for (int k = 0; k < listeDesJoueurs.Count; k++)
+                        {
+                            if (k != p)
+                            {
+                                een = een && !listeDesJoueurs[k].atLeastOneAlive;
+                            }
+                            if (een)
+                            {
+                                victory(p, hud_);
+                            }
+                        }
                     }
                     #endregion
                     break;
                 case e_typeDePartie.Tresor://TODO
                     #region Joute
-                    if (!armees[0].atLeastOneAlive)
+                    for (int p = 0; p < listeDesJoueurs.Count; p++)
                     {
-                        victory(1, hud_);
-                    }
-                    if (!armees[1].atLeastOneAlive)
-                    {
-                        victory(0, hud_);
+                        bool een = true;
+                        for (int k = 0; k < listeDesJoueurs.Count; k++)
+                        {
+                            if (k != p)
+                            {
+                                een = een && !listeDesJoueurs[k].atLeastOneAlive;
+                            }
+                            if (een)
+                            {
+                                victory(p, hud_);
+                            }
+                        }
                     }
                     #endregion
-                    for (int g = 0; g < 2; g++)
+                    for (int g = 0; g < listeDesJoueurs.Count; g++)
                     {
-                        if ((int)armees[g].QG.X == tresor_i && (int)armees[g].QG.Y == tresor_j)
+                        if ((int)listeDesJoueurs[g].QG.X == tresor_i && (int)listeDesJoueurs[g].QG.Y == tresor_j)
                         {
                             victory(g, hud_);
                         }
@@ -352,13 +396,20 @@ namespace animaltactics4
                     break;
                 case e_typeDePartie.Colline://TODO
                     #region Joute
-                    if (!armees[0].atLeastOneAlive)
+                    for (int p = 0; p < listeDesJoueurs.Count; p++)
                     {
-                        victory(1, hud_);
-                    }
-                    if (!armees[1].atLeastOneAlive)
-                    {
-                        victory(0, hud_);
+                        bool een = true;
+                        for (int k = 0; k < listeDesJoueurs.Count; k++)
+                        {
+                            if (k != p)
+                            {
+                                een = een && !listeDesJoueurs[k].atLeastOneAlive;
+                            }
+                            if (een)
+                            {
+                                victory(p, hud_);
+                            }
+                        }
                     }
                     #endregion
                     break;
@@ -367,26 +418,29 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void victory(int armeeVictorieuse, HUD hud_)
         {
-            hud_.victory(armees[armeeVictorieuse].couleur, armees[armeeVictorieuse].espece);
+            hud_.victory(listeDesJoueurs[armeeVictorieuse].couleur, listeDesJoueurs[armeeVictorieuse].espece);
         }
         public void egalite(HUD hud_)
         {
             hud_.victory(Color.Black, e_race.Random);
         }
 
+        //Loohy
         public void UpdateTresor(MoteurGraphique moteurgraphique_, HUD hud_)
         {
-            if (moteurgraphique_.map[tresor_i, tresor_j].presence && armees[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
+            if (moteurgraphique_.map[tresor_i, tresor_j].presence &&
+                listeDesJoueurs[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
                     bataillon[moteurgraphique_.map[tresor_i, tresor_j].pointeurUnite].alive)
             {
-                armees[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
+                listeDesJoueurs[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
                     bataillon[moteurgraphique_.map[tresor_i, tresor_j].pointeurUnite].porteTresor = true;
             }
             for (int h = 0; h < 2; h++)
             {
-                foreach (Unite mafe in armees[h].bataillon)
+                foreach (Unite mafe in listeDesJoueurs[h].bataillon)
                 {
                     if (mafe.porteTresor)
                     {
@@ -394,16 +448,17 @@ namespace animaltactics4
                         tresor_j = mafe.j;
                     }
                 }
-                if (tresor_i == armees[h].QG.X && tresor_j == armees[h].QG.Y)
+                if (tresor_i == listeDesJoueurs[h].QG.X && tresor_j == listeDesJoueurs[h].QG.Y)
                 {
                     victory(h, hud_);
                 }
             }
         }
 
+        //Loohy
         public void rotation()
         {
-            foreach (Armee item in armees)
+            foreach (Armee item in listeDesJoueurs)
             {
                 item.rotation();
             }
