@@ -41,7 +41,10 @@ namespace animaltactics4
             textures.Add("space", content_.Load<Texture2D>("Image\\Fond\\SpaceArt"));
             textures.Add("grosse", content_.Load<Texture2D>("Image\\Divers\\bite"));
             textures.Add("aura", content_.Load<Texture2D>("Image\\Info\\aura"));
+
             fonts.Add("bouton", content_.Load<SpriteFont>("SpriteFont\\sfBouton"));
+            fonts.Add("text", content_.Load<SpriteFont>("SpriteFont\\sftext"));
+
             textures.Add("tresor", content_.Load<Texture2D>("Image\\Info\\tresor"));
             textures.Add("grade", content_.Load<Texture2D>("Image\\Info\\Grade"));
             videos.Add("intro", content_.Load<Video>("Video\\intro"));
@@ -140,6 +143,19 @@ namespace animaltactics4
                     rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)
                     + (int)(rect_.Height * pprc / 2) - (fonts["bouton"].MeasureString(text_).Y / 2)),
                     Color.White);
+            Atsushi_Okhubo.End();
+        }
+        //Coldman
+        static public void DrawStringInBoxJustify(List<string> text_, Rectangle rect_)
+        {
+            Vector2 vec = new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
+                    rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2));
+            Atsushi_Okhubo.Begin();
+            for (int i = 0; i < text_.Count; i++)
+            {
+                vec.Y += 10;
+                Atsushi_Okhubo.DrawString(fonts["text"], text_[i], vec, Color.White);
+            }
             Atsushi_Okhubo.End();
         }
         //Coldman
