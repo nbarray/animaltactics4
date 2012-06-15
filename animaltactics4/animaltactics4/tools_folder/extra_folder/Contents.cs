@@ -53,8 +53,6 @@ namespace animaltactics4
             textures.Add("flag4", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
             textures.Add("Tiles", content_.Load<Texture2D>("Image\\Tuile\\Tiles"));
             textures.Add("Bridges", content_.Load<Texture2D>("Image\\Tuile\\bridges"));
-
-            fonts.Add("bouton", content_.Load<SpriteFont>("SPriteFont\\sfBouton"));
         }
 
         //Loohy

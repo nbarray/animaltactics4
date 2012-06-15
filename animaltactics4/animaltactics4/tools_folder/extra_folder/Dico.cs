@@ -53,6 +53,25 @@ namespace animaltactics4
             "Game",
             "Sound",
             });
+
+            langues.Add("Schtroumpf", new string[]{
+            "Schtroumpfer",
+            "Schtroumpfer",
+            "Bonuschtroumpfs",
+            "Schtroumpfs",
+            "Schtroumpfer",
+            "Schtroumpf",
+            "Schtroumpf classique",
+            "Schtroumpf",
+            "Schtroumpfs en reseau",
+            "Editeur de Schtroumpfs",
+            "Schtroumpfeur d'armees",
+            "Encyclopeschtroumpf",
+            "Creditschtroumpfs",
+            "Graphischtroumpf",
+            "Schtroumpf",
+            "Schtroumpf sonore",
+            });
         }
     }
 }
