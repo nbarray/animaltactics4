@@ -15,7 +15,7 @@ namespace animaltactics4
     {
         GraphicsDeviceManager graphics;
         static public bool quitter = false;
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -26,8 +26,13 @@ namespace animaltactics4
         protected override void Initialize()
         {
             base.Initialize();
-            Engine.Initialize();
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.PreferredBackBufferFormat = GraphicsDevice.DisplayMode.Format;
+            graphics.ApplyChanges();
+
             Contents.Initialize(GraphicsDevice);
+            Engine.Initialize();
         }
 
         protected override void LoadContent()
@@ -42,12 +47,15 @@ namespace animaltactics4
 
         protected override void Update(GameTime gameTime)
         {
-            if(quitter)
-                this.Exit();
-
             Engine.Update(gameTime);
 
+            if (quitter)
+            {
+                this.Exit();
+            }
+           
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
