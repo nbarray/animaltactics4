@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace animaltactics4
 {
-    enum TypedAura
+    public enum TypedAura
     {
         BoostAttaque,
         BoostArmure,
@@ -17,16 +17,16 @@ namespace animaltactics4
         BoostEsquive,
         BoostInitiative
     }
-    enum e_EtatAnim
+    public enum e_EtatAnim
     {
         mouvement1, mouvement2, mouvement3,
         repos1, repos2
     }
-    enum mouv
+    public enum mouv
     {
         Sud, Nord, Est, Ouest
     }
-    enum TypeUnite
+    public enum TypeUnite
     {
         Base,
         Elite,
@@ -34,7 +34,7 @@ namespace animaltactics4
         PNJ,
         Overlord
     }
-    enum brouillardDeGuerre
+    public enum brouillardDeGuerre
     {
         ToutVisible, ToutVisite, Normal
     }
@@ -133,7 +133,7 @@ namespace animaltactics4
     {
         Echiquier, Joute, Tresor, Colline
     }
-    enum e_Typedesol
+    public enum e_Typedesol
     {
         herbe,
         sable,
@@ -143,18 +143,18 @@ namespace animaltactics4
         desert,
         vide
     }
-    enum e_Typederoute
+    public enum e_Typederoute
     {
         route,
         pont,
         vide
     }
-    enum e_Riviere
+    public enum e_Riviere
     {
         riviere,
         vide
     }
-    enum e_Decorarriere
+    public enum e_Decorarriere
     {
         foret,
         bunker,
@@ -167,14 +167,14 @@ namespace animaltactics4
         cratere,
         vide
     }
-    enum e_Decoravant
+    public enum e_Decoravant
     {
         foret,
         bunker,
         iceBunker,
         vide
     }
-    enum e_Cache
+    public enum e_Cache
     {
         Invisible, InvisibleAmi, Visible
     }

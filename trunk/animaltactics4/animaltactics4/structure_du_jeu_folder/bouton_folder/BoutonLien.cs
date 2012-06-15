@@ -20,7 +20,7 @@ namespace animaltactics4
         {
             linkTo = linkTo_;
             text = text_;
-            tuveuxvoir = new Rectangle(0, 0, Divers.X, 100);
+            tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
         }
 
         public override void Update(GameTime gameTime)
@@ -28,7 +28,6 @@ namespace animaltactics4
 
             if (Contents.contientLaSouris(base.rect))
             {
-                tuveuxvoir.Y = base.rect.Y - 12;
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     // Action !
