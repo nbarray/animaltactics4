@@ -29,6 +29,7 @@ namespace animaltactics4
             {
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
+                    MoteurSon.Play("bouton");
                     // Action !
                     if (linkTo != null)
                     {
