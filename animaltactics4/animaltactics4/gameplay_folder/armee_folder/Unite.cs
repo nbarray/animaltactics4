@@ -48,7 +48,7 @@ namespace animaltactics4
         public int[] portee;//A chaque valeur de portee, donne le pourcentage de precision(nombre compris entre 0 et 10)
         public bool[] typedAttaque;//V : attaque physique, F : attaque magique
 
-        List<int> porteePouvoir; //Une liste des differentes portees des pouvoirs 
+        // List<int> porteePouvoir; //Une liste des differentes portees des pouvoirs 
 
         #endregion
         #region Autres

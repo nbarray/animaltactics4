@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 
 namespace animaltactics4
 {
+    //Coldman
     class MenuPrincipal : Scene
     {
-        public MenuPrincipal() : base()
+        public MenuPrincipal()
+            : base()
         {
-            boutons.Add(new BoutonLien(new Rectangle(100, 100, 200, 75), new Rectangle(0, 0, 800, 300), new MenuJouer(), "Jouer"));
-            boutons.Add(new BoutonLien(new Rectangle(100, 200, 200, 75), new Rectangle(0, 0, 800, 300), null, "Editer"));
-            boutons.Add(new BoutonLien(new Rectangle(100, 300, 200, 75), new Rectangle(0, 0, 800, 300), new MenuOption(), "Option"));
-            boutons.Add(new BoutonLien(new Rectangle(100, 400, 200, 75), new Rectangle(0, 0, 800, 300), null, "Bonus"));
-            boutons.Add(new BoutonLien(new Rectangle(100, 500, 200, 75), new Rectangle(0, 0, 800, 300), null, "Quitter"));
+            boutons.Add(new BoutonLien(100, 300, new Rectangle(0, 0, 800, 300), new MenuJouer(), 0));
+            boutons.Add(new BoutonLien(100, 400, new Rectangle(0, 0, 800, 300), new MenuEditer(), 1));
+            boutons.Add(new BoutonLien(100, 500, new Rectangle(0, 0, 800, 300), new MenuBonus(), 2));
+            boutons.Add(new BoutonLien(100, 600, new Rectangle(0, 0, 800, 300), new MenuOption(), 3));
+            boutons.Add(new BoutonLien(100, 700, new Rectangle(0, 0, 800, 300), null, 4));
         }
 
         public override void UpdateScene(GameTime gameTime)

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace animaltactics4
 {
@@ -13,9 +14,12 @@ namespace animaltactics4
     {
         static public Dictionary<string, Texture2D> textures = new Dictionary<string,Texture2D>();
         static public Dictionary<string, SpriteFont> fonts = new Dictionary<string,SpriteFont>();
+        static public Dictionary<string, Video> videos = new Dictionary<string, Video>();
         static private SpriteBatch Atsushi_Okhubo;
         static private float screenWidth, screenHeight, pprc;
+        static public VideoPlayer Miyazaki;
 
+        //Coldman
         static public Vector2 GetResolution
         {
             get { return new Vector2(screenWidth, screenHeight);}
@@ -24,9 +28,11 @@ namespace animaltactics4
         static public void Initialize(GraphicsDevice device_)
         {
             Atsushi_Okhubo = new SpriteBatch(device_);
+            Miyazaki = new VideoPlayer();
             adapter(device_.DisplayMode.Width, device_.DisplayMode.Height);
         }
 
+        //Coldman
         static public void LoadContent(ContentManager content_)
         {
             // Load tous tes contents
@@ -35,7 +41,10 @@ namespace animaltactics4
             textures.Add("space", content_.Load<Texture2D>("Image\\Fond\\SpaceArt"));
             textures.Add("grosse", content_.Load<Texture2D>("Image\\Divers\\bite"));
             textures.Add("aura", content_.Load<Texture2D>("Image\\Info\\aura"));
-            fonts.Add("bouton", content_.Load<SpriteFont>("SPriteFont\\sfBouton"));
+            fonts.Add("bouton", content_.Load<SpriteFont>("SpriteFont\\sfBouton"));
+
+            videos.Add("intro", content_.Load<Video>("Video\\intro"));
+            
         }
 
         //Loohy
@@ -101,7 +110,16 @@ namespace animaltactics4
                     Color.White);
             Atsushi_Okhubo.End();
         }
-
+        //Coldman
+        static public void DrawVideo(string name_, Rectangle rect_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(Miyazaki.GetTexture(),
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), Color.White);
+            Atsushi_Okhubo.End();
+        }
         //Coldman
         static public bool contientLaSouris(Rectangle rect_)
         {

@@ -31,6 +31,7 @@ namespace animaltactics4
             graphics.PreferredBackBufferFormat = GraphicsDevice.DisplayMode.Format;
             graphics.ApplyChanges();
 
+            Dico.Initialize();
             Contents.Initialize(GraphicsDevice);
             Engine.Initialize();
         }
