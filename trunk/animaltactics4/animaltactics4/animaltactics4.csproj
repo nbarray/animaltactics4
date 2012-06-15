@@ -110,6 +110,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="editeur_folder\sauvegarde_folder\FausseUnite.cs" />
+    <Compile Include="editeur_folder\sauvegarde_folder\ListeArmee.cs" />
     <Compile Include="gameplay_folder\armee_folder\Armee.cs" />
     <Compile Include="gameplay_folder\armee_folder\Aura.cs" />
     <Compile Include="gameplay_folder\armee_folder\Pouvoir.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\Introduction.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuBonus.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuCampagne.cs" />
+    <Compile Include="structure_du_jeu_folder\partie_folder\Partie.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuClassique.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuCredit.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuEditer.cs" />
@@ -186,7 +189,6 @@
   <ItemGroup>
     <Folder Include="editeur_folder\armee_folder\" />
     <Folder Include="editeur_folder\carte_folder\" />
-    <Folder Include="editeur_folder\sauvegarde_folder\" />
     <Folder Include="gameplay_folder\ia_folder\" />
     <Folder Include="moteur_reseau_folder\" />
     <Folder Include="moteur_sonore_folder\" />

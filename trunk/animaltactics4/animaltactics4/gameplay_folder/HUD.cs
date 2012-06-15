@@ -14,7 +14,7 @@ namespace animaltactics4
         private Color flashColor;
         public int time;
         public float resolution_x, resolution_y;
-        private int UniteAttaquante, UniteDefenseuse;
+        private string UniteAttaquante, UniteDefenseuse;
         private Color color1, color2;
         private string texteCombat1, texteCombat2;
         e_pouvoir powaa;
@@ -99,19 +99,19 @@ namespace animaltactics4
             //sprite_.Draw(tex_.Textures_[10], new Rectangle(positionDuTexteX - (int)(100 * resolution_x), 0, (int)(300 * resolution_x),
             //    (int)(900 * resolution_y)), Color.White);
             #endregion
-            if (gameplay_.armees[gameplay_.tourencours].difficulte == 0
-                && gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].alive)
+            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0
+                && gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
             {
                 #region stats unite
-                statUnite(gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect],
-                    gameplay_.armees[gameplay_.tourencours].couleur);
+                statUnite(gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect],
+                    gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur);
                 #endregion
             }
             #region Boutons d'action
-            if (gameplay_.armees[gameplay_.tourencours].difficulte == 0 && gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].alive)
+            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0 && gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
             {
-                int i = gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i;
-                int j = gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j;
+                int i = gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i;
+                int j = gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j;
                 Rectangle rect = genererRectangle(i, j, moteurgraphique_.map[i, j].altitude,
                     moteurgraphique_.camerax, moteurgraphique_.cameray, moteurgraphique_.direction);
                 //DrawButtons(sprite_, tex_,
@@ -341,7 +341,7 @@ namespace animaltactics4
             }
             #endregion
             #region score
-            if (gameplay_.armees[gameplay_.tourencours].difficulte == 0)
+            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0)
             {
                 //    DrawScore(sprite_, gameplay_, tex_, new Vector2(900, 170), (int)gameplay_.numeroDeTour);
             }

@@ -7,26 +7,20 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    //Loohy
     class Tile
     {
         #region Parametres
-        int i;
-        int j;
-        public int altitude;
-        public int pointeurArmee;
-        public int pointeurUnite;
-        public bool estEnSurbrillance;
-        public int surbrillancePortee;
+        int i, j;
+        public int altitude, pointeurArmee,pointeurUnite,surbrillancePortee,coutEnMouvement;
+        public bool estEnSurbrillance, estAccessible, presence;
         public Rectangle sousRectportee;
-        public bool estAccessible;
-        public int coutEnMouvement;
         public e_Typedesol E_Sol;
         public e_Typederoute E_Route;
         public e_Riviere E_Riviere;
         public e_Decorarriere E_DecorArriere;
         public e_Decoravant E_DecorAvant;
-        public int textureUnite;
-        public bool presence;
+        public string textureUnite;
         public e_Cache cachette;
 
         public Rectangle sousRectSol, sousRectRoute, sousRectRiviere2, sousRectDecorAvant, sousRectDecorArriere, sousRectUnite;
@@ -42,7 +36,8 @@ namespace animaltactics4
 
         Losange boundingbox;
         #endregion
-
+        
+        //Loohy
         public Tile(int i_, int j_)
         {
             i = i_;
@@ -98,6 +93,7 @@ namespace animaltactics4
             boundingbox.Update(rect.X, rect.Y);
         }
 
+        //Loohy
         public void Draw(int camerax_, int cameray_, int r_, int direction_)
         {
             Rectangle rect = genererRectangle(camerax_, cameray_, direction_);
@@ -120,50 +116,50 @@ namespace animaltactics4
                     }
                     rect.Y -= (int)vagues;
                 }
-                //sprite_.Draw(tex_.Textures_[28], rect, sousRectSol, Color.White);
+                Contents.Draw("Bridges", rect, sousRectSol);
                 #endregion
                 #region route
                 if (E_Riviere == e_Riviere.riviere)
                 {
-                    //sprite_.Draw(tex_.Textures_[28], rect, sousRectRiviere2, Color.White);
+                    Contents.Draw("Tiles", rect, sousRectRiviere2);
                 }
                 if (E_Route != e_Typederoute.vide)
                 {
                     if (E_Sol == e_Typedesol.mer || E_Sol == e_Typedesol.banquise)
                     {
-                        //sprite_.Draw(tex_.Textures_[27], rect, sousRectRoute, Color.White);
+                        Contents.Draw("Bridges", rect, sousRectRoute);
                     }
                     else
                     {
-                        //sprite_.Draw(tex_.Textures_[28], rect, sousRectRoute, Color.White);
+                        Contents.Draw("Tiles", rect, sousRectRoute);
                     }
                 }
                 #endregion
                 #region surbrillance
                 if (presence && aura)
                 {
-                    //sprite_.Draw(tex_.Textures_[28], rect, new Rectangle(64, 7 * 64, 64, 64), Color.Yellow);
+                    Contents.Draw("Tiles", rect, Color.Yellow, new Rectangle(64, 7 * 64, 64, 64));
                 }
                 if (surbrillancePortee != 0 && (estAccessible || presence) && AttaqOrNotGeneral)
                 {
-                    // sprite_.Draw(tex_.Textures_[28], rect, sousRectportee, Color.White);
+                    Contents.Draw("Tiles", rect, sousRectportee);
                 }
                 else
                 {
                     if (cheminValid && !AttaqOrNotGeneral)
                     {
-                        //   sprite_.Draw(tex_.Textures_[28], rect, new Rectangle(64, 7 * 64, 64, 64), Color.LightBlue);
+                        Contents.Draw("Tiles", rect, Color.LightBlue, new Rectangle(64, 7 * 64, 64, 64));
                     }
                 }
                 if (estEnSurbrillance)
                 {
-                    //sprite_.Draw(tex_.Textures_[28], rect, new Rectangle(64, 7 * 64, 64, 64), Color.Purple);
+                    Contents.Draw("Tiles", rect, Color.Purple, new Rectangle(64, 7 * 64, 64, 64));
                 }
                 #endregion
                 rect.Y -= 32;
                 if (E_DecorArriere != e_Decorarriere.vide)
                 {
-                    //sprite_.Draw(Textures.textures[28], rect, sousRectDecorArriere, Color.White);
+                    Contents.Draw("Tiles", rect, sousRectDecorArriere);
                 }
                 switch (cachette)
                 {
@@ -171,7 +167,7 @@ namespace animaltactics4
                         #region unite
                         if (dessinTomb)
                         {
-                            //sprite_.Draw(image_, rect, new Rectangle(18*64, 64, 64, 64), Color.White);
+                            //Contents.Draw(image_, rect, new Rectangle(18 * 64, 64, 64, 64));
                         }
                         if (presence)
                         {
@@ -182,26 +178,26 @@ namespace animaltactics4
                                     case e_EtatAnim.mouvement1:
                                         rect.X += iDepart * 24;
                                         rect.Y += jDepart * 12;
-                                        //sprite_.Draw(Textures.textures[textureUnite], rect, sousRectUnite, Color.LightGreen);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f,0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 24;
                                         rect.Y -= jDepart * 12;
                                         break;
                                     case e_EtatAnim.mouvement2:
                                         rect.X += iDepart * 16;
                                         rect.Y += jDepart * 8;
-                                        //sprite_.Draw(Textures.textures[textureUnite], rect, sousRectUnite, Color.LightGreen);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f,0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 16;
                                         rect.Y -= jDepart * 8;
                                         break;
                                     case e_EtatAnim.mouvement3:
                                         rect.X += iDepart * 8;
                                         rect.Y += jDepart * 4;
-                                        //sprite_.Draw(Textures.textures[textureUnite], rect, sousRectUnite, Color.LightGreen);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f,0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 8;
                                         rect.Y -= jDepart * 4;
                                         break;
                                     default:
-                                        //sprite_.Draw(Textures.textures[textureUnite], rect, sousRectUnite, Color.LightGreen);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         break;
                                 }
                             }
@@ -270,7 +266,7 @@ namespace animaltactics4
                         #region unite
                         if (dessinTomb)
                         {
-                            //sprite_.Draw(image_, rect, new Rectangle(18*64, 64, 64, 64), Color.White);
+                            //Contents.Draw(image_, rect, new Rectangle(18 * 64, 64, 64, 64));
                         }
                         if (presence)
                         {
@@ -281,26 +277,26 @@ namespace animaltactics4
                                     case e_EtatAnim.mouvement1:
                                         rect.X += iDepart * 24;
                                         rect.Y += jDepart * 12;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.White);
+                                        Contents.Draw(textureUnite, rect, sousRectUnite);
                                         rect.X -= iDepart * 24;
                                         rect.Y -= jDepart * 12;
                                         break;
                                     case e_EtatAnim.mouvement2:
                                         rect.X += iDepart * 16;
                                         rect.Y += jDepart * 8;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.White);
+                                        Contents.Draw(textureUnite, rect, sousRectUnite);
                                         rect.X -= iDepart * 16;
                                         rect.Y -= jDepart * 8;
                                         break;
                                     case e_EtatAnim.mouvement3:
                                         rect.X += iDepart * 8;
                                         rect.Y += jDepart * 4;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.White);
+                                        Contents.Draw(textureUnite, rect, sousRectUnite);
                                         rect.X -= iDepart * 8;
                                         rect.Y -= jDepart * 4;
                                         break;
                                     default:
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.White);
+                                        Contents.Draw(textureUnite, rect, sousRectUnite);
                                         break;
                                 }
                             }
@@ -341,26 +337,26 @@ namespace animaltactics4
                                 switch (r_ % 6)
                                 {
                                     case 0:
-                                        //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 15, rect.Y - 12, 34, 14), Color.LightGreen);
+                                        Contents.Draw("aura", new Rectangle(rect.X + 15, rect.Y - 12, 34, 14), Color.LightGreen);
                                         break;
                                     case 1:
-                                        //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 16, rect.Y - 12, 34, 14), Color.LightGreen);
+                                        Contents.Draw("aura", new Rectangle(rect.X + 16, rect.Y - 12, 34, 14), Color.LightGreen);
                                         break;
                                     case 2:
-                                        //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 16, rect.Y - 13, 34, 15), Color.LightGreen);
+                                        Contents.Draw("aura", new Rectangle(rect.X + 16, rect.Y - 13, 34, 15), Color.LightGreen);
                                         break;
                                     case 3:
-                                        //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 15, rect.Y - 13, 34, 15), Color.LightGreen);
+                                        Contents.Draw("aura", new Rectangle(rect.X + 15, rect.Y - 13, 34, 15), Color.LightGreen);
                                         break;
                                     case 4:
-                                        //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 14, rect.Y - 13, 34, 15), Color.LightGreen);
+                                        Contents.Draw("aura", new Rectangle(rect.X + 14, rect.Y - 13, 34, 15), Color.LightGreen);
                                         break;
                                     default:
-                                        //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 14, rect.Y - 12, 34, 14), Color.LightGreen);
+                                        Contents.Draw("aura", new Rectangle(rect.X + 14, rect.Y - 12, 34, 14), Color.LightGreen);
                                         break;
                                 }
                                 #endregion
-                                //sprite_.Draw(tex_.Textures_[101], new Rectangle(rect.X + 16, rect.Y - 10, 32, 12), Color.Green);
+                                Contents.Draw("aura", new Rectangle(rect.X + 16, rect.Y - 10, 32, 12), Color.Green);
                             }
                         }
                         #endregion
@@ -370,7 +366,7 @@ namespace animaltactics4
                 }
                 if (E_DecorAvant != e_Decoravant.vide)
                 {
-                    //sprite_.Draw(tex_.Textures_[28], rect, sousRectDecorAvant, Color.White);
+                    Contents.Draw("Tiles", rect, sousRectDecorAvant);
                 }
             }
             else
@@ -394,34 +390,36 @@ namespace animaltactics4
                         }
                         rect.Y -= (int)vagues;
                     }
-                    //sprite_.Draw(tex_.Textures_[28], rect, sousRectSol, new Color(60, 60, 60));
+                    Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectSol);
                     #endregion
                     #region route
                     if (E_Riviere == e_Riviere.riviere)
                     {
-                        //    sprite_.Draw(tex_.Textures_[28], rect, sousRectRiviere2, new Color(60, 60, 60));
+                        Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectRiviere2);
                     }
                     if (E_Route != e_Typederoute.vide)
                     {
                         if (E_Sol == e_Typedesol.mer || E_Sol == e_Typedesol.banquise)
                         {
-                            //        sprite_.Draw(tex_.Textures_[27], rect, sousRectRoute, new Color(60, 60, 60));
+                            Contents.Draw("Bridges", rect, new Color(60, 60, 60), sousRectRoute);
                         }
                         else
                         {
-                            //         sprite_.Draw(tex_.Textures_[28], rect, sousRectRoute, new Color(60, 60, 60));
+                            Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectRoute);
                         }
                     }
                     #endregion
                     rect.Y -= 32;
+                    #region decor
                     if (E_DecorArriere != e_Decorarriere.vide)
                     {
-                        //     sprite_.Draw(tex_.Textures_[28], rect, sousRectDecorArriere, new Color(60, 60, 60));
+                        Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectDecorArriere);
                     }
                     if (E_DecorAvant != e_Decoravant.vide)
                     {
-                        //     sprite_.Draw(tex_.Textures_[28], rect, sousRectDecorAvant, new Color(60, 60, 60));
-                    }
+                        Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectDecorAvant);
+                    } 
+                    #endregion
                 }
                 else
                 {
@@ -442,11 +440,12 @@ namespace animaltactics4
                         }
                         rect.Y -= (int)vagues;
                     }
-                    //sprite_.Draw(tex_.Textures_[28], rect, sousRectSol, new Color(20, 20, 20));
+                    Contents.Draw("Tiles", rect, new Color(20, 20, 20), sousRectSol);
                     #endregion
                 }
             }
         }
+        //Loohy
         public void Drawpv(int camerax_, int cameray_, Color couleur_, int race_, int direction_)//14,15,16,17
         {
             if (presence && visible)
@@ -455,10 +454,13 @@ namespace animaltactics4
                 rect.Y -= 32;
                 rect.Width = 16;
                 rect.Height = 48;
+                Contents.Draw("flag"+race_, rect, couleur_, 
+                    new Rectangle(Math.Min(320 - ((pourcentageDePv / 10) * 32), 288), 0, 32, 100));
                 //    sprite_.Draw(Textures.textures[race_], rect,
                 //        new Rectangle(Math.Min(320 - ((pourcentageDePv / 10) * 32), 288), 0, 32, 100), couleur_);
             }
         }
+        //Loohy
         public void Drawmouv(int camerax_, int cameray_, int direction_)
         {
             if (presence && visible)
@@ -471,9 +473,10 @@ namespace animaltactics4
                 //Rectangle rect = new Rectangle((i - j) * 32 - camerax_ + 64,
                 //    (i + j) * 16 - altitude - cameray_ - mouvUniteMax + 12, 5, mouvUniteMax);
                 Rectangle rect2 = new Rectangle(0, 0, 10, mouvUnite * 10);
-                //sprite_.Draw(Textures.textures[7], rect, rect2, Color.Blue);
+                Contents.Draw("mouvement", rect, Color.Blue, rect2);
             }
         }
+        //Loohy
         public void DrawGrade(int camerax_, int cameray_, SystemeDeJeu gameplay_, int direction_)
         {
             if (presence && visible)
@@ -486,11 +489,12 @@ namespace animaltactics4
                 //Rectangle rect = new Rectangle((i - j) * 32 - camerax_ + 44,
                 //    (i + j) * 16 - altitude - cameray_ - 32, 16, 16);
                 Rectangle subRect = new Rectangle(16 *
-                    (gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].getStat[7]
+                    (gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].getStat[7]
                     - 1), 0, 16, 16);
-                //sprite_.Draw(Textures.textures[9], rect, subRect, Color.White);
+                Contents.Draw("grade", rect, subRect);
             }
         }
+        //Loohy
         public void DrawTresor(int camerax_, int cameray_, int direction_)
         {
             Rectangle rect = genererRectangle(camerax_, cameray_, direction_);
@@ -498,14 +502,15 @@ namespace animaltactics4
             //Rectangle rect = new Rectangle((i - j) * 32 - camerax_, (i + j) * 16 - altitude - cameray_ - 32, 64, 64);
             if (presence)
             {
-                // sprite_.Draw(Textures.textures[98], rect, new Rectangle(256, 0, 128, 128), Color.White);
+                Contents.Draw("tresor", rect, new Rectangle(256, 0, 128, 128));
             }
             else
             {
                 Random r = new Random();
-                //sprite_.Draw(Textures.textures[98], rect, new Rectangle(r.Next(2) * 128, 0, 128, 128), Color.White);
+                Contents.Draw("tresor", rect, new Rectangle(r.Next(2) * 128, 0, 128, 128));
             }
         }
+        //Loohy
         public void DrawCrown(int camerax_, int cameray_, Color couleur_, int direction_)
         {
             if (presence && heros)
@@ -538,12 +543,14 @@ namespace animaltactics4
             return rect;
         }
 
+        //Loohy
         public bool surbrillance(MoteurGraphique moteurgraphique_, HUD hud_)
         {
             Point p = new Point(Mouse.GetState().X, Mouse.GetState().Y);
             return (boundingbox.Intersect(p) && !hud_.intersect(p));
         }
 
+        //Loohy
         public void plusPetitPoidsAlentour(MoteurGraphique moteurgraphique_)
         {
             if (i == 0)
@@ -614,6 +621,7 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void Adapt(MoteurGraphique map_, int variante_)
         {
             #region decor

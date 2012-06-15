@@ -50,21 +50,21 @@ namespace animaltactics4
                             #region Degats
                             if (estPhysique)
                             {
-                                gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
-                                    bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].pvactuel -= Math.Max(0, efficacite - gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].pvactuel -= Math.Max(0, efficacite - gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                     bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].armure);
                             }
                             else
                             {
-                                gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
-                                    bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].pvactuel -= Math.Max(0, efficacite - gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].pvactuel -= Math.Max(0, efficacite - gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                     bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].resistance);
                             }
                             break;
                             #endregion
                         case e_typeDePouvoir.Soin:
                             #region Soin
-                            gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                            gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].pvactuel += efficacite;
                             break;
                             #endregion
@@ -73,35 +73,35 @@ namespace animaltactics4
                             switch (boost)
                             {
                                 case e_typeDeBoost.BonusAttaque:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusAttaque += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusArmure:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusArmure += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusPuissance:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonuspuissance += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusResistance:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusresistance += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusPrecision:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusprecision += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusCoupCritique:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusCoupcritique += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusEsquive:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusEsquive += efficacite;
                                     break;
                                 case e_typeDeBoost.BonusInitiative:
-                                    gameplay_.armees[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                 bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusInitiative += efficacite;
                                     break;
                                 default:
