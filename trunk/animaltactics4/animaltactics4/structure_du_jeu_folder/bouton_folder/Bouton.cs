@@ -10,6 +10,8 @@ namespace animaltactics4
     {
         protected Rectangle rect, sub;
 
+        static public bool een = false;
+
         public Bouton(Rectangle rect_, Rectangle sub_)
         {
             rect = rect_;

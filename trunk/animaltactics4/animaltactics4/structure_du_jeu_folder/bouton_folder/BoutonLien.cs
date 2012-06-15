@@ -7,20 +7,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    //Coldman
     class BoutonLien : Bouton
     {
         Scene linkTo;
-        string text;
         Rectangle tuveuxvoir;
+        int indexDico;
 
-        static public bool een = false;
-
-        public BoutonLien(Rectangle rect_, Rectangle sub_, Scene linkTo_, string text_)
-            : base(rect_, sub_)
+        public BoutonLien(int x, int y, Rectangle sub_, Scene linkTo_, int indexDico_)
+            : base(new Rectangle(Divers.X /2 - 200, y, 400, 75), sub_)
         {
             linkTo = linkTo_;
-            text = text_;
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
+            indexDico = indexDico_;
         }
 
         public override void Update(GameTime gameTime)
@@ -61,7 +60,7 @@ namespace animaltactics4
                 Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
                 Contents.Draw("bouton_selected", rect);
             }
-            Contents.DrawStringInBox(text, rect);
+            Contents.DrawStringInBox(Dico.langues[Dico.current][indexDico], rect);
         }
     }
 }

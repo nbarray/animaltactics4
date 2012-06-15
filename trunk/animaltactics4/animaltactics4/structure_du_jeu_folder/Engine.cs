@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    //Coldman
     static class Engine
     {
         static public Stack<Scene> scenes;
@@ -14,12 +15,10 @@ namespace animaltactics4
         static public void Initialize()
         {
             scenes = new Stack<Scene>();
-
-            scenes.Push(new MenuPrincipal());
+            scenes.Push(new Introduction());
         }
         static public void Update(GameTime gameTime)
         {
-
             if (scenes.Count > 0)
             {
                 scenes.Peek().UpdateScene(gameTime);
