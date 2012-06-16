@@ -53,7 +53,7 @@ namespace animaltactics4
             {
                 Contents.Draw("bouton_selected", rect);
             }
-            Contents.DrawStringInBox(Dico.current, rect);
+            Contents.DrawStringInBoxCentered(Dico.current, rect);
         }
 
     }

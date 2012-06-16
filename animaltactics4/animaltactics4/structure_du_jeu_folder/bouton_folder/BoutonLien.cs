@@ -61,7 +61,7 @@ namespace animaltactics4
                 Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
                 Contents.Draw("bouton_selected", rect);
             }
-            Contents.DrawStringInBox(Dico.langues[Dico.current][indexDico], rect);
+            Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][indexDico], rect);
         }
     }
 }

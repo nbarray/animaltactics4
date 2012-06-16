@@ -27,7 +27,7 @@ namespace animaltactics4
         }
         public virtual void DrawScene()
         {
-            Contents.Draw("space", fond);
+            Contents.Draw("porte", fond);
             foreach (Bouton item in boutons)
             {
                 item.Draw();

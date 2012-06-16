@@ -5,7 +5,7 @@
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>animaltactics4</RootNamespace>
     <AssemblyName>animaltactics4</AssemblyName>
@@ -16,7 +16,7 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>5a188f4a-e1bf-4355-bd92-760afc01081d</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <ApplicationIcon>atico.ICO</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -125,6 +125,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\Bouton.cs" />
+    <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonChoix.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLangage.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLien.cs" />
     <Compile Include="structure_du_jeu_folder\Engine.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuPrincipal.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuReseau.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\Scene.cs" />
+    <Compile Include="structure_du_jeu_folder\text_folder\TextBox.cs" />
     <Compile Include="tools_folder\extra_folder\Contents.cs" />
     <Compile Include="tools_folder\extra_folder\Dico.cs" />
     <Compile Include="tools_folder\extra_folder\Divers.cs" />
@@ -151,6 +153,7 @@
     <Compile Include="tools_folder\geometrie_folder\Losange.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="atico.ICO" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
