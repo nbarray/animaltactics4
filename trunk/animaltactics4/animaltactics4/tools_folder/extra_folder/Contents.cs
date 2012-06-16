@@ -41,8 +41,8 @@ namespace animaltactics4
             textures.Add("bouton_normal", content_.Load<Texture2D>("Image\\Bouton\\bouton_normal"));
             textures.Add("bouton_selected", content_.Load<Texture2D>("Image\\Bouton\\bouton_selected"));
             textures.Add("space", content_.Load<Texture2D>("Image\\Fond\\SpaceArt"));
+            textures.Add("porte", content_.Load<Texture2D>("Image\\Fond\\porte"));
             textures.Add("grosse", content_.Load<Texture2D>("Image\\Divers\\bite"));
-            textures.Add("porte", content_.Load<Texture2D>("Image\\Divers\\Porte"));
             textures.Add("porteN", content_.Load<Texture2D>("Image\\Divers\\porteN"));
             textures.Add("porteS", content_.Load<Texture2D>("Image\\Divers\\porteS"));
             textures.Add("porteE", content_.Load<Texture2D>("Image\\Divers\\porteE"));
@@ -64,6 +64,11 @@ namespace animaltactics4
             textures.Add("flag4", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
             textures.Add("Tiles", content_.Load<Texture2D>("Image\\Tuile\\Tiles"));
             textures.Add("Bridges", content_.Load<Texture2D>("Image\\Tuile\\bridges"));
+
+            textures.Add("textbox", content_.Load<Texture2D>("Image\\Fond\\textbox"));
+            textures.Add("fog", content_.Load<Texture2D>("Image\\Bouton\\fog"));
+            textures.Add("dif", content_.Load<Texture2D>("Image\\Bouton\\difficultes"));
+            textures.Add("mod", content_.Load<Texture2D>("Image\\Bouton\\modes"));
         }
 
         //Loohy
@@ -141,7 +146,7 @@ namespace animaltactics4
         #endregion
 
         //Coldman & Loohy
-        static public void DrawStringInBox(string text_, Rectangle rect_)
+        static public void DrawStringInBoxCentered(string text_, Rectangle rect_)
         {
             Atsushi_Okhubo.Begin();
             Atsushi_Okhubo.DrawString(fonts["bouton"], text_,
@@ -154,19 +159,29 @@ namespace animaltactics4
             Atsushi_Okhubo.End();
         }
         //Coldman
-        static public void DrawStringInBoxJustify(List<string> text_, Rectangle rect_)
+        static public void DrawStringInATextBox(List<string> text_, Rectangle rect_)
         {
-            Vector2 vec = new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
-                    rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2));
+            Vector2 position = new Vector2(rect_.X * pprc + 15 + (int)((screenWidth - Divers.X * pprc) / 2), rect_.Y * pprc + 15 +(int)((screenHeight - Divers.Y * pprc) / 2));
+            string line = " ";
             Atsushi_Okhubo.Begin();
             for (int i = 0; i < text_.Count; i++)
-            {
-                vec.Y += 10;
-                Atsushi_Okhubo.DrawString(fonts["text"], text_[i], vec, Color.White);
-            }
+			{
+                if (fonts["text"].MeasureString(line).X > rect_.Width * pprc )
+                {
+                    position.Y += 16;
+                    line = " ";
+                }
+                else
+                {
+                    position.X = rect_.X * pprc + fonts["text"].MeasureString(line).X * pprc + (int)((screenWidth - Divers.X * pprc) / 2);
+                    line += (" " + text_[i] + " ");
+                    Atsushi_Okhubo.DrawString(fonts["text"], text_[i], position, Color.Red);
+                }
+			}
+            
             Atsushi_Okhubo.End();
         }
-        //Coldman
+
         static public void DrawVideo(string name_, Rectangle rect_)
         {
             Atsushi_Okhubo.Begin();

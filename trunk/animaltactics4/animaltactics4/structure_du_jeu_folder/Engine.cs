@@ -15,7 +15,7 @@ namespace animaltactics4
         static public void Initialize()
         {
             scenes = new Stack<Scene>();
-            scenes.Push(new Introduction());
+            scenes.Push(new MenuPrincipal());
         }
         static public void Update(GameTime gameTime)
         {
