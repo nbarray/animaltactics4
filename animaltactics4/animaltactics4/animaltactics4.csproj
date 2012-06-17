@@ -16,7 +16,8 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>5a188f4a-e1bf-4355-bd92-760afc01081d</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>atico.ICO</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -110,8 +111,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="editeur_folder\armee_folder\EditeurArmee.cs" />
+    <Compile Include="editeur_folder\armee_folder\MenuEditeurArmee.cs" />
+    <Compile Include="editeur_folder\carte_folder\EditeurCarte.cs" />
+    <Compile Include="editeur_folder\carte_folder\MenuEditeurCarte.cs" />
     <Compile Include="editeur_folder\sauvegarde_folder\FausseUnite.cs" />
     <Compile Include="editeur_folder\sauvegarde_folder\ListeArmee.cs" />
+    <Compile Include="editeur_folder\sauvegarde_folder\ListeDesFichiers.cs" />
     <Compile Include="gameplay_folder\armee_folder\Armee.cs" />
     <Compile Include="gameplay_folder\armee_folder\Aura.cs" />
     <Compile Include="gameplay_folder\armee_folder\Pouvoir.cs" />
@@ -191,8 +197,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="editeur_folder\armee_folder\" />
-    <Folder Include="editeur_folder\carte_folder\" />
     <Folder Include="gameplay_folder\ia_folder\" />
     <Folder Include="moteur_reseau_folder\" />
   </ItemGroup>

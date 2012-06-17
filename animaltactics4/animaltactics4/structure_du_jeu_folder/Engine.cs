@@ -7,16 +7,20 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
-    //Coldman
+    //Coldman & Loohy
     static class Engine
     {
+        static public ListeDesFichiers files;
         static public Stack<Scene> scenes;
-         
+
+        //Coldman & Loohy
         static public void Initialize()
         {
             scenes = new Stack<Scene>();
             scenes.Push(new MenuPrincipal());
+            recharge();
         }
+        //Coldman
         static public void Update(GameTime gameTime)
         {
             if (scenes.Count > 0)
@@ -30,11 +34,26 @@ namespace animaltactics4
 
 
         }
+        //Coldman
         static public void Draw()
         {
             if (scenes.Count > 0)
             {
                 scenes.Peek().DrawScene();
+            }
+        }
+
+        //Loohy
+        static public void recharge()
+        {
+            try
+            {
+                files = (ListeDesFichiers)Divers.deserializer("allTheLists4242Penguin");
+            }
+            catch (Exception)
+            {
+                files = new ListeDesFichiers();
+                Divers.serializer(files, "allTheLists4242Penguin");
             }
         }
     }
