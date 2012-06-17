@@ -11,6 +11,7 @@ namespace animaltactics4
         static public Dictionary<string, string[]> langues;
         static public string current;
 
+        //Coldman & Loohy
         static public void Initialize()
         {
             current = "Francais";
@@ -33,6 +34,17 @@ namespace animaltactics4
             "Graphisme", // 13
             "Jeu", // 14
             "Son",// 15
+            "Creer",// 16
+            "Modifier",// 17
+            "Points restants : ", // 18
+            "Force : ", //19
+            "Dexterite : ",//20
+            "Constitution : ",//21
+            "Defense : ",//22
+            "Esprit : ",//23
+            "Chance : ",//24
+            "Vitesse : ",//25
+            "Mouvement : ",//26
             });
 
             langues.Add("English", new string[]{
@@ -52,6 +64,17 @@ namespace animaltactics4
             "Graphism",
             "Game",
             "Sound",
+            "Create",
+            "Modify",
+            "Remaining points : ",
+            "Strenght : ", //19
+            "DexteritY : ",//20
+            "Constitution : ",//21
+            "Defense : ",//22
+            "Brain : ",//23
+            "Luck : ",//24
+            "Rapidity : ",//25
+            "Movement : ",//26
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -71,6 +94,17 @@ namespace animaltactics4
             "Graphischtroumpf",
             "Schtroumpf",
             "Schtroumpf sonore",
+            "Schtroumpfer",
+            "Schtroumpfer",
+            "Points schtroumpfants : ", // 18
+            "Force : ", //19
+            "Dexterite : ",//20
+            "Constitution : ",//21
+            "Defense : ",//22
+            "Esprit : ",//23
+            "Chance : ",//24
+            "Vitesse : ",//25
+            "Mouvement : ",//26
             });
         }
     }

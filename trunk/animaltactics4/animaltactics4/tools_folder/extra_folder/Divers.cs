@@ -83,13 +83,13 @@ namespace animaltactics4
         FenrirRailgun,//63
         FenrirWarlord,//56
         FenrirOkami,//50
-        ChefKrissa,//60
-        Assassin,//30
-        Legionnaire,//30
-        Geolier,//30
-        Maraudeur,//30
-        Vermine,//30
-        Abomination,//30
+        KrissaChef,//60
+        KrissaAssassin,//30
+        KrissaLegionnaire,//30
+        KrissaGeolier,//30
+        KrissaMaraudeur,//30
+        KrissaVermine,//30
+        KrissaAbomination,//30
         Krissa8,//30
         Krissa9,//30
         Overlord//0
@@ -189,6 +189,7 @@ namespace animaltactics4
         static public readonly int X = 1200;
         static public readonly int Y = 900;
 
+        //Loohy
         public static void serializer(object o, string file)
         {
             IFormatter formatter = new BinaryFormatter();
@@ -196,6 +197,7 @@ namespace animaltactics4
             formatter.Serialize(stream, o);
             stream.Close();
         }
+        //Loohy
         public static object deserializer(string file)
         {
             BinaryFormatter binary = new BinaryFormatter();
@@ -204,6 +206,7 @@ namespace animaltactics4
             filestream.Close();
             return r;
         }
+        //Loohy
         public static void telechargerList(ref ListeArmee list_, string file_)
         {
             try
@@ -216,6 +219,7 @@ namespace animaltactics4
                 throw;
             }
         }
+        //Loohy
         public static ListeArmee obtenirList(string file_)
         {
             try
@@ -228,6 +232,7 @@ namespace animaltactics4
                 throw;
             }
         }
+        //Loohy
         public static void telechargerMap(ref MoteurGraphique earthPenguin_, string file_)
         {
             try
@@ -239,6 +244,87 @@ namespace animaltactics4
                 earthPenguin_ = new MoteurGraphique(32, 32);
                 earthPenguin_.mapAleaFaceToFace(32, 32, 4, 5, 4);
                 throw;
+            }
+        }
+        //Loohy
+        public static string getName(e_classe c_)
+        {
+            switch (c_)
+            {
+                case e_classe.PingvinWalkyrie:
+                    return "Walkyries";
+                case e_classe.PingvinLanceFlammes:
+                    return "Repurgateurs";
+                case e_classe.PingvinChar:
+                    return "Tank";
+                case e_classe.PingvinUgin:
+                    return "Ugins";
+                case e_classe.PingvinBolter:
+                    return "Pillards";
+                case e_classe.PingvinBerserker:
+                    return "Berserkers";
+                case e_classe.PingvinThor:
+                    return "Thors";
+                case e_classe.PingvinMugin:
+                    return "Mugins";
+                case e_classe.PingvinOdin:
+                    return "Odin";
+                case e_classe.PandawanMoine:
+                    return "Moines";
+                case e_classe.PandawanYabusame:
+                    return "Yabusames";
+                case e_classe.PandawanBushi:
+                    return "Bushis";
+                case e_classe.PandawanCharDragon:
+                    return "Chars Dragons";
+                case e_classe.PandawanMerco:
+                    return "Mercenaires";
+                case e_classe.PandawanSokei:
+                    return "Sokeis";
+                case e_classe.PandawanNinja:
+                    return "Ninjas";
+                case e_classe.PandawanSniper:
+                    return "Snipers";
+                case e_classe.PandawanSayan:
+                    return "Sayan";
+                case e_classe.FenrirWarBlade:
+                    return "Guerriers";
+                case e_classe.FenrirTireur:
+                    return "Tireurs";
+                case e_classe.FenrirPsyker:
+                    return "Psykers";
+                case e_classe.FenrirBouclier:
+                    return "Porteurs de boucliers";
+                case e_classe.FenrirEclaireur:
+                    return "Eclaireurs";
+                case e_classe.FenrirDreadnought:
+                    return "Dreadnoughts";
+                case e_classe.FenrirRailgun:
+                    return "Fusils Rail";
+                case e_classe.FenrirWarlord:
+                    return "Instructeurs";
+                case e_classe.FenrirOkami:
+                    return "Okami";
+                case e_classe.KrissaChef:
+                    return "Chef";
+                case e_classe.KrissaAssassin:
+                    return "Assassins";
+                case e_classe.KrissaLegionnaire:
+                    return "Legionnaires";
+                case e_classe.KrissaGeolier:
+                    return "Geoliers";
+                case e_classe.KrissaMaraudeur:
+                    return "Maraudeurs";
+                case e_classe.KrissaVermine:
+                    return "Vermines";
+                case e_classe.KrissaAbomination:
+                    return "Abominations";
+                case e_classe.Krissa8:
+                    return "Alvin dort tout le temps";
+                case e_classe.Krissa9:
+                    return "Alvin branle que dalle";
+                default:
+                    return "Animal Spirit";
             }
         }
     }

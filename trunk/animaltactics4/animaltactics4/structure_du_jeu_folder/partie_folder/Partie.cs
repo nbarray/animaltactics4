@@ -11,11 +11,15 @@ namespace animaltactics4
     {
         SystemeDeJeu gameplay;
         MoteurGraphique earthPenguin;
+        private int lastUpdatesTime;
+        public int time;
 
         public Partie()
         {
             gameplay = new SystemeDeJeu();
-            earthPenguin = new MoteurGraphique(32,32);
+            earthPenguin = new MoteurGraphique(32, 32);
+            time = 0;
+            lastUpdatesTime = 0;
         }
 
         public void Initialize(string nomDeLaMap_, List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
@@ -24,12 +28,20 @@ namespace animaltactics4
             Divers.telechargerMap(ref earthPenguin, nomDeLaMap_);
             gameplay.initializeWithListedArmies(nomDesArmees_, difficultes_, couleurs_,
                 earthPenguin, conditionsDeVictoire_, hud_, limiteDeTours_);
+            time = 0;
+            lastUpdatesTime = 0;
         }
 
-        public void Update(HUD hud_)
+        public void Update(HUD hud_, GameTime gametime_)
         {
             gameplay.Update(earthPenguin, hud_);
             earthPenguin.Update(gameplay, hud_);
+            if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
+            {
+                time++;
+                Console.WriteLine(time);
+            }
+            lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
         }
 
         public void Draw()

@@ -40,14 +40,14 @@ namespace animaltactics4
                 StreamReader reader = new StreamReader(stream);
 
                 return reader.ReadToEnd();
+                stream.Close();
             }
             catch (Exception e)
             {
                 text.Add(e.Message);
-                throw;
+                return "Thank you Coldman.";
             }
 
-            stream.Close();
         }
 
         private void GetWordsFrom(string str)

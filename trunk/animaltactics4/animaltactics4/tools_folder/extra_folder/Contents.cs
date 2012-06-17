@@ -34,10 +34,49 @@ namespace animaltactics4
             ouvertureDePorte = 0;
         }
 
-        //Coldman
+        //Coldman & Loohy
         static public void LoadContent(ContentManager content_)
         {
-            // Load tous tes contents
+            // Load tous tes contents et aussi les pas contents
+            #region Unites
+            textures.Add(Divers.getName(e_classe.PingvinWalkyrie), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinLanceFlammes), content_.Load<Texture2D>("Image\\Unite\\PingvinLanceFlamme"));
+            textures.Add(Divers.getName(e_classe.PingvinChar), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinUgin), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinBolter), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinBerserker), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinThor), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinMugin), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinOdin), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanMoine), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanYabusame), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanBushi), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanCharDragon), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanMerco), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanSokei), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanNinja), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanSniper), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PandawanSayan), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirWarBlade), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirTireur), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirPsyker), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirBouclier), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirEclaireur), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirDreadnought), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirRailgun), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirWarlord), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirOkami), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaChef), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaAssassin), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaLegionnaire), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaGeolier), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaMaraudeur), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaVermine), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaAbomination), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.Krissa8), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.Krissa9), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.Overlord), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            #endregion
             textures.Add("bouton_normal", content_.Load<Texture2D>("Image\\Bouton\\bouton_normal"));
             textures.Add("bouton_selected", content_.Load<Texture2D>("Image\\Bouton\\bouton_selected"));
             textures.Add("space", content_.Load<Texture2D>("Image\\Fond\\SpaceArt"));
@@ -48,6 +87,8 @@ namespace animaltactics4
             textures.Add("porteE", content_.Load<Texture2D>("Image\\Divers\\porteE"));
             textures.Add("porteO", content_.Load<Texture2D>("Image\\Divers\\porteO"));
             textures.Add("porteC", content_.Load<Texture2D>("Image\\Divers\\porteC"));
+            textures.Add("Decagone", content_.Load<Texture2D>("Image\\Divers\\decagone"));
+            textures.Add("e_race", content_.Load<Texture2D>("Image\\Divers\\Races"));
             textures.Add("aura", content_.Load<Texture2D>("Image\\Info\\aura"));
 
             fonts.Add("bouton", content_.Load<SpriteFont>("SpriteFont\\sfBouton"));
@@ -69,6 +110,9 @@ namespace animaltactics4
             textures.Add("fog", content_.Load<Texture2D>("Image\\Bouton\\fog"));
             textures.Add("dif", content_.Load<Texture2D>("Image\\Bouton\\difficultes"));
             textures.Add("mod", content_.Load<Texture2D>("Image\\Bouton\\modes"));
+
+            textures.Add("px", content_.Load<Texture2D>("Image\\Divers\\Block"));
+            textures.Add("px2", content_.Load<Texture2D>("Image\\Divers\\px"));
         }
 
         //Loohy
@@ -143,6 +187,21 @@ namespace animaltactics4
                     new Vector2(rect_.Width * pprc / 2, rect_.Height * pprc / 2), SpriteEffects.None, 0);
             Atsushi_Okhubo.End();
         }
+        //Loohy
+        static public void Draw(string name_, Rectangle rect_, Color c_, Rectangle subrect_, float rot_, Vector2 vectorOf_ZeroToOne_Floats_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures[name_],
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) 
+                    - (int)(rect_.Width * pprc * vectorOf_ZeroToOne_Floats_.X),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) 
+                    - (int)(rect_.Height * pprc * vectorOf_ZeroToOne_Floats_.Y),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_,
+                    new Vector2(rect_.Width * pprc *vectorOf_ZeroToOne_Floats_.X,
+                        rect_.Height * pprc * vectorOf_ZeroToOne_Floats_.Y),
+                    SpriteEffects.None, 0);
+            Atsushi_Okhubo.End();
+        }
         #endregion
 
         //Coldman & Loohy
@@ -158,15 +217,38 @@ namespace animaltactics4
                     Color.White);
             Atsushi_Okhubo.End();
         }
+        //Coldman & Loohy
+        static public void DrawStringInBoxCentered(string text_, Rectangle rect_, Color c_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.DrawString(fonts["bouton"], text_,
+                new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2)
+                    + (int)(rect_.Width * pprc / 2)
+                    - (fonts["bouton"].MeasureString(text_).X / 2),
+                    rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)
+                    + (int)(rect_.Height * pprc / 2) - (fonts["bouton"].MeasureString(text_).Y / 2)),
+                    c_);
+            Atsushi_Okhubo.End();
+        }
+        //Loohy
+        static public void DrawString(string text_, Rectangle rect_, Color c_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.DrawString(fonts["bouton"], text_,
+                new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
+                    rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)),
+                    c_);
+            Atsushi_Okhubo.End();
+        }
         //Coldman
         static public void DrawStringInATextBox(List<string> text_, Rectangle rect_)
         {
-            Vector2 position = new Vector2(rect_.X * pprc + 15 + (int)((screenWidth - Divers.X * pprc) / 2), rect_.Y * pprc + 15 +(int)((screenHeight - Divers.Y * pprc) / 2));
+            Vector2 position = new Vector2(rect_.X * pprc + 15 + (int)((screenWidth - Divers.X * pprc) / 2), rect_.Y * pprc + 15 + (int)((screenHeight - Divers.Y * pprc) / 2));
             string line = " ";
             Atsushi_Okhubo.Begin();
             for (int i = 0; i < text_.Count; i++)
-			{
-                if (fonts["text"].MeasureString(line).X > rect_.Width * pprc )
+            {
+                if (fonts["text"].MeasureString(line).X > rect_.Width * pprc)
                 {
                     position.Y += 16;
                     line = " ";
@@ -177,8 +259,8 @@ namespace animaltactics4
                     line += (" " + text_[i] + " ");
                     Atsushi_Okhubo.DrawString(fonts["text"], text_[i], position, Color.Red);
                 }
-			}
-            
+            }
+
             Atsushi_Okhubo.End();
         }
 
@@ -199,7 +281,7 @@ namespace animaltactics4
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)).Contains(Mouse.GetState().X, Mouse.GetState().Y);
 
         }
-
+        //Loohy
         static public void DrawGates(int t_)
         {
             if (t_ < 0)//Fermeture
@@ -268,6 +350,11 @@ namespace animaltactics4
                 }
                 #endregion
             }
+        }
+        //Loohy
+        static public Vector2 MeasureString(string s_)
+        {
+            return fonts["bouton"].MeasureString(s_);
         }
     }
 }

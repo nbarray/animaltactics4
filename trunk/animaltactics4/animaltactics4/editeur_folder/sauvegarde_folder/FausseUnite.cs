@@ -103,25 +103,25 @@ namespace animaltactics4
                 case e_classe.FenrirOkami:
                     points = 50;
                     break;
-                case e_classe.ChefKrissa:
+                case e_classe.KrissaChef:
                     points = 60;
                     break;
-                case e_classe.Assassin:
+                case e_classe.KrissaAssassin:
                     points = 30;
                     break;
-                case e_classe.Legionnaire:
+                case e_classe.KrissaLegionnaire:
                     points = 30;
                     break;
-                case e_classe.Geolier:
+                case e_classe.KrissaGeolier:
                     points = 30;
                     break;
-                case e_classe.Maraudeur:
+                case e_classe.KrissaMaraudeur:
                     points = 30;
                     break;
-                case e_classe.Vermine:
+                case e_classe.KrissaVermine:
                     points = 30;
                     break;
-                case e_classe.Abomination:
+                case e_classe.KrissaAbomination:
                     points = 30;
                     break;
                 case e_classe.Krissa8:

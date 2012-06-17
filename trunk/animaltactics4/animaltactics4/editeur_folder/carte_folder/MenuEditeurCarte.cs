@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework;
 
 namespace animaltactics4
 {
-    class MenuEditer : Scene
+    class MenuEditeurCarte : Scene
     {
-        //Loohy
-        public MenuEditer() : base()
+        public MenuEditeurCarte()
+            : base()
         {
-            boutons.Add(new BoutonLien(Divers.X / 2 - 100, 500, new Rectangle(0, 0, 800, 300), new MenuEditeurArmee(), 10));
-            boutons.Add(new BoutonLien(Divers.X / 2 - 100, 600, new Rectangle(0, 0, 800, 300), new MenuEditeurCarte(), 9));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 100, 500, new Rectangle(0, 0, 800, 300), new EditeurCarte(), 16));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 100, 600, new Rectangle(0, 0, 800, 300), null, 17));
             boutons.Add(new BoutonLien(Divers.X / 2 - 100, 700, new Rectangle(0, 0, 800, 300), null, 5));
         }
 
