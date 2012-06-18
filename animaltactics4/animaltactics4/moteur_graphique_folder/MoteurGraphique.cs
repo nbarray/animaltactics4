@@ -56,6 +56,7 @@ namespace animaltactics4
             //    mapAleaFaceToFaceGlace(32, 32, 1, 3, 8);
             //}
             fog = brouillardDeGuerre.ToutVisible;
+            Aplatir();
         }
 
         //Loohy
@@ -293,7 +294,6 @@ namespace animaltactics4
             }
         }
 
-
         //Loohy
         public void DrawEditeur()
         {
@@ -368,15 +368,15 @@ namespace animaltactics4
         public void Update(SystemeDeJeu gameplay_, HUD hud_)
         {
             Camera();
-            for (int i = longueur - 1; i >= 0; i--)
+            viderSurbrillance();
+            for (int i = (int)getCaseFromMouseAvecAltitude().X + 1; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
             {
-                for (int j = largeur - 1; j >= 0; j--)
+                for (int j = (int)getCaseFromMouseAvecAltitude().Y + 1; j >= (int)getCaseFromMouseAvecAltitude().Y - 1; j--)
                 {
                     if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                     {
-                        map[i, j].UpdateLosange(camerax, cameray, direction);
+                        surbrillance(i, j, new Rectangle(0, 0, 0, 0));//TODO
                     }
-                    surbrillance(i, j, new Rectangle(0, 0, 0, 0));//TODO
                     map[i, j].AttaqOrNotGeneral = gameplay_.mood != e_modeAction.Mouvement;
                 }
             }
@@ -445,15 +445,33 @@ namespace animaltactics4
         public void UpdateEditeur()
         {
             Camera();
-            for (int i = longueur - 1; i >= 0; i--)
+            viderSurbrillance();
+            for (int d = 0; d < 7; d++)
             {
-                for (int j = largeur - 1; j >= 0; j--)
+                for (int i = (int)getCaseFromMouseAvecAltitude().X + 3; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
                 {
-                    if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                    int j = (int)getCaseFromMouseAvecAltitude().Y - 1;
+                    if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
                     {
-                        map[i, j].UpdateLosange(camerax, cameray, direction);
+                        //map[i + d, j + d].estEnSurbrillance = true;
+                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        {
+                            surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        }
                     }
-                    surbrillance(i, j, new Rectangle(0, 0, 0, 0));
+                }
+                for (int j = (int)getCaseFromMouseAvecAltitude().Y + 3; j >= (int)getCaseFromMouseAvecAltitude().Y - 1; j--)
+                {
+                    int i = (int)getCaseFromMouseAvecAltitude().X - 1;
+                    if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
+                    {
+                        //map[i + d, j + d].estEnSurbrillance = true;
+                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        {
+                            map[i + d, j + d].UpdateLosange(camerax, cameray, direction);
+                        }
+                        surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                    }
                 }
             }
             if (clicOrNot)
@@ -487,13 +505,24 @@ namespace animaltactics4
             if ((i_ + 1 == longueur || !map[i_ + 1, j_].estEnSurbrillance)
                 && (i_ + 1 == longueur || (j_ + 1 == largeur || !map[i_ + 1, j_ + 1].estEnSurbrillance))
                 && (j_ + 1 == largeur || !map[i_, j_ + 1].estEnSurbrillance)
-                && map[i_, j_].surbrillance(this, rect_))
+                && map[i_, j_].estSurvolee(rect_, camerax, cameray, direction))
             {
-                map[i_, j_].estEnSurbrillance = true;
+                //map[i_, j_].estEnSurbrillance = true;
+                map[i_, j_].surbrillancePortee = 9;
+                map[i_, j_].sousRectportee.X = 19*64;
+                Console.WriteLine(i_ +"/"+ j_);
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                {
+                    int XX = Mouse.GetState().X;
+                    int YY = Mouse.GetState().Y;
+                map[i_, j_].surbrillancePortee = 9;
+                }
             }
             else
             {
-                map[i_, j_].estEnSurbrillance = false;
+                //map[i_, j_].estEnSurbrillance = false;
+                //map[i_, j_].surbrillancePortee = 2;
+                //map[i_, j_].sousRectportee.X = 11 * 64;
             }
         }
 
@@ -1356,6 +1385,95 @@ namespace animaltactics4
                     }
                 }
             }
+        }
+        //Loohy
+        public void viderSurbrillance()
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    map[i, j].estEnSurbrillance = false;
+                    map[i, j].surbrillancePortee = 0;
+                }
+            }
+        }
+        //Loohy
+        public void Aplatir()
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    map[i, j].altitude = 0;
+                }
+            }
+        }
+
+        //Loohy
+        public Vector2 getCaseFromMouseSansAltitude()
+        {
+            switch (direction)
+            {
+                case 0:
+                    return new Vector2(Math.Max(0, Math.Min(longueur - 1, (Mouse.GetState().X - 32 + Mouse.GetState().Y * 2 - 64 + camerax + 2 * cameray) / 64 - 7)),
+                        Math.Max(0, Math.Min(largeur - 1, (-Mouse.GetState().X + 32 + Mouse.GetState().Y * 2 - 64 - camerax + 2 * cameray) / 64 + 3)));
+                case 1:
+                    return new Vector2();
+                case 2:
+                    return new Vector2();
+                default:
+                    return new Vector2();
+            }
+            //Rectangle rect;
+            //switch (direction)
+            //{
+            //    case 0://n
+            //        rect = new Rectangle((i - j) * 32 - camerax_, (i + j) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //    case 1://o
+            //        rect = new Rectangle((32 - j - i) * 32 - camerax_, (i + 32 - j) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //    case 2://s
+            //        rect = new Rectangle((32 - i - 32 + j) * 32 - camerax_, (32 - i + 32 - j) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //    default://e
+            //        rect = new Rectangle((j - 32 + i) * 32 - camerax_, (j + 32 - i) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //}
+            //return rect;
+        }
+        public Vector2 getCaseFromMouseAvecAltitude()
+        {
+            switch (direction)
+            {
+                case 0:
+                    return new Vector2((int)Math.Max(0, Math.Min(longueur - 1, (Mouse.GetState().X / Contents.pprc - 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 + camerax + 2 * cameray) / 64-4)), (int)
+                        Math.Max(0, Math.Min(largeur - 1, (-Mouse.GetState().X / Contents.pprc + 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 - camerax + 2 * cameray) / 64+3)));
+                case 1:
+                    return new Vector2();
+                case 2:
+                    return new Vector2();
+                default:
+                    return new Vector2();
+            }
+            //Rectangle rect;
+            //switch (direction)
+            //{
+            //    case 0://n
+            //        rect = new Rectangle((i - j) * 32 - camerax_, (i + j) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //    case 1://o
+            //        rect = new Rectangle((32 - j - i) * 32 - camerax_, (i + 32 - j) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //    case 2://s
+            //        rect = new Rectangle((32 - i - 32 + j) * 32 - camerax_, (32 - i + 32 - j) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //    default://e
+            //        rect = new Rectangle((j - 32 + i) * 32 - camerax_, (j + 32 - i) * 16 - altitude - cameray_, 64, 64);
+            //        break;
+            //}
+            //return rect;
         }
     }
 }
