@@ -91,13 +91,13 @@ namespace animaltactics4
             "Create",
             "Modify",
             "Remaining points : ",
-            "Strenght : ", //19
-            "DexteritY : ",//20
+            "Strength : ", //19
+            "Dexterity : ",//20
             "Constitution : ",//21
             "Defense : ",//22
-            "Brain : ",//23
+            "Spirit : ",//23
             "Luck : ",//24
-            "Rapidity : ",//25
+            "Speed : ",//25
             "Movement : ",//26
             "Very little",//27
             "Little",//28
@@ -146,13 +146,13 @@ namespace animaltactics4
             "Schtroumpfer",
             "Points schtroumpfants : ", // 18
             "Force : ", //19
-            "Dexterite : ",//20
-            "Constitution : ",//21
+            "shtroumpferite : ",//20
+            "Constitushtroumpf : ",//21
             "Defense : ",//22
             "Esprit : ",//23
-            "Chance : ",//24
-            "Vitesse : ",//25
-            "Mouvement : ",//26
+            "Shtroumpf : ",//24
+            "shtroumpfesse : ",//25
+            "shtroumpfement : ",//26
              "Tres petite",//27
                       "Petite",//28
                       "Normale",//29

@@ -15,6 +15,7 @@ namespace animaltactics4
             boutons.Add(new BoutonChoix(new Rectangle(200, 200, 100, 100), new Rectangle(0, 0, 80, 80), 3, "fog"));
             boutons.Add(new BoutonChoix(new Rectangle(325, 200, 100, 100), new Rectangle(0, 0, 100, 100), 4, "dif"));
             boutons.Add(new BoutonChoix(new Rectangle(450, 200, 100, 100), new Rectangle(0, 0, 100, 100), 4, "mod"));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 600, new Rectangle(0, 0, 800, 300), new ScenePartie(32, 32), 0));
         }
 
         public override void UpdateScene(GameTime gameTime_)

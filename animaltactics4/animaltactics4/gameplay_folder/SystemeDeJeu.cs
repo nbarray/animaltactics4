@@ -26,7 +26,7 @@ namespace animaltactics4
             listeDesJoueurs = new List<Armee>();
             waitForFinDeTour = false;
             mood = e_modeAction.Mouvement;
-            conditionsDeVictoire = e_typeDePartie.Joute; // HO LA LA probleme resolu ?
+            conditionsDeVictoire = e_typeDePartie.Joute; // HO LA LA probleme resolu ? (Who said this ?)
             limiteDeTours = 0;
         }
 

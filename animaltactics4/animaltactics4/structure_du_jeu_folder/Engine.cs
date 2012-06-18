@@ -29,10 +29,9 @@ namespace animaltactics4
             }
             if (Mouse.GetState().LeftButton == ButtonState.Released)
             {
-                BoutonLien.een = false;
+                Bouton.een = false;
+               
             }
-
-
         }
         //Coldman
         static public void Draw()
