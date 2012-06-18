@@ -47,7 +47,7 @@ namespace animaltactics4
             textures.Add(Divers.getName(e_classe.PingvinBerserker), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.PingvinThor), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.PingvinMugin), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
-            textures.Add(Divers.getName(e_classe.PingvinOdin), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.PingvinOdin), content_.Load<Texture2D>("Image\\Unite\\PingvinOdin"));
             textures.Add(Divers.getName(e_classe.PandawanMoine), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.PandawanYabusame), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.PandawanBushi), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
@@ -192,12 +192,12 @@ namespace animaltactics4
         {
             Atsushi_Okhubo.Begin();
             Atsushi_Okhubo.Draw(textures[name_],
-                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) 
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2)
                     - (int)(rect_.Width * pprc * vectorOf_ZeroToOne_Floats_.X),
-                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) 
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2)
                     - (int)(rect_.Height * pprc * vectorOf_ZeroToOne_Floats_.Y),
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_,
-                    new Vector2(rect_.Width * pprc *vectorOf_ZeroToOne_Floats_.X,
+                    new Vector2(rect_.Width * pprc * vectorOf_ZeroToOne_Floats_.X,
                         rect_.Height * pprc * vectorOf_ZeroToOne_Floats_.Y),
                     SpriteEffects.None, 0);
             Atsushi_Okhubo.End();
@@ -238,6 +238,16 @@ namespace animaltactics4
                 new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
                     rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)),
                     c_);
+            Atsushi_Okhubo.End();
+        }
+        //Loohy
+        static public void DrawString(string text_, Rectangle rect_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.DrawString(fonts["bouton"], text_,
+                new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
+                    rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)),
+                    Color.White);
             Atsushi_Okhubo.End();
         }
         //Coldman
@@ -281,6 +291,15 @@ namespace animaltactics4
                     (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)).Contains(Mouse.GetState().X, Mouse.GetState().Y);
 
         }
+
+        static public bool contientLaSouris(Losange los_)
+        {
+            return (los_.c1.EnDessous(Mouse.GetState().X, Mouse.GetState().Y) &&
+                    los_.c2.EnDessous(Mouse.GetState().X, Mouse.GetState().Y) &&
+                    los_.c4.AuDessus(Mouse.GetState().X, Mouse.GetState().Y) &&
+                    los_.c3.AuDessus(Mouse.GetState().X, Mouse.GetState().Y));
+        }
+
         //Loohy
         static public void DrawGates(int t_)
         {
@@ -355,6 +374,29 @@ namespace animaltactics4
         static public Vector2 MeasureString(string s_)
         {
             return fonts["bouton"].MeasureString(s_);
+        }
+
+        static public void Calculs(Ligne l_)
+        {
+            l_.segment = new Vector2(Math.Abs(l_.p1.X - l_.p2.X) * pprc, Math.Abs(l_.p1.Y - l_.p2.Y) * pprc);
+            l_.a = (((float)l_.p2.Y - (float)l_.p1.Y) / ((float)l_.p2.X - (float)l_.p1.X));
+            l_.b = l_.p1.Y * pprc + ((screenHeight - Divers.Y * pprc) / 2) 
+                - (l_.a * (l_.p1.X * pprc + (screenWidth - Divers.X * pprc) / 2));
+        }
+
+        static public void Cadre()
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, 0, 1200, (int)((screenHeight - Divers.Y * pprc) / 2)), Color.Black);
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, (int)((screenHeight + Divers.Y * pprc) / 2), 1200, 
+                (int)((screenHeight - Divers.Y * pprc) / 2)), Color.Black);
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, 0, (int)((screenWidth - Divers.X * pprc) / 2), 900), Color.Black);
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle((int)((screenWidth + Divers.X * pprc) / 2), 0, 
+                (int)((screenWidth - Divers.X * pprc) / 2), 900), Color.Black);
+                //new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
+                //    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
+            //    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), Color.White);
+            Atsushi_Okhubo.End();
         }
     }
 }

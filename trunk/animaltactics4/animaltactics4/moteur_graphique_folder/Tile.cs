@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 namespace animaltactics4
 {
     //Loohy
+    [Serializable]
     class Tile
     {
         #region Parametres
@@ -544,10 +545,10 @@ namespace animaltactics4
         }
 
         //Loohy
-        public bool surbrillance(MoteurGraphique moteurgraphique_, HUD hud_)
+        public bool surbrillance(MoteurGraphique moteurgraphique_, Rectangle rect_)
         {
             Point p = new Point(Mouse.GetState().X, Mouse.GetState().Y);
-            return (boundingbox.Intersect(p) && !hud_.intersect(p));
+            return (Contents.contientLaSouris(boundingbox) && !Contents.contientLaSouris(rect_));
         }
 
         //Loohy

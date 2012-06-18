@@ -41,6 +41,7 @@ namespace animaltactics4
             {
                 scenes.Peek().DrawScene();
             }
+            Contents.Cadre();
         }
 
         //Loohy

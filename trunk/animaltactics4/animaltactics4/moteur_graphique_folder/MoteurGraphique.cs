@@ -12,7 +12,7 @@ namespace animaltactics4
     class MoteurGraphique
     {
         public int direction;//0n, 1o, 2s, 3e
-        public int longueur, largeur, camerax, cameray;
+        public int longueur, largeur, camerax, cameray, lastcamerax, lastcameray;
         float flammiches;
         public Tile[,] map;
         public brouillardDeGuerre fog;
@@ -55,7 +55,7 @@ namespace animaltactics4
             //{
             //    mapAleaFaceToFaceGlace(32, 32, 1, 3, 8);
             //}
-            fog = brouillardDeGuerre.Normal;
+            fog = brouillardDeGuerre.ToutVisible;
         }
 
         //Loohy
@@ -115,73 +115,6 @@ namespace animaltactics4
                 //    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
                 //    .Drawmouv( camerax, cameray, tex_, direction);
             }
-            if (gameplay_.conditionsDeVictoire == e_typeDePartie.Tresor)
-            {
-                DrawTresor(gameplay_.tresor_i, gameplay_.tresor_j);
-            }
-        }
-        //Loohy
-        public void Draw(SystemeDeJeu gameplay_, Vector2 reso_)
-        {
-            if (flammiches > 100)
-            {
-                flammiches = 0;
-            }
-            else
-            {
-                flammiches = (flammiches + 0.5f);
-            }
-            switch (direction)
-            {
-                case 0:
-                    DrawTilesNord(gameplay_);
-                    break;
-                case 1:
-                    DrawTilesOuest(gameplay_);
-                    break;
-                case 2:
-                    DrawTilesSud(gameplay_);
-                    break;
-                default:
-                    DrawTilesEst(gameplay_);
-                    break;
-            }
-            #region Draw pv
-            switch (gameplay_.listeDesJoueurs[gameplay_.tourencours].espece)
-            {
-                case e_race.Fenrir:
-                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 15, direction);
-                    break;
-                case e_race.Krissa:
-                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 16, direction);
-                    break;
-                case e_race.Pandawan:
-                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 14, direction);
-                    break;
-                case e_race.Pingvin:
-                    map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
-                        gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
-                        .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, 17, direction);
-                    break;
-                default:
-                    break;
-            }
-            #endregion
-            #region Unite en cours
-            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
-            {
-                map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
-                    gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
-                    .Drawmouv(camerax, cameray, direction);
-            }
-            #endregion
-
             if (gameplay_.conditionsDeVictoire == e_typeDePartie.Tresor)
             {
                 DrawTresor(gameplay_.tresor_i, gameplay_.tresor_j);
@@ -360,6 +293,71 @@ namespace animaltactics4
             }
         }
 
+
+        //Loohy
+        public void DrawEditeur()
+        {
+            switch (direction)
+            {
+                case 0:
+                    DrawTilesNordEditeur();
+                    break;
+                case 1:
+                    DrawTilesOuestEditeur();
+                    break;
+                case 2:
+                    DrawTilesSudEditeur();
+                    break;
+                default:
+                    DrawTilesEstEditeur();
+                    break;
+            }
+        }
+        //Loohy
+        private void DrawTilesNordEditeur()
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    map[i, j].Draw(camerax, cameray, (int)flammiches, direction);
+                }
+            }
+        }
+        //Loohy
+        private void DrawTilesOuestEditeur()
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = largeur - 1; j >= 0; j--)
+                {
+                    map[i, j].Draw(camerax, cameray, (int)flammiches, direction);
+                }
+            }
+        }
+        //Loohy
+        private void DrawTilesSudEditeur()
+        {
+            for (int i = longueur - 1; i >= 0; i--)
+            {
+                for (int j = largeur - 1; j >= 0; j--)
+                {
+                    map[i, j].Draw(camerax, cameray, (int)flammiches, direction);
+                }
+            }
+        }
+        //Loohy
+        private void DrawTilesEstEditeur()
+        {
+            for (int i = longueur - 1; i >= 0; i--)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    map[i, j].Draw(camerax, cameray, (int)flammiches, direction);
+                }
+            }
+        }
+
         //Loohy
         public void DrawTresor(int i_, int j_)
         {
@@ -374,8 +372,11 @@ namespace animaltactics4
             {
                 for (int j = largeur - 1; j >= 0; j--)
                 {
-                    map[i, j].UpdateLosange(camerax, cameray, direction);
-                    surbrillance(i, j, hud_);
+                    if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                    {
+                        map[i, j].UpdateLosange(camerax, cameray, direction);
+                    }
+                    surbrillance(i, j, new Rectangle(0, 0, 0, 0));//TODO
                     map[i, j].AttaqOrNotGeneral = gameplay_.mood != e_modeAction.Mouvement;
                 }
             }
@@ -391,7 +392,7 @@ namespace animaltactics4
             if (Keyboard.GetState().IsKeyDown(Keys.Back) && clicOrNot)
             {
                 direction = (direction + 1) % 4;
-                centrerSur(longueur / 2, largeur / 2, hud_);
+                centrerSur(longueur / 2, largeur / 2);
                 clicOrNot = false;
                 gameplay_.rotation();
             }
@@ -430,7 +431,50 @@ namespace animaltactics4
             #endregion
             if (Keyboard.GetState().IsKeyUp(Keys.LeftShift) &&
                     Keyboard.GetState().IsKeyUp(Keys.LeftControl)
-                && Keyboard.GetState().IsKeyUp(Keys.Back))
+                && Keyboard.GetState().IsKeyUp(Keys.Back)
+                && Keyboard.GetState().IsKeyUp(Keys.Up)
+                && Keyboard.GetState().IsKeyUp(Keys.Down)
+                && Keyboard.GetState().IsKeyUp(Keys.Left)
+                && Keyboard.GetState().IsKeyUp(Keys.Right))
+            {
+                clicOrNot = true;
+            }
+            #endregion
+        }
+        //Loohy
+        public void UpdateEditeur()
+        {
+            Camera();
+            for (int i = longueur - 1; i >= 0; i--)
+            {
+                for (int j = largeur - 1; j >= 0; j--)
+                {
+                    if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                    {
+                        map[i, j].UpdateLosange(camerax, cameray, direction);
+                    }
+                    surbrillance(i, j, new Rectangle(0, 0, 0, 0));
+                }
+            }
+            if (clicOrNot)
+            {
+                lastcamerax = camerax;
+                lastcameray = cameray;
+            }
+            #region Clavier
+            #region Back
+            if (Keyboard.GetState().IsKeyDown(Keys.Back) && clicOrNot)
+            {
+                direction = (direction + 1) % 4;
+                centrerSur(longueur / 2, largeur / 2);
+                clicOrNot = false;
+            }
+            #endregion
+            if (Keyboard.GetState().IsKeyUp(Keys.Back)
+                && Keyboard.GetState().IsKeyUp(Keys.Up)
+                && Keyboard.GetState().IsKeyUp(Keys.Down)
+                && Keyboard.GetState().IsKeyUp(Keys.Left)
+                && Keyboard.GetState().IsKeyUp(Keys.Right))
             {
                 clicOrNot = true;
             }
@@ -438,12 +482,12 @@ namespace animaltactics4
         }
 
         //Loohy
-        public void surbrillance(int i_, int j_, HUD hud_)
+        public void surbrillance(int i_, int j_, Rectangle rect_)
         {
             if ((i_ + 1 == longueur || !map[i_ + 1, j_].estEnSurbrillance)
                 && (i_ + 1 == longueur || (j_ + 1 == largeur || !map[i_ + 1, j_ + 1].estEnSurbrillance))
                 && (j_ + 1 == largeur || !map[i_, j_ + 1].estEnSurbrillance)
-                && map[i_, j_].surbrillance(this, hud_))
+                && map[i_, j_].surbrillance(this, rect_))
             {
                 map[i_, j_].estEnSurbrillance = true;
             }
@@ -459,21 +503,25 @@ namespace animaltactics4
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 cameray -= 6;
+                clicOrNot = false;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 cameray += 6;
+                clicOrNot = false;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 camerax -= 6;
+                clicOrNot = false;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 camerax += 6;
+                clicOrNot = false;
             }
         }
 
@@ -861,7 +909,7 @@ namespace animaltactics4
                     }
                 }
             }
-        } 
+        }
         #endregion
 
         //Loohy
@@ -1243,7 +1291,7 @@ namespace animaltactics4
                     (int)villes[(k + 1) % villes.Count].X, (int)villes[(k + 1) % villes.Count].Y);
             }
             Adapt();
-        } 
+        }
         #endregion
 
         //Loohy
@@ -1254,6 +1302,7 @@ namespace animaltactics4
                 for (int q = 0; q < largeur; q++)
                 {
                     map[p, q].Adapt(this, r.Next(100) / 10);
+                    map[p, q].UpdateLosange(camerax, cameray, direction);
                 }
             }
         }
@@ -1271,10 +1320,10 @@ namespace animaltactics4
         }
 
         //Loohy
-        public void centrerSur(int i_, int j_, HUD hud_)
+        public void centrerSur(int i_, int j_)
         {
-            camerax = (int)(-450 * hud_.resolution_x) + 32 * i_ - 32 * j_;
-            cameray = (int)(-450 * hud_.resolution_y) + 16 * i_ + 16 * j_;
+            camerax = -450 + 32 * i_ - 32 * j_;
+            cameray = -450 + 16 * i_ + 16 * j_;
         }
 
         //Loohy

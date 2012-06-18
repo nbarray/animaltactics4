@@ -6,46 +6,17 @@ using Microsoft.Xna.Framework;
 
 namespace animaltactics4
 {
+    [Serializable]
     class Ligne
     {
-        private Point p1;
-        public Point getP1
-        {
-            get { return p1; }
-            set
-            {
-                if (value.X >= 0 && value.Y >= 0)
-                {
-                    p1 = value;
-                    a = (((float)p2.Y - (float)p1.Y) / ((float)p2.X - (float)p1.X));
-                    b = p1.Y - a * p1.X;
-                }
-            }
-        }
+        public Point p1;
 
-        private Point p2;
-        public Point getP2
-        {
-            get { return p2; }
-            set
-            {
-                if (value.X >= 0 && value.Y >= 0)
-                {
-                    p2 = value;
-                    a = (((float)p2.Y - (float)p1.Y) / ((float)p2.X - (float)p1.X));
-                    b = p1.Y - a * p1.X;
-                }
-            }
-        }
+        public Point p2;
 
-        private Vector2 segment;
-        public Vector2 getSegment
-        {
-            get { return segment; }
-        }
+        public Vector2 segment;
 
         //"constante" de l'equation de la droite;
-        float a, b;
+        public float a, b;
 
         public Ligne()
         {
@@ -66,11 +37,7 @@ namespace animaltactics4
         }
         public Ligne(Point p1_, Point p2_)
         {
-            p1 = p1_;
-            p2 = p2_;
-            segment = new Vector2(Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
-            a = (((float)p2.Y - (float)p1.Y) / ((float)p2.X - (float)p1.X));
-            b = p1.Y - a * p1.X;
+            Contents.Calculs(this);
         }
 
         //Fonction de la droite P1P2
