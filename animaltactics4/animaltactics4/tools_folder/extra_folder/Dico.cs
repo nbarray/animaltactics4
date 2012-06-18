@@ -69,6 +69,7 @@ namespace animaltactics4
                 "Rien",//48
                 "Pinceau",//49
                 "Taille",//50
+            "PRESENTE", //51
             });
 
             langues.Add("English", new string[]{
@@ -123,6 +124,7 @@ namespace animaltactics4
             "Nothing",//48
             "Tool",//49
             "Size",//50
+            "PRESENT", //51
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -177,6 +179,7 @@ namespace animaltactics4
                 "Rien",//48
                 "Pinceau",//49
                 "Taille",//50
+            "SCHTROUMPFE", //51
             });
         }
     }

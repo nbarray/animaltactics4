@@ -17,7 +17,7 @@ namespace animaltactics4
         static public void Initialize()
         {
             scenes = new Stack<Scene>();
-            scenes.Push(new MenuPrincipal());
+            scenes.Push(new Introduction());
             recharge();
         }
         //Coldman
