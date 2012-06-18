@@ -113,6 +113,13 @@ namespace animaltactics4
 
             textures.Add("px", content_.Load<Texture2D>("Image\\Divers\\Block"));
             textures.Add("px2", content_.Load<Texture2D>("Image\\Divers\\px"));
+
+            textures.Add("bleuApp", content_.Load<Texture2D>("Image\\Animation\\bleu"));
+            textures.Add("rougeApp", content_.Load<Texture2D>("Image\\Animation\\rouge"));
+            textures.Add("vertApp", content_.Load<Texture2D>("Image\\Animation\\vert"));
+            textures.Add("jauneApp", content_.Load<Texture2D>("Image\\Animation\\jaune"));
+            textures.Add("blancApp", content_.Load<Texture2D>("Image\\Animation\\wwteam"));
+            textures.Add("LOGO", content_.Load<Texture2D>("Image\\Animation\\logo fini"));
         }
 
         //Loohy
