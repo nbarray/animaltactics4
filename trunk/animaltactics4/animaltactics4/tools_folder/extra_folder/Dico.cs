@@ -26,31 +26,31 @@ namespace animaltactics4
             "Retour", // 5
             "Jeu classique", // 6
             "Campagne", // 7
-            "Reseau", // 8
+            "Réseau", // 8
             "Editeur de carte", // 9
-            "Editeur d'armee", // 10
-            "Encyclopedie", // 11
-            "Credits", // 12
+            "Editeur d'armée", // 10
+            "Encyclopédie", // 11
+            "Crédits", // 12
             "Graphisme", // 13
             "Jeu", // 14
             "Son",// 15
-            "Creer",// 16
+            "Créer",// 16
             "Modifier",// 17
             "Points restants : ", // 18
             "Force : ", //19
-            "Dexterite : ",//20
+            "Dextérité : ",//20
             "Constitution : ",//21
-            "Defense : ",//22
+            "Défense : ",//22
             "Esprit : ",//23
             "Chance : ",//24
             "Vitesse : ",//25
             "Mouvement : ",//26
-             "Tres petite",//27
+             "Très petite",//27
                       "Petite",//28
                       "Normale",//29
                       "Moyenne",//30
                       "Grande",//31
-                      "Tres grande",//32
+                      "Très grande",//32
                 "Plaine",//33
                 "Neige",//34
                 "Banquise",//35
@@ -59,12 +59,12 @@ namespace animaltactics4
                 "Route",//38
                 "Riviere",//39
                 "Bunker",//40
-                "Foret",//41
+                "Forêt",//41
                 "Ruine",//42
-                "Cratere",//43
+                "Cratère",//43
                 "Village",//44
                 "Montagne",//45
-                "Vallee",//46
+                "Vallée",//46
                 "Lissage",//47
                 "Rien",//48
                 "Pinceau",//49
@@ -136,10 +136,10 @@ namespace animaltactics4
             "Schtroumpf",
             "Schtroumpf classique",
             "Schtroumpf",
-            "Schtroumpfs en reseau",
+            "Schtroumpfs en réseau",
             "Editeur de Schtroumpfs",
-            "Schtroumpfeur d'armees",
-            "Encyclopeschtroumpf",
+            "Schtroumpfeur d'armées",
+            "Encyclopéschtroumpf",
             "Creditschtroumpfs",
             "Graphischtroumpf",
             "Schtroumpf",
@@ -148,19 +148,19 @@ namespace animaltactics4
             "Schtroumpfer",
             "Points schtroumpfants : ", // 18
             "Force : ", //19
-            "shtroumpferite : ",//20
+            "shtroumpferité : ",//20
             "Constitushtroumpf : ",//21
-            "Defense : ",//22
+            "Défense : ",//22
             "Esprit : ",//23
             "Shtroumpf : ",//24
             "shtroumpfesse : ",//25
             "shtroumpfement : ",//26
-             "Tres petite",//27
+             "Très petite",//27
                       "Petite",//28
                       "Normale",//29
                       "Moyenne",//30
                       "Grande",//31
-                      "Tres grande",//32
+                      "Très grande",//32
                 "Plaine",//33
                 "Neige",//34
                 "Banquise",//35

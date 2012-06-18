@@ -17,6 +17,7 @@ namespace animaltactics4
         ListeArmee listeA;
         Vector2 point;
         bool pressed;
+        e_classe view;
 
         public EditeurArmee()
             : base()
@@ -28,6 +29,7 @@ namespace animaltactics4
             army = new Armee(2, e_race.Random, Color.White, 0, 0);
             army.AddUnite(e_classe.PingvinOdin);
             pressed = false;
+            view = e_classe.FenrirBouclier;
             ToutesLesUnites = new Dictionary<e_race, List<FausseUnite>>();
             #region ping
             //0 ping
@@ -223,10 +225,7 @@ namespace animaltactics4
                 #endregion
                 if (Contents.contientLaSouris(mike) && txt_ != "")
                 {
-                    Divers.serializer(listeA, txt_);
-                    Engine.files.AddArmyName(txt_);
-                    Divers.serializer(Engine.files, "allTheLists4242Penguin");
-                    txt_ = "";
+                    Sauvegarde(ref txt_);
                 }
                 pressed = true;
             }
@@ -239,6 +238,7 @@ namespace animaltactics4
                     {
                         army.vider(0, 0);
                         army.AddUnite(ToutesLesUnites[current][g].classe);
+                        view = ToutesLesUnites[current][g].classe;
                     }
                     bob.Y += 55;
                 }
@@ -329,6 +329,9 @@ namespace animaltactics4
             Contents.DrawString(Dico.langues[Dico.current][25] + army.bataillon[0].getStat[6].ToString(), Samsung, Color.White);
             Samsung.Y += (int)Contents.MeasureString("T").Y + 4;
             Contents.DrawString(Dico.langues[Dico.current][26] + army.bataillon[0].mouvementmax.ToString(), Samsung, Color.White);
+            Samsung.Y += (int)Contents.MeasureString("T").Y + 4;
+            Samsung.X = 250;
+            Contents.DrawString(Divers.getText(view), Samsung, Color.White);
             //force, dexterite, constitution, defense, esprit, chance, vitesse 
             //DrawDeca(new Rectangle(600, 200, 400, 400), army.bataillon[0]);
             #endregion
@@ -344,6 +347,14 @@ namespace animaltactics4
                 Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 5, mike.Y + 10, 0, 0), Color.White);
             }
             #endregion
+        }
+
+        public void Sauvegarde(ref string txt_)
+        {
+            Divers.serializer(listeA, txt_);
+            Engine.files.AddArmyName(txt_);
+            Divers.serializer(Engine.files, "allTheLists4242Penguin");
+            txt_ = "";
         }
     }
 }

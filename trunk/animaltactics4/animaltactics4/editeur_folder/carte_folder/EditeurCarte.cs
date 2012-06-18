@@ -18,7 +18,7 @@ namespace animaltactics4
         {
             boutons.Add(new BoutonDeroulant(new Rectangle(0, 0, 180, 50), 49));
             boutons.Add(new BoutonDeroulant(new Rectangle(181, 0, 150, 50), 50));
-            boutons.Add(new BoutonLien(50, 750, new Rectangle(0, 0, 800, 300), null, 5));
+            boutons.Add(new BoutonLien(50, 800, new Rectangle(0, 0, 800, 300), null, 5));
             titanAE = new MoteurGraphique(32, 32);
             //titanAE.viderVue();
         }

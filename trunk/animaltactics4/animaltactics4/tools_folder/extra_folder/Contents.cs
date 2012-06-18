@@ -16,7 +16,7 @@ namespace animaltactics4
         static public Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
         static public Dictionary<string, Video> videos = new Dictionary<string, Video>();
         static private SpriteBatch Atsushi_Okhubo;
-        static private float screenWidth, screenHeight, pprc;
+        static public float screenWidth, screenHeight, pprc;
         static public VideoPlayer Miyazaki;
         static public float ouvertureDePorte; //Ferme la porte !!!
 
@@ -251,7 +251,7 @@ namespace animaltactics4
         static public void DrawString(string text_, Rectangle rect_)
         {
             Atsushi_Okhubo.Begin();
-            Atsushi_Okhubo.DrawString(fonts["bouton"], text_,
+            Atsushi_Okhubo.DrawString(fonts["text"], text_,
                 new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
                     rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)),
                     Color.White);
@@ -394,12 +394,12 @@ namespace animaltactics4
         static public void Cadre()
         {
             Atsushi_Okhubo.Begin();
-            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, 0, 1200, (int)((screenHeight - Divers.Y * pprc) / 2)), Color.Black);
-            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, (int)((screenHeight + Divers.Y * pprc) / 2), 1200, 
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, 0, (int)screenWidth, (int)((screenHeight - Divers.Y * pprc) / 2)), Color.Black);
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, (int)((screenHeight + Divers.Y * pprc) / 2), (int)screenWidth, 
                 (int)((screenHeight - Divers.Y * pprc) / 2)), Color.Black);
-            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, 0, (int)((screenWidth - Divers.X * pprc) / 2), 900), Color.Black);
-            Atsushi_Okhubo.Draw(textures["px"], new Rectangle((int)((screenWidth + Divers.X * pprc) / 2), 0, 
-                (int)((screenWidth - Divers.X * pprc) / 2), 900), Color.Black);
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle(0, 0, (int)((screenWidth - Divers.X * pprc) / 2), (int)screenHeight), Color.Black);
+            Atsushi_Okhubo.Draw(textures["px"], new Rectangle((int)((screenWidth + Divers.X * pprc) / 2), 0,
+                (int)((screenWidth - Divers.X * pprc) / 2), (int)screenHeight), Color.Black);
                 //new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                 //    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
             //    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), Color.White);

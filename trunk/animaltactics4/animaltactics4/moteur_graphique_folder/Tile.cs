@@ -445,6 +445,7 @@ namespace animaltactics4
                     #endregion
                 }
             }
+            //Contents.DrawStringInBoxCentered(i + ";" + j, rect);
         }
         //Loohy
         public void Drawpv(int camerax_, int cameray_, Color couleur_, int race_, int direction_)//14,15,16,17
@@ -545,9 +546,9 @@ namespace animaltactics4
         }
 
         //Loohy
-        public bool surbrillance(MoteurGraphique moteurgraphique_, Rectangle rect_)
+        public bool estSurvolee(Rectangle rect_, int camerax_, int cameray_, int direction_)
         {
-            Point p = new Point(Mouse.GetState().X, Mouse.GetState().Y);
+            UpdateLosange(camerax_, cameray_, direction_);
             return (Contents.contientLaSouris(boundingbox) && !Contents.contientLaSouris(rect_));
         }
 

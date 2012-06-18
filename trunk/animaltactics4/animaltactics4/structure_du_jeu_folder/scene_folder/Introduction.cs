@@ -22,7 +22,7 @@ namespace animaltactics4
             vidRectangle = new Rectangle(0, 0, Divers.X, Divers.Y);
             duree = 0;
 
-            Contents.Miyazaki.Play(Contents.videos["intro"]);
+            //Contents.Miyazaki.Play(Contents.videos["intro"]);
         }
 
         public override void DrawScene()

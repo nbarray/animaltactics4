@@ -99,7 +99,7 @@ namespace animaltactics4
         PandaSceau, PandaSniper, PandaNinja,
         PingvinSoin, PingvinThor, PingvinRage,
         FenrirMissiles, FenrirBoost, FenrirRailgun,
-        Krissa1, Krissa2, Krissa3
+        Krissa1, Legionnaire, Assassinat
     }
     enum e_typedAura
     {
@@ -260,6 +260,86 @@ namespace animaltactics4
         }
         //Loohy
         public static string getName(e_classe c_)
+        {
+            switch (c_)
+            {
+                case e_classe.PingvinWalkyrie:
+                    return "Walkyries";
+                case e_classe.PingvinLanceFlammes:
+                    return "Répurgateurs";
+                case e_classe.PingvinChar:
+                    return "Tank";
+                case e_classe.PingvinUgin:
+                    return "Ugins";
+                case e_classe.PingvinBolter:
+                    return "Pillards";
+                case e_classe.PingvinBerserker:
+                    return "Berserkers";
+                case e_classe.PingvinThor:
+                    return "Thors";
+                case e_classe.PingvinMugin:
+                    return "Mugins";
+                case e_classe.PingvinOdin:
+                    return "Odin";
+                case e_classe.PandawanMoine:
+                    return "Moines";
+                case e_classe.PandawanYabusame:
+                    return "Yabusames";
+                case e_classe.PandawanBushi:
+                    return "Bushis";
+                case e_classe.PandawanCharDragon:
+                    return "Chars Dragons";
+                case e_classe.PandawanMerco:
+                    return "Mercenaires";
+                case e_classe.PandawanSokei:
+                    return "Sokeis";
+                case e_classe.PandawanNinja:
+                    return "Ninjas";
+                case e_classe.PandawanSniper:
+                    return "Snipers";
+                case e_classe.PandawanSayan:
+                    return "Sayan";
+                case e_classe.FenrirWarBlade:
+                    return "Guerriers";
+                case e_classe.FenrirTireur:
+                    return "Tireurs";
+                case e_classe.FenrirPsyker:
+                    return "Psykers";
+                case e_classe.FenrirBouclier:
+                    return "Porteurs de boucliers";
+                case e_classe.FenrirEclaireur:
+                    return "Eclaireurs";
+                case e_classe.FenrirDreadnought:
+                    return "Dreadnoughts";
+                case e_classe.FenrirRailgun:
+                    return "Fusils Rail";
+                case e_classe.FenrirWarlord:
+                    return "Instructeurs";
+                case e_classe.FenrirOkami:
+                    return "Okami";
+                case e_classe.KrissaChef:
+                    return "Chef";
+                case e_classe.KrissaAssassin:
+                    return "Assassins";
+                case e_classe.KrissaLegionnaire:
+                    return "Légionnaires";
+                case e_classe.KrissaGeolier:
+                    return "Geoliers";
+                case e_classe.KrissaMaraudeur:
+                    return "Maraudeurs";
+                case e_classe.KrissaVermine:
+                    return "Vermines";
+                case e_classe.KrissaAbomination:
+                    return "Abominations";
+                case e_classe.Krissa8:
+                    return "Alvin dort tout le temps";
+                case e_classe.Krissa9:
+                    return "Alvin branle que dalle";
+                default:
+                    return "Animal Spirit";
+            }
+        }
+        public static string getText(e_classe c_)
         {
             switch (c_)
             {

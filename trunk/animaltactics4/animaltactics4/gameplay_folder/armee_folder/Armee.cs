@@ -316,7 +316,7 @@ namespace animaltactics4
                 case e_classe.FenrirEclaireur:
                     portee[1] = 8;
                     AddUnite(TypeUnite.Base, null, null, Divers.getName(classe_), 12, 13, 8, 7, 8, 14, 12, portee, typedAttaque,
-                        this.numeroarmee, 47, 8, ia_);
+                        this.numeroarmee, 47, 9, ia_);
                     break;
                 case e_classe.FenrirDreadnought:
                     portee[1] = 8;
@@ -336,7 +336,7 @@ namespace animaltactics4
                         this.numeroarmee, 50, 8, ia_);
                     break;
                 case e_classe.FenrirRailgun:
-                    portee[1] = 8;
+                    portee[1] = 5;
                     portee[2] = 9;
                     portee[3] = 9;
                     portee[4] = 9;
@@ -345,7 +345,7 @@ namespace animaltactics4
                     typedAttaque[3] = false;
                     typedAttaque[4] = false;
                     AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.FenrirRailgun, e_typeDePouvoir.Degat, new List<int> { 7, 8, 9, 10 }
-                        , true, 0, 0, 10, true), null,
+                        , true, 0, 0, 10, true), null, 
                         Divers.getName(classe_), 7, 15, 12, 12, 17, 12, 11, portee, typedAttaque,
                         this.numeroarmee, 48, 8, ia_);
                     break;
@@ -427,20 +427,20 @@ namespace animaltactics4
                     break;
                 #endregion
                 #region Krissa
-                case e_classe.KrissaChef:
+                case e_classe.Krissa9:
                     portee[1] = 9;
                     AddUnite(TypeUnite.Base, null, null, Divers.getName(classe_), 13, 12, 6, 6, 9, 10, 14, portee, typedAttaque,
                         this.numeroarmee, 68, 8, ia_);
                     break;
                 case e_classe.KrissaAssassin:
                     portee[1] = 9;
-                    AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.Krissa2, e_typeDePouvoir.Degat, new List<int> { 1 },
+                    AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.Assassinat, e_typeDePouvoir.Degat, new List<int> { 1 },
                         true, 0, 0, 0, false), null, Divers.getName(classe_), 7, 14, 6, 7, 14, 12, 13, portee, typedAttaque,
-                        this.numeroarmee, 69, 8, ia_);
+                        this.numeroarmee, 69, 10, ia_);
                     break;
                 case e_classe.KrissaLegionnaire:
                     portee[1] = 9;
-                    AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.Krissa2, e_typeDePouvoir.Degat, new List<int> { 1 },
+                    AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.Legionnaire, e_typeDePouvoir.Boost, new List<int> { 0,1,2 },
                         true, 0, 0, 0, false), null, Divers.getName(classe_), 12, 11, 8, 12, 10, 11, 11, portee, typedAttaque,
                         this.numeroarmee, 70, 8, ia_);
                     break;
@@ -452,8 +452,11 @@ namespace animaltactics4
                     break;
                 case e_classe.KrissaMaraudeur:
                     portee[1] = 9;
+                    portee[2] = 9;
+                    portee[3] = 9;
+                    portee[4] = 9;
                     AddUnite(TypeUnite.Base, null, null, Divers.getName(classe_), 8, 16, 6, 7, 7, 14, 15, portee, typedAttaque,
-                        this.numeroarmee, 72, 8, ia_);
+                        this.numeroarmee, 72, 9, ia_);
                     break;
                 case e_classe.KrissaVermine:
                     portee[1] = 9;
@@ -464,7 +467,7 @@ namespace animaltactics4
                 case e_classe.KrissaAbomination:
                     portee[1] = 9;
                     AddUnite(TypeUnite.Base, null, null,
-                        Divers.getName(classe_), 15, 16, 7, 10, 13, 14, 9, portee, typedAttaque,
+                        Divers.getName(classe_), 15, 12, 15, 4, 13, 14, 9, portee, typedAttaque,
                         this.numeroarmee, 74, 8, ia_);
                     break;
                 case e_classe.Krissa8:
@@ -473,10 +476,11 @@ namespace animaltactics4
                         Divers.getName(classe_), 13, 13, 8, 6, 11, 17, 14, portee, typedAttaque,
                         this.numeroarmee, 57, 8, ia_);
                     break;
-                case e_classe.Krissa9:
-                    portee[1] = 9;
+                case e_classe.KrissaChef:
+                    portee[1] = 10;
+                    typedAttaque[1] = false;
                     AddUnite(TypeUnite.Heros, null, new Aura("ALVINCODAAA", TypedAura.BoostEsquive, 15), Divers.getName(classe_), 20, 15, 10, 10, 15, 18, 17, portee, typedAttaque,
-                        this.numeroarmee, 57, 8, ia_);
+                        this.numeroarmee, 57, 10, ia_);
                     break;
                 #endregion
                 #region Divers

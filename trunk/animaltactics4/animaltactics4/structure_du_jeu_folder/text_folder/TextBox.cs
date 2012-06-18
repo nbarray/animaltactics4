@@ -10,59 +10,50 @@ namespace animaltactics4
 {
     class TextBox
     {
-        public List<string> text;
         public Rectangle rect;
-        private string shadow;
+        private string text;
+        private List<string> line;
 
         public TextBox(Rectangle rect_)
         {
+            text = "";
             rect = rect_;
-            text = new List<string>();
+            line = new List<string>();
         }
 
-        public void Update(GameTime gameTime)
+        public void Add(string text_)
         {
+            text = text_;
+            JustifyText();
+        }
+
+        private void JustifyText()
+        {
+            string temp = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                temp += text[i];
+                int textWidth = (int)Contents.MeasureString(temp).X;
+                if (textWidth > rect.Width && text[i] == ' ')
+                {
+                    line.Add(temp);
+                    temp = "";
+                }
+            }
+            line.Add(temp);
         }
 
         public void Draw()
         {
+            
             Contents.Draw("textbox", rect);
-            Contents.DrawStringInATextBox(text, rect);
-        }
-
-        private string LoadFromFile(string path)
-        {
-            FileStream stream;
-            try
+            for (int i = 0; i < line.Count; i++)
             {
-                stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                StreamReader reader = new StreamReader(stream);
-
-                return reader.ReadToEnd();
-                stream.Close();
-            }
-            catch (Exception e)
-            {
-                text.Add(e.Message);
-                return "Thank you Coldman.";
-            }
-
-        }
-
-        private void GetWordsFrom(string str)
-        {
-            string temp = "";
-
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (str[i] == ' ')
+                Rectangle r = new Rectangle(rect.X + 15, rect.Y + i * 20 + 15, rect.Width, 10);
+                if (r.Y < rect.Height)
                 {
-                    text.Add(temp);
-                    temp = "";
-                }
-                else
-                {
-                    temp += str[i];
+                    
+                Contents.DrawString(line[i], r);
                 }
             }
         }

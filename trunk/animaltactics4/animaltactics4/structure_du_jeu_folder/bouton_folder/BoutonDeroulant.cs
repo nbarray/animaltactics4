@@ -85,19 +85,35 @@ namespace animaltactics4
         {
             switch (state)
             {
+                #region Ouvert
                 case e_etatDeroulant.Ouvert:
                     Contents.Draw("px", new Rectangle(rect.X, rect.Y + rect.Height, rect.Width, hauteur), Color.DarkRed);
                     Rectangle rect2 = new Rectangle(rect.X, rect.Y + rect.Height,
                     110, (int)(Contents.MeasureString("S").Y + 2));
-                //hauteur = (int)(font.MeasureString("S").Y + 2) * 15;
+                    //hauteur = (int)(font.MeasureString("S").Y + 2) * 15;
                     Color c = Color.Red;
-                #region Type
+                    #region Type
                     if (indexDico == 49)//
-                {
-                    e_pinceau tableau = e_pinceau.Plaine;
-                    while (tableau != e_pinceau.Rien)
                     {
-                        Contents.DrawString(Dico.langues[Dico.current][ToolText(tableau)], new Rectangle(rect2.X, rect2.Y,0,0));
+                        e_pinceau tableau = e_pinceau.Plaine;
+                        while (tableau != e_pinceau.Rien)
+                        {
+                            Contents.DrawString(Dico.langues[Dico.current][ToolText(tableau)], new Rectangle(rect2.X, rect2.Y, 0, 0));
+                            if (Contents.contientLaSouris(rect2))
+                            {
+                                Contents.Draw("px", rect2, c);
+                                Contents.DrawString(Dico.langues[Dico.current][ToolText(tableau)], new Rectangle(rect2.X, rect2.Y, 0, 0));
+                                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                                {
+                                    tstate = tableau;
+                                    //logBox_.ToLogBox("La brosse actuelle est : " + tstate.ToString());
+                                    state = e_etatDeroulant.Montant;
+                                }
+                            }
+                            rect2.Y += (int)(Contents.MeasureString("S").Y + 2);
+                            tableau++;
+                        }
+                        Contents.DrawString(Dico.langues[Dico.current][ToolText(tableau)], new Rectangle(rect2.X, rect2.Y, 0, 0));
                         if (Contents.contientLaSouris(rect2))
                         {
                             Contents.Draw("px", rect2, c);
@@ -109,34 +125,34 @@ namespace animaltactics4
                                 state = e_etatDeroulant.Montant;
                             }
                         }
-                        rect2.Y += (int)(Contents.MeasureString("S").Y + 2);
-                        tableau++;
                     }
-                    Contents.DrawString(Dico.langues[Dico.current][ToolText(tableau)], new Rectangle(rect2.X, rect2.Y,0,0));
-                    if (Contents.contientLaSouris(rect2))
+                    #endregion
+                    #region Size
+                    else if (indexDico == 50)//
                     {
-                        Contents.Draw("px", rect2, c);
-                        Contents.DrawString(Dico.langues[Dico.current][ToolText(tableau)], new Rectangle(rect2.X, rect2.Y,0,0));
-                        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        e_toolSize tableur = e_toolSize.XSmall;
+                        while (tableur != e_toolSize.XLarge)
                         {
-                            tstate = tableau;
-                            //logBox_.ToLogBox("La brosse actuelle est : " + tstate.ToString());
-                            state = e_etatDeroulant.Montant;
+                            Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y, 0, 0));
+                            if (Contents.contientLaSouris(rect2))
+                            {
+                                Contents.Draw("px", rect2, c);
+                                Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y, 0, 0));
+                                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                                {
+                                    tsize = tableur;
+                                    //logBox_.ToLogBox("La taille de la brosse est : " + SizeText(tableur));
+                                    state = e_etatDeroulant.Montant;
+                                }
+                            }
+                            rect2.Y += (int)(Contents.MeasureString("S").Y + 2);
+                            tableur++;
                         }
-                    }
-                }
-                #endregion
-                #region Size
-                else if (indexDico == 50)//
-                {
-                    e_toolSize tableur = e_toolSize.XSmall;
-                    while (tableur != e_toolSize.XLarge)
-                    {
-                        Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y,0,0));
+                        Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y, 0, 0));
                         if (Contents.contientLaSouris(rect2))
                         {
                             Contents.Draw("px", rect2, c);
-                            Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y,0,0));
+                            Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y, 0, 0));
                             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                             {
                                 tsize = tableur;
@@ -144,28 +160,17 @@ namespace animaltactics4
                                 state = e_etatDeroulant.Montant;
                             }
                         }
-                        rect2.Y += (int)(Contents.MeasureString("S").Y + 2);
-                        tableur++;
+                    #endregion
                     }
-                    Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y, 0, 0));
-                    if (Contents.contientLaSouris(rect2))
-                    {
-                        Contents.Draw("px", rect2, c);
-                        Contents.DrawString(Dico.langues[Dico.current][SizeText(tableur)], new Rectangle(rect2.X, rect2.Y, 0, 0));
-                        if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                        {
-                            tsize = tableur;
-                            //logBox_.ToLogBox("La taille de la brosse est : " + SizeText(tableur));
-                            state = e_etatDeroulant.Montant;
-                        }
-                    }
+                    goto default; 
                 #endregion
-                }
-                    goto default;
+                #region Montant/Descendant
                 case e_etatDeroulant.Montant:
                 case e_etatDeroulant.Descendant:
-                    Contents.Draw("px", new Rectangle(rect.X, rect.Y + rect.Height, rect.Width, hauteur), Color.Blue);
-                    goto default;
+                    Contents.Draw("px", new Rectangle(rect.X, rect.Y + rect.Height, rect.Width, hauteur), Color.DarkRed);
+                    goto default; 
+                #endregion
+                #region Bouton
                 default:
                     int s;
                     if (indexDico == 49)
@@ -179,7 +184,7 @@ namespace animaltactics4
                     if (!Contents.contientLaSouris(base.rect))
                     {
                         Contents.Draw("px", rect, Color.Gray);
-                        Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][indexDico]+" : "
+                        Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][indexDico] + " : "
                             + Dico.langues[Dico.current][s], rect, Color.Black);
                     }
                     else
@@ -188,7 +193,8 @@ namespace animaltactics4
                         Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][indexDico] + " : "
                             + Dico.langues[Dico.current][s], rect);
                     }
-                    break;
+                    break; 
+                #endregion
             }
         }
 
