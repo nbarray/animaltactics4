@@ -18,7 +18,6 @@ namespace animaltactics4
         {
             rect = rect_;
             text = new List<string>();
-            GetWordsFrom(LoadFromFile("ency.txt"));
         }
 
         public void Update(GameTime gameTime)

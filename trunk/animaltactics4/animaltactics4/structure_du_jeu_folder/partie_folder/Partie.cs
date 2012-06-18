@@ -14,7 +14,8 @@ namespace animaltactics4
         private int lastUpdatesTime;
         public int time;
 
-        public Partie()
+        //Coldman
+        public Partie(int map_width, int map_height)
         {
             gameplay = new SystemeDeJeu();
             earthPenguin = new MoteurGraphique(32, 32);
