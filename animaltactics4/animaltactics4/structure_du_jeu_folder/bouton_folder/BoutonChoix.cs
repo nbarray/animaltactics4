@@ -40,7 +40,7 @@ namespace animaltactics4
                 een = true;
             }
         }
-
+        public override void UpdateD(ref e_toolSize tsize_, ref e_pinceau tstate_) { }
         public override void Draw()
         {
             Contents.Draw(assetName, rect, sub);

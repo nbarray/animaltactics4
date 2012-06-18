@@ -15,7 +15,7 @@ namespace animaltactics4
         static public void Initialize()
         {
             current = "Francais";
-            langues = new Dictionary<string,string[]>();
+            langues = new Dictionary<string, string[]>();
 
             langues.Add("Francais", new string[]{
             "Jouer", // 0
@@ -45,6 +45,30 @@ namespace animaltactics4
             "Chance : ",//24
             "Vitesse : ",//25
             "Mouvement : ",//26
+             "Tres petite",//27
+                      "Petite",//28
+                      "Normale",//29
+                      "Moyenne",//30
+                      "Grande",//31
+                      "Tres grande",//32
+                "Plaine",//33
+                "Neige",//34
+                "Banquise",//35
+                "Sable",//36
+                "Eau",//37
+                "Route",//38
+                "Riviere",//39
+                "Bunker",//40
+                "Foret",//41
+                "Ruine",//42
+                "Cratere",//43
+                "Village",//44
+                "Montagne",//45
+                "Vallee",//46
+                "Lissage",//47
+                "Rien",//48
+                "Pinceau",//49
+                "Taille",//50
             });
 
             langues.Add("English", new string[]{
@@ -75,6 +99,30 @@ namespace animaltactics4
             "Luck : ",//24
             "Rapidity : ",//25
             "Movement : ",//26
+            "Very little",//27
+            "Little",//28
+            "Standart",//29
+            "Medium",//30
+            "Big",//31
+            "Very big",//32
+            "Plain",//33
+            "Snow",//34
+            "Ice",//35
+            "Sand",//36
+            "Water",//37
+            "Road",//38
+            "Riviere",//39
+            "Bunker",//40
+            "Forest",//41
+            "Ruine",//42
+            "Cratere",//43
+            "Village",//44
+            "HighBrush",//45
+            "DownBrush",//46
+            "SoftBrush",//47
+            "Nothing",//48
+            "Tool",//49
+            "Size",//50
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -105,6 +153,30 @@ namespace animaltactics4
             "Chance : ",//24
             "Vitesse : ",//25
             "Mouvement : ",//26
+             "Tres petite",//27
+                      "Petite",//28
+                      "Normale",//29
+                      "Moyenne",//30
+                      "Grande",//31
+                      "Tres grande",//32
+                "Plaine",//33
+                "Neige",//34
+                "Banquise",//35
+                "Sable",//36
+                "Eau",//37
+                "Route",//38
+                "Riviere",//39
+                "Bunker",//40
+                "Foret",//41
+                "Ruine",//42
+                "Cratere",//43
+                "Village",//44
+                "Montagne",//45
+                "Vallee",//46
+                "Lissage",//47
+                "Rien",//48
+                "Pinceau",//49
+                "Taille",//50
             });
         }
     }

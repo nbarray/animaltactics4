@@ -896,7 +896,7 @@ namespace animaltactics4
             {
                 if (centrer_)
                 {
-                    moteurgraphique_.centrerSur(bataillon[uniteselect].i, bataillon[uniteselect].j, hud_);
+                    moteurgraphique_.centrerSur(bataillon[uniteselect].i, bataillon[uniteselect].j);
                 }
                 bataillon[uniteselect].lookAtCheminsInitialize(moteurgraphique_);
             }

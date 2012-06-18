@@ -18,6 +18,7 @@ namespace animaltactics4
             sub = sub_;
         }
 
+        public abstract void UpdateD(ref e_toolSize tsize_, ref e_pinceau tstate_);
         public abstract void Update(GameTime gameTime);
         public abstract void Draw();
         

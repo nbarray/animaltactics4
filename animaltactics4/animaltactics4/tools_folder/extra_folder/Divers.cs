@@ -181,7 +181,19 @@ namespace animaltactics4
     enum e_Cache
     {
         Invisible, InvisibleAmi, Visible
-    } 
+    }
+    public enum e_pinceau
+    {
+        Plaine, Neige, Banquise, Sable, Eau, Route, Riviere, Bunker, Foret, Ruine, Cratere, Village, Montagne, Vallee, Lissage, Rien
+    }
+    public enum e_toolSize
+    {
+        XSmall, Small, Standard, Medium, Large, XLarge
+    }
+    public enum e_etatDeroulant
+    {
+        Ouvert, Montant, Ferme, Descendant
+    }
     #endregion
 
     static class Divers
