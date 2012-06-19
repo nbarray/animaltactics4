@@ -529,15 +529,15 @@ namespace animaltactics4
                 && map[i_, j_].estSurvolee(rect_, camerax, cameray, direction))
             {
                 map[i_, j_].estEnSurbrillance = true;
-                map[i_, j_].surbrillancePortee = 9;
-                map[i_, j_].sousRectportee.X = 19 * 64;
+                //map[i_, j_].surbrillancePortee = 9;
+                //map[i_, j_].sousRectportee.X = 19 * 64;
                 //Console.WriteLine(i_ +"/"+ j_);
             }
             else
             {
                 map[i_, j_].estEnSurbrillance = false;
-                map[i_, j_].surbrillancePortee = 2;
-                map[i_, j_].sousRectportee.X = 11 * 64;
+                //map[i_, j_].surbrillancePortee = 2;
+                //map[i_, j_].sousRectportee.X = 11 * 64;
             }
         }
 

@@ -266,7 +266,7 @@ namespace animaltactics4
         }
         */
         //Loohy
-        public void initializeWithListedArmies(List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
+        public void initializeWithListedArmies(List<string> nomDesArmees_, List<int> difficultes_, List<int> camp_, List<Color> couleurs_,
             MoteurGraphique moteurgraphique_,
             e_typeDePartie conditionsDeVictoire_, HUD hud_, float limiteDeTours_ = 0)
         {
@@ -277,7 +277,7 @@ namespace animaltactics4
             listeDesJoueurs = new List<Armee>();
             for (int p = 0; p < nomDesArmees_.Count; p++)
             {
-                listeDesJoueurs.Add(new Armee(p, e_race.Random, couleurs_[p], moteurgraphique_.longueur, moteurgraphique_.largeur));
+                listeDesJoueurs.Add(new Armee(p, e_race.Random, couleurs_[p], moteurgraphique_.longueur, moteurgraphique_.largeur, camp_[p]));
                 listeDesJoueurs[p].ConvertFromList(Divers.obtenirList(nomDesArmees_[p]), difficultes_[p]);
                 listeDesJoueurs[p].QG = new Vector2((int)((moteurgraphique_.longueur * (p + 1)) / 7), (int)((moteurgraphique_.largeur * (p + 1)) / 7));
             }

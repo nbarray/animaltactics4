@@ -12,7 +12,7 @@ namespace animaltactics4
         string carte;
         Color[] couleurs;
         List<Color> couleursDispo;
-        int[] difficulte;
+        int[] difficulte, camp;
         string[] armees;
         int limiteDeTours;
         bool p;
@@ -27,14 +27,16 @@ namespace animaltactics4
             armees = new string[6];
             difficulte = new int[6];
             couleurs = new Color[6];
+            camp = new int[6];
             limiteDeTours = 15;
             for (int i = 0; i < 6; i++)
             {
                 armees[i] = "";
                 difficulte[i] = 0;
                 couleurs[i] = Color.White;
+                camp[i] = 1;
             }
-            couleursDispo = new List<Color> { Color.Red, Color.Blue, Color.Orange, Color.Yellow, Color.Purple, Color.Green, Color.LemonChiffon };
+            couleursDispo = new List<Color> { Color.Red, Color.Blue, Color.Orange, Color.Yellow, Color.Purple, Color.Green, Color.Lavender };
             carte = "";
             p = false;
 
@@ -45,6 +47,7 @@ namespace animaltactics4
             base.UpdateScene(gameTime_);
             List<string> nomDesArmees_ = new List<string>();
             List<int> difficultes_ = new List<int>();
+            List<int> camp_ = new List<int>();
             List<Color> couleurs_ = new List<Color>();
             for (int i = 0; i < 6; i++)
             {
@@ -53,6 +56,7 @@ namespace animaltactics4
                     nomDesArmees_.Add(armees[i]);
                     difficultes_.Add(difficulte[i]);
                     couleurs_.Add(couleurs[i]);
+                    camp_.Add(camp[i]);
                 }
             }
             e_typeDePartie conditionsDeVictoire_ = e_typeDePartie.Echiquier;
@@ -65,7 +69,7 @@ namespace animaltactics4
             {
                 fog_++;
             }
-            ((BoutonNouvellePartie)boutons[0]).UpdateSpecial(gameTime_, carte, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_, 90,limiteDeTours);
+            ((BoutonNouvellePartie)boutons[0]).UpdateSpecial(gameTime_, carte, nomDesArmees_, difficultes_, camp_, couleurs_, conditionsDeVictoire_, fog_, 90,limiteDeTours);
         }
 
         public override void DrawScene()
@@ -119,7 +123,9 @@ namespace animaltactics4
             for (int i = 0; i < 6; i++)
             {
                 Contents.Draw("px", blankass, Color.DarkGray);
-                Contents.DrawString(difficulte[i].ToString(), new Rectangle(blankass.X + 2, blankass.Y + 2, 0, 0));
+                Contents.DrawString(difficulte[i].ToString(), new Rectangle(blankass.X + 4, blankass.Y + 4, 0, 0));
+                Contents.Draw("px", noOneIsInnocent, Color.DarkGray);
+                Contents.DrawString(camp[i].ToString(), new Rectangle(noOneIsInnocent.X + 2, noOneIsInnocent.Y + 2, 0, 0));
                 Contents.Draw("px", noirDesir, couleurs[i]);
                 if (armees[i] == "")
                 {
@@ -135,6 +141,10 @@ namespace animaltactics4
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(blankass) && !p)
                     {
                         difficulte[i] = (difficulte[i] + 1) % 4;
+                    }
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(noOneIsInnocent) && !p)
+                    {
+                        camp[i] = (camp[i] + 1) % 4;
                     }
                     if (Mouse.GetState().RightButton == ButtonState.Pressed && Contents.contientLaSouris(acwl) && !p)
                     {

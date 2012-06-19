@@ -15,15 +15,16 @@ namespace animaltactics4
         public e_race espece;
         public Color couleur;
         public int effectif, uniteselect;
-        public int numeroarmee, score;
+        public int numeroarmee, score, camp;
         bool clic;
         public bool atLeastOneAlive, atLeastOneHeroAlive;
         bool IA;
         public int difficulte;
         public bool[,] casesVisitees;
 
-        public Armee(int numeroarmee_, e_race espece_, Color couleur_, int sizeX_, int sizeY_)
+        public Armee(int numeroarmee_, e_race espece_, Color couleur_, int sizeX_, int sizeY_, int camp_)
         {
+            camp = camp_;
             QG = new Vector2(0, 0);
             IA = false;
             score = 1;
@@ -99,8 +100,9 @@ namespace animaltactics4
                 }
             }
         }
-        public Armee(int numeroarmee_, e_race espece_, Color couleur_, int sizeX_, int sizeY_, int difficulte_)
+        public Armee(int numeroarmee_, e_race espece_, Color couleur_, int sizeX_, int sizeY_, int camp_, int difficulte_)
         {
+            camp = camp_;
             QG = new Vector2(0, 0);
             IA = true;
             score = 0;
@@ -427,7 +429,7 @@ namespace animaltactics4
                     break;
                 #endregion
                 #region Krissa
-                case e_classe.Krissa9:
+                case e_classe.KrissaCanonnier:
                     portee[1] = 9;
                     AddUnite(TypeUnite.Base, null, null, Divers.getName(classe_), 13, 12, 6, 6, 9, 10, 14, portee, typedAttaque,
                         this.numeroarmee, 68, 8, ia_);
@@ -471,7 +473,7 @@ namespace animaltactics4
                         Divers.getName(classe_), 15, 12, 15, 4, 13, 14, 9, portee, typedAttaque,
                         this.numeroarmee, 74, 8, ia_);
                     break;
-                case e_classe.Krissa8:
+                case e_classe.KrissaDesperado:
                     portee[1] = 9;
                     AddUnite(TypeUnite.Base, null, null,
                         Divers.getName(classe_), 13, 13, 8, 6, 11, 17, 14, portee, typedAttaque,

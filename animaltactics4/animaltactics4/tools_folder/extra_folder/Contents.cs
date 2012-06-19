@@ -73,8 +73,8 @@ namespace animaltactics4
             textures.Add(Divers.getName(e_classe.KrissaMaraudeur), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.KrissaVermine), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.KrissaAbomination), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
-            textures.Add(Divers.getName(e_classe.Krissa8), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
-            textures.Add(Divers.getName(e_classe.Krissa9), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaDesperado), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.KrissaCanonnier), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.Overlord), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             #endregion
             textures.Add("bouton_normal", content_.Load<Texture2D>("Image\\Bouton\\bouton_normal"));

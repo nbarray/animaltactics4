@@ -24,14 +24,14 @@ namespace animaltactics4
             lastUpdatesTime = 0;
         }
 
-        public void Initialize(string nomDeLaMap_, List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
+        public void Initialize(string nomDeLaMap_, List<string> nomDesArmees_, List<int> difficultes_, List<int> camp_, List<Color> couleurs_,
             e_typeDePartie conditionsDeVictoire_, e_brouillardDeGuerre fog_, int tempsMax_, int limiteDeTours_ = 0)
         {
             Jackman = new HUD();
             Divers.telechargerMap(ref earthPenguin, nomDeLaMap_);
             earthPenguin.fog = fog_;
             earthPenguin.viderVue();
-            gameplay.initializeWithListedArmies(nomDesArmees_, difficultes_, couleurs_,
+            gameplay.initializeWithListedArmies(nomDesArmees_, difficultes_, camp_, couleurs_,
                 earthPenguin, conditionsDeVictoire_, Jackman, limiteDeTours_);
             time = 0;
             lastUpdatesTime = 0;
