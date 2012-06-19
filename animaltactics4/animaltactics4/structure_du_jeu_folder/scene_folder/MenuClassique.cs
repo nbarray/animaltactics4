@@ -172,6 +172,12 @@ namespace animaltactics4
                 {
                     armees[i - 1] = armees[i];
                     armees[i] = "";
+                    difficulte[i - 1] = difficulte[i];
+                    difficulte[i] = 0;
+                    camp[i - 1] = camp[i];
+                    camp[i] = 0;
+                    couleurs[i - 1] = couleurs[i];
+                    couleurs[i] = Color.White;
                 }
             }
         }

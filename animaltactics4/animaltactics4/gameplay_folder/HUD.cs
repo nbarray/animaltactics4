@@ -38,15 +38,15 @@ namespace animaltactics4
         private Color VictoryColor;
         private int VictoryRace;//0,1,2,3
         private int positionDuTexteY, positionDuTexteX;
-        public BoutonCirculaire bAttaque, bMouvement, bPouvoir;
+        public BoutonAction bAttaque, bMouvement, bPouvoir;
 
         public HUD()
         {
             tempsRestant = 0;
             r = new Random();
-            bAttaque = new BoutonCirculaire(e_modeAction.Attaque);
-            bMouvement = new BoutonCirculaire(e_modeAction.Mouvement);
-            bPouvoir = new BoutonCirculaire(e_modeAction.Pouvoir);
+            bAttaque = new BoutonAction(e_modeAction.Attaque);
+            bMouvement = new BoutonAction(e_modeAction.Mouvement);
+            bPouvoir = new BoutonAction(e_modeAction.Pouvoir);
             positionDuTexteX = 300;
             positionDuTexteY = 704;
             flash = 1200 + 1;
@@ -81,9 +81,9 @@ namespace animaltactics4
                 Rectangle rect = genererRectangle(i, j, moteurgraphique_.map[i, j].altitude,
                     moteurgraphique_.camerax, moteurgraphique_.cameray, moteurgraphique_.direction);
                 DrawButtons(900,725,gameplay_.listeDesJoueurs[gameplay_.tourencours].
-                    bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
+                    bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == e_typeUnite.Elite);
                 UpdateButtons(ref gameplay_.mood, gameplay_.listeDesJoueurs[gameplay_.tourencours].
-                    bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
+                    bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == e_typeUnite.Elite);
             }
             #endregion
             if (doFlash)
@@ -391,24 +391,24 @@ namespace animaltactics4
         public void statUnite(Unite unite_, Color couleur_)
         {
             Contents.DrawString( unite_.nom, new Rectangle(positionDuTexteX, positionDuTexteY,0,0), couleur_);
-            Contents.DrawString("Force : " + unite_.getStat[0], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (3), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][19]+" : " + unite_.getStat[0], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (3), 0, 0),
                 couleur_);
-            Contents.DrawString("Dexterite : " + unite_.getStat[1], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (4), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][20] + " : " + unite_.getStat[1], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (4), 0, 0),
                 couleur_);
-            Contents.DrawString("Constitution : " + unite_.getStat[2], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (5), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][21] + " : " + unite_.getStat[2], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (5), 0, 0),
                 couleur_);
-            Contents.DrawString("Defense : " + unite_.getStat[3], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (6), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][22] + " : " + unite_.getStat[3], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (6), 0, 0),
                 couleur_);
-            Contents.DrawString("Esprit : " + unite_.getStat[4], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (7), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][23] + " : " + unite_.getStat[4], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (7), 0, 0),
                 couleur_);
-            Contents.DrawString("Chance : " + unite_.getStat[5], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (8), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][24] + " : " + unite_.getStat[5], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (8), 0, 0),
                 couleur_);
-            Contents.DrawString("Vitesse : " + unite_.getStat[6], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (9), 0, 0),
+            Contents.DrawString(Dico.langues[Dico.current][25] + " : " + unite_.getStat[6], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (9), 0, 0),
                 couleur_);
-            Contents.DrawString("Niveau : ", new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (1), 0, 0), couleur_);
+            Contents.DrawString(Dico.langues[Dico.current][144] + " : ", new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (1), 0, 0), couleur_);
             // Nicooooo's grade sys
-            Contents.Draw("px",
-                         new Rectangle(positionDuTexteX + (int)Contents.MeasureString("Niveau : ").X + 2, positionDuTexteY + 16 * 1 + 4, 16, 16),
+            Contents.Draw("grade",
+                         new Rectangle(positionDuTexteX + (int)Contents.MeasureString(Dico.langues[Dico.current][144] + " : ").X + 2, positionDuTexteY + 16 * 1 + 4, 16, 16),
                          new Rectangle((unite_.getStat[7] - 1) * 16, 0, 16, 16));
             // +++++++++++++++++++++
             Contents.DrawString("Experience : " + unite_.getStat[8], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (2),0,0),
@@ -416,13 +416,13 @@ namespace animaltactics4
             Contents.Draw("px", new Rectangle(positionDuTexteX, positionDuTexteY + 167, 102, 10), Color.Black);
             Contents.Draw("px", new Rectangle(positionDuTexteX + 1, positionDuTexteY + 168,
                 (100 * unite_.getStat[9]) / unite_.getStat[10], 8), couleur_);
-            if (unite_.typeUnite == TypeUnite.Elite)
+            if (unite_.typeUnite == e_typeUnite.Elite)
             {
                 Contents.Draw("px", new Rectangle(positionDuTexteX, positionDuTexteY + 179, 102, 9), Color.Black);
                 Contents.Draw("px", new Rectangle(positionDuTexteX + 1, positionDuTexteY + 180,
                     (100 * unite_.energieactuel) / unite_.energiemax, 7), Color.Purple);
             }
-            Contents.Draw(unite_.nom, new Rectangle(positionDuTexteX - 100, positionDuTexteY+10, 100, 100), new Rectangle(0, 0, 128, 128));
+            Contents.Draw(unite_.image, new Rectangle(positionDuTexteX - 100, positionDuTexteY+10, 100, 100), new Rectangle(0, 0, 128, 128));
         }
 
         public void fight(Unite attaquant_, Unite defenseur_, string texte1_, int degats1_, Color couleur1_,

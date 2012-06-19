@@ -53,8 +53,9 @@ namespace animaltactics4
 
         #endregion
         #region Autres
+        public e_classe metier;
         public string nom;
-        public TypeUnite typeUnite;
+        public e_typeUnite typeUnite;
         public Pouvoir SHORYUKEN;
         public Aura aura;
         public string image;
@@ -92,12 +93,13 @@ namespace animaltactics4
         #endregion
         public bool porteTresor, estInvisible;
         public int points, nombreDeRotations;
-        //avec ia :
-        public Unite(TypeUnite typeUnite_, Pouvoir SHORYUKEN_, Aura aura_,
+
+        public Unite(e_classe c_,e_typeUnite typeUnite_, Pouvoir SHORYUKEN_, Aura aura_,
             string nom_, int force_, int dexterite_, int constitution_, int defense_,
             int esprit_, int chance_, int vitesse_, int[] portee_, bool[] typedAttaque_, int numeroUnite_,
             int numeroArmee_, int mouvement_, int ia_ = 0, e_typeDePartie etat_ = e_typeDePartie.Joute)
         {
+            metier = c_;
             debug = 0;
             nom = nom_;
             typeUnite = typeUnite_;
@@ -142,7 +144,7 @@ namespace animaltactics4
             {
                 points += esprit * 3;
             }
-            if (typeUnite == TypeUnite.Elite)
+            if (typeUnite == e_typeUnite.Elite)
             {
                 points += 2 * esprit;
             }
@@ -184,7 +186,7 @@ namespace animaltactics4
 
             een = true;
 
-            image = nom_;
+            image = c_.ToString();
 
             IA = new IntelligenceArtificielle(ia_, this);
             //Console.WriteLine(nom + " : " + points);
@@ -512,7 +514,7 @@ namespace animaltactics4
             tile_.sousRectUnite = sousrect;
             tile_.AttaqOrNot = attaqOrNot;
             tile_.aura = profiteDuneAura;
-            tile_.heros = typeUnite == TypeUnite.Heros;
+            tile_.heros = typeUnite == e_typeUnite.Heros;
             tile_.cachette = e_Cache.Visible;
             if (estInvisible)
             {

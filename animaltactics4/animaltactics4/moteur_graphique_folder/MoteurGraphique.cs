@@ -430,7 +430,7 @@ namespace animaltactics4
                     case e_modeAction.Attaque:
                         if (gameplay_.listeDesJoueurs[gameplay_.tourencours].
                             bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].
-                            typeUnite == TypeUnite.Elite)
+                            typeUnite == e_typeUnite.Elite)
                         {
                             gameplay_.mood = e_modeAction.Pouvoir;
                         }

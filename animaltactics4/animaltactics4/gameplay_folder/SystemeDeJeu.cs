@@ -30,10 +30,10 @@ namespace animaltactics4
             limiteDeTours = 0;
         }
 
-        public void AddUnite(int armee_, TypeUnite typeUnite_, Pouvoir SHORYUKEN_, Aura aura_, string nom_, int force_, int dexterite_, int constitution_, int defense_,
+        public void AddUnite(int armee_, e_classe c_, e_typeUnite typeUnite_, Pouvoir SHORYUKEN_, Aura aura_, string nom_, int force_, int dexterite_, int constitution_, int defense_,
             int esprit_, int chance_, int vitesse_, int[] portee_, bool[] typedAttaque_, int numeroImage, int mouvement, int ia_)
         {
-            listeDesJoueurs[armee_].AddUnite(typeUnite_, SHORYUKEN_, aura_, nom_, force_, dexterite_, constitution_, defense_,
+            listeDesJoueurs[armee_].AddUnite(c_, typeUnite_, SHORYUKEN_, aura_, nom_, force_, dexterite_, constitution_, defense_,
             esprit_, chance_, vitesse_, portee_, typedAttaque_, armee_, numeroImage, mouvement, ia_);
         }
         public void AddUnite(int armee_, e_classe classe_)

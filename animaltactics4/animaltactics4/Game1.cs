@@ -33,8 +33,8 @@ namespace animaltactics4
             graphics.PreferredBackBufferFormat = GraphicsDevice.DisplayMode.Format;
             graphics.ApplyChanges();
 
-            MoteurSon.Initialize(Content);
             Dico.Initialize();
+            MoteurSon.Initialize(Content);
             Contents.Initialize(GraphicsDevice);
             Engine.Initialize();
             

@@ -296,7 +296,7 @@ namespace animaltactics4
                     Contents.Draw("px", bob,
                         Color.Red, new Rectangle(4, 4, 120, 120));
                 }
-                Contents.Draw(Divers.getName(ToutesLesUnites[current][g].classe), bob, new Rectangle(2, 2, 110, 110));
+                Contents.Draw(ToutesLesUnites[current][g].classe.ToString(), bob, new Rectangle(2, 2, 110, 110));
                 bob.Y += 55;
             }
             bob = new Rectangle(1075, 200, 50, 50);
@@ -304,7 +304,7 @@ namespace animaltactics4
             {
                 Contents.Draw("px", bob,
                     listeA.couleur, new Rectangle(4, 4, 120, 120));
-                Contents.Draw(Divers.getName(listeA.bataillon[g].classe), bob, new Rectangle(2, 2, 110, 110));
+                Contents.Draw(listeA.bataillon[g].classe.ToString(), bob, new Rectangle(2, 2, 110, 110));
                 bob.Y += 55;
             }
             #endregion
@@ -312,7 +312,7 @@ namespace animaltactics4
             bob = new Rectangle(250, 290, 128, 128);
             Contents.Draw("px", bob, listeA.couleur);
             bob.Y += 2;
-            Contents.Draw(army.bataillon[0].nom, bob, new Rectangle(128, 0, 128, 128));
+            Contents.Draw(army.bataillon[0].image, bob, new Rectangle(128, 0, 128, 128));
             bob.Y -= 2;
             Rectangle Samsung = new Rectangle(250, 200, 0,0);
             Contents.DrawString(army.bataillon[0].nom, Samsung, Color.White);

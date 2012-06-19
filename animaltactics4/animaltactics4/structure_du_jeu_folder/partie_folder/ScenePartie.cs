@@ -42,6 +42,7 @@ namespace animaltactics4
         {
             //base.DrawScene();
             p.Draw();
+            boutons[3].Draw();
             if (estEnPause)
             {
                 Contents.Draw("px", new Rectangle(0, 0, 1200, 900), new Color(0, 0, 0, 0.5f));
