@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
@@ -418,6 +419,23 @@ namespace animaltactics4
                 default:
                     return "Animal Spirit";
             }
+        }
+
+        public static string String_Of_Key(Keys k)
+        {
+            if (Keyboard.GetState() == new KeyboardState(new Keys[]{Keys.None, k}))
+            {
+                return k.ToString().ToLower();
+            }
+            else if (Keyboard.GetState() == new KeyboardState(new Keys[] { Keys.None, k, Keys.LeftShift }))
+            {
+                return k.ToString().ToUpper();
+            }
+            else
+            {
+                return "";
+            }
+            
         }
     }
 }

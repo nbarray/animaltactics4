@@ -76,6 +76,12 @@ namespace animaltactics4
             "Fenrir", //55
             "Krissa", //56
             "Unités", //57
+            "Le blabla sur l'Histoire", //58
+            "Le blabla sur la Pingvin", //59
+            "Le fabuleux recit sur les Pandawans", //60
+            "Le dernier Fenrir", //61
+            "Le Krissa dormant", //62
+            "L'explication sur les Unités pandawans", //63
             });
 
             langues.Add("English", new string[]{
@@ -137,6 +143,12 @@ namespace animaltactics4
             "Fenrir", //55
             "Krissa", //56
             "Units", //57
+            "Le blabla sur l'Histoire", //58
+            "Le blabla sur la Pingvin", //59
+            "Le fabuleux recit sur les Pandawans", //60
+            "Le dernier Fenrir", //61
+            "Le Krissa dormant", //62
+            "L'explication sur les Unités pandawans", //63
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -198,6 +210,12 @@ namespace animaltactics4
             "Fenrir", //55
             "Krissa", //56
             "Schtroumpfités", //57
+            "Le schtroumpf sur l'Histoire", //58
+            "Le schtroumpf sur la Pingvin", //59
+            "Le schtroumpfeux recit sur les Pandawans", //60
+            "Le dernier Schtroumpf", //61
+            "Le Krissa schtroumpfant", //62
+            "L'explicaschtroumpf sur les Unischtroumpfs pandawans", //63
             });
         }
     }

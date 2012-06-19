@@ -8,8 +8,11 @@ using Microsoft.Xna.Framework.Input;
 namespace animaltactics4
 {
     //Loohy
+    
     class EditeurArmee : Scene
     {
+        WriteBox writer;
+
         Dictionary<e_race, List<FausseUnite>> ToutesLesUnites;
         e_race current;
         Armee army;
@@ -84,6 +87,8 @@ namespace animaltactics4
             ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.Krissa9));
             #endregion
             NEW();
+
+            writer = new WriteBox(new Rectangle(800, Divers.Y - 100, 250, 75));
         }
 
         //Loohy
@@ -249,6 +254,8 @@ namespace animaltactics4
             {
                 pressed = false;
             }
+
+            writer.Update();
         }
 
         public override void DrawScene()
@@ -347,6 +354,8 @@ namespace animaltactics4
                 Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 5, mike.Y + 10, 0, 0), Color.White);
             }
             #endregion
+
+            writer.Draw();
         }
 
         public void Sauvegarde(ref string txt_)
