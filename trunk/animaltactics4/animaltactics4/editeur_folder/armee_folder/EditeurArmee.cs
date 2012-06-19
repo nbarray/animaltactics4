@@ -187,7 +187,6 @@ namespace animaltactics4
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
-            string txt_ = "Test"; // voir TextBox... TODO
             Rectangle bob = new Rectangle(75, 200, 50, 50);
             Rectangle mike = new Rectangle(1000, 800, 150, 50);
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && !pressed)
@@ -228,9 +227,9 @@ namespace animaltactics4
                     bob.Y += 55;
                 }
                 #endregion
-                if (Contents.contientLaSouris(mike) && txt_ != "")
+                if (Contents.contientLaSouris(mike) && writer.text != "")
                 {
-                    Sauvegarde(ref txt_);
+                    Sauvegarde(ref writer.text);
                 }
                 pressed = true;
             }

@@ -38,6 +38,7 @@ namespace animaltactics4
                         default:
                             break;
                     }
+                    Engine.files.currentLanguage = Dico.current;
                     een = true;
                 }
             }

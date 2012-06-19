@@ -143,6 +143,7 @@
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLangage.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLien.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonNouvellePartie.cs" />
+    <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonPause.cs" />
     <Compile Include="structure_du_jeu_folder\Engine.cs" />
     <Compile Include="structure_du_jeu_folder\partie_folder\ScenePartie.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\Introduction.cs" />

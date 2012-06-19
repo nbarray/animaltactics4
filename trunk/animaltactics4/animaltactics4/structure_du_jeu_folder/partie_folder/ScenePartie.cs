@@ -9,25 +9,47 @@ namespace animaltactics4
     class ScenePartie : Scene
     {
         public Partie p;
+        public bool estEnPause;
 
         public ScenePartie(int map_width_, int map_height_)
             : base()
         {
             p = new Partie(map_width_, map_height_);
-            boutons.Add(new BoutonLien(0, 0, new Rectangle(0, 0, 800, 300), null, 5, true));
+            estEnPause = false;
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 500, new Rectangle(0, 0, 800, 300), null, 5, false));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 400, new Rectangle(0, 0, 800, 300), new MenuOption(), 3, false));
+            boutons.Add(new BoutonPause(Divers.X / 2 - 200, 300, 69, false));
+            boutons.Add(new BoutonPause(0, 0, 68, true));
         }
 
         public override void UpdateScene(GameTime gameTime)
         {
-            base.UpdateScene(gameTime);
-            p.Update(gameTime);
+            //base.UpdateScene(gameTime);
+            if (!estEnPause)
+            {
+                p.Update(gameTime);
+                ((BoutonPause)boutons[3]).UpdatePause(ref estEnPause);
+            }
+            else
+            {
+                boutons[0].Update(gameTime);
+                boutons[1].Update(gameTime);
+                ((BoutonPause)boutons[2]).UpdatePause(ref estEnPause);
+            }
         }
 
         public override void DrawScene()
         {
-            base.DrawScene();
+            //base.DrawScene();
             p.Draw();
-            boutons[0].Draw();
+            if (estEnPause)
+            {
+                Contents.Draw("px", new Rectangle(0, 0, 1200, 900), new Color(0, 0, 0, 0.5f));
+                for (int i = 0; i < 3; i++)
+                {
+                    boutons[i].Draw();
+                }
+            }
         }
     }
 }
