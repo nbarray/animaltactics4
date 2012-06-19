@@ -33,7 +33,7 @@ namespace animaltactics4
             {
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed&&nomDeLaMap_!= "" && nomDesArmees_.Count>=2)
                 {
-                    MoteurSon.Play("bouton");
+                    MoteurSon.PlayFX("bouton");
                     Engine.scenes.Push(new ScenePartie(32, 32));
                     ((ScenePartie)Engine.scenes.Peek()).p.Initialize(nomDeLaMap_, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_,tempsMax_, limiteDeTours_);
                     een = true;

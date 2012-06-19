@@ -13,18 +13,21 @@ namespace animaltactics4
     {
         
         static public Dictionary<string, Song> bankSong;
-        static public Dictionary<string, SoundEffect> bankEffect;
+        static public Dictionary<string, SoundEffectInstance> bankEffect;
 
         static public void Initialize(ContentManager content_)
         {
             MediaPlayer.IsRepeating = false;
             MediaPlayer.Volume = 0.1f;
             bankSong = new Dictionary<string, Song>();
-            bankSong.Add("porte", content_.Load<Song>("Son\\Bruitage\\son_porte"));
-            bankSong.Add("bouton", content_.Load<Song>("Son\\Bruitage\\son_bouton"));
 
-            bankEffect = new Dictionary<string, SoundEffect>();
-            bankEffect.Add("deprimePorte", content_.Load<SoundEffect>("Son\\Bruitage\\depriemPorte"));
+            bankEffect = new Dictionary<string, SoundEffectInstance>();
+            bankEffect.Add("bouton", (content_.Load<SoundEffect>("Son\\Bruitage\\son_bouton")).CreateInstance());
+
+            foreach (String item in bankEffect.Keys)
+            {
+                bankEffect[item].Volume = 0.1f;
+            }
         }
 
         static public void Play(string name_)
@@ -33,7 +36,7 @@ namespace animaltactics4
         }
         static public void PlayFX(string name_)
         {
-            bankEffect[name_].CreateInstance().Play();
+            bankEffect[name_].Play();
         }
     }
 }
