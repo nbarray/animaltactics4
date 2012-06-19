@@ -230,7 +230,7 @@ namespace animaltactics4
                 #endregion
                 if (Contents.contientLaSouris(mike) && txt_ != "")
                 {
-                    Sauvegarde(ref txt_);
+                    //Sauvegarde(ref txt_);
                 }
                 pressed = true;
             }

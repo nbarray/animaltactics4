@@ -34,7 +34,7 @@ namespace animaltactics4
                 difficulte[i] = 0;
                 couleurs[i] = Color.White;
             }
-            couleursDispo = new List<Color> { Color.Red, Color.Blue, Color.Orange, Color.Yellow};
+            couleursDispo = new List<Color> { Color.Red, Color.Blue, Color.Orange, Color.Yellow, Color.Purple, Color.Green, Color.LemonChiffon };
             carte = "";
             p = false;
 
@@ -72,6 +72,7 @@ namespace animaltactics4
         {
             base.DrawScene();
             Rectangle acwl = new Rectangle(100, 390 - (int)Contents.MeasureString("S").Y, (int)Contents.MeasureString(carte).X, (int)Contents.MeasureString("S").Y);
+            #region carte et ajout armee
             Contents.Draw("px", acwl, Color.DarkRed);
             Contents.DrawString(carte, acwl);
             acwl = new Rectangle(100, 400, 475, (int)Contents.MeasureString("S").Y);
@@ -99,14 +100,18 @@ namespace animaltactics4
                         if (armees[index] == "")
                         {
                             armees[index] = item;
+                            couleurs[index] = couleursDispo[0];
+                            couleursDispo.RemoveAt(0);
                             index = 6;
                         }
                         index++;
                     }
                 }
                 acwl.Y += acwl.Height + 3;
-            }
+            } 
+            #endregion
 
+            #region editer joueurs
             Rectangle blankass = new Rectangle(625, 30, (int)Contents.MeasureString("S").Y, (int)Contents.MeasureString("S").Y);
             Rectangle noOneIsInnocent = new Rectangle(628 + (int)Contents.MeasureString("S").Y, 30 + ((int)Contents.MeasureString("S").Y - 20) / 2, 20, 20);
             acwl = new Rectangle(651 + (int)Contents.MeasureString("S").Y, 30, 300, (int)Contents.MeasureString("S").Y);
@@ -114,7 +119,7 @@ namespace animaltactics4
             for (int i = 0; i < 6; i++)
             {
                 Contents.Draw("px", blankass, Color.DarkGray);
-                Contents.DrawString(difficulte[i].ToString(), new Rectangle(blankass.X+2, blankass.Y+2,0,0));
+                Contents.DrawString(difficulte[i].ToString(), new Rectangle(blankass.X + 2, blankass.Y + 2, 0, 0));
                 Contents.Draw("px", noirDesir, couleurs[i]);
                 if (armees[i] == "")
                 {
@@ -126,6 +131,10 @@ namespace animaltactics4
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(noirDesir) && !p)
                     {
                         couleurSuivante(i);
+                    }
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(blankass) && !p)
+                    {
+                        difficulte[i] = (difficulte[i] + 1) % 4;
                     }
                     if (Mouse.GetState().RightButton == ButtonState.Pressed && Contents.contientLaSouris(acwl) && !p)
                     {
@@ -140,7 +149,8 @@ namespace animaltactics4
                 noOneIsInnocent.Y += acwl.Height + 3;
                 acwl.Y += acwl.Height + 3;
                 noirDesir.Y += acwl.Height + 3;
-            }
+            } 
+            #endregion
             p = Mouse.GetState().LeftButton == ButtonState.Pressed || Mouse.GetState().RightButton == ButtonState.Pressed;
         }
 
@@ -158,7 +168,9 @@ namespace animaltactics4
 
         public void couleurSuivante(int index_)
         {
-            
+            couleursDispo.Add(couleurs[index_]);
+            couleurs[index_] = couleursDispo[0];
+            couleursDispo.RemoveAt(0);
         }
     }
 }
