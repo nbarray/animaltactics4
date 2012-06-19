@@ -857,7 +857,7 @@ namespace animaltactics4
         {
             if (true/*!bataillon[uniteselect].IA.finish*/)
             {
-                utiliserIA(moteurgraphique_, gameplay_);
+                utiliserIA(moteurgraphique_, gameplay_, hud_);
             }
             else
             {
@@ -871,9 +871,9 @@ namespace animaltactics4
                 }
             }
         }
-        public void utiliserIA(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_)
+        public void utiliserIA(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_, HUD hud_)
         {
-            bataillon[uniteselect].utiliserIA(moteurgraphique_, this, gameplay_);
+            bataillon[uniteselect].utiliserIA(moteurgraphique_, this, gameplay_, hud_);
         }
         public void reactiverIA()
         {
