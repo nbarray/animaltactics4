@@ -81,6 +81,7 @@ namespace animaltactics4
             {
                 UpdateTresor(loohy_, hud_);
             }
+            Afficher(loohy_);
         }
 
         public void FinDeTour(MoteurGraphique moteurgraphique_, /*Lecteur coldman_,*/ HUD hud_, ref int time)

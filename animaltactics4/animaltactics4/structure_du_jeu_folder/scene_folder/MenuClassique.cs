@@ -36,7 +36,7 @@ namespace animaltactics4
                 couleurs[i] = Color.White;
                 camp[i] = 1;
             }
-            couleursDispo = new List<Color> { Color.Red, Color.Blue, Color.Orange, Color.Yellow, Color.Purple, Color.Green, Color.Lavender };
+            couleursDispo = new List<Color> { Color.Red, Color.Blue, Color.Orange, Color.Yellow, Color.Purple, Color.Green, Color.Indigo };
             carte = "";
             p = false;
 
@@ -144,7 +144,7 @@ namespace animaltactics4
                     }
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(noOneIsInnocent) && !p)
                     {
-                        camp[i] = (camp[i] + 1) % 4;
+                        camp[i] = (camp[i]) % 6+1;
                     }
                     if (Mouse.GetState().RightButton == ButtonState.Pressed && Contents.contientLaSouris(acwl) && !p)
                     {
