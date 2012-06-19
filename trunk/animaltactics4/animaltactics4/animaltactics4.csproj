@@ -132,6 +132,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\Bouton.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonChoix.cs" />
+    <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonCirculaire.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonDeroulant.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLangage.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLien.cs" />

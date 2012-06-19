@@ -13,11 +13,11 @@ namespace animaltactics4
         public MenuPrincipal()
             : base()
         {
-            boutons.Add(new BoutonLien(100, 300, new Rectangle(0, 0, 800, 300), new MenuJouer(), 0));
-            boutons.Add(new BoutonLien(100, 400, new Rectangle(0, 0, 800, 300), new MenuEditer(), 1));
-            boutons.Add(new BoutonLien(100, 500, new Rectangle(0, 0, 800, 300), new MenuBonus(), 2));
-            boutons.Add(new BoutonLien(100, 600, new Rectangle(0, 0, 800, 300), new MenuOption(), 3));
-            boutons.Add(new BoutonLien(100, 700, new Rectangle(0, 0, 800, 300), null, 4));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 300, new Rectangle(0, 0, 800, 300), new MenuJouer(), 0));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 400, new Rectangle(0, 0, 800, 300), new MenuEditer(), 1));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 500, new Rectangle(0, 0, 800, 300), new MenuBonus(), 2));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 600, new Rectangle(0, 0, 800, 300), new MenuOption(), 3));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 4));
         }
 
         public override void UpdateScene(GameTime gameTime)

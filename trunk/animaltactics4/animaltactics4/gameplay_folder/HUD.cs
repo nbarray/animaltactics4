@@ -12,7 +12,7 @@ namespace animaltactics4
         private int flash;
         private bool doFlash;
         private Color flashColor;
-        public int time;
+        public int tempsRestant;
         private string UniteAttaquante, UniteDefenseuse;
         private Color color1, color2;
         private string texteCombat1, texteCombat2;
@@ -38,46 +38,18 @@ namespace animaltactics4
         private Color VictoryColor;
         private int VictoryRace;//0,1,2,3
         private int positionDuTexteY, positionDuTexteX;
-        //public BoutonCirculaire bAttaque, bMouvement, bPouvoir;
+        public BoutonCirculaire bAttaque, bMouvement, bPouvoir;
 
         public HUD()
         {
-            time = 0;
+            tempsRestant = 0;
             r = new Random();
-            //bAttaque = new BoutonCirculaire(ModeAction.Attaque);
-            //bMouvement = new BoutonCirculaire(ModeAction.Mouvement);
-            //bPouvoir = new BoutonCirculaire(ModeAction.Pouvoir);
-
-            //switch (resolution_)
-            //{
-            //    case resolution.r1024x768:
-            //        resolution_x = 1024f / 1200f;
-            //        resolution_y = 768f / 900f;
-            //        break;
-            //    case resolution.r800x600:
-            //        resolution_x = 800f / 1200f;
-            //        resolution_y = 600f / 900f;
-            //        break;
-            //    case resolution.r1366x768:
-            //        resolution_x = 1366f / 1200f;
-            //        resolution_y = 768f / 900f;
-            //        break;
-            //    case resolution.r1280x768:
-            //        resolution_x = 1280f / 1200f;
-            //        resolution_y = 768f / 900f;
-            //        break;
-            //    case resolution.r1280x1024:
-            //        resolution_x = 1280f / 1200f;
-            //        resolution_y = 1024f / 900f;
-            //        break;
-            //    default:
-            //        resolution_x = 1;
-            //        resolution_y = 1;
-            //        break;
-            //}
-            positionDuTexteX = (int)(1000);
-            positionDuTexteY = (int)(300);
-            flash = (int)(1200) + 1;
+            bAttaque = new BoutonCirculaire(e_modeAction.Attaque);
+            bMouvement = new BoutonCirculaire(e_modeAction.Mouvement);
+            bPouvoir = new BoutonCirculaire(e_modeAction.Pouvoir);
+            positionDuTexteX = 300;
+            positionDuTexteY = 704;
+            flash = 1200 + 1;
             doFlash = false;
             AffichageCombat = 0;
             AffichagePowa = 0;
@@ -86,15 +58,12 @@ namespace animaltactics4
             Victory = false;
         }
 
-        public void Draw(SystemeDeJeu gameplay_, MoteurGraphique moteurgraphique_)
+        public void Draw(SystemeDeJeu gameplay_, MoteurGraphique moteurgraphique_, int tempsRestant_)
         {
             #region HUD+Time
-            //sprite_.Draw(tex_.Textures_[8], new Rectangle((int)(1035 * resolution_x), (int)(26 * resolution_y),
-            //    (int)(190 * resolution_x), (int)(120 * resolution_y)), Color.Black);
-            //sprite_.Draw(tex_.Textures_[8], new Rectangle((int)(1035 * resolution_x), (int)((time + 28) * resolution_y),
-            //    (int)(190 * resolution_x), (int)(((120 - (time + 25))) * resolution_y)), Color.White);
-            //sprite_.Draw(tex_.Textures_[10], new Rectangle(positionDuTexteX - (int)(100 * resolution_x), 0, (int)(300 * resolution_x),
-            //    (int)(900 * resolution_y)), Color.White);
+            Contents.Draw("px3", new Rectangle(0, 700, 1200, 200), Color.DarkGray);
+            Contents.Draw("px3", new Rectangle(25, 725, 150, 150), Color.Red);
+            Contents.DrawStringInBoxCentered(Math.Max(0,tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
             #endregion
             if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0
                 && gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
@@ -111,23 +80,20 @@ namespace animaltactics4
                 int j = gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j;
                 Rectangle rect = genererRectangle(i, j, moteurgraphique_.map[i, j].altitude,
                     moteurgraphique_.camerax, moteurgraphique_.cameray, moteurgraphique_.direction);
-                //DrawButtons(sprite_, tex_,
-                //    rect.X,
-                //    rect.Y,
-                //    gameplay_.armees[gameplay_.tourencours].
-                //    bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
-                //UpdateButtons(ref gameplay_.mood, gameplay_.armees[gameplay_.tourencours].
-                //    bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
+                DrawButtons(rect.X,rect.Y,gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                    bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
+                UpdateButtons(ref gameplay_.mood, gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                    bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
             }
             #endregion
             if (doFlash)
             {
                 #region flash
                 flash -= 50;
-                //sprite_.Draw(tex_.Textures_[18], new Rectangle(flash, 0, (int)(1200 * resolution_x), (int)(900 * resolution_y)),
-                //    flashColor);
-                //sprite_.Draw(tex_.Textures_[19], new Rectangle(-flash, 0, (int)(1200 * resolution_x), (int)(900 * resolution_y)),
-                //    flashColor);
+                Contents.Draw("gordon", new Rectangle(flash, 0, 1200, 900),
+                    flashColor);
+                Contents.Draw("gordon inverse", new Rectangle(-flash, 0, 1200, 900),
+                    flashColor);
                 if (flash < -(int)(1200 ))
                 {
                     doFlash = false;
@@ -390,21 +356,21 @@ namespace animaltactics4
         }
         public void DrawButtons(int x_, int y_, bool pouvoir_)
         {
-            //bAttaque.Draw(sprite_, tex_, x_ - 30, y_);
-            //bMouvement.Draw(sprite_, tex_, x_ + 6, y_);
-            //if (pouvoir_)
-            //{
-            //    bPouvoir.Draw(sprite_, tex_, x_ - 12, y_ - 30);
-            //}
+            bAttaque.DrawPos(x_ - 30, y_);
+            bMouvement.DrawPos(x_ + 6, y_);
+            if (pouvoir_)
+            {
+                bPouvoir.DrawPos(x_ - 12, y_ - 30);
+            }
         }
         public void UpdateButtons(ref e_modeAction mood_, bool pouvoir_)
         {
-            //bAttaque.Update(ref mood_);
-            //bMouvement.Update(ref mood_);
-            //if (pouvoir_)
-            //{
-            //    bPouvoir.Update(ref mood_);
-            //}
+            bAttaque.UpdateRef(ref mood_);
+            bMouvement.UpdateRef(ref mood_);
+            if (pouvoir_)
+            {
+                bPouvoir.UpdateRef(ref mood_);
+            }
         }
         public bool sontvises()
         {
@@ -424,40 +390,39 @@ namespace animaltactics4
 
         public void statUnite(Unite unite_, Color couleur_)
         {
-            //sprite_.DrawString(Textures.tahoma, unite_.nom, new Vector2(positionDuTexteX, positionDuTexteY), couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Force : " + unite_.getStat[0], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (3)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Dexterite : " + unite_.getStat[1], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (4)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Constitution : " + unite_.getStat[2], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (5)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Defense : " + unite_.getStat[3], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (6)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Esprit : " + unite_.getStat[4], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (7)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Chance : " + unite_.getStat[5], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (8)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Vitesse : " + unite_.getStat[6], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (9)),
-            //    couleur_);
-            //sprite_.DrawString(Textures.tahoma, "Niveau : ", new Vector2(positionDuTexteX, positionDuTexteY + 16 * (1)), couleur_);
+            Contents.DrawString( unite_.nom, new Rectangle(positionDuTexteX, positionDuTexteY,0,0), couleur_);
+            Contents.DrawString("Force : " + unite_.getStat[0], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (3), 0, 0),
+                couleur_);
+            Contents.DrawString("Dexterite : " + unite_.getStat[1], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (4), 0, 0),
+                couleur_);
+            Contents.DrawString("Constitution : " + unite_.getStat[2], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (5), 0, 0),
+                couleur_);
+            Contents.DrawString("Defense : " + unite_.getStat[3], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (6), 0, 0),
+                couleur_);
+            Contents.DrawString("Esprit : " + unite_.getStat[4], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (7), 0, 0),
+                couleur_);
+            Contents.DrawString("Chance : " + unite_.getStat[5], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (8), 0, 0),
+                couleur_);
+            Contents.DrawString("Vitesse : " + unite_.getStat[6], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (9), 0, 0),
+                couleur_);
+            Contents.DrawString("Niveau : ", new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (1), 0, 0), couleur_);
             // Nicooooo's grade sys
-            //sprite_.Draw(Textures.textures[9],
-            //             new Vector2(positionDuTexteX + Textures.tahoma.MeasureString("Niveau : ").X + 2, positionDuTexteY + 16 * 1 + 4),
-            //             new Rectangle((unite_.getStat[7] - 1) * 16, 0, 16, 16),
-            //             Color.White);
+            Contents.Draw("px",
+                         new Rectangle(positionDuTexteX + (int)Contents.MeasureString("Niveau : ").X + 2, positionDuTexteY + 16 * 1 + 4, 16, 16),
+                         new Rectangle((unite_.getStat[7] - 1) * 16, 0, 16, 16));
             // +++++++++++++++++++++
-            //sprite_.DrawString(Textures.tahoma, "Experience : " + unite_.getStat[8], new Vector2(positionDuTexteX, positionDuTexteY + 16 * (2)),
-            //    couleur_);
-            //sprite_.Draw(Textures.textures[23], new Rectangle(positionDuTexteX, positionDuTexteY + 167, 102, 10), Color.Black);
-            //sprite_.Draw(Textures.textures[23], new Rectangle(positionDuTexteX + 1, positionDuTexteY + 168,
-            //    (100 * unite_.getStat[9]) / unite_.getStat[10], 8), couleur_);
-            //if (unite_.typeUnite == TypeUnite.Elite)
-            //{
-            //    sprite_.Draw(Textures.textures[23], new Rectangle(positionDuTexteX, positionDuTexteY + 179, 102, 9), Color.Black);
-            //    sprite_.Draw(Textures.textures[23], new Rectangle(positionDuTexteX + 1, positionDuTexteY + 180,
-            //        (100 * unite_.energieactuel) / unite_.energiemax, 7), Color.Purple);
-            //}
-            //sprite_.Draw(Textures.textures[unite_.image], new Rectangle(positionDuTexteX - (int)(100 * resolution_x), positionDuTexteY, 100, 100), new Rectangle(0, 0, 128, 128), Color.White);
+            Contents.DrawString("Experience : " + unite_.getStat[8], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (2),0,0),
+                couleur_);
+            Contents.Draw("px", new Rectangle(positionDuTexteX, positionDuTexteY + 167, 102, 10), Color.Black);
+            Contents.Draw("px", new Rectangle(positionDuTexteX + 1, positionDuTexteY + 168,
+                (100 * unite_.getStat[9]) / unite_.getStat[10], 8), couleur_);
+            if (unite_.typeUnite == TypeUnite.Elite)
+            {
+                Contents.Draw("px", new Rectangle(positionDuTexteX, positionDuTexteY + 179, 102, 9), Color.Black);
+                Contents.Draw("px", new Rectangle(positionDuTexteX + 1, positionDuTexteY + 180,
+                    (100 * unite_.energieactuel) / unite_.energiemax, 7), Color.Purple);
+            }
+            Contents.Draw(unite_.nom, new Rectangle(positionDuTexteX - 100, positionDuTexteY+10, 100, 100), new Rectangle(0, 0, 128, 128));
         }
 
         public void fight(Unite attaquant_, Unite defenseur_, string texte1_, int degats1_, Color couleur1_,

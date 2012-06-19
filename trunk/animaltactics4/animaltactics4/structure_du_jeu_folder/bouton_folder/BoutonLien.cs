@@ -13,13 +13,14 @@ namespace animaltactics4
         Scene linkTo;
         Rectangle tuveuxvoir;
         int indexDico;
-
-        public BoutonLien(int x, int y, Rectangle sub_, Scene linkTo_, int indexDico_)
-            : base(new Rectangle(Divers.X /2 - 200, y, 400, 75), sub_)
+        bool inGame;
+        public BoutonLien(int x, int y, Rectangle sub_, Scene linkTo_, int indexDico_, bool _inGame = false)
+            : base(new Rectangle(x, y, 400, 75), sub_)
         {
             linkTo = linkTo_;
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
             indexDico = indexDico_;
+            inGame = _inGame;
         }
 
         public override void Update(GameTime gameTime)
@@ -57,6 +58,7 @@ namespace animaltactics4
             else
             {
                 //Fait la moins dure, loohy, c'est pour ton bien
+                if (!inGame)
                 Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
                 Contents.Draw("bouton_selected", rect);
             }

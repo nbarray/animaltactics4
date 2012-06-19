@@ -27,7 +27,7 @@ namespace animaltactics4
             }
         }
         public void UpdateSpecial(GameTime gameTime, string nomDeLaMap_, List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
-            e_typeDePartie conditionsDeVictoire_, e_brouillardDeGuerre fog_,int limiteDeTours_ = 0)
+            e_typeDePartie conditionsDeVictoire_, e_brouillardDeGuerre fog_,int tempsMax_, int limiteDeTours_ = 0)
         {
             if (Contents.contientLaSouris(base.rect))
             {
@@ -35,7 +35,7 @@ namespace animaltactics4
                 {
                     MoteurSon.Play("bouton");
                     Engine.scenes.Push(new ScenePartie(32, 32));
-                    ((ScenePartie)Engine.scenes.Peek()).p.Initialize(nomDeLaMap_, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_,limiteDeTours_);
+                    ((ScenePartie)Engine.scenes.Peek()).p.Initialize(nomDeLaMap_, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_,tempsMax_, limiteDeTours_);
                     een = true;
                 }
             }
