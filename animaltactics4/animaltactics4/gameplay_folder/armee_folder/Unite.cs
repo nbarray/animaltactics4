@@ -1876,7 +1876,7 @@ namespace animaltactics4
         {
             if (fileDeMouvements.Count > 0)
             {
-                if (/*IA.difficulte != 0 ||*/ state == e_EtatAnim.repos1 || state == e_EtatAnim.repos2)
+                if (IA.difficulte != 0 ||state == e_EtatAnim.repos1 || state == e_EtatAnim.repos2)
                 {
                     switch (fileDeMouvements[0])
                     {
@@ -1928,12 +1928,12 @@ namespace animaltactics4
         {
             if (fileDeMouvements.Count == 0)
             {
-                //IA.Play(this, moteurgraphique_, armee_, gameplay_);
+                IA.Play(this, moteurgraphique_, armee_, gameplay_);
             }
         }
         public void reactiverIA()
         {
-            //IA.finish = false;
+            IA.finish = false;
         }
 
         private void rotation()
