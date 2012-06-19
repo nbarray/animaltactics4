@@ -8,12 +8,14 @@ namespace animaltactics4
 {
     class MenuEditeurArmee : Scene
     {
+        
         public MenuEditeurArmee()
             : base()
         {
             boutons.Add(new BoutonLien(Divers.X / 2 - 100, 500, new Rectangle(0, 0, 800, 300), new EditeurArmee(), 16));
             boutons.Add(new BoutonLien(Divers.X / 2 - 100, 600, new Rectangle(0, 0, 800, 300), null, 17));
             boutons.Add(new BoutonLien(Divers.X / 2 - 100, 700, new Rectangle(0, 0, 800, 300), null, 5));
+
         }
 
         public override void UpdateScene(GameTime gameTime)

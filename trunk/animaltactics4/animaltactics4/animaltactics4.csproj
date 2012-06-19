@@ -155,6 +155,7 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\Scene.cs" />
     <Compile Include="structure_du_jeu_folder\text_folder\Onglet.cs" />
     <Compile Include="structure_du_jeu_folder\text_folder\TextBox.cs" />
+    <Compile Include="structure_du_jeu_folder\text_folder\WriteBox.cs" />
     <Compile Include="tools_folder\extra_folder\Contents.cs" />
     <Compile Include="tools_folder\extra_folder\Dico.cs" />
     <Compile Include="tools_folder\extra_folder\Divers.cs" />

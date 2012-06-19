@@ -25,6 +25,14 @@ namespace animaltactics4
             //Contents.Miyazaki.Play(Contents.videos["intro"]);
         }
 
+        public override void UpdateScene(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                duree = 42 * 42;
+            }
+        }
+
         public override void DrawScene()
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
