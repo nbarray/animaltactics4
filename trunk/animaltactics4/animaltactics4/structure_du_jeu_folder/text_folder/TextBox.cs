@@ -28,6 +28,11 @@ namespace animaltactics4
             een = false;
         }
 
+        public void Clear()
+        {
+            text = "";
+        }
+
         public void Add(string text_)
         {
             line.Clear();

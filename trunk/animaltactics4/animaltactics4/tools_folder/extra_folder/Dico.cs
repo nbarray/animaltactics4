@@ -84,6 +84,8 @@ namespace animaltactics4
             "L'explication sur les Unités pandawans", //63
             "Héberger", // 64
             "PANDAWORK.NET", // 65
+            "Rejoindre", // 66
+            "Plein écran", // 67
             });
 
             langues.Add("English", new string[]{
@@ -153,6 +155,8 @@ namespace animaltactics4
             "L'explication sur les Unités pandawans", //63
             "Host", // 64
             "PANDAWORK.NET", // 65
+            "Join", // 66
+            "Fullscreen", // 67
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -222,6 +226,8 @@ namespace animaltactics4
             "L'explicaschtroumpf sur les Unischtroumpfs pandawans", //63
             "Schtroumpft", // 64
             "SCHTROUMPFWORK.NET", // 65
+            "Reschtroumpf", // 66
+            "Plein schtroumpft", // 67
             });
         }
     }

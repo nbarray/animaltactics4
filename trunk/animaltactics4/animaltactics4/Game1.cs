@@ -15,7 +15,8 @@ namespace animaltactics4
     {
         GraphicsDeviceManager graphics;
         static public bool quitter = false;
-        
+        static public bool toFullScreen = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -56,7 +57,12 @@ namespace animaltactics4
             {
                 this.Exit();
             }
-           
+
+            if (toFullScreen)
+            {
+                toFullScreen = false;
+                graphics.ToggleFullScreen();
+            }
             base.Update(gameTime);
 
         }
