@@ -32,15 +32,43 @@ namespace animaltactics4
 
         public override void Update(GameTime gameTime)
         {
-
             if (Contents.contientLaSouris(base.rect))
             {
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
-                    MoteurSon.Play("bouton");
+                    MoteurSon.PlayFX("bouton");
                     // Action !
                     if (linkTo != null)
                     {
+                        Engine.scenes.Push(linkTo);
+                    }
+                    else
+                    {
+                        Engine.scenes.Pop();
+                    }
+                    een = true;
+                }
+            }
+
+            if (Engine.scenes.Count == 0)
+            {
+                Game1.quitter = true;
+            }
+        }
+        public void Update(GameTime gameTime, Func<bool> deleg = null)
+        {
+            if (Contents.contientLaSouris(base.rect))
+            {
+                if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                {
+                    MoteurSon.PlayFX("bouton");
+                    // Action !
+                    if (linkTo != null)
+                    {
+                        if (deleg != null)
+                        {
+                            deleg.Invoke();
+                        }
                         Engine.scenes.Push(linkTo);
                     }
                     else
