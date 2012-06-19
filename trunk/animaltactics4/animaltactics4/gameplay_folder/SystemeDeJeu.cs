@@ -279,6 +279,7 @@ namespace animaltactics4
             {
                 listeDesJoueurs.Add(new Armee(p, e_race.Random, couleurs_[p], moteurgraphique_.longueur, moteurgraphique_.largeur));
                 listeDesJoueurs[p].ConvertFromList(Divers.obtenirList(nomDesArmees_[p]), difficultes_[p]);
+                listeDesJoueurs[p].QG = new Vector2((int)((moteurgraphique_.longueur * (p + 1)) / 7), (int)((moteurgraphique_.largeur * (p + 1)) / 7));
             }
             conditionsDeVictoire = conditionsDeVictoire_;
             pop(moteurgraphique_);
@@ -309,7 +310,8 @@ namespace animaltactics4
             {
                 limiteDeTours = 0;
             }
-
+            tourencours = nomDesArmees_.Count - 1;
+            FinDeTour(moteurgraphique_, hud_);
             //voir les points
             //Classe kikoo = Classe.PingvinWalkyrie;
             //do

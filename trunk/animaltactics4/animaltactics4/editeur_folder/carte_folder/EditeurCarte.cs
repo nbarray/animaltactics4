@@ -26,10 +26,11 @@ namespace animaltactics4
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
-            foreach (Bouton item in boutons)
-            {
-                item.UpdateD(ref  tsize, ref tstate);
-            }
+            //foreach (Bouton item in boutons)
+            //{
+            ((BoutonDeroulant)boutons[0]).UpdateDeroulantNicoTuFaitPasChier(ref  tsize, ref tstate);
+            ((BoutonDeroulant)boutons[1]).UpdateDeroulantNicoTuFaitPasChier(ref  tsize, ref tstate);
+            //}
             titanAE.UpdateEditeur();
         }
 

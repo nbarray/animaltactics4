@@ -7,38 +7,35 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
-    //Coldman
-    class BoutonLien : Bouton
+    class BoutonNouvellePartie : Bouton
     {
-        Scene linkTo;
         Rectangle tuveuxvoir;
         int indexDico;
 
-        public BoutonLien(int x, int y, Rectangle sub_, Scene linkTo_, int indexDico_)
-            : base(new Rectangle(Divers.X /2 - 200, y, 400, 75), sub_)
+        public BoutonNouvellePartie(int x, int y, Rectangle sub_, int indexDico_)
+            : base(new Rectangle(Divers.X / 2 - 200, y, 400, 75), sub_)
         {
-            linkTo = linkTo_;
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
             indexDico = indexDico_;
         }
 
         public override void Update(GameTime gameTime)
         {
-
+            if (Engine.scenes.Count == 0)
+            {
+                Game1.quitter = true;
+            }
+        }
+        public void UpdateSpecial(GameTime gameTime, string nomDeLaMap_, List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
+            e_typeDePartie conditionsDeVictoire_, e_brouillardDeGuerre fog_,int limiteDeTours_ = 0)
+        {
             if (Contents.contientLaSouris(base.rect))
             {
-                if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed&&nomDeLaMap_!= "" && nomDesArmees_.Count>=2)
                 {
                     MoteurSon.Play("bouton");
-                    // Action !
-                    if (linkTo != null)
-                    {
-                        Engine.scenes.Push(linkTo);
-                    }
-                    else
-                    {
-                        Engine.scenes.Pop();
-                    }
+                    Engine.scenes.Push(new ScenePartie(32, 32));
+                    ((ScenePartie)Engine.scenes.Peek()).p.Initialize(nomDeLaMap_, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_,limiteDeTours_);
                     een = true;
                 }
             }

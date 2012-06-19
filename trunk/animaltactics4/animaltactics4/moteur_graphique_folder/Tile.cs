@@ -458,8 +458,6 @@ namespace animaltactics4
                 rect.Height = 48;
                 Contents.Draw("flag"+race_, rect, couleur_, 
                     new Rectangle(Math.Min(320 - ((pourcentageDePv / 10) * 32), 288), 0, 32, 100));
-                //    sprite_.Draw(Textures.textures[race_], rect,
-                //        new Rectangle(Math.Min(320 - ((pourcentageDePv / 10) * 32), 288), 0, 32, 100), couleur_);
             }
         }
         //Loohy

@@ -15,7 +15,7 @@ namespace animaltactics4
         public int longueur, largeur, camerax, cameray, lastcamerax, lastcameray;
         float flammiches;
         public Tile[,] map;
-        public brouillardDeGuerre fog;
+        public e_brouillardDeGuerre fog;
 
         Random r;
 
@@ -55,8 +55,8 @@ namespace animaltactics4
             //{
             //    mapAleaFaceToFaceGlace(32, 32, 1, 3, 8);
             //}
-            fog = brouillardDeGuerre.ToutVisible;
-            Aplatir();
+            fog = e_brouillardDeGuerre.ToutVisible;
+            //Aplatir();
         }
 
         //Loohy
@@ -88,24 +88,16 @@ namespace animaltactics4
             switch (gameplay_.listeDesJoueurs[gameplay_.tourencours].espece)
             {
                 case e_race.Fenrir:
-                    //map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                    //    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                    //    .Drawpv(sprite_, camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, tex_, 15, direction);
+                    DrawpvUniteSelect(gameplay_, 4);
                     break;
                 case e_race.Krissa:
-                    //map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                    //    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                    //    .Drawpv(sprite_, camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, tex_, 16, direction);
+                    DrawpvUniteSelect(gameplay_, 3);
                     break;
                 case e_race.Pandawan:
-                    //map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                    //    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                    //    .Drawpv(sprite_, camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, tex_, 14, direction);
+                    DrawpvUniteSelect(gameplay_, 2);
                     break;
                 case e_race.Pingvin:
-                    //map[gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].i,
-                    //    gameplay_.armees[gameplay_.tourencours].bataillon[gameplay_.armees[gameplay_.tourencours].uniteselect].j]
-                    //    .Drawpv(sprite_, camerax, cameray, gameplay_.armees[gameplay_.tourencours].couleur, tex_, 17, direction);
+                    DrawpvUniteSelect(gameplay_, 1);
                     break;
                 default:
                     break;
@@ -120,6 +112,14 @@ namespace animaltactics4
             {
                 DrawTresor(gameplay_.tresor_i, gameplay_.tresor_j);
             }
+        }
+
+        //Loohy
+        private void DrawpvUniteSelect(SystemeDeJeu gameplay_, int n_)
+        {
+            map[gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].i,
+                gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j]
+                .Drawpv(camerax, cameray, gameplay_.listeDesJoueurs[gameplay_.tourencours].couleur, n_, direction);
         }
         //Loohy
         private void DrawTilesNord(SystemeDeJeu gameplay_)
@@ -369,16 +369,38 @@ namespace animaltactics4
         {
             Camera();
             viderSurbrillance();
-            for (int i = (int)getCaseFromMouseAvecAltitude().X + 1; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
+            for (int d = 0; d < 7; d++)
             {
-                for (int j = (int)getCaseFromMouseAvecAltitude().Y + 1; j >= (int)getCaseFromMouseAvecAltitude().Y - 1; j--)
+                for (int i = (int)getCaseFromMouseAvecAltitude().X + 3; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
                 {
-                    if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                    int j = (int)getCaseFromMouseAvecAltitude().Y - 1;
+                    if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
                     {
-                        surbrillance(i, j, new Rectangle(0, 0, 0, 0));//TODO
+                        //map[i + d, j + d].estEnSurbrillance = true;
+                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        {
+                            surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        }
                     }
-                    map[i, j].AttaqOrNotGeneral = gameplay_.mood != e_modeAction.Mouvement;
                 }
+                for (int j = (int)getCaseFromMouseAvecAltitude().Y + 3; j >= (int)getCaseFromMouseAvecAltitude().Y - 1; j--)
+                {
+                    int i = (int)getCaseFromMouseAvecAltitude().X - 1;
+                    if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
+                    {
+                        //map[i + d, j + d].estEnSurbrillance = true;
+                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        {
+                            map[i + d, j + d].UpdateLosange(camerax, cameray, direction);
+                        }
+                        surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                    }
+                }
+            }
+            if (clicOrNot)
+            {
+                lastcamerax = camerax;
+                lastcameray = cameray;
             }
             #region Clavier
             #region Shift
@@ -1376,7 +1398,7 @@ namespace animaltactics4
                 {
                     switch (fog)
                     {
-                        case brouillardDeGuerre.ToutVisible:
+                        case e_brouillardDeGuerre.ToutVisible:
                             map[i, j].visible = true;
                             break;
                         default:

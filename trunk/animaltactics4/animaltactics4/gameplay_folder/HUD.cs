@@ -13,7 +13,6 @@ namespace animaltactics4
         private bool doFlash;
         private Color flashColor;
         public int time;
-        public float resolution_x, resolution_y;
         private string UniteAttaquante, UniteDefenseuse;
         private Color color1, color2;
         private string texteCombat1, texteCombat2;
@@ -41,12 +40,10 @@ namespace animaltactics4
         private int positionDuTexteY, positionDuTexteX;
         //public BoutonCirculaire bAttaque, bMouvement, bPouvoir;
 
-        public HUD(Vector2 resolution_)
+        public HUD()
         {
             time = 0;
             r = new Random();
-            resolution_x = resolution_.X / 1200f;
-            resolution_y = resolution_.Y / 900f;
             //bAttaque = new BoutonCirculaire(ModeAction.Attaque);
             //bMouvement = new BoutonCirculaire(ModeAction.Mouvement);
             //bPouvoir = new BoutonCirculaire(ModeAction.Pouvoir);
@@ -78,9 +75,9 @@ namespace animaltactics4
             //        resolution_y = 1;
             //        break;
             //}
-            positionDuTexteX = (int)(1000 * resolution_x);
-            positionDuTexteY = (int)(300 * resolution_y);
-            flash = (int)(1200 * resolution_x) + 1;
+            positionDuTexteX = (int)(1000);
+            positionDuTexteY = (int)(300);
+            flash = (int)(1200) + 1;
             doFlash = false;
             AffichageCombat = 0;
             AffichagePowa = 0;
@@ -131,7 +128,7 @@ namespace animaltactics4
                 //    flashColor);
                 //sprite_.Draw(tex_.Textures_[19], new Rectangle(-flash, 0, (int)(1200 * resolution_x), (int)(900 * resolution_y)),
                 //    flashColor);
-                if (flash < -(int)(1200 * resolution_x))
+                if (flash < -(int)(1200 ))
                 {
                     doFlash = false;
                 }
@@ -411,16 +408,16 @@ namespace animaltactics4
         }
         public bool sontvises()
         {
-            return true;//bAttaque.Estvise() || bMouvement.Estvise() || bPouvoir.Estvise();
+            return false;//bAttaque.Estvise() || bMouvement.Estvise() || bPouvoir.Estvise();
         }
 
         public bool intersect(Point p_)
         {
-            bool intersect = p_.X > (int)(900 * resolution_x);
+            bool intersect = p_.X > (int)(900 );
             if (AffichageCombat > 0)
             {
-                intersect = intersect || (p_.X > (int)(100 * resolution_x) && p_.X < (int)(800 * resolution_x))
-                    || (p_.Y > (int)(300 * resolution_y) && p_.Y < (int)(600 * resolution_y));
+                intersect = intersect || (p_.X > (int)(100 ) && p_.X < (int)(800 ))
+                    || (p_.Y > (int)(300 ) && p_.Y < (int)(600 ));
             }
             return intersect;
         }
