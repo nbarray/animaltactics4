@@ -90,7 +90,7 @@ namespace animaltactics4
 
         public void UpdateLosange(int camerax_, int cameray_, int direction_)
         {
-            Rectangle rect = genererRectangle(camerax_, cameray_, direction_);
+            Rectangle rect = Contents.GetRealRect(genererRectangle(camerax_, cameray_, direction_));
             boundingbox.Update(rect.X, rect.Y);
         }
 

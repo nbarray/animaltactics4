@@ -17,24 +17,6 @@ namespace animaltactics4
 
         //"constante" de l'equation de la droite;
         public float a, b;
-
-        public Ligne()
-        {
-            p1 = Point.Zero;
-            p2 = p1;
-            segment = Vector2.Zero;
-            a = 0;
-            b = a;
-
-        }
-        public Ligne(Point p_)
-        {
-            p1 = p_;
-            p2 = p1;
-            segment = new Vector2(p_.X, p_.Y);
-            a = (p2.Y - p1.Y) / (p2.X - p1.X);
-            b = p1.Y - a * p1.X;
-        }
         public Ligne(Point p1_, Point p2_)
         {
             Contents.Calculs(this);

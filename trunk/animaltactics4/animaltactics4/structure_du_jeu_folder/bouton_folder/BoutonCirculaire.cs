@@ -38,6 +38,7 @@ namespace animaltactics4
             base.rect.X = x_;
             base.rect.Y = y_;
             Contents.Draw("px3", base.rect, color);
+            Contents.DrawString(type.ToString(), new Rectangle(rect.X+30,rect.Y,0,0));
         }
         public void UpdateRef(ref e_modeAction mood_)
         {

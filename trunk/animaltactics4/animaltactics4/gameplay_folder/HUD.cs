@@ -80,7 +80,7 @@ namespace animaltactics4
                 int j = gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j;
                 Rectangle rect = genererRectangle(i, j, moteurgraphique_.map[i, j].altitude,
                     moteurgraphique_.camerax, moteurgraphique_.cameray, moteurgraphique_.direction);
-                DrawButtons(rect.X,rect.Y,gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                DrawButtons(900,725,gameplay_.listeDesJoueurs[gameplay_.tourencours].
                     bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
                 UpdateButtons(ref gameplay_.mood, gameplay_.listeDesJoueurs[gameplay_.tourencours].
                     bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == TypeUnite.Elite);
@@ -356,11 +356,11 @@ namespace animaltactics4
         }
         public void DrawButtons(int x_, int y_, bool pouvoir_)
         {
-            bAttaque.DrawPos(x_ - 30, y_);
-            bMouvement.DrawPos(x_ + 6, y_);
+            bAttaque.DrawPos(x_, y_);
+            bMouvement.DrawPos(x_, y_+30);
             if (pouvoir_)
             {
-                bPouvoir.DrawPos(x_ - 12, y_ - 30);
+                bPouvoir.DrawPos(x_ , y_ +60);
             }
         }
         public void UpdateButtons(ref e_modeAction mood_, bool pouvoir_)
