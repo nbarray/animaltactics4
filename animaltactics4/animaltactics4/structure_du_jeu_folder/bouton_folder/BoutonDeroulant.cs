@@ -27,7 +27,7 @@ namespace animaltactics4
 
         public override void Update(GameTime gameTime) { }
         //Loohy
-        public override void UpdateD(ref e_toolSize tsize_, ref e_pinceau tstate_)
+        public void UpdateDeroulantNicoTuFaitPasChier(ref e_toolSize tsize_, ref e_pinceau tstate_)
         {
             switch (state)
             {

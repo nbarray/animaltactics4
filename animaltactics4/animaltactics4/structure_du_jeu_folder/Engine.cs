@@ -53,6 +53,8 @@ namespace animaltactics4
             catch (Exception)
             {
                 files = new ListeDesFichiers();
+                files.ArmeesDeBase();
+                files.CartesDeBase();
                 Divers.serializer(files, "allTheLists4242Penguin");
             }
         }

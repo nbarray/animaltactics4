@@ -9,7 +9,7 @@ namespace animaltactics4
 {
     class BoutonChoix : Bouton
     {
-        int nbr_de_variation, current;
+        public int nbr_de_variation, current;
         string assetName;
 
         public BoutonChoix(Rectangle rect_, Rectangle sub_, int nbr_de_variation_, string assetName_)
@@ -34,13 +34,43 @@ namespace animaltactics4
                     {
                         current = 0;
                     }
-
-                    sub.X = sub.Width * current;
+                    if (assetName == "fog")
+                    {
+                        switch (current)
+                        {
+                            case 0:
+                                sub.X = sub.Width * 2;
+                                break;
+                            case 1:
+                                sub.X = sub.Width;
+                                break;
+                            default:
+                                sub.X = 0;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (current)
+                        {
+                            case 0:
+                                sub.X = sub.Width * 2;
+                                break;
+                            case 1:
+                                sub.X = sub.Width * 3;
+                                break;
+                            case 2:
+                                sub.X = sub.Width;
+                                break;
+                            default:
+                                sub.X = 0;
+                                break;
+                        }
+                    }
                 }
                 een = true;
             }
         }
-        public override void UpdateD(ref e_toolSize tsize_, ref e_pinceau tstate_) { }
         public override void Draw()
         {
             Contents.Draw(assetName, rect, sub);

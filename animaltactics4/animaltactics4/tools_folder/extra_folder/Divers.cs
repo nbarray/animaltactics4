@@ -39,7 +39,7 @@ namespace animaltactics4
         PNJ,
         Overlord
     }
-    enum brouillardDeGuerre
+    enum e_brouillardDeGuerre
     {
         ToutVisible, ToutVisite, Normal
     }
