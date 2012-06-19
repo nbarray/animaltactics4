@@ -35,6 +35,12 @@ namespace animaltactics4
             JustifyText();
         }
 
+        public void AddConsoleMode(string text_)
+        {
+            text = text_;
+            JustifyText();
+        }
+
         private void JustifyText()
         {
             string temp = "";

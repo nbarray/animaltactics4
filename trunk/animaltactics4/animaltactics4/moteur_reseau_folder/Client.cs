@@ -8,11 +8,6 @@ namespace animaltactics4
 {
     class Client
     {
-        List<Socket> clients;
-
-        public Client()
-        {
-
-        }
+        
     }
 }

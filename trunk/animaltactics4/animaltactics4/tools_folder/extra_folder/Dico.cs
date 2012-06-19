@@ -82,6 +82,8 @@ namespace animaltactics4
             "Le dernier Fenrir", //61
             "Le Krissa dormant", //62
             "L'explication sur les Unités pandawans", //63
+            "Héberger", // 64
+            "PANDAWORK.NET", // 65
             });
 
             langues.Add("English", new string[]{
@@ -117,18 +119,18 @@ namespace animaltactics4
             "Standart",//29
             "Medium",//30
             "Huge",//31
-            "Very huge",//32
+            "Extremly huge",//32
             "Plain",//33
             "Snow",//34
             "Ice",//35
             "Sand",//36
             "Water",//37
             "Road",//38
-            "Riviere",//39
+            "River",//39
             "Bunker",//40
             "Forest",//41
-            "Ruine",//42
-            "Cratere",//43
+            "Ruin",//42
+            "Hole",//43
             "Village",//44
             "HighBrush",//45
             "DownBrush",//46
@@ -149,6 +151,8 @@ namespace animaltactics4
             "Le dernier Fenrir", //61
             "Le Krissa dormant", //62
             "L'explication sur les Unités pandawans", //63
+            "Host", // 64
+            "PANDAWORK.NET", // 65
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -216,6 +220,8 @@ namespace animaltactics4
             "Le dernier Schtroumpf", //61
             "Le Krissa schtroumpfant", //62
             "L'explicaschtroumpf sur les Unischtroumpfs pandawans", //63
+            "Schtroumpft", // 64
+            "SCHTROUMPFWORK.NET", // 65
             });
         }
     }
