@@ -446,8 +446,9 @@ namespace animaltactics4
                     break;
                 case e_classe.KrissaGeolier:
                     portee[1] = 9;
-                    AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.Krissa1, e_typeDePouvoir.Degat, new List<int> { 1 },
-                        true, 0, 0, 0, false), null, Divers.getName(classe_), 16, 14, 5, 4, 7, 13, 12, portee, typedAttaque,
+                    typedAttaque[1] = false;
+                    AddUnite(TypeUnite.Elite, new Pouvoir(e_pouvoir.Krissa1, e_typeDePouvoir.Boost, new List<int> { 1 },
+                        true, 0, 0, 0, false), null, Divers.getName(classe_), 6, 14, 5, 4, 13, 13, 12, portee, typedAttaque,
                         this.numeroarmee, 57, 8, ia_);
                     break;
                 case e_classe.KrissaMaraudeur:
