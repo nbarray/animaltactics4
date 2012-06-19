@@ -11,12 +11,14 @@ namespace animaltactics4
 {
     static class MoteurSon
     {
+        
         static public Dictionary<string, Song> bankSong;
         static public Dictionary<string, SoundEffect> bankEffect;
 
         static public void Initialize(ContentManager content_)
         {
             MediaPlayer.IsRepeating = false;
+            MediaPlayer.Volume = 0.1f;
             bankSong = new Dictionary<string, Song>();
             bankSong.Add("porte", content_.Load<Song>("Son\\Bruitage\\son_porte"));
             bankSong.Add("bouton", content_.Load<Song>("Son\\Bruitage\\son_bouton"));

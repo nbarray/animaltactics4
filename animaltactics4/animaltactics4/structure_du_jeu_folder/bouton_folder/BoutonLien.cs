@@ -22,6 +22,13 @@ namespace animaltactics4
             indexDico = indexDico_;
             inGame = _inGame;
         }
+            public BoutonLien(int x, int y, int width, int height, Rectangle sub_, Scene linkTo_, int indexDico_)
+            : base(new Rectangle(Divers.X /2 - 200, y, width, height), sub_)
+        {
+            linkTo = linkTo_;
+            tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
+            indexDico = indexDico_;
+        }
 
         public override void Update(GameTime gameTime)
         {
