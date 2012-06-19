@@ -91,8 +91,8 @@ namespace animaltactics4
         KrissaMaraudeur,//30
         KrissaVermine,//30
         KrissaAbomination,//30
-        Krissa8,//30
-        Krissa9,//30
+        KrissaDesperado,//30
+        KrissaCanonnier,//30
         Overlord//0
     }
     enum e_pouvoir
@@ -332,9 +332,9 @@ namespace animaltactics4
                     return "Vermines";
                 case e_classe.KrissaAbomination:
                     return "Abominations";
-                case e_classe.Krissa8:
+                case e_classe.KrissaDesperado:
                     return "Alvin dort tout le temps";
-                case e_classe.Krissa9:
+                case e_classe.KrissaCanonnier:
                     return "Alvin branle que dalle";
                 default:
                     return "Animal Spirit";
@@ -345,77 +345,112 @@ namespace animaltactics4
             switch (c_)
             {
                 case e_classe.PingvinWalkyrie:
-                    return "Walkyries";
+                    return "Unité de base des Pingvin présente dans toutes les armées. \nElle attaque au corps-à-corps à l'aide de son épée tronconneuse, \net possède un bouclier. Très polyvalente.";
+
                 case e_classe.PingvinLanceFlammes:
-                    return "Repurgateurs";
+                    return "Unité utilisant un lance-flamme qui contrairement à la pensée\n commune ne fait pas très mal mais ne risque pas de manquer \nsouvent sa cible.";
+
                 case e_classe.PingvinChar:
-                    return "Tank";
+                    return "Unité très puissante offensivement si l'on ne tient pas compte\n de sa faible précision. Elle est également très résistante \nmais ne peut pas riposter au corps-à-corps. De plus sa rapidité est un atout non négligeable.";
+
                 case e_classe.PingvinUgin:
-                    return "Ugins";
+                    return "Mage efficace offensivement mais n'attaquant qu'au corps-à-corps.\n Utile face aux unités résistant aux attaques physiques mais \npas aux attaques magiques.";
+
                 case e_classe.PingvinBolter:
-                    return "Pillards";
+                    return "Unité la moins chère et donc la moins efficace de l'armée\n Pingvin.";
+
                 case e_classe.PingvinBerserker:
-                    return "Berserkers";
+                    return "Unité élite de corps-à-corps. Elle possède une grande force\n d'attaque qu'il peut booster grace à son pouvoir Rage Berserke. \nElle a un grand nombre de points de vie mais n'est pas très résitante, surtout face à la magie.";
+
                 case e_classe.PingvinThor:
-                    return "Thors";
+                    return "Unité la plus renommée chez les Pingvin. Possède un sort de\n foudre devastateur.";
+
                 case e_classe.PingvinMugin:
-                    return "Mugins";
+                    return "Unité soigneur de l'armée Pingvin. Ils sont equipés d'armes\n lourdes afin d'avoir l'impression de se rendre utiles.";
+
                 case e_classe.PingvinOdin:
-                    return "Odin";
+                    return "Héros Pingvin. Il chevauche un ours a huit pattes. Il attaque\n au corps-à-corps à l'aide de sa lance divine.";
+
                 case e_classe.PandawanMoine:
-                    return "Moines";
+                    return "Unité soigneur des Pandawan. Il effectue des attaques magiques\n courtes à l'aide de son baton.";
+
                 case e_classe.PandawanYabusame:
-                    return "Yabusames";
+                    return "Archer Pandawan équipé d'un Yumi, un arc asymétrique, il est \nplutôt résistant et assez efficace offensivement mais est tres \nfaible au corps-à-corps.";
+
                 case e_classe.PandawanBushi:
-                    return "Bushis";
+                    return "Samourai Pandawan bien résistant et performant offensivement \nmais n'attaque qu'au contact.";
+
                 case e_classe.PandawanCharDragon:
-                    return "Chars Dragons";
+                    return "Char Pandawan équipé de faux et de lames de démolition ainsi \nque d'un lance-flamme ce qui lui permet d'être efficace à courte \nportée. Il n'est pas très réactif et surtout extrêmement vulnérable à la magie.";
+
                 case e_classe.PandawanMerco:
-                    return "Mercenaires";
+                    return "Pandawans équipés d'armes modernes volées aux autres espèces. \nUnité moyenne de tir avec un bon rapport qualité-prix.";
+
                 case e_classe.PandawanSokei:
-                    return "Sokeis";
+                    return "Unité Pandawan très stupide donc très vulnérable à la magie. \nDispose d'une résistance et d'une efficacité moyenne.";
+
                 case e_classe.PandawanNinja:
-                    return "Ninjas";
+                    return "Unité d'inflitration dotée de la capacité de se rendre invisible.\n Efficace au corps-à-corps et à très courte portée mais peu \nrésistant.";
+
                 case e_classe.PandawanSniper:
-                    return "Snipers";
+                    return "Unité capable d'attaquer efficacement à très longue distance \npourvu que les unités adverses soient visibles. Elle fonctionne donc \ntrès bien avec les unités d'inflitration comme le Ninja. Mais attention à sa faiblesse au corps-à-corps.";
+
                 case e_classe.PandawanSayan:
-                    return "Sayan";
+                    return "Héros Pandawan doté d'une force supérieure et dont la fourrure \nchange de couleur lorsqu'il est en colère.";
+
                 case e_classe.FenrirWarBlade:
-                    return "Guerriers";
+                    return "Unité de corps-à-corps classique. Efficace mais peu résistante.\n";
+
                 case e_classe.FenrirTireur:
-                    return "Tireurs";
+                    return "Unité classique d'attaquant à distance. Faible au corps-à-corps.\n";
+
                 case e_classe.FenrirPsyker:
-                    return "Psykers";
+                    return "Seul mage Fenrir permettant d'être efficace contres certaines \nunités très resistantes physiques par exemple les tanks ou Odin. Il \nattaque à moyenne distance.";
+
                 case e_classe.FenrirBouclier:
-                    return "Porteurs de boucliers";
+                    return "Une sorte de chevalier Fenrir relativement défensif se \nbattant au contact.";
+
                 case e_classe.FenrirEclaireur:
-                    return "Eclaireurs";
+                    return "Unité rapide mais très faible attaquant au corps-à-corps.\n";
+
                 case e_classe.FenrirDreadnought:
-                    return "Dreadnoughts";
+                    return "Unité d'élite extrêmement résistante même à la magie capable \nde lancer des missiles à distance et attaquant au corps-à-corps.";
+
                 case e_classe.FenrirRailgun:
-                    return "Fusils Rail";
+                    return "Tireur d'élite effectuant des attaques magiques et attaquant \nà longue portée mais vulnérable.";
+
                 case e_classe.FenrirWarlord:
-                    return "Instructeurs";
+                    return "Unité  d'élite attaquant physiquement au corps-à-corps et à \ncourte distance et sont capables de lancer des salves de magie à moyenne \ndistance. Ils peuvent également utiliser Art de la Guerre afin de booster un Fenrir allié. Mais ils sont peu précis et quasiment incapables d'esquiver.";
+
                 case e_classe.FenrirOkami:
-                    return "Okami";
+                    return "Heros Fenrir de corps-à-corps se battant avec une épée géante.\n";
+
                 case e_classe.KrissaChef:
-                    return "Chef";
+                    return "Héros Krissa doté effectuant des attaques magiques très \npuissantes au corps-à-corps et excessivement rapide mais légèrement vulnérable \nphysiquement.";
+
                 case e_classe.KrissaAssassin:
-                    return "Assassins";
+                    return "Unité d'élite très rapide et très puissante, qui possède un \npouvoir permettant d'effectuer beaucoup de dégats d'un seul coup mais très \npeu résistante.";
+
                 case e_classe.KrissaLegionnaire:
-                    return "Legionnaires";
+                    return "Unité d'élite relativement polyvalente, plus défensive \nqu'offensive, son pouvoir permet d'ailleurs de booster la défense physique et \nmagique d'un Krissa allié.";
+
                 case e_classe.KrissaGeolier:
-                    return "Geoliers";
+                    return "Unité d'élite polyvalente, effectuant des attaques magiques \net utilisant un pouvoir capable de ralentir les mouvements d'un ennemi.";
+
                 case e_classe.KrissaMaraudeur:
-                    return "Maraudeurs";
+                    return "Unité Krissa relativement faible mais attaquant à distance \net très précise.";
+
                 case e_classe.KrissaVermine:
-                    return "Vermines";
+                    return "Unité polyvalente, très résistante à la magie.";
+
                 case e_classe.KrissaAbomination:
-                    return "Abominations";
-                case e_classe.Krissa8:
-                    return "Alvin dort tout le temps";
-                case e_classe.Krissa9:
-                    return "Alvin branle que dalle";
+                    return "Combattant de corps-à-corps très efficace physiquement mais \nextrêmement faible face à la magie.";
+
+                case e_classe.KrissaDesperado:
+                    return "Unité Krissa d'attaque à distance, plutôt rapide mais faible\n face à la magie.";
+
+                case e_classe.KrissaCanonnier:
+                    return "Unité attaquant uniquement à longue et très longue portée. \nUtile dans les lignes arrières et assez résistante, elle est par contre \ninutile au corps-à-corps.";
                 default:
                     return "Animal Spirit";
             }

@@ -29,7 +29,7 @@ namespace animaltactics4
 
             listeA = new ListeArmee(e_race.Pingvin);
             current = e_race.Krissa;
-            army = new Armee(2, e_race.Random, Color.White, 0, 0);
+            army = new Armee(2, e_race.Random, Color.White, 0, 0,0);
             army.AddUnite(e_classe.PingvinOdin);
             pressed = false;
             view = e_classe.FenrirBouclier;
@@ -83,8 +83,8 @@ namespace animaltactics4
             ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.KrissaMaraudeur));
             ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.KrissaVermine));
             ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.KrissaAbomination));
-            ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.Krissa8));
-            ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.Krissa9));
+            ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.KrissaDesperado));
+            ToutesLesUnites[e_race.Krissa].Add(new FausseUnite(e_classe.KrissaCanonnier));
             #endregion
             NEW();
 

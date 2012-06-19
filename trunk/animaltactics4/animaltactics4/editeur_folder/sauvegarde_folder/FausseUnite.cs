@@ -124,10 +124,10 @@ namespace animaltactics4
                 case e_classe.KrissaAbomination:
                     points = 30;
                     break;
-                case e_classe.Krissa8:
+                case e_classe.KrissaDesperado:
                     points = 30;
                     break;
-                case e_classe.Krissa9:
+                case e_classe.KrissaCanonnier:
                     points = 30;
                     break;
                 default:
