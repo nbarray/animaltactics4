@@ -12,7 +12,7 @@ namespace animaltactics4
         SystemeDeJeu gameplay;
         MoteurGraphique earthPenguin;
         private int lastUpdatesTime;
-        public int time;
+        public int time, tempsMax;
         public HUD Jackman;
 
         //Coldman
@@ -25,7 +25,7 @@ namespace animaltactics4
         }
 
         public void Initialize(string nomDeLaMap_, List<string> nomDesArmees_, List<int> difficultes_, List<Color> couleurs_,
-            e_typeDePartie conditionsDeVictoire_, e_brouillardDeGuerre fog_, int limiteDeTours_ = 0)
+            e_typeDePartie conditionsDeVictoire_, e_brouillardDeGuerre fog_, int tempsMax_, int limiteDeTours_ = 0)
         {
             Jackman = new HUD();
             Divers.telechargerMap(ref earthPenguin, nomDeLaMap_);
@@ -35,16 +35,21 @@ namespace animaltactics4
                 earthPenguin, conditionsDeVictoire_, Jackman, limiteDeTours_);
             time = 0;
             lastUpdatesTime = 0;
+            tempsMax = tempsMax_;
         }
 
         public void Update(GameTime gametime_)
         {
-            gameplay.Update(earthPenguin, Jackman);
+            gameplay.Update(earthPenguin, Jackman, ref time);
             earthPenguin.Update(gameplay, Jackman);
             if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
             {
                 time++;
                 Console.WriteLine(time);
+                if (tempsMax-time <= 0)
+                {
+                    gameplay.FinDeTour(earthPenguin, Jackman, ref time);
+                }
             }
             lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
         }
@@ -52,6 +57,7 @@ namespace animaltactics4
         public void Draw()
         {
             earthPenguin.Draw(gameplay);
+            Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
         }
     }
 }

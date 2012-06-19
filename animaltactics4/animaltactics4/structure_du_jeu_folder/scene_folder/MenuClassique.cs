@@ -65,7 +65,7 @@ namespace animaltactics4
             {
                 fog_++;
             }
-            ((BoutonNouvellePartie)boutons[0]).UpdateSpecial(gameTime_, carte, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_, limiteDeTours);
+            ((BoutonNouvellePartie)boutons[0]).UpdateSpecial(gameTime_, carte, nomDesArmees_, difficultes_, couleurs_, conditionsDeVictoire_, fog_, 90,limiteDeTours);
         }
 
         public override void DrawScene()

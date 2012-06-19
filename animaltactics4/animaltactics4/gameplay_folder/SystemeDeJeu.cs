@@ -54,11 +54,11 @@ namespace animaltactics4
             }
         }
 
-        public void Update(MoteurGraphique loohy_, /*Lecteur coldman_,*/ HUD hud_)
+        public void Update(MoteurGraphique loohy_, /*Lecteur coldman_,*/ HUD hud_, ref int time_)
         {
             if (waitForFinDeTour)
             {
-                FinDeTour(loohy_, /*coldman_,*/ hud_);
+                FinDeTour(loohy_, /*coldman_,*/ hud_, ref time_);
                 if (waitForFinDeTour)
                 {
                     listeDesJoueurs[tourencours].UpdateSansClicSelonIAouNon(loohy_, this);
@@ -66,10 +66,10 @@ namespace animaltactics4
             }
             else
             {
-                listeDesJoueurs[tourencours].UpdateSelonIAouNon(loohy_, this, ref mood, /*coldman_,*/ hud_);
+                listeDesJoueurs[tourencours].UpdateSelonIAouNon(loohy_, this, ref mood, /*coldman_,*/ hud_, ref time_);
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && clic)
                 {
-                    FinDeTour(loohy_, /*coldman_,*/ hud_);
+                    FinDeTour(loohy_, /*coldman_,*/ hud_, ref time_);
                     clic = false;
                 }
                 if (Keyboard.GetState().IsKeyUp(Keys.Enter))
@@ -83,7 +83,7 @@ namespace animaltactics4
             }
         }
 
-        public void FinDeTour(MoteurGraphique moteurgraphique_, /*Lecteur coldman_,*/ HUD hud_)
+        public void FinDeTour(MoteurGraphique moteurgraphique_, /*Lecteur coldman_,*/ HUD hud_, ref int time)
         {
             numeroDeTour += 0.5f;
             //coldman_.Play(Lecteur.EffectKey.laser);
@@ -104,7 +104,7 @@ namespace animaltactics4
                         listeDesJoueurs[tourencours].FindeTour();
                         tourencours = (tourencours + 1) % listeDesJoueurs.Count;
                         listeDesJoueurs[tourencours].reactiverIA();
-                        hud_.time = 0;
+                        time = 0;
                         hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
                         listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
                         listeDesJoueurs[tourencours].appliquerVues(moteurgraphique_);
@@ -140,7 +140,7 @@ namespace animaltactics4
                     moteurgraphique_.viderChemin();
                     tourencours = (tourencours + 1) % listeDesJoueurs.Count;
                     listeDesJoueurs[tourencours].reactiverIA();
-                    hud_.time = 0;
+                    time = 0;
                     hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
                     listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
                     listeDesJoueurs[tourencours].appliquerVues(moteurgraphique_);
@@ -284,7 +284,6 @@ namespace animaltactics4
             conditionsDeVictoire = conditionsDeVictoire_;
             pop(moteurgraphique_);
             hud_.Victory_ = false;
-            hud_.time = 0;
             tresor_i = (moteurgraphique_.longueur / 2);
             tresor_j = (moteurgraphique_.largeur / 2);
             if (conditionsDeVictoire_ == e_typeDePartie.Tresor)
@@ -311,7 +310,8 @@ namespace animaltactics4
                 limiteDeTours = 0;
             }
             tourencours = nomDesArmees_.Count - 1;
-            FinDeTour(moteurgraphique_, hud_);
+            int t = 0;
+            FinDeTour(moteurgraphique_, hud_, ref t);
             //voir les points
             //Classe kikoo = Classe.PingvinWalkyrie;
             //do
