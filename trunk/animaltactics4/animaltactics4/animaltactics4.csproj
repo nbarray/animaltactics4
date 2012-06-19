@@ -135,6 +135,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\Bouton.cs" />
+    <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonaCoulisse.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonChoix.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonCirculaire.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonDeroulant.cs" />

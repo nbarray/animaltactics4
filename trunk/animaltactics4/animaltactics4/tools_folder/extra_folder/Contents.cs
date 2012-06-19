@@ -112,6 +112,9 @@ namespace animaltactics4
             textures.Add("fog", content_.Load<Texture2D>("Image\\Bouton\\fog"));
             textures.Add("dif", content_.Load<Texture2D>("Image\\Bouton\\difficultes"));
             textures.Add("mod", content_.Load<Texture2D>("Image\\Bouton\\modes"));
+            textures.Add("Bulles", content_.Load<Texture2D>("Image\\Bouton\\Bulles"));
+            textures.Add("Tube", content_.Load<Texture2D>("Image\\Bouton\\Tube"));
+            textures.Add("CurseurCoulisse", content_.Load<Texture2D>("Image\\Bouton\\CurseurCoulisse"));
 
             textures.Add("px", content_.Load<Texture2D>("Image\\Divers\\Block"));
             textures.Add("px2", content_.Load<Texture2D>("Image\\Divers\\px"));
@@ -438,6 +441,11 @@ namespace animaltactics4
         static public int GetRealInt(int i)
         {
             return (int)(i * pprc);
+        }
+        //Loohy
+        static public Point getRelativeMouse()
+        {
+            return new Point((int)((Mouse.GetState().X - (int)((screenWidth - Divers.X * pprc) / 2)) / pprc), (int)((Mouse.GetState().Y - (int)((screenHeight - Divers.Y * pprc) / 2)) / pprc));
         }
     }
 }

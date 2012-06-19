@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace animaltactics4
 {
@@ -351,7 +352,7 @@ namespace animaltactics4
                     return "Unité utilisant un lance-flamme qui contrairement à la pensée\n commune ne fait pas très mal mais ne risque pas de manquer \nsouvent sa cible.";
 
                 case e_classe.PingvinChar:
-                    return "Unité très puissante offensivement si l'on ne tient pas compte\n de sa faible précision. Elle est également très résistante \nmais ne peut pas riposter au corps-à-corps. De plus sa rapidité est un atout non négligeable.";
+                    return "Unité très puissante offensivement si l'on ne tient pas compte\n de sa faible précision. Elle est également très résistante \nmais ne peut pas riposter au corps-à-corps. De plus sa rapidité est \nun atout non négligeable.";
 
                 case e_classe.PingvinUgin:
                     return "Mage efficace offensivement mais n'attaquant qu'au corps-à-corps.\n Utile face aux unités résistant aux attaques physiques mais \npas aux attaques magiques.";
@@ -360,7 +361,7 @@ namespace animaltactics4
                     return "Unité la moins chère et donc la moins efficace de l'armée\n Pingvin.";
 
                 case e_classe.PingvinBerserker:
-                    return "Unité élite de corps-à-corps. Elle possède une grande force\n d'attaque qu'il peut booster grace à son pouvoir Rage Berserke. \nElle a un grand nombre de points de vie mais n'est pas très résitante, surtout face à la magie.";
+                    return "Unité élite de corps-à-corps. Elle possède une grande force\n d'attaque qu'il peut booster grace à son pouvoir Rage Berserke. \nElle a un grand nombre de points de vie mais n'est pas très \nrésitante, surtout face à la magie.";
 
                 case e_classe.PingvinThor:
                     return "Unité la plus renommée chez les Pingvin. Possède un sort de\n foudre devastateur.";
@@ -381,7 +382,7 @@ namespace animaltactics4
                     return "Samourai Pandawan bien résistant et performant offensivement \nmais n'attaque qu'au contact.";
 
                 case e_classe.PandawanCharDragon:
-                    return "Char Pandawan équipé de faux et de lames de démolition ainsi \nque d'un lance-flamme ce qui lui permet d'être efficace à courte \nportée. Il n'est pas très réactif et surtout extrêmement vulnérable à la magie.";
+                    return "Char Pandawan équipé de faux et de lames de démolition ainsi \nque d'un lance-flamme ce qui lui permet d'être efficace à courte \nportée. Il n'est pas très réactif et surtout extrêmement vulnérable \nà la magie.";
 
                 case e_classe.PandawanMerco:
                     return "Pandawans équipés d'armes modernes volées aux autres espèces. \nUnité moyenne de tir avec un bon rapport qualité-prix.";
@@ -393,7 +394,7 @@ namespace animaltactics4
                     return "Unité d'inflitration dotée de la capacité de se rendre invisible.\n Efficace au corps-à-corps et à très courte portée mais peu \nrésistant.";
 
                 case e_classe.PandawanSniper:
-                    return "Unité capable d'attaquer efficacement à très longue distance \npourvu que les unités adverses soient visibles. Elle fonctionne donc \ntrès bien avec les unités d'inflitration comme le Ninja. Mais attention à sa faiblesse au corps-à-corps.";
+                    return "Unité capable d'attaquer efficacement à très longue distance \npourvu que les unités adverses soient visibles. Elle fonctionne donc \ntrès bien avec les unités d'inflitration comme le Ninja. Mais \nattention à sa faiblesse au corps-à-corps.";
 
                 case e_classe.PandawanSayan:
                     return "Héros Pandawan doté d'une force supérieure et dont la fourrure \nchange de couleur lorsqu'il est en colère.";
@@ -420,19 +421,19 @@ namespace animaltactics4
                     return "Tireur d'élite effectuant des attaques magiques et attaquant \nà longue portée mais vulnérable.";
 
                 case e_classe.FenrirWarlord:
-                    return "Unité  d'élite attaquant physiquement au corps-à-corps et à \ncourte distance et sont capables de lancer des salves de magie à moyenne \ndistance. Ils peuvent également utiliser Art de la Guerre afin de booster un Fenrir allié. Mais ils sont peu précis et quasiment incapables d'esquiver.";
+                    return "Unité  d'élite attaquant physiquement au corps-à-corps et à \ncourte distance et sont capables de lancer des salves de magie à moyenne \ndistance. Ils peuvent également utiliser Art de la Guerre afin \nde booster un Fenrir allié. Mais ils sont peu précis et quasiment incapables \nd'esquiver.";
 
                 case e_classe.FenrirOkami:
-                    return "Heros Fenrir de corps-à-corps se battant avec une épée géante.\n";
+                    return "Heros Fenrir de corps-à-corps se battant avec une épée géante.\nGrosse brute déchaînée.";
 
                 case e_classe.KrissaChef:
-                    return "Héros Krissa doté effectuant des attaques magiques très \npuissantes au corps-à-corps et excessivement rapide mais légèrement vulnérable \nphysiquement.";
+                    return "Héros Krissa effectuant des attaques magiques très \npuissantes au corps-à-corps et excessivement rapide mais légèrement \nvulnérable physiquement.";
 
                 case e_classe.KrissaAssassin:
                     return "Unité d'élite très rapide et très puissante, qui possède un \npouvoir permettant d'effectuer beaucoup de dégats d'un seul coup mais très \npeu résistante.";
 
                 case e_classe.KrissaLegionnaire:
-                    return "Unité d'élite relativement polyvalente, plus défensive \nqu'offensive, son pouvoir permet d'ailleurs de booster la défense physique et \nmagique d'un Krissa allié.";
+                    return "Unité d'élite relativement polyvalente, plus défensive \nqu'offensive, son pouvoir permet d'ailleurs de booster la défense \nphysique et magique d'un Krissa allié.";
 
                 case e_classe.KrissaGeolier:
                     return "Unité d'élite polyvalente, effectuant des attaques magiques \net utilisant un pouvoir capable de ralentir les mouvements d'un ennemi.";
@@ -453,6 +454,26 @@ namespace animaltactics4
                     return "Unité attaquant uniquement à longue et très longue portée. \nUtile dans les lignes arrières et assez résistante, elle est par contre \ninutile au corps-à-corps.";
                 default:
                     return "Animal Spirit";
+            }
+        }
+
+        //Loohy
+        public static void UpdateBoutonCoulisse(BoutonaCoulisse item_)
+        {
+            if (item_.estActif())
+            {
+                item_.yCoulisse = Contents.getRelativeMouse().Y - item_.rect.Y;
+                if (item_.yCoulisse < 0)
+                {
+                    item_.yCoulisse = 0;
+                }
+                else
+                {
+                    if (item_.yCoulisse > 300)
+                    {
+                        item_.yCoulisse = 300;
+                    }
+                }
             }
         }
 

@@ -396,6 +396,7 @@ namespace animaltactics4
                     }
                 }
             }
+            setAttaqOrNotTiles(gameplay_.mood != e_modeAction.Mouvement);
             if (clicOrNot)
             {
                 lastcamerax = camerax;
@@ -1421,6 +1422,17 @@ namespace animaltactics4
                 for (int j = 0; j < largeur; j++)
                 {
                     map[i, j].altitude = 0;
+                }
+            }
+        }
+        //Loohy
+        public void setAttaqOrNotTiles(bool een_)
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    map[i, j].AttaqOrNotGeneral = een_;
                 }
             }
         }

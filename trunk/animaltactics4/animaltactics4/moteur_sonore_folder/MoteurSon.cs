@@ -11,7 +11,7 @@ namespace animaltactics4
 {
     static class MoteurSon
     {
-        
+
         static public Dictionary<string, Song> bankSong;
         static public Dictionary<string, SoundEffectInstance> bankEffect;
 
@@ -37,6 +37,17 @@ namespace animaltactics4
         static public void PlayFX(string name_)
         {
             bankEffect[name_].Play();
+        }
+        static public void setVolumeMusique(float f_)
+        {
+            MediaPlayer.Volume = f_ *0.2f;
+        }
+        static public void setVolumeFX(float f_)
+        {
+            foreach (String item in bankEffect.Keys)
+            {
+                bankEffect[item].Volume = f_*0.2f;
+            }
         }
     }
 }

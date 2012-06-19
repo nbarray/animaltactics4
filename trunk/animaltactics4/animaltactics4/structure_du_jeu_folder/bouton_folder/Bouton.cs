@@ -8,7 +8,7 @@ namespace animaltactics4
 {
     abstract class Bouton
     {
-        protected Rectangle rect, sub;
+        public Rectangle rect, sub;
 
         static public bool een = false;
 
