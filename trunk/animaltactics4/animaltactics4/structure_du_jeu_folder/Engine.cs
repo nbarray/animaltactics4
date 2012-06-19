@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace animaltactics4
 {
@@ -60,6 +61,8 @@ namespace animaltactics4
         }
         static public void save()
         {
+            files.volumeMusique = MediaPlayer.Volume;
+            files.volumeFX = MoteurSon.bankEffect["bouton"].Volume;
             Divers.serializer(files, "allTheLists4242Penguin");
         }
     }

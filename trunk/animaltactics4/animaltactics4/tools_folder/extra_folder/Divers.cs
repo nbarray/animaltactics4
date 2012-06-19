@@ -32,7 +32,7 @@ namespace animaltactics4
     {
         Sud, Nord, Est, Ouest
     }
-    enum TypeUnite
+    enum e_typeUnite
     {
         Base,
         Elite,
@@ -229,7 +229,6 @@ namespace animaltactics4
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -263,82 +262,85 @@ namespace animaltactics4
         //Loohy
         public static string getName(e_classe c_)
         {
+            if (Dico.current == null)
+            {
+            }
             switch (c_)
             {
                 case e_classe.PingvinWalkyrie:
-                    return "Walkyries";
+                    return Dico.langues[Dico.current][70];
                 case e_classe.PingvinLanceFlammes:
-                    return "Répurgateurs";
+                    return Dico.langues[Dico.current][71];
                 case e_classe.PingvinChar:
-                    return "Tank";
+                    return Dico.langues[Dico.current][72];
                 case e_classe.PingvinUgin:
-                    return "Ugins";
+                    return Dico.langues[Dico.current][73];
                 case e_classe.PingvinBolter:
-                    return "Pillards";
+                    return Dico.langues[Dico.current][74];
                 case e_classe.PingvinBerserker:
-                    return "Berserkers";
+                    return Dico.langues[Dico.current][75];
                 case e_classe.PingvinThor:
-                    return "Thors";
+                    return Dico.langues[Dico.current][76];
                 case e_classe.PingvinMugin:
-                    return "Mugins";
+                    return Dico.langues[Dico.current][77];
                 case e_classe.PingvinOdin:
-                    return "Odin";
+                    return Dico.langues[Dico.current][78];
                 case e_classe.PandawanMoine:
-                    return "Moines";
+                    return Dico.langues[Dico.current][79];
                 case e_classe.PandawanYabusame:
-                    return "Yabusames";
+                    return Dico.langues[Dico.current][80];
                 case e_classe.PandawanBushi:
-                    return "Bushis";
+                    return Dico.langues[Dico.current][82-1];
                 case e_classe.PandawanCharDragon:
-                    return "Chars Dragons";
+                    return Dico.langues[Dico.current][83 - 1];
                 case e_classe.PandawanMerco:
-                    return "Mercenaires";
+                    return Dico.langues[Dico.current][84 - 1];
                 case e_classe.PandawanSokei:
-                    return "Sokeis";
+                    return Dico.langues[Dico.current][85 - 1];
                 case e_classe.PandawanNinja:
-                    return "Ninjas";
+                    return Dico.langues[Dico.current][86 - 1];
                 case e_classe.PandawanSniper:
-                    return "Snipers";
+                    return Dico.langues[Dico.current][87 - 1];
                 case e_classe.PandawanSayan:
-                    return "Sayan";
+                    return Dico.langues[Dico.current][88 - 1];
                 case e_classe.FenrirWarBlade:
-                    return "Guerriers";
+                    return Dico.langues[Dico.current][89 - 1];
                 case e_classe.FenrirTireur:
-                    return "Tireurs";
+                    return Dico.langues[Dico.current][90 - 1];
                 case e_classe.FenrirPsyker:
-                    return "Psykers";
+                    return Dico.langues[Dico.current][91 - 1];
                 case e_classe.FenrirTemplier:
-                    return "Porteurs de boucliers";
+                    return Dico.langues[Dico.current][92 - 1];
                 case e_classe.FenrirEclaireur:
-                    return "Eclaireurs";
+                    return Dico.langues[Dico.current][93 - 1];
                 case e_classe.FenrirDreadnought:
-                    return "Dreadnoughts";
+                    return Dico.langues[Dico.current][94 - 1];
                 case e_classe.FenrirRailgun:
-                    return "Fusils Rail";
+                    return Dico.langues[Dico.current][95 - 1];
                 case e_classe.FenrirWarlord:
-                    return "Instructeurs";
+                    return Dico.langues[Dico.current][96 - 1];
                 case e_classe.FenrirOkami:
-                    return "Okami";
+                    return Dico.langues[Dico.current][97 - 1];
                 case e_classe.KrissaChef:
-                    return "Chef";
+                    return Dico.langues[Dico.current][98 - 1];
                 case e_classe.KrissaAssassin:
-                    return "Assassins";
+                    return Dico.langues[Dico.current][99 - 1];
                 case e_classe.KrissaLegionnaire:
-                    return "Légionnaires";
+                    return Dico.langues[Dico.current][100 - 1];
                 case e_classe.KrissaGeolier:
-                    return "Geoliers";
+                    return Dico.langues[Dico.current][101 - 1];
                 case e_classe.KrissaMaraudeur:
-                    return "Maraudeurs";
+                    return Dico.langues[Dico.current][102 - 1];
                 case e_classe.KrissaVermine:
-                    return "Vermines";
+                    return Dico.langues[Dico.current][103 - 1];
                 case e_classe.KrissaAbomination:
-                    return "Abominations";
+                    return Dico.langues[Dico.current][104 - 1];
                 case e_classe.KrissaDesperado:
-                    return "Alvin dort tout le temps";
+                    return Dico.langues[Dico.current][105 - 1];
                 case e_classe.KrissaCanonnier:
-                    return "Alvin branle que dalle";
+                    return Dico.langues[Dico.current][106 - 1];
                 default:
-                    return "Animal Spirit";
+                    return Dico.langues[Dico.current][107-1];
             }
         }
         public static string getText(e_classe c_)
@@ -346,114 +348,79 @@ namespace animaltactics4
             switch (c_)
             {
                 case e_classe.PingvinWalkyrie:
-                    return "Unité de base des Pingvin présente dans toutes les armées. \nElle attaque au corps-à-corps à l'aide de son épée tronconneuse, \net possède un bouclier. Très polyvalente.";
-
+                    return Dico.langues[Dico.current][70+37];
                 case e_classe.PingvinLanceFlammes:
-                    return "Unité utilisant un lance-flamme qui contrairement à la pensée\n commune ne fait pas très mal mais ne risque pas de manquer \nsouvent sa cible.";
-
+                    return Dico.langues[Dico.current][71 + 37];
                 case e_classe.PingvinChar:
-                    return "Unité très puissante offensivement si l'on ne tient pas compte\n de sa faible précision. Elle est également très résistante \nmais ne peut pas riposter au corps-à-corps. De plus sa rapidité est \nun atout non négligeable.";
-
+                    return Dico.langues[Dico.current][72 + 37];
                 case e_classe.PingvinUgin:
-                    return "Mage efficace offensivement mais n'attaquant qu'au corps-à-corps.\n Utile face aux unités résistant aux attaques physiques mais \npas aux attaques magiques.";
-
+                    return Dico.langues[Dico.current][73 + 37];
                 case e_classe.PingvinBolter:
-                    return "Unité la moins chère et donc la moins efficace de l'armée\n Pingvin.";
-
+                    return Dico.langues[Dico.current][74 + 37];
                 case e_classe.PingvinBerserker:
-                    return "Unité élite de corps-à-corps. Elle possède une grande force\n d'attaque qu'il peut booster grace à son pouvoir Rage Berserke. \nElle a un grand nombre de points de vie mais n'est pas très \nrésitante, surtout face à la magie.";
-
+                    return Dico.langues[Dico.current][75 + 37];
                 case e_classe.PingvinThor:
-                    return "Unité la plus renommée chez les Pingvin. Possède un sort de\n foudre devastateur.";
-
+                    return Dico.langues[Dico.current][76 + 37];
                 case e_classe.PingvinMugin:
-                    return "Unité soigneur de l'armée Pingvin. Ils sont equipés d'armes\n lourdes afin d'avoir l'impression de se rendre utiles.";
-
+                    return Dico.langues[Dico.current][77 + 37];
                 case e_classe.PingvinOdin:
-                    return "Héros Pingvin. Il chevauche un ours a huit pattes. Il attaque\n au corps-à-corps à l'aide de sa lance divine.";
-
+                    return Dico.langues[Dico.current][78 + 37];
                 case e_classe.PandawanMoine:
-                    return "Unité soigneur des Pandawan. Il effectue des attaques magiques\n courtes à l'aide de son baton.";
-
+                    return Dico.langues[Dico.current][79 + 37];
                 case e_classe.PandawanYabusame:
-                    return "Archer Pandawan équipé d'un Yumi, un arc asymétrique, il est \nplutôt résistant et assez efficace offensivement mais est tres \nfaible au corps-à-corps.";
-
+                    return Dico.langues[Dico.current][80 + 37];
                 case e_classe.PandawanBushi:
-                    return "Samourai Pandawan bien résistant et performant offensivement \nmais n'attaque qu'au contact.";
-
+                    return Dico.langues[Dico.current][82 - 1 + 37];
                 case e_classe.PandawanCharDragon:
-                    return "Char Pandawan équipé de faux et de lames de démolition ainsi \nque d'un lance-flamme ce qui lui permet d'être efficace à courte \nportée. Il n'est pas très réactif et surtout extrêmement vulnérable \nà la magie.";
-
+                    return Dico.langues[Dico.current][83 - 1 + 37];
                 case e_classe.PandawanMerco:
-                    return "Pandawans équipés d'armes modernes volées aux autres espèces. \nUnité moyenne de tir avec un bon rapport qualité-prix.";
-
+                    return Dico.langues[Dico.current][84 - 1 + 37];
                 case e_classe.PandawanSokei:
-                    return "Unité Pandawan très stupide donc très vulnérable à la magie. \nDispose d'une résistance et d'une efficacité moyenne.";
-
+                    return Dico.langues[Dico.current][85 - 1 + 37];
                 case e_classe.PandawanNinja:
-                    return "Unité d'inflitration dotée de la capacité de se rendre invisible.\n Efficace au corps-à-corps et à très courte portée mais peu \nrésistant.";
-
+                    return Dico.langues[Dico.current][86 - 1 + 37];
                 case e_classe.PandawanSniper:
-                    return "Unité capable d'attaquer efficacement à très longue distance \npourvu que les unités adverses soient visibles. Elle fonctionne donc \ntrès bien avec les unités d'inflitration comme le Ninja. Mais \nattention à sa faiblesse au corps-à-corps.";
-
+                    return Dico.langues[Dico.current][87 - 1 + 37];
                 case e_classe.PandawanSayan:
-                    return "Héros Pandawan doté d'une force supérieure et dont la fourrure \nchange de couleur lorsqu'il est en colère.";
-
+                    return Dico.langues[Dico.current][88 - 1 + 37];
                 case e_classe.FenrirWarBlade:
-                    return "Unité de corps-à-corps classique. Efficace mais peu résistante.\n";
-
+                    return Dico.langues[Dico.current][89 - 1 + 37];
                 case e_classe.FenrirTireur:
-                    return "Unité classique d'attaquant à distance. Faible au corps-à-corps.\n";
-
+                    return Dico.langues[Dico.current][90 - 1 + 37];
                 case e_classe.FenrirPsyker:
-                    return "Seul mage Fenrir permettant d'être efficace contres certaines \nunités très resistantes physiques par exemple les tanks ou Odin. Il \nattaque à moyenne distance.";
-
+                    return Dico.langues[Dico.current][91 - 1 + 37];
                 case e_classe.FenrirTemplier:
-                    return "Une sorte de chevalier Fenrir relativement défensif se \nbattant au contact.";
-
+                    return Dico.langues[Dico.current][92 - 1 + 37];
                 case e_classe.FenrirEclaireur:
-                    return "Unité rapide mais très faible attaquant au corps-à-corps.\n";
-
+                    return Dico.langues[Dico.current][93 - 1 + 37];
                 case e_classe.FenrirDreadnought:
-                    return "Unité d'élite extrêmement résistante même à la magie capable \nde lancer des missiles à distance et attaquant au corps-à-corps.";
-
+                    return Dico.langues[Dico.current][94 - 1 + 37];
                 case e_classe.FenrirRailgun:
-                    return "Tireur d'élite effectuant des attaques magiques et attaquant \nà longue portée mais vulnérable.";
-
+                    return Dico.langues[Dico.current][95 - 1+37];
                 case e_classe.FenrirWarlord:
-                    return "Unité  d'élite attaquant physiquement au corps-à-corps et à \ncourte distance et sont capables de lancer des salves de magie à moyenne \ndistance. Ils peuvent également utiliser Art de la Guerre afin \nde booster un Fenrir allié. Mais ils sont peu précis et quasiment incapables \nd'esquiver.";
-
+                    return Dico.langues[Dico.current][96 - 1 + 37];
                 case e_classe.FenrirOkami:
-                    return "Heros Fenrir de corps-à-corps se battant avec une épée géante.\nGrosse brute déchaînée.";
-
+                    return Dico.langues[Dico.current][97 - 1 + 37];
                 case e_classe.KrissaChef:
-                    return "Héros Krissa effectuant des attaques magiques très \npuissantes au corps-à-corps et excessivement rapide mais légèrement \nvulnérable physiquement.";
-
+                    return Dico.langues[Dico.current][98 - 1 + 37];
                 case e_classe.KrissaAssassin:
-                    return "Unité d'élite très rapide et très puissante, qui possède un \npouvoir permettant d'effectuer beaucoup de dégats d'un seul coup mais très \npeu résistante.";
-
+                    return Dico.langues[Dico.current][99 - 1 + 37];
                 case e_classe.KrissaLegionnaire:
-                    return "Unité d'élite relativement polyvalente, plus défensive \nqu'offensive, son pouvoir permet d'ailleurs de booster la défense \nphysique et magique d'un Krissa allié.";
-
+                    return Dico.langues[Dico.current][100 - 1 + 37];
                 case e_classe.KrissaGeolier:
-                    return "Unité d'élite polyvalente, effectuant des attaques magiques \net utilisant un pouvoir capable de ralentir les mouvements d'un ennemi.";
-
+                    return Dico.langues[Dico.current][101 - 1 + 37];
                 case e_classe.KrissaMaraudeur:
-                    return "Unité Krissa relativement faible mais attaquant à distance \net très précise.";
-
+                    return Dico.langues[Dico.current][102 - 1 + 37];
                 case e_classe.KrissaVermine:
-                    return "Unité polyvalente, très résistante à la magie.";
-
+                    return Dico.langues[Dico.current][103 - 1 + 37];
                 case e_classe.KrissaAbomination:
-                    return "Combattant de corps-à-corps très efficace physiquement mais \nextrêmement faible face à la magie.";
-
+                    return Dico.langues[Dico.current][104 - 1 + 37];
                 case e_classe.KrissaDesperado:
-                    return "Unité Krissa d'attaque à distance, plutôt rapide mais faible\n face à la magie.";
-
+                    return Dico.langues[Dico.current][105 - 1 + 37];
                 case e_classe.KrissaCanonnier:
-                    return "Unité attaquant uniquement à longue et très longue portée. \nUtile dans les lignes arrières et assez résistante, elle est par contre \ninutile au corps-à-corps.";
+                    return Dico.langues[Dico.current][106 - 1 + 37];
                 default:
-                    return "Animal Spirit";
+                    return Dico.langues[Dico.current][107 - 1 + 37];
             }
         }
 

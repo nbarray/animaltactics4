@@ -976,7 +976,7 @@ namespace animaltactics4
             {
                 foreach (Unite unite in gameplay_.listeDesJoueurs[(gameplay_.tourencours + 1) % 2].bataillon)
                 {
-                    if (unite.typeUnite == TypeUnite.Heros)
+                    if (unite.typeUnite == e_typeUnite.Heros)
                     {
                         abscisseHerosEnnemi = unite.i;
                         ordonneeHerosEnnemi = unite.j;
@@ -985,7 +985,7 @@ namespace animaltactics4
 
                 #region boucleTestCiblesPotentielles
 
-                if (moi_.attaqOrNot && moi_.typeUnite != TypeUnite.Heros)
+                if (moi_.attaqOrNot && moi_.typeUnite != e_typeUnite.Heros)
                 {
                     for (int k = 0; k < portee_; k++)
                     {
@@ -1098,7 +1098,7 @@ namespace animaltactics4
             {
                 foreach (Unite unite in gameplay_.listeDesJoueurs[(gameplay_.tourencours + 1) % 2].bataillon)
                 {
-                    if (unite.typeUnite == TypeUnite.Heros)
+                    if (unite.typeUnite == e_typeUnite.Heros)
                     {
                         abscisseHerosEnnemi = unite.i;
                         ordonneeHerosEnnemi = unite.j;
@@ -1199,7 +1199,7 @@ namespace animaltactics4
             {
                 foreach (Unite unite in gameplay_.listeDesJoueurs[(gameplay_.tourencours + 1) % 2].bataillon)
                 {
-                    if (unite.typeUnite == TypeUnite.Heros)
+                    if (unite.typeUnite == e_typeUnite.Heros)
                     {
                         abscisseHerosEnnemi = unite.i;
                         ordonneeHerosEnnemi = unite.j;
@@ -1208,7 +1208,7 @@ namespace animaltactics4
 
                 #region boucleTestCiblesPotentielles
 
-                if (moi_.attaqOrNot && moi_.typeUnite != TypeUnite.Heros)
+                if (moi_.attaqOrNot && moi_.typeUnite != e_typeUnite.Heros)
                 {
                     for (int k = 0; k < portee_; k++)
                     {

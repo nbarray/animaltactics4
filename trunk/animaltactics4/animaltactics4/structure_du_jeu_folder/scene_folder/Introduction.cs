@@ -37,6 +37,12 @@ namespace animaltactics4
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
             int tmax = 30;
+            if (duree == 0)
+            {
+                Dico.current = Engine.files.currentLanguage;
+                MoteurSon.setVolumeMusique(Engine.files.volumeMusique);
+                MoteurSon.setVolumeFX(Engine.files.volumeFX);
+            }
             if (duree < tmax)
             {
                 Contents.Draw("bleuApp", new Rectangle(485, 310 - (tmax - duree) / 2, 230, 280 + (tmax - duree)),
