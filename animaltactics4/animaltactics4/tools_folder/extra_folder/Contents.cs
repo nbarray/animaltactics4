@@ -107,6 +107,8 @@ namespace animaltactics4
             textures.Add("Bridges", content_.Load<Texture2D>("Image\\Tuile\\bridges"));
 
             textures.Add("textbox", content_.Load<Texture2D>("Image\\Fond\\textbox"));
+            textures.Add("cursor_tb", content_.Load<Texture2D>("Image\\Bouton\\cursor_textbox"));
+            textures.Add("play", content_.Load<Texture2D>("Image\\Bouton\\lec_play"));
             textures.Add("fog", content_.Load<Texture2D>("Image\\Bouton\\fog"));
             textures.Add("dif", content_.Load<Texture2D>("Image\\Bouton\\difficultes"));
             textures.Add("mod", content_.Load<Texture2D>("Image\\Bouton\\modes"));
@@ -137,11 +139,28 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), Color.White);
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), 
+                    Color.White);
             Atsushi_Okhubo.End();
         }
         #region Surcharges
 
+        //Coldman
+        static public void Draw(string name_, Rectangle rect_, SpriteEffects effects)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.Draw(textures[name_],
+                new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)),
+                    textures[name_].Bounds,
+                    Color.White,
+                    0f,
+                    new Vector2(),
+                    effects,
+                    0f);
+            Atsushi_Okhubo.End();
+        }
         //Coldman
         static public void Draw(string name_, Rectangle rect_, Color c_)
         {
@@ -215,7 +234,7 @@ namespace animaltactics4
         static public void DrawStringInBoxCentered(string text_, Rectangle rect_)
         {
             Atsushi_Okhubo.Begin();
-            Atsushi_Okhubo.DrawString(fonts["bouton"], text_,
+            Atsushi_Okhubo.DrawString(fonts["text"], text_,
                 new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2)
                     + (int)(rect_.Width * pprc / 2)
                     - (fonts["bouton"].MeasureString(text_).X / 2),
@@ -404,6 +423,18 @@ namespace animaltactics4
                 //    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
             //    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), Color.White);
             Atsushi_Okhubo.End();
+        }
+
+        static public Rectangle GetRealRect(Rectangle rect_)
+        {
+            return new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
+                    (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
+                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc));
+        }
+
+        static public int GetRealInt(int i)
+        {
+            return (int)(i * pprc);
         }
     }
 }
