@@ -505,6 +505,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Image\Unite\KrissaDesperado.png">
+      <Name>KrissaDesperado</Name>
     <Compile Include="Image\Bouton\Bulles.png">
       <Name>Bulles</Name>
       <Importer>TextureImporter</Importer>
