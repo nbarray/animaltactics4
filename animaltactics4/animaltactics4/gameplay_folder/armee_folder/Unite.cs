@@ -78,7 +78,7 @@ namespace animaltactics4
 
         private bool[,] estPasseParLa;
 
-        //public IntelligenceArtificielle IA;
+        public IntelligenceArtificielle IA;
         #endregion
         #region Mouvement
         bool mouvOrNot;
