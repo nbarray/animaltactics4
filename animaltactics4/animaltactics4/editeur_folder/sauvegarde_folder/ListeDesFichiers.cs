@@ -10,12 +10,14 @@ namespace animaltactics4
     class ListeDesFichiers
     {
         public List<string> listeDesListesdArmee, listeDesMaps;
+        public string currentLanguage;
 
         //Loohy
         public ListeDesFichiers()
         {
             listeDesListesdArmee = new List<string>();
             listeDesMaps = new List<string>();
+            currentLanguage = "Francais";
         }
         public void AddArmyName(string s_)
         {

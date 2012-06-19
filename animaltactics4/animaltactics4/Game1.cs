@@ -56,6 +56,7 @@ namespace animaltactics4
 
             if (quitter)
             {
+                Engine.save();
                 this.Exit();
             }
             time = gameTime.TotalGameTime.Milliseconds;

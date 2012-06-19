@@ -14,7 +14,14 @@ namespace animaltactics4
         //Coldman & Loohy
         static public void Initialize()
         {
-            current = "Francais";
+            try
+            {
+                current = Engine.files.currentLanguage;
+            }
+            catch (Exception)
+            {
+                current = "Francais";
+            }
             langues = new Dictionary<string, string[]>();
 
             langues.Add("Francais", new string[]{
@@ -86,6 +93,8 @@ namespace animaltactics4
             "PANDAWORK.NET", // 65
             "Rejoindre", // 66
             "Plein écran", // 67
+            "Pause", // 68
+            "Retour au jeu", // 69
             });
 
             langues.Add("English", new string[]{
@@ -157,6 +166,8 @@ namespace animaltactics4
             "PANDAWORK.NET", // 65
             "Join", // 66
             "Fullscreen", // 67
+            "Pause", // 68
+            "Resume", // 69
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -228,6 +239,8 @@ namespace animaltactics4
             "SCHTROUMPFWORK.NET", // 65
             "Reschtroumpf", // 66
             "Plein schtroumpft", // 67
+            "Pause", // 68
+            "Retour au schtroumpf", // 69
             });
         }
     }

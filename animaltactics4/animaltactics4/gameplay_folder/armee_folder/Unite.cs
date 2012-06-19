@@ -186,7 +186,7 @@ namespace animaltactics4
 
             image = nom_;
 
-            //IA = new IntelligenceArtificielle(ia_, this);
+            IA = new IntelligenceArtificielle(ia_, this);
             //Console.WriteLine(nom + " : " + points);
 
             porteTresor = false;

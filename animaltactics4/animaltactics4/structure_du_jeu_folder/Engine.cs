@@ -58,5 +58,9 @@ namespace animaltactics4
                 Divers.serializer(files, "allTheLists4242Penguin");
             }
         }
+        static public void save()
+        {
+            Divers.serializer(files, "allTheLists4242Penguin");
+        }
     }
 }
