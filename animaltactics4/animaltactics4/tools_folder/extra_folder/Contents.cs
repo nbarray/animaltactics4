@@ -44,7 +44,7 @@ namespace animaltactics4
             textures.Add(Divers.getName(e_classe.PingvinChar), content_.Load<Texture2D>("Image\\Unite\\PingvinChar2"));
             textures.Add(Divers.getName(e_classe.PingvinUgin), content_.Load<Texture2D>("Image\\Unite\\PingvinUgin"));
             textures.Add(Divers.getName(e_classe.PingvinBolter), content_.Load<Texture2D>("Image\\Unite\\PingvinBolter"));
-            textures.Add(Divers.getName(e_classe.PingvinBerserker), content_.Load<Texture2D>("Image\\Unite\\PingvinBerserker"));
+            textures.Add(Divers.getName(e_classe.PingvinBerserker), content_.Load<Texture2D>("Image\\Unite\\PingvinBerseker"));
             textures.Add(Divers.getName(e_classe.PingvinThor), content_.Load<Texture2D>("Image\\Unite\\PingvinThor"));
             textures.Add(Divers.getName(e_classe.PingvinMugin), content_.Load<Texture2D>("Image\\Unite\\PingvinMugin"));
             textures.Add(Divers.getName(e_classe.PingvinOdin), content_.Load<Texture2D>("Image\\Unite\\PingvinOdin"));
@@ -60,7 +60,7 @@ namespace animaltactics4
             textures.Add(Divers.getName(e_classe.FenrirWarBlade), content_.Load<Texture2D>("Image\\Unite\\FenrirEpeiste"));
             textures.Add(Divers.getName(e_classe.FenrirTireur), content_.Load<Texture2D>("Image\\Unite\\FenrirTireur"));
             textures.Add(Divers.getName(e_classe.FenrirPsyker), content_.Load<Texture2D>("Image\\Unite\\FenrirPsyker"));
-            textures.Add(Divers.getName(e_classe.FenrirBouclier), content_.Load<Texture2D>("Image\\Unite\\FenrirTemplier"));
+            textures.Add(Divers.getName(e_classe.FenrirTemplier), content_.Load<Texture2D>("Image\\Unite\\FenrirTemplier"));
             textures.Add(Divers.getName(e_classe.FenrirEclaireur), content_.Load<Texture2D>("Image\\Unite\\FenrirScout"));
             textures.Add(Divers.getName(e_classe.FenrirDreadnought), content_.Load<Texture2D>("Image\\Unite\\FenrirDreadnought"));
             textures.Add(Divers.getName(e_classe.FenrirRailgun), content_.Load<Texture2D>("Image\\Unite\\FenrirRailgun"));
@@ -72,7 +72,7 @@ namespace animaltactics4
             textures.Add(Divers.getName(e_classe.KrissaGeolier), content_.Load<Texture2D>("Image\\Unite\\PandaSimple"));
             textures.Add(Divers.getName(e_classe.KrissaMaraudeur), content_.Load<Texture2D>("Image\\Unite\\KrissaMaraudeur"));
             textures.Add(Divers.getName(e_classe.KrissaVermine), content_.Load<Texture2D>("Image\\Unite\\KrissaVermine"));
-            textures.Add(Divers.getName(e_classe.KrissaAbomination), content_.Load<Texture2D>("Image\\Unite\\KrissaAbominiation"));
+            textures.Add(Divers.getName(e_classe.KrissaAbomination), content_.Load<Texture2D>("Image\\Unite\\KrissaAbomination"));
             textures.Add(Divers.getName(e_classe.KrissaDesperado), content_.Load<Texture2D>("Image\\Unite\\KrissaDesperado"));
             textures.Add(Divers.getName(e_classe.KrissaCanonnier), content_.Load<Texture2D>("Image\\Unite\\PingvinSimple"));
             textures.Add(Divers.getName(e_classe.Overlord), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
