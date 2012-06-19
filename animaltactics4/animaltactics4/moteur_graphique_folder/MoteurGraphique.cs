@@ -368,7 +368,6 @@ namespace animaltactics4
         public void Update(SystemeDeJeu gameplay_, HUD hud_)
         {
             Camera();
-            viderSurbrillance();
             for (int d = 0; d < 7; d++)
             {
                 for (int i = (int)getCaseFromMouseAvecAltitude().X + 3; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
@@ -529,22 +528,16 @@ namespace animaltactics4
                 && (j_ + 1 == largeur || !map[i_, j_ + 1].estEnSurbrillance)
                 && map[i_, j_].estSurvolee(rect_, camerax, cameray, direction))
             {
-                //map[i_, j_].estEnSurbrillance = true;
+                map[i_, j_].estEnSurbrillance = true;
                 map[i_, j_].surbrillancePortee = 9;
-                map[i_, j_].sousRectportee.X = 19*64;
-                Console.WriteLine(i_ +"/"+ j_);
-                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                {
-                    int XX = Mouse.GetState().X;
-                    int YY = Mouse.GetState().Y;
-                map[i_, j_].surbrillancePortee = 9;
-                }
+                map[i_, j_].sousRectportee.X = 19 * 64;
+                //Console.WriteLine(i_ +"/"+ j_);
             }
             else
             {
-                //map[i_, j_].estEnSurbrillance = false;
-                //map[i_, j_].surbrillancePortee = 2;
-                //map[i_, j_].sousRectportee.X = 11 * 64;
+                map[i_, j_].estEnSurbrillance = false;
+                map[i_, j_].surbrillancePortee = 2;
+                map[i_, j_].sousRectportee.X = 11 * 64;
             }
         }
 
@@ -1470,8 +1463,8 @@ namespace animaltactics4
             switch (direction)
             {
                 case 0:
-                    return new Vector2((int)Math.Max(0, Math.Min(longueur - 1, (Mouse.GetState().X / Contents.pprc - 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 + camerax + 2 * cameray) / 64-4)), (int)
-                        Math.Max(0, Math.Min(largeur - 1, (-Mouse.GetState().X / Contents.pprc + 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 - camerax + 2 * cameray) / 64+3)));
+                    return new Vector2((int)Math.Max(0, Math.Min(longueur - 1, (Mouse.GetState().X / Contents.pprc - 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 + camerax + 2 * cameray) / 64-3)), (int)
+                        Math.Max(0, Math.Min(largeur - 1, (-Mouse.GetState().X / Contents.pprc + 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 - camerax + 2 * cameray) / 64)));
                 case 1:
                     return new Vector2();
                 case 2:

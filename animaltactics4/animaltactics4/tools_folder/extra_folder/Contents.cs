@@ -143,7 +143,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), 
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), 
                     Color.White);
             Atsushi_Okhubo.End();
         }
@@ -156,7 +156,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)),
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)),
                     textures[name_].Bounds,
                     Color.White,
                     0f,
@@ -172,7 +172,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), c_);
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), c_);
             Atsushi_Okhubo.End();
         }
         //Loohy
@@ -182,7 +182,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_);
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), subrect_, c_);
             Atsushi_Okhubo.End();
         }
         //Loohy
@@ -192,7 +192,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) - (int)(rect_.Width * pprc / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) - (int)(rect_.Height * pprc / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_,
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), subrect_, c_, rot_,
                     new Vector2(rect_.Width * pprc / 2, rect_.Height * pprc / 2), SpriteEffects.None, 0);
             Atsushi_Okhubo.End();
         }
@@ -203,7 +203,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, Color.White);
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), subrect_, Color.White);
             Atsushi_Okhubo.End();
         }
         //Loohy
@@ -213,7 +213,7 @@ namespace animaltactics4
             Atsushi_Okhubo.Draw(textures[name_],
                 new Rectangle((int)(rect_.X * pprc) + (int)((screenWidth - Divers.X * pprc) / 2) - (int)(rect_.Width * pprc / 2),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2) - (int)(rect_.Height * pprc / 2),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, Color.White, rot_,
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), subrect_, Color.White, rot_,
                     new Vector2(rect_.Width * pprc / 2, rect_.Height * pprc / 2), SpriteEffects.None, 0);
             Atsushi_Okhubo.End();
         }
@@ -226,7 +226,7 @@ namespace animaltactics4
                     - (int)(rect_.Width * pprc * vectorOf_ZeroToOne_Floats_.X),
                     (int)(rect_.Y * pprc) + (int)((screenHeight - Divers.Y * pprc) / 2)
                     - (int)(rect_.Height * pprc * vectorOf_ZeroToOne_Floats_.Y),
-                    (int)(rect_.Width * pprc), (int)(rect_.Height * pprc)), subrect_, c_, rot_,
+                    (int)(rect_.Width * pprc + 0.5f), (int)(rect_.Height * pprc + 0.5f)), subrect_, c_, rot_,
                     new Vector2(rect_.Width * pprc * vectorOf_ZeroToOne_Floats_.X,
                         rect_.Height * pprc * vectorOf_ZeroToOne_Floats_.Y),
                     SpriteEffects.None, 0);
@@ -408,10 +408,9 @@ namespace animaltactics4
 
         static public void Calculs(Ligne l_)
         {
-            l_.segment = new Vector2(Math.Abs(l_.p1.X - l_.p2.X) * pprc, Math.Abs(l_.p1.Y - l_.p2.Y) * pprc);
+            l_.segment = new Vector2(Math.Abs(l_.p1.X - l_.p2.X), Math.Abs(l_.p1.Y - l_.p2.Y));
             l_.a = (((float)l_.p2.Y - (float)l_.p1.Y) / ((float)l_.p2.X - (float)l_.p1.X));
-            l_.b = l_.p1.Y * pprc + ((screenHeight - Divers.Y * pprc) / 2) 
-                - (l_.a * (l_.p1.X * pprc + (screenWidth - Divers.X * pprc) / 2));
+            l_.b = l_.p1.Y - l_.a * l_.p1.X;
         }
 
         static public void Cadre()

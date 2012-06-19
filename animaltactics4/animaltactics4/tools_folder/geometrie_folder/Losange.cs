@@ -12,17 +12,6 @@ namespace animaltactics4
         public Ligne c1, c2, c3, c4;
         public int x, y, hauteur, largeur;
 
-        public Losange()
-        {
-            c1 = new Ligne();
-            c2 = c1;
-            c3 = c1;
-            c4 = c1;
-            x = 0;
-            y = x;
-            hauteur = 0;
-            largeur = hauteur;
-        }
         public Losange(int x_, int y_, int largeur_, int hauteur_)
         {
             x = x_;

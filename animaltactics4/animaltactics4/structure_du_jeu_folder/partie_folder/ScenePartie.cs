@@ -14,7 +14,7 @@ namespace animaltactics4
             : base()
         {
             p = new Partie(map_width_, map_height_);
-            boutons.Add(new BoutonLien(0, 0, new Rectangle(0, 0, 800, 300), null, 5));
+            boutons.Add(new BoutonLien(0, 0, new Rectangle(0, 0, 800, 300), null, 5, true));
         }
 
         public override void UpdateScene(GameTime gameTime)
