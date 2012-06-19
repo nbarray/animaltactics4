@@ -76,7 +76,7 @@ namespace animaltactics4
                 item.Abort();
             }
             server.Close();
-
+            loremIpsum.Clear();
 
             return true;
         }

@@ -88,7 +88,7 @@ namespace animaltactics4
             #endregion
             NEW();
 
-            writer = new WriteBox(new Rectangle(800, Divers.Y - 100, 250, 75));
+            writer = new WriteBox(new Rectangle(600, Divers.Y - 110, 450, 75));
         }
 
         //Loohy

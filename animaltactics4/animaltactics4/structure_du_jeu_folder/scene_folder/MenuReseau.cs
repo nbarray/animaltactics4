@@ -11,6 +11,7 @@ namespace animaltactics4
         public MenuReseau()
             : base()
         {
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 500, new Rectangle(0, 0, 800, 300), new MenuRejoindre(), 66));
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 600, new Rectangle(0, 0, 800, 300), new MenuHeberger(), 64));
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
         }
@@ -23,7 +24,8 @@ namespace animaltactics4
         public override void DrawScene()
         {
             base.DrawScene();
-            Contents.DrawStringInBoxCentered("titre", Dico.langues[Dico.current][65], new Rectangle(-250, 100, 1200, 300));
+            Contents.Draw("bouton_selected", new Rectangle(160, 100, 2* Divers.X / 3 + 100, 300));
+            Contents.DrawStringInBoxCentered("titre", Dico.langues[Dico.current][65], new Rectangle(0, 100, 1200, 300));
         }
     }
 }

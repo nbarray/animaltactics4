@@ -254,9 +254,9 @@ namespace animaltactics4
             Atsushi_Okhubo.DrawString(fonts[asset_], text_,
                 new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2)
                     + (int)(rect_.Width * pprc / 2)
-                    - (fonts["bouton"].MeasureString(text_).X / 2),
+                    - (fonts[asset_].MeasureString(text_).X / 2),
                     rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)
-                    + (int)(rect_.Height * pprc / 2) - (fonts["bouton"].MeasureString(text_).Y / 2)),
+                    + (int)(rect_.Height * pprc / 2) - (fonts[asset_].MeasureString(text_).Y / 2)),
                     Color.White);
             Atsushi_Okhubo.End();
         }
@@ -294,10 +294,10 @@ namespace animaltactics4
             Atsushi_Okhubo.End();
         }
         //Coldman
-        static public void DrawString(string asset, string text_, Rectangle rect_)
+        static public void DrawString(string asset_, string text_, Rectangle rect_)
         {
             Atsushi_Okhubo.Begin();
-            Atsushi_Okhubo.DrawString(fonts[asset], text_,
+            Atsushi_Okhubo.DrawString(fonts[asset_], text_,
                 new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2),
                     rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)),
                     Color.White);

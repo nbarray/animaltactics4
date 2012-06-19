@@ -138,6 +138,7 @@
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonChoix.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonCirculaire.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonDeroulant.cs" />
+    <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonFullScreen.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLangage.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLien.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonNouvellePartie.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuOptionJeu.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuOptionSon.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuPrincipal.cs" />
+    <Compile Include="structure_du_jeu_folder\scene_folder\MenuRejoindre.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuReseau.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\Scene.cs" />
     <Compile Include="structure_du_jeu_folder\text_folder\Onglet.cs" />
