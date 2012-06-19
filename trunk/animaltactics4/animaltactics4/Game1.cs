@@ -16,6 +16,7 @@ namespace animaltactics4
         GraphicsDeviceManager graphics;
         static public bool quitter = false;
         static public bool toFullScreen = false;
+        static public float time = 0f;
 
         public Game1()
         {
@@ -57,7 +58,7 @@ namespace animaltactics4
             {
                 this.Exit();
             }
-
+            time = gameTime.TotalGameTime.Milliseconds;
             if (toFullScreen)
             {
                 toFullScreen = false;

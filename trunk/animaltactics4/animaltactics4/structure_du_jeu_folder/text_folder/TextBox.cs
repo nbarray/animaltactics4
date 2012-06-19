@@ -14,32 +14,31 @@ namespace animaltactics4
         public Rectangle rect, arrowUp, arrowDown;
         private string text;
         private List<string> line;
-        private bool text_overflow, een;
         private int offset;
+        private int margin_top, margin_left;
 
-        public TextBox(Rectangle rect_)
+        public TextBox(Rectangle rect_, int margin_t = 0, int margin_l = 15)
         {
+            margin_left = margin_l;
+            margin_top = margin_t;
             text = "";
             rect = rect_;
             line = new List<string>();
-            text_overflow = false;
             arrowUp = new Rectangle(rect.X + rect.Width + 10, rect.Y, 50, 50);
             arrowDown = new Rectangle(rect.X + rect.Width + 10, rect.Y + rect.Height - 50, 50, 50);
-            een = false;
+            offset = 0;
         }
 
         public void Clear()
         {
             text = "";
         }
-
         public void Add(string text_)
         {
             line.Clear();
             text = text_;
             JustifyText();
         }
-
         public void AddConsoleMode(string text_)
         {
             text = text_;
@@ -60,58 +59,41 @@ namespace animaltactics4
                 }
             }
             line.Add(temp);
-
-            if (line.Count * 20 + 15 > Contents.GetRealRect(rect).Height)
-            {
-                text_overflow = true;
-            }
         }
 
         public void Update()
         {
-            if (text_overflow)
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                if (Contents.contientLaSouris(arrowDown))
                 {
-                    een = true;
-                    if (Contents.contientLaSouris(arrowDown))
-                    {
-                        offset += 20;
-                    }
-                    else if (Contents.contientLaSouris(arrowUp))
-                    {
-                        if (offset >= 20)
-                        {
-                            offset -= 20;
-                        }
-                    }
+                    offset += 20;
                 }
-
-                if (een && Mouse.GetState().LeftButton == ButtonState.Released)
+                else if (Contents.contientLaSouris(arrowUp))
                 {
-                    een = false;
+                    if (offset >= 20)
+                    {
+                        offset -= 20;
+                    }
                 }
             }
         }
 
         public void Draw()
         {
-            
+
             Contents.Draw("textbox", rect);
             for (int i = 0; i < line.Count; i++)
             {
-                Rectangle r = new Rectangle(rect.X, rect.Y + i * 20 + 100 - offset, rect.Width, 10);
-                if (r.Y < rect.Height && r.Y > rect.Y + 80)
+                Rectangle r = new Rectangle(rect.X + margin_left, rect.Y + (i * 20) - offset + margin_top, rect.Width, 10);
+                if (r.Y < Contents.GetRealRect(rect).Y + Contents.GetRealRect(rect).Height && r.Y > Contents.GetRealRect(rect).Y + margin_top)
                 {
-                    Contents.DrawStringInBoxCentered(line[i], r);
+                    Contents.DrawString(line[i], r);
                 }
             }
 
-            if (text_overflow)
-            {
-                Contents.Draw("play", arrowUp);
-                Contents.Draw("play", arrowDown, SpriteEffects.FlipVertically);
-            }
+            Contents.Draw("play", arrowUp);
+            Contents.Draw("play", arrowDown, SpriteEffects.FlipVertically);
         }
     }
 }

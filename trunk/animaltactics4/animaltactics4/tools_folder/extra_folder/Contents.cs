@@ -60,7 +60,7 @@ namespace animaltactics4
             textures.Add(Divers.getName(e_classe.FenrirWarBlade), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.FenrirTireur), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.FenrirPsyker), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
-            textures.Add(Divers.getName(e_classe.FenrirBouclier), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
+            textures.Add(Divers.getName(e_classe.FenrirTemplier), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.FenrirEclaireur), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.FenrirDreadnought), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             textures.Add(Divers.getName(e_classe.FenrirRailgun), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));

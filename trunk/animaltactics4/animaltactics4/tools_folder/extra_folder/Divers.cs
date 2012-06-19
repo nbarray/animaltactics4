@@ -78,7 +78,7 @@ namespace animaltactics4
         FenrirWarBlade,//33
         FenrirTireur,//42
         FenrirPsyker,//39
-        FenrirBouclier,//37
+        FenrirTemplier,//37
         FenrirEclaireur,//31
         FenrirDreadnought,//42
         FenrirRailgun,//63
@@ -306,7 +306,7 @@ namespace animaltactics4
                     return "Tireurs";
                 case e_classe.FenrirPsyker:
                     return "Psykers";
-                case e_classe.FenrirBouclier:
+                case e_classe.FenrirTemplier:
                     return "Porteurs de boucliers";
                 case e_classe.FenrirEclaireur:
                     return "Eclaireurs";
@@ -407,7 +407,7 @@ namespace animaltactics4
                 case e_classe.FenrirPsyker:
                     return "Seul mage Fenrir permettant d'être efficace contres certaines \nunités très resistantes physiques par exemple les tanks ou Odin. Il \nattaque à moyenne distance.";
 
-                case e_classe.FenrirBouclier:
+                case e_classe.FenrirTemplier:
                     return "Une sorte de chevalier Fenrir relativement défensif se \nbattant au contact.";
 
                 case e_classe.FenrirEclaireur:
