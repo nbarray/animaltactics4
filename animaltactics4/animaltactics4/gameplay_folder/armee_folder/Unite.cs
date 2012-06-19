@@ -1924,11 +1924,11 @@ namespace animaltactics4
         }
         #endregion
 
-        public void utiliserIA(MoteurGraphique moteurgraphique_, Armee armee_, SystemeDeJeu gameplay_)
+        public void utiliserIA(MoteurGraphique moteurgraphique_, Armee armee_, SystemeDeJeu gameplay_, HUD hud_)
         {
             if (fileDeMouvements.Count == 0)
             {
-                IA.Play(this, moteurgraphique_, armee_, gameplay_);
+                IA.Play(this, moteurgraphique_, armee_, gameplay_, hud_);
             }
         }
         public void reactiverIA()
