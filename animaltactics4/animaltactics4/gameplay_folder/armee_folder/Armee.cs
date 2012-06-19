@@ -309,7 +309,7 @@ namespace animaltactics4
                     AddUnite(TypeUnite.Base, null, null, Divers.getName(classe_), 12, 11, 9, 9, 8, 11, 12, portee, typedAttaque,
                         this.numeroarmee, 44, 8, ia_);
                     break;
-                case e_classe.FenrirBouclier:
+                case e_classe.FenrirTemplier:
                     portee[1] = 9;
                     portee[2] = 5;
                     AddUnite(TypeUnite.Base, null, null, Divers.getName(classe_), 13, 7, 13, 15, 11, 10, 8, portee, typedAttaque,

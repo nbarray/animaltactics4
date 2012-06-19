@@ -85,7 +85,7 @@ namespace animaltactics4
                 case e_classe.FenrirPsyker:
                     points = 39;
                     break;
-                case e_classe.FenrirBouclier:
+                case e_classe.FenrirTemplier:
                     points = 37;
                     break;
                 case e_classe.FenrirEclaireur:

@@ -32,7 +32,7 @@ namespace animaltactics4
             army = new Armee(2, e_race.Random, Color.White, 0, 0,0);
             army.AddUnite(e_classe.PingvinOdin);
             pressed = false;
-            view = e_classe.FenrirBouclier;
+            view = e_classe.FenrirTemplier;
             ToutesLesUnites = new Dictionary<e_race, List<FausseUnite>>();
             #region ping
             //0 ping
@@ -71,7 +71,7 @@ namespace animaltactics4
             ToutesLesUnites[e_race.Fenrir].Add(new FausseUnite(e_classe.FenrirTireur));
             ToutesLesUnites[e_race.Fenrir].Add(new FausseUnite(e_classe.FenrirPsyker));
             ToutesLesUnites[e_race.Fenrir].Add(new FausseUnite(e_classe.FenrirEclaireur));
-            ToutesLesUnites[e_race.Fenrir].Add(new FausseUnite(e_classe.FenrirBouclier));
+            ToutesLesUnites[e_race.Fenrir].Add(new FausseUnite(e_classe.FenrirTemplier));
             #endregion
             #region krissa
             //3 kriss
@@ -88,7 +88,7 @@ namespace animaltactics4
             #endregion
             NEW();
 
-            writer = new WriteBox(new Rectangle(600, Divers.Y - 110, 450, 75));
+            writer = new WriteBox(new Rectangle(600, Divers.Y - 220, 450, 75));
         }
 
         //Loohy

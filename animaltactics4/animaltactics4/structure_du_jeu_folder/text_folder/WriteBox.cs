@@ -13,9 +13,8 @@ namespace animaltactics4
         public bool selected;
         public string text;
         private bool een, lettreUnique;
-        private Keys actual;
         private Rectangle cursor;
-
+        private const int OFFSET = 100;
         public WriteBox(Rectangle rect_)
         {
             rect = rect_;
@@ -23,8 +22,7 @@ namespace animaltactics4
             text = "";
             een = false;
             lettreUnique = false;
-            actual = Keys.None;
-            cursor = new Rectangle(rect.X + 42, rect.Y + 15, 5, rect.Height - 35);
+            cursor = new Rectangle(rect.X + 42, rect.Y + 15, 5, rect.Height - 42);
         }
 
         public void Update()
@@ -35,12 +33,12 @@ namespace animaltactics4
                 Keys[] keys = Keyboard.GetState().GetPressedKeys();
                 Keys temp = Keys.None;
                 foreach (Keys item in keys)
-	            {
+                {
                     if (item != Keys.None)
                     {
                         temp = item;
                     }
-	            }
+                }
 
                 if (temp != Keys.None && ((int)temp >= 65 && (int)temp <= 90 || temp == Keys.Back))
                 {
@@ -53,10 +51,10 @@ namespace animaltactics4
                         }
                         else
                         {
-                            text += (char)(int)temp;
+                            text += Input.GetValueOf(temp);
                         }
 
-                        cursor.X = rect.X + 42 + (int)Contents.MeasureString(text).X;                        
+                        cursor.X = rect.X + (int)Contents.MeasureString(text).X + 42;
                     }
                 }
 
@@ -96,14 +94,6 @@ namespace animaltactics4
             if (selected)
             {
                 Contents.Draw("bouton_selected", rect);
-                if (TimeZone.CurrentTimeZone.ToLocalTime(new DateTime()).Millisecond % 500 == 0)
-                {
-                    Contents.Draw("px", cursor, Color.BlanchedAlmond);
-                }
-                else
-                {
-                    Contents.Draw("px", cursor, Color.Black);
-                }
                 
             }
             else
@@ -111,7 +101,7 @@ namespace animaltactics4
                 Contents.Draw("bouton_normal", rect);
             }
 
-            Contents.DrawString(text, new Rectangle(rect.X + 50, rect.Y + 15, rect.Width, rect.Height));
+            Contents.DrawString(text, new Rectangle(rect.X + OFFSET, rect.Y + 15, rect.Width, rect.Height));
         }
     }
 }
