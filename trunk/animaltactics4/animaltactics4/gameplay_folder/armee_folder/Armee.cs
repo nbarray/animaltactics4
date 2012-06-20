@@ -10,7 +10,7 @@ namespace animaltactics4
     class Armee
     {
         public List<Unite> bataillon;
-        public Vector2 QG;
+        public Point QG;
 
         public e_race espece;
         public Color couleur;
@@ -25,7 +25,7 @@ namespace animaltactics4
         public Armee(int numeroarmee_, e_race espece_, Color couleur_, int sizeX_, int sizeY_, int camp_)
         {
             camp = camp_;
-            QG = new Vector2(0, 0);
+            QG = new Point(0, 0);
             IA = false;
             score = 1;
             numeroarmee = numeroarmee_;
@@ -103,7 +103,7 @@ namespace animaltactics4
         public Armee(int numeroarmee_, e_race espece_, Color couleur_, int sizeX_, int sizeY_, int camp_, int difficulte_)
         {
             camp = camp_;
-            QG = new Vector2(0, 0);
+            QG = new Point(0, 0);
             IA = true;
             score = 0;
             difficulte = difficulte_;
@@ -345,7 +345,7 @@ namespace animaltactics4
                     typedAttaque[3] = false;
                     typedAttaque[4] = false;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.FenrirRailgun, e_typeDePouvoir.Degat, new List<int> { 7, 8, 9, 10 }
-                        , true, 0, 0, 10, true), null, 
+                        , true, 0, 0, 10, true), null,
                         Divers.getName(classe_), 7, 15, 12, 12, 17, 12, 11, portee, typedAttaque,
                         this.numeroarmee, 48, 8, ia_);
                     break;
@@ -645,124 +645,166 @@ namespace animaltactics4
         {
             for (int f = 0; f < effectif; f++)
             {
-                #region case libre
-                if (moteurgraphique_.map[(int)QG.X, (int)QG.Y].estAccessible)
+                switch (f)
                 {
-                    bataillon[f].i = (int)QG.X;
-                    bataillon[f].j = (int)QG.Y;
-                }
-                else
-                {
-                    if (moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y].estAccessible)
-                    {
+                    case 0:
+                        bataillon[f].i = (int)QG.X;
+                        bataillon[f].j = (int)QG.Y;
+                        break;
+                    case 1:
                         bataillon[f].i = (int)QG.X - 1;
                         bataillon[f].j = (int)QG.Y;
-                    }
-                    else
-                    {
-                        if (moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y - 1].estAccessible)
-                        {
-                            bataillon[f].i = (int)QG.X - 1;
-                            bataillon[f].j = (int)QG.Y - 1;
-                        }
-                        else
-                        {
-                            if (moteurgraphique_.map[(int)QG.X, (int)QG.Y - 1].estAccessible)
-                            {
-                                bataillon[f].i = (int)QG.X;
-                                bataillon[f].j = (int)QG.Y - 1;
-                            }
-                            else
-                            {
-                                if (moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y].estAccessible)
-                                {
-                                    bataillon[f].i = (int)QG.X + 1;
-                                    bataillon[f].j = (int)QG.Y;
-                                }
-                                else
-                                {
-                                    if (moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y + 1].estAccessible)
-                                    {
-                                        bataillon[f].i = (int)QG.X + 1;
-                                        bataillon[f].j = (int)QG.Y + 1;
-                                    }
-                                    else
-                                    {
-                                        if (moteurgraphique_.map[(int)QG.X, (int)QG.Y + 1].estAccessible)
-                                        {
-                                            bataillon[f].i = (int)QG.X;
-                                            bataillon[f].j = (int)QG.Y + 1;
-                                        }
-                                        else
-                                        {
-                                            if (moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y + 1].estAccessible)
-                                            {
-                                                bataillon[f].i = (int)QG.X - 1;
-                                                bataillon[f].j = (int)QG.Y + 1;
-                                            }
-                                            else
-                                            {
-                                                if (moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y + 1].estAccessible)
-                                                {
-                                                    bataillon[f].i = (int)QG.X - 2;
-                                                    bataillon[f].j = (int)QG.Y + 1;
-                                                }
-                                                else
-                                                {
-                                                    if (moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y].estAccessible)
-                                                    {
-                                                        bataillon[f].i = (int)QG.X - 2;
-                                                        bataillon[f].j = (int)QG.Y;
-                                                    }
-                                                    else
-                                                    {
-                                                        if (moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y - 1].estAccessible)
-                                                        {
-                                                            bataillon[f].i = (int)QG.X - 2;
-                                                            bataillon[f].j = (int)QG.Y - 1;
-                                                        }
-                                                        else
-                                                        {
-                                                            if (moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y - 2].estAccessible)
-                                                            {
-                                                                bataillon[f].i = (int)QG.X - 2;
-                                                                bataillon[f].j = (int)QG.Y - 2;
-                                                            }
-                                                            else
-                                                            {
-                                                                if (moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y - 2].estAccessible)
-                                                                {
-                                                                    bataillon[f].i = (int)QG.X - 1;
-                                                                    bataillon[f].j = (int)QG.Y - 2;
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (moteurgraphique_.map[(int)QG.X, (int)QG.Y - 2].estAccessible)
-                                                                    {
-                                                                        bataillon[f].i = (int)QG.X;
-                                                                        bataillon[f].j = (int)QG.Y - 2;
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        if (moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y - 2].estAccessible)
-                                                                        {
-                                                                            bataillon[f].i = (int)QG.X + 1;
-                                                                            bataillon[f].j = (int)QG.Y - 2;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                        break;
+                    case 2:
+                        bataillon[f].i = (int)QG.X - 1;
+                        bataillon[f].j = (int)QG.Y - 1;
+                        break;
+                    case 3:
+                        bataillon[f].i = (int)QG.X;
+                        bataillon[f].j = (int)QG.Y - 1;
+                        break;
+                    case 4:
+                        bataillon[f].i = (int)QG.X + 1;
+                        bataillon[f].j = (int)QG.Y - 1;
+                        break;
+                    case 5:
+                        bataillon[f].i = (int)QG.X + 1;
+                        bataillon[f].j = (int)QG.Y;
+                        break;
+                    case 6:
+                        bataillon[f].i = (int)QG.X + 1;
+                        bataillon[f].j = (int)QG.Y + 1;
+                        break;
+                    case 7:
+                        bataillon[f].i = (int)QG.X;
+                        bataillon[f].j = (int)QG.Y + 1;
+                        break;
+                    case 8:
+                        bataillon[f].i = (int)QG.X - 1;
+                        bataillon[f].j = (int)QG.Y + 1;
+                        break;
+                    default:
+                        break;
                 }
+                #region case libre
+                //if (moteurgraphique_.map[(int)QG.X, (int)QG.Y].estAccessible)
+                //{
+                //    bataillon[f].i = (int)QG.X;
+                //    bataillon[f].j = (int)QG.Y;
+                //}
+                //else
+                //{
+                //    if ((int)QG.X - 1 >= 0 && (int)QG.X - 1 < moteurgraphique_.longueur && moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y].estAccessible)
+                //    {
+                //        bataillon[f].i = (int)QG.X - 1;
+                //        bataillon[f].j = (int)QG.Y;
+                //    }
+                //    else
+                //    {
+                //        if ((int)QG.X - 1 >= 0 && (int)QG.Y - 1 >= 0 && moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y - 1].estAccessible)
+                //        {
+                //            bataillon[f].i = (int)QG.X - 1;
+                //            bataillon[f].j = (int)QG.Y - 1;
+                //        }
+                //        else
+                //        {
+                //            if (QG.Y - 1 >= 0 && moteurgraphique_.map[(int)QG.X, (int)QG.Y - 1].estAccessible)
+                //            {
+                //                bataillon[f].i = (int)QG.X;
+                //                bataillon[f].j = (int)QG.Y - 1;
+                //            }
+                //            else
+                //            {
+                //                if ((int)QG.Y - 1 >= 0 && (int)QG.X + 1 < moteurgraphique_.longueur && moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y - 1].estAccessible)
+                //                {
+                //                    bataillon[f].i = (int)QG.X + 1;
+                //                    bataillon[f].j = (int)QG.Y - 1;
+                //                }
+                //                else
+                //                {
+                //                    if ((int)QG.X + 1 >= 0 && (int)QG.X + 1 < moteurgraphique_.longueur && moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y].estAccessible)
+                //                    {
+                //                        bataillon[f].i = (int)QG.X + 1;
+                //                        bataillon[f].j = (int)QG.Y;
+                //                    }
+                //                    else
+                //                    {
+                //                        if ((int)QG.X + 1 >= 0 && (int)QG.X + 1 < moteurgraphique_.longueur && moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y + 1].estAccessible)
+                //                        {
+                //                            bataillon[f].i = (int)QG.X + 1;
+                //                            bataillon[f].j = (int)QG.Y + 1;
+                //                        }
+                //                        else
+                //                        {
+                //                            if ((int)QG.Y + 1 < moteurgraphique_.largeur &&
+                //                                                                moteurgraphique_.map[(int)QG.X, (int)QG.Y + 1].estAccessible)
+                //                            {
+                //                                bataillon[f].i = (int)QG.X;
+                //                                bataillon[f].j = (int)QG.Y + 1;
+                //                            }
+                //                            else
+                //                            {
+                //                                if ((int)QG.Y + 1 < moteurgraphique_.largeur &&
+                //                                                                (int)QG.X - 1 >= 0 && moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y + 1].estAccessible)
+                //                                {
+                //                                    bataillon[f].i = (int)QG.X - 1;
+                //                                    bataillon[f].j = (int)QG.Y + 1;
+                //                                }
+                //                                else
+                //                                {
+                //                                    if ((int)QG.Y + 1 < moteurgraphique_.largeur &&
+                //                                                                (int)QG.X - 2 >= 0 && moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y + 1].estAccessible)
+                //                                    {
+                //                                        bataillon[f].i = (int)QG.X - 2;
+                //                                        bataillon[f].j = (int)QG.Y + 1;
+                //                                    }
+                //                                    else
+                //                                    {
+                //                                        if ((int)QG.X - 2 >= 0 && moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y].estAccessible)
+                //                                        {
+                //                                            bataillon[f].i = (int)QG.X - 2;
+                //                                            bataillon[f].j = (int)QG.Y;
+                //                                        }
+                //                                        else
+                //                                        {
+                //                                            if ((int)QG.Y - 1 >= 0 &&
+                //                                                                (int)QG.X - 2 >= 0 && moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y - 1].estAccessible)
+                //                                            {
+                //                                                bataillon[f].i = (int)QG.X - 2;
+                //                                                bataillon[f].j = (int)QG.Y - 1;
+                //                                            }
+                //                                            else
+                //                                            {
+                //                                                if ((int)QG.Y - 2 >= 0 &&
+                //                                                                (int)QG.X - 2 >= 0 && moteurgraphique_.map[(int)QG.X - 2, (int)QG.Y - 2].estAccessible)
+                //                                                {
+                //                                                    bataillon[f].i = (int)QG.X - 2;
+                //                                                    bataillon[f].j = (int)QG.Y - 2;
+                //                                                }
+                //                                                else
+                //                                                {
+                //                                                    if ((int)QG.Y - 2 >= 0 &&
+                //                                                                (int)QG.X - 1 >= 0 && moteurgraphique_.map[(int)QG.X - 1, (int)QG.Y - 2].estAccessible)
+                //                                                    {
+                //                                                        bataillon[f].i = (int)QG.X - 1;
+                //                                                        bataillon[f].j = (int)QG.Y - 2;
+                //                                                    }
+                //                                                    else
+                //                                                    {
+                //                                                        if ((int)QG.Y - 2 >= 0 &&
+                //                                                                moteurgraphique_.map[(int)QG.X, (int)QG.Y - 2].estAccessible)
+                //                                                        {
+                //                                                            bataillon[f].i = (int)QG.X;
+                //                                                            bataillon[f].j = (int)QG.Y - 2;
+                //                                                        }
+                //                                                        else
+                //                                                        {
+                //                                                            if ((int)QG.Y - 2 >= 0 &&
+                //                                                                (int)QG.X + 1 < moteurgraphique_.longueur && moteurgraphique_.map[(int)QG.X + 1, (int)QG.Y - 2].estAccessible)
+                //                                                            {
+                //                                                                bataillon[f].i = (int)QG.X + 1;
+                //                                                                bataillon[f].j = (int)QG.Y - 2;
+                //                                                            }}}}}}}}}}}}}}}}
                 #endregion
                 bataillon[f].Afficher(moteurgraphique_.map[bataillon[f].i, bataillon[f].j], gameplay_);
             }
