@@ -210,26 +210,26 @@ namespace animaltactics4
                                     case e_EtatAnim.mouvement1:
                                         rect.X += iDepart * 24;
                                         rect.Y += jDepart * 12;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Green);
+                                        Contents.Draw(textureUnite, rect, Color.Green, sousRectUnite);
                                         rect.X -= iDepart * 24;
                                         rect.Y -= jDepart * 12;
                                         break;
                                     case e_EtatAnim.mouvement2:
                                         rect.X += iDepart * 16;
                                         rect.Y += jDepart * 8;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Green);
+                                        Contents.Draw(textureUnite, rect, Color.Green, sousRectUnite);
                                         rect.X -= iDepart * 16;
                                         rect.Y -= jDepart * 8;
                                         break;
                                     case e_EtatAnim.mouvement3:
                                         rect.X += iDepart * 8;
                                         rect.Y += jDepart * 4;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Green);
+                                        Contents.Draw(textureUnite, rect, Color.Green, sousRectUnite);
                                         rect.X -= iDepart * 8;
                                         rect.Y -= jDepart * 4;
                                         break;
                                     default:
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Green);
+                                        Contents.Draw(textureUnite, rect, Color.Green, sousRectUnite);
                                         break;
                                 }
                             }
@@ -309,26 +309,26 @@ namespace animaltactics4
                                     case e_EtatAnim.mouvement1:
                                         rect.X += iDepart * 24;
                                         rect.Y += jDepart * 12;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Gray);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 24;
                                         rect.Y -= jDepart * 12;
                                         break;
                                     case e_EtatAnim.mouvement2:
                                         rect.X += iDepart * 16;
                                         rect.Y += jDepart * 8;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Gray);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 16;
                                         rect.Y -= jDepart * 8;
                                         break;
                                     case e_EtatAnim.mouvement3:
                                         rect.X += iDepart * 8;
                                         rect.Y += jDepart * 4;
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Gray);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 8;
                                         rect.Y -= jDepart * 4;
                                         break;
                                     default:
-                                        //sprite_.Draw(tex_.Textures_[textureUnite], rect, sousRectUnite, Color.Gray);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         break;
                                 }
                             }
@@ -448,7 +448,7 @@ namespace animaltactics4
             //Contents.DrawStringInBoxCentered(i + ";" + j, rect);
         }
         //Loohy
-        public void Drawpv(int camerax_, int cameray_, Color couleur_, int race_, int direction_)//14,15,16,17
+        public void Drawpv(int camerax_, int cameray_, Color couleur_, int race_, int direction_)//1,2,3,4
         {
             if (presence && visible)
             {
