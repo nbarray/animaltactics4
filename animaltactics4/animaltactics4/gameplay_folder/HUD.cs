@@ -35,8 +35,8 @@ namespace animaltactics4
             get { return Victory; }
             set { Victory = value; }
         }
-        private Color VictoryColor;
-        private int VictoryRace;//0,1,2,3
+        private List<Color> VictoryColor;
+        private List<int> VictoryRace;//0,1,2,3
         private int positionDuTexteY, positionDuTexteX;
         public BoutonAction bAttaque, bMouvement, bPouvoir;
 
@@ -56,6 +56,8 @@ namespace animaltactics4
             tableauDecalage = new int[20];
             tableauRespiration = new int[20];
             Victory = false;
+            VictoryColor = new List<Color>();
+            VictoryRace = new List<int>();
         }
 
         public void Draw(SystemeDeJeu gameplay_, MoteurGraphique moteurgraphique_, int tempsRestant_)
@@ -63,7 +65,7 @@ namespace animaltactics4
             #region HUD+Time
             Contents.Draw("px3", new Rectangle(0, 700, 1200, 200), Color.DarkGray);
             Contents.Draw("px3", new Rectangle(25, 725, 150, 150), Color.Red);
-            Contents.DrawStringInBoxCentered(Math.Max(0,tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
+            Contents.DrawStringInBoxCentered(Math.Max(0, tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
             #endregion
             if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0
                 && gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
@@ -80,7 +82,7 @@ namespace animaltactics4
                 int j = gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j;
                 Rectangle rect = genererRectangle(i, j, moteurgraphique_.map[i, j].altitude,
                     moteurgraphique_.camerax, moteurgraphique_.cameray, moteurgraphique_.direction);
-                DrawButtons(900,725,gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                DrawButtons(900, 725, gameplay_.listeDesJoueurs[gameplay_.tourencours].
                     bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == e_typeUnite.Elite);
                 UpdateButtons(ref gameplay_.mood, gameplay_.listeDesJoueurs[gameplay_.tourencours].
                     bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == e_typeUnite.Elite);
@@ -94,7 +96,7 @@ namespace animaltactics4
                     flashColor);
                 Contents.Draw("gordon inverse", new Rectangle(-flash, 0, 1200, 900),
                     flashColor);
-                if (flash < -(int)(1200 ))
+                if (flash < -(int)(1200))
                 {
                     doFlash = false;
                 }
@@ -104,11 +106,11 @@ namespace animaltactics4
             if (AffichageCombat > 0)
             {
                 #region combat
-                if (AffichageCombat % 35 == 0)
-                {
-                    respi();
-                }
-                AffichageCombat -= 18;
+                //if (AffichageCombat % 35 == 0)
+                //{
+                //    respi();
+                //}
+                //AffichageCombat -= 18;
 
                 //sprite_.Draw(tex_.Textures_[12], new Rectangle((int)(100 * resolution_x), (int)(300 * resolution_y), (int)(700 * resolution_x),
                 //(int)(300 * resolution_y)), Color.White);
@@ -309,22 +311,26 @@ namespace animaltactics4
                 //    DrawScore(sprite_, gameplay_, tex_, new Vector2(900, 170), (int)gameplay_.numeroDeTour);
             }
             #endregion
-            if (Victory && AffichageCombat <= 0)
+            if (Victory /*&& AffichageCombat <= 0*/)
             {
                 #region victoire
-                //sprite_.Draw(tex_.Textures_[25], new Rectangle(0, 0, (int)(1200 * resolution_x), (int)(900 * resolution_y)), VictoryColor);
-                //sprite_.Draw(tex_.Textures_[22], new Rectangle((int)(475 * resolution_x), (int)(375 * resolution_y), (int)(250 * resolution_x),
-                //    (int)(250 * resolution_y)), new Rectangle(250 * VictoryRace, 0, 250, 250), Color.White);
-                //DrawScore(sprite_, gameplay_, tex_, new Vector2(450, 720), (int)gameplay_.numeroDeTour);
+                Contents.Draw("victoire", new Rectangle(0, 0, 1200, 900), VictoryColor[0]);
+                for (int i = 0; i < VictoryRace.Count; i++)
+                {
+                    Contents.Draw("e_race", new Rectangle(602 + 254 * i - 127 * VictoryRace.Count, 375, 250,
+                        250), new Rectangle(250 * VictoryRace[i], 0, 250, 250));
+                    Contents.Draw("e_race", new Rectangle(602+254*i-127*VictoryRace.Count, 375, 250,
+                        250), new Color(VictoryColor[i].R, VictoryColor[i].G, VictoryColor[i].B, VictoryColor[i].A/3), new Rectangle(250 * VictoryRace[i], 0, 250, 250));
+                }
+                //DrawScore(gameplay_, tex_, new Vector2(450, 720), (int)gameplay_.numeroDeTour);
                 #endregion
             }
         }
         private void compteTour(int t_, Vector2 v_)
         {
-            //string s = "Tour : " + t_.ToString();
-            //sprite_.DrawString(Textures.tahoma, s,
-            //    new Vector2(v_.X - Textures.tahoma.MeasureString(s).X / 2 + 1, v_.Y + 1), Color.DarkGray);
-            //sprite_.DrawString(Textures.tahoma, s, new Vector2(v_.X - Textures.tahoma.MeasureString(s).X / 2, v_.Y), Color.White);
+            string s = "Tour : " + t_.ToString();
+            Contents.DrawString(s, new Rectangle((int)(v_.X - Contents.MeasureString(s).X / 2 + 1), (int)(v_.Y + 1), 0, 0), Color.DarkGray);
+            Contents.DrawString(s, new Rectangle((int)(v_.X - Contents.MeasureString(s).X / 2), (int)(v_.Y), 0, 0));
         }
         private void DrawScore(SystemeDeJeu gameplay_, Vector2 v_, int t_)
         {
@@ -357,10 +363,10 @@ namespace animaltactics4
         public void DrawButtons(int x_, int y_, bool pouvoir_)
         {
             bAttaque.DrawPos(x_, y_);
-            bMouvement.DrawPos(x_, y_+30);
+            bMouvement.DrawPos(x_, y_ + 30);
             if (pouvoir_)
             {
-                bPouvoir.DrawPos(x_ , y_ +60);
+                bPouvoir.DrawPos(x_, y_ + 60);
             }
         }
         public void UpdateButtons(ref e_modeAction mood_, bool pouvoir_)
@@ -379,19 +385,19 @@ namespace animaltactics4
 
         public bool intersect(Point p_)
         {
-            bool intersect = p_.X > (int)(900 );
+            bool intersect = p_.X > (int)(900);
             if (AffichageCombat > 0)
             {
-                intersect = intersect || (p_.X > (int)(100 ) && p_.X < (int)(800 ))
-                    || (p_.Y > (int)(300 ) && p_.Y < (int)(600 ));
+                intersect = intersect || (p_.X > (int)(100) && p_.X < (int)(800))
+                    || (p_.Y > (int)(300) && p_.Y < (int)(600));
             }
             return intersect;
         }
 
         public void statUnite(Unite unite_, Color couleur_)
         {
-            Contents.DrawString( unite_.nom, new Rectangle(positionDuTexteX, positionDuTexteY,0,0), couleur_);
-            Contents.DrawString(Dico.langues[Dico.current][19]+" : " + unite_.getStat[0], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (3), 0, 0),
+            Contents.DrawString(unite_.nom, new Rectangle(positionDuTexteX, positionDuTexteY, 0, 0), couleur_);
+            Contents.DrawString(Dico.langues[Dico.current][19] + " : " + unite_.getStat[0], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (3), 0, 0),
                 couleur_);
             Contents.DrawString(Dico.langues[Dico.current][20] + " : " + unite_.getStat[1], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (4), 0, 0),
                 couleur_);
@@ -411,7 +417,7 @@ namespace animaltactics4
                          new Rectangle(positionDuTexteX + (int)Contents.MeasureString(Dico.langues[Dico.current][144] + " : ").X + 2, positionDuTexteY + 16 * 1 + 4, 16, 16),
                          new Rectangle((unite_.getStat[7] - 1) * 16, 0, 16, 16));
             // +++++++++++++++++++++
-            Contents.DrawString("Experience : " + unite_.getStat[8], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (2),0,0),
+            Contents.DrawString("Experience : " + unite_.getStat[8], new Rectangle(positionDuTexteX, positionDuTexteY + 16 * (2), 0, 0),
                 couleur_);
             Contents.Draw("px", new Rectangle(positionDuTexteX, positionDuTexteY + 167, 102, 10), Color.Black);
             Contents.Draw("px", new Rectangle(positionDuTexteX + 1, positionDuTexteY + 168,
@@ -422,7 +428,7 @@ namespace animaltactics4
                 Contents.Draw("px", new Rectangle(positionDuTexteX + 1, positionDuTexteY + 180,
                     (100 * unite_.energieactuel) / unite_.energiemax, 7), Color.Purple);
             }
-            Contents.Draw(unite_.image, new Rectangle(positionDuTexteX - 100, positionDuTexteY+10, 100, 100), new Rectangle(0, 0, 128, 128));
+            Contents.Draw(unite_.image, new Rectangle(positionDuTexteX - 100, positionDuTexteY + 10, 100, 100), new Rectangle(0, 0, 128, 128));
         }
 
         public void fight(Unite attaquant_, Unite defenseur_, string texte1_, int degats1_, Color couleur1_,
@@ -470,28 +476,33 @@ namespace animaltactics4
             }
         }
 
-        public void victory(Color color_, e_race race_)
+        public void victory(List<Color> color_, List<e_race> race_)
         {
             Victory = true;
             VictoryColor = color_;
-            switch (race_)
+            VictoryRace = new List<int>();
+            foreach (e_race item in race_)
             {
-                case e_race.Fenrir:
-                    VictoryRace = 0;
-                    break;
-                case e_race.Krissa:
-                    VictoryRace = 3;
-                    break;
-                case e_race.Pandawan:
-                    VictoryRace = 2;
-                    break;
-                case e_race.Pingvin:
-                    VictoryRace = 1;
-                    break;
-                default:
-                    break;
+                switch (item)
+                {
+                    case e_race.Fenrir:
+                        VictoryRace.Add(0);
+                        break;
+                    case e_race.Krissa:
+                        VictoryRace.Add(3);
+                        break;
+                    case e_race.Pandawan:
+                        VictoryRace.Add(2);
+                        break;
+                    case e_race.Pingvin:
+                        VictoryRace.Add(1);
+                        break;
+                    default:
+                        VictoryRace.Add(-1);
+                        break;
+                }
             }
-            DoAFlash(VictoryColor);
+            DoAFlash(color_[0]);
         }
 
         public Rectangle genererRectangle(int i_, int j_, int altitude_, int camerax_, int cameray_, int direction_)

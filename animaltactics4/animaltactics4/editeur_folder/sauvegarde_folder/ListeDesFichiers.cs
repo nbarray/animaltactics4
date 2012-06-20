@@ -106,8 +106,8 @@ namespace animaltactics4
             Gaia.mapAleaFaceToFace(32, 32, 4, 5, 4);
             t = "Carte asiatique aléatoire";
             SauvegardeCarte(ref t, Gaia);
-            Gaia.mapAleaDesert(32, 32);
-            t = "Carte désertique aléatoire";
+            Gaia.mapAleaHerbe(32, 32, 5,5,5,6);
+            t = "Carte européenne aléatoire";
             SauvegardeCarte(ref t, Gaia);
 
         }

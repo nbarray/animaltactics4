@@ -281,6 +281,7 @@ namespace animaltactics4
                 listeDesJoueurs.Add(new Armee(p, e_race.Random, couleurs_[p], moteurgraphique_.longueur, moteurgraphique_.largeur, camp_[p]));
                 listeDesJoueurs[p].ConvertFromList(Divers.obtenirList(nomDesArmees_[p]), difficultes_[p]);
                 listeDesJoueurs[p].QG = new Vector2((int)((moteurgraphique_.longueur * (p + 1)) / 7), (int)((moteurgraphique_.largeur * (p + 1)) / 7));
+                listeDesJoueurs[p].couleur = couleurs_[p];
             }
             conditionsDeVictoire = conditionsDeVictoire_;
             pop(moteurgraphique_);
@@ -340,13 +341,13 @@ namespace animaltactics4
                         bool een = true;
                         for (int k = 0; k < listeDesJoueurs.Count; k++)
                         {
-                            if (k != p)
+                            if (listeDesJoueurs[k].camp != listeDesJoueurs[p].camp)
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneHeroAlive;
                             }
                             if (een)
                             {
-                                victory(p, hud_);
+                                victory(listeDesJoueurs[p].camp, hud_);
                             }
                         }
                     }
@@ -359,13 +360,13 @@ namespace animaltactics4
                         bool een = true;
                         for (int k = 0; k < listeDesJoueurs.Count; k++)
                         {
-                            if (k != p)
+                            if (listeDesJoueurs[k].camp != listeDesJoueurs[p].camp)
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneAlive;
                             }
                             if (een)
                             {
-                                victory(p, hud_);
+                                victory(listeDesJoueurs[p].camp, hud_);
                             }
                         }
                     }
@@ -378,13 +379,13 @@ namespace animaltactics4
                         bool een = true;
                         for (int k = 0; k < listeDesJoueurs.Count; k++)
                         {
-                            if (k != p)
+                            if (listeDesJoueurs[k].camp != listeDesJoueurs[p].camp)
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneAlive;
                             }
                             if (een)
                             {
-                                victory(p, hud_);
+                                victory(listeDesJoueurs[p].camp, hud_);
                             }
                         }
                     }
@@ -393,7 +394,7 @@ namespace animaltactics4
                     {
                         if ((int)listeDesJoueurs[g].QG.X == tresor_i && (int)listeDesJoueurs[g].QG.Y == tresor_j)
                         {
-                            victory(g, hud_);
+                            victory(listeDesJoueurs[g].camp, hud_);
                         }
                     }
                     break;
@@ -404,13 +405,13 @@ namespace animaltactics4
                         bool een = true;
                         for (int k = 0; k < listeDesJoueurs.Count; k++)
                         {
-                            if (k != p)
+                            if (listeDesJoueurs[k].camp != listeDesJoueurs[p].camp)
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneAlive;
                             }
                             if (een)
                             {
-                                victory(p, hud_);
+                                victory( listeDesJoueurs[p].camp, hud_);
                             }
                         }
                     }
@@ -419,16 +420,30 @@ namespace animaltactics4
                 default:
                     break;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.Y))
+            {
+                victory(1, hud_);
+            }
         }
 
         //Loohy
-        public void victory(int armeeVictorieuse, HUD hud_)
+        public void victory(int campVictorieux, HUD hud_)
         {
-            hud_.victory(listeDesJoueurs[armeeVictorieuse].couleur, listeDesJoueurs[armeeVictorieuse].espece);
+            List<e_race> races = new List<e_race>();
+            List<Color> couleurs = new List<Color>();
+            foreach (Armee item in listeDesJoueurs)
+            {
+                if (item.camp == campVictorieux)
+                {
+                    races.Add(item.espece);
+                    couleurs.Add(item.couleur);
+                }
+            }
+            hud_.victory(couleurs, races);
         }
         public void egalite(HUD hud_)
         {
-            hud_.victory(Color.Black, e_race.Random);
+            hud_.victory(new List<Color>{Color.Black}, new List<e_race>{e_race.Random});
         }
 
         //Loohy

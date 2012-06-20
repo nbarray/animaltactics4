@@ -112,6 +112,7 @@ namespace animaltactics4
             textures.Add("Bridges", content_.Load<Texture2D>("Image\\Tuile\\bridges"));
 
             textures.Add("textbox", content_.Load<Texture2D>("Image\\Fond\\textbox"));
+            textures.Add("victoire", content_.Load<Texture2D>("Image\\Fond\\victory"));
             textures.Add("cursor_tb", content_.Load<Texture2D>("Image\\Bouton\\cursor_textbox"));
             textures.Add("play", content_.Load<Texture2D>("Image\\Bouton\\lec_play"));
             textures.Add("fog", content_.Load<Texture2D>("Image\\Bouton\\fog"));

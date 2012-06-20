@@ -137,19 +137,19 @@ namespace animaltactics4
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 2, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 3, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 1, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 4, direction);
                                     break;
                                 default:
                                     break;
@@ -180,19 +180,19 @@ namespace animaltactics4
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 2, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 3, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 1, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 4, direction);
                                     break;
                                 default:
                                     break;
@@ -223,19 +223,19 @@ namespace animaltactics4
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 2, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 3, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 1, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 4, direction);
                                     break;
                                 default:
                                     break;
@@ -266,19 +266,19 @@ namespace animaltactics4
                             {
                                 case e_race.Fenrir:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 15, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 2, direction);
                                     break;
                                 case e_race.Krissa:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 16, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 3, direction);
                                     break;
                                 case e_race.Pandawan:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 14, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 1, direction);
                                     break;
                                 case e_race.Pingvin:
                                     map[i, j].Drawpv(camerax, cameray,
-                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 17, direction);
+                                        gameplay_.listeDesJoueurs[map[i, j].pointeurArmee].couleur, 4, direction);
                                     break;
                                 default:
                                     break;

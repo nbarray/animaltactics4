@@ -20,21 +20,29 @@ namespace animaltactics4
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 400, new Rectangle(0, 0, 800, 300), new MenuOption(), 3, false));
             boutons.Add(new BoutonPause(Divers.X / 2 - 200, 300, 69, false));
             boutons.Add(new BoutonPause(0, 0, 68, true));
+            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 750, new Rectangle(0, 0, 800, 300), null, 5, false));
         }
 
         public override void UpdateScene(GameTime gameTime)
         {
             //base.UpdateScene(gameTime);
-            if (!estEnPause)
+            if (!estEnPause && !p.Jackman.Victory_)
             {
                 p.Update(gameTime);
                 ((BoutonPause)boutons[3]).UpdatePause(ref estEnPause);
             }
             else
             {
-                boutons[0].Update(gameTime);
-                boutons[1].Update(gameTime);
-                ((BoutonPause)boutons[2]).UpdatePause(ref estEnPause);
+                if (estEnPause)
+                {
+                    boutons[0].Update(gameTime);
+                    boutons[1].Update(gameTime);
+                    ((BoutonPause)boutons[2]).UpdatePause(ref estEnPause);
+                }
+                else
+                {
+                    boutons[4].Update(gameTime);
+                }
             }
         }
 
@@ -50,6 +58,10 @@ namespace animaltactics4
                 {
                     boutons[i].Draw();
                 }
+            }
+            if (p.Jackman.Victory_)
+            {
+                boutons[4].Draw();
             }
         }
     }
