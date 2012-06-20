@@ -13,8 +13,7 @@ namespace animaltactics4
         public bool selected;
         public string text;
         private bool een, lettreUnique;
-        private Rectangle cursor;
-        private const int OFFSET = 100;
+
         public WriteBox(Rectangle rect_)
         {
             rect = rect_;
@@ -22,7 +21,6 @@ namespace animaltactics4
             text = "";
             een = false;
             lettreUnique = false;
-            cursor = new Rectangle(rect.X + 42, rect.Y + 15, 5, rect.Height - 42);
         }
 
         public void Update()
@@ -40,21 +38,22 @@ namespace animaltactics4
                     }
                 }
 
-                if (temp != Keys.None && ((int)temp >= 65 && (int)temp <= 90 || temp == Keys.Back))
+                if (temp != Keys.None)
                 {
                     if (!lettreUnique)
                     {
                         lettreUnique = true;
-                        if (temp == Keys.Back)
+                        if (temp == Keys.Back && text.Length > 0)
                         {
                             text = text.Substring(0, text.Length - 1);
                         }
                         else
                         {
-                            text += Input.GetValueOf(temp);
+                            if (text.Length < 20)
+                            {
+                                text += Input.GetValueOf(temp);
+                            }
                         }
-
-                        cursor.X = rect.X + (int)Contents.MeasureString(text).X + 42;
                     }
                 }
 
@@ -66,7 +65,7 @@ namespace animaltactics4
                     }
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter) || (!Contents.contientLaSouris(rect) && Mouse.GetState().LeftButton == ButtonState.Pressed))
                 {
                     selected = false;
                 }
@@ -94,14 +93,12 @@ namespace animaltactics4
             if (selected)
             {
                 Contents.Draw("bouton_selected", rect);
-                
             }
             else
             {
                 Contents.Draw("bouton_normal", rect);
             }
-
-            Contents.DrawString(text, new Rectangle(rect.X + OFFSET, rect.Y + 15, rect.Width, rect.Height));
+            Contents.DrawString("writebox",text, new Rectangle(rect.X + 45,  rect.Y + rect.Height / 2 - (int)Contents.MeasureString(text, "writebox").Y / 2, rect.Width, rect.Height));
         }
     }
 }

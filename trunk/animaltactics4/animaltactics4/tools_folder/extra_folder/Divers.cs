@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework;
 
 namespace animaltactics4
 {
@@ -200,8 +201,11 @@ namespace animaltactics4
 
     static class Divers
     {
-        static public readonly int X = 1200;
-        static public readonly int Y = 900;
+        public static readonly int X = 1200;
+        public static readonly int Y = 900;
+        public static string pseudo = "anonymous", ip = "192.168.0.1";
+        public static Color pseudoRejoindreColor = Color.White;
+        public static Color ipRejoindreColor = Color.White;
 
         //Loohy
         public static void serializer(object o, string file)
@@ -460,5 +464,6 @@ namespace animaltactics4
             }
             
         }
+
     }
 }
