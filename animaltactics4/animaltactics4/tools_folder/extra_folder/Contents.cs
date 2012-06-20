@@ -95,9 +95,13 @@ namespace animaltactics4
             fonts.Add("bouton", content_.Load<SpriteFont>("SpriteFont\\sfBouton"));
             fonts.Add("text", content_.Load<SpriteFont>("SpriteFont\\sftext"));
             fonts.Add("titre", content_.Load<SpriteFont>("SpriteFont\\titre"));
+            fonts.Add("writebox", content_.Load<SpriteFont>("SpriteFont\\writebox"));
+
             textures.Add("tresor", content_.Load<Texture2D>("Image\\Info\\tresor"));
             textures.Add("grade", content_.Load<Texture2D>("Image\\Info\\Grade"));
+
             videos.Add("intro", content_.Load<Video>("Video\\intro"));
+
             textures.Add("mouvement", content_.Load<Texture2D>("Image\\Info\\BarreDeMouvement"));
             textures.Add("flag1", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
 
@@ -408,6 +412,11 @@ namespace animaltactics4
         static public Vector2 MeasureString(string s_)
         {
             return fonts["bouton"].MeasureString(s_);
+        }
+        //Coldman
+        static public Vector2 MeasureString(string s_, string asset)
+        {
+            return fonts[asset].MeasureString(s_);
         }
 
         static public void Calculs(Ligne l_)

@@ -173,6 +173,9 @@ namespace animaltactics4
             "Attaque", //145
             "Mouvement", //146
             "Pouvoir", //147
+            "Connection", // 148
+            "Pseudonyme", // 149
+            "Addresse IP", // 150
             });
 
             langues.Add("English", new string[]{
@@ -324,6 +327,9 @@ namespace animaltactics4
             "Attack", //145
             "Move", //146
             "Special", //147
+            "Connection", // 148
+            "Pseudonym", // 149
+            "IP Address", // 150
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -475,6 +481,9 @@ namespace animaltactics4
             "Attaque", //145
             "Mouvement", //146
             "Pouvoir", //147
+            "Connection", // 148
+            "Schtroumpfonyme", // 149
+            "Schtroumpf IP", // 150
             });
         }
     }
