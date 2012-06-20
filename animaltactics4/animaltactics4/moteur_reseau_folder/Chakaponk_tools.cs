@@ -21,5 +21,20 @@ namespace animaltactics4
                 Console.WriteLine(e.Message);
             }
         }
+
+        public static /*volatile*/ int trolololol(Socket sock)
+        {
+            try
+            {
+                byte[] buffer = new byte[8];
+                NetworkStream str = new NetworkStream(sock);
+                return str.ReadByte();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+        }
     }
 }

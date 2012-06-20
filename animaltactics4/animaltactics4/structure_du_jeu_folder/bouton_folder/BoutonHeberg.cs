@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System.Net;
 
 namespace animaltactics4
 {
-    class BoutonConnect : Bouton
+    class BoutonHeberg : Bouton
     {
         protected Rectangle tuveuxvoir;
 
-        public BoutonConnect(int x, int y)
+        public BoutonHeberg(int x, int y)
             : base(new Rectangle(x, y, 400, 75), new Rectangle(0, 0, 800, 300))
         {
-            Chaka._sont_elles_sechent();
+            Ponk._sont_elles_sechent();
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
         }
 
@@ -26,7 +25,7 @@ namespace animaltactics4
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     een = true;
-                    Engine.scenes.Push(new Wallala());
+                    Engine.scenes.Push(new Enfer());
                 }
             }
         }
@@ -41,7 +40,7 @@ namespace animaltactics4
             {
                 Contents.Draw("bouton_selected", rect);
             }
-            Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][148], rect);
+            Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][64], rect);
         }
     }
 }
