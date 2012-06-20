@@ -10,10 +10,10 @@ namespace animaltactics4
     //Loohy
     class BoutonDeroulant : Bouton
     {
-        protected e_pinceau tstate;
-        protected e_toolSize tsize;
-        protected e_etatDeroulant state;
-        protected int hauteur, indexDico;
+        public e_pinceau tstate;
+        public e_toolSize tsize;
+        public e_etatDeroulant state;
+        public int hauteur, indexDico;
 
         //Loohy
         public BoutonDeroulant(Rectangle rect_, int indexDico_) : base(rect_, new Rectangle(42,7,42,7)) // i = 49 ou 50

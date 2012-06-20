@@ -1001,5 +1001,142 @@ namespace animaltactics4
             }
             #endregion
         }
+
+        //Loohy
+        public void appliquer(e_pinceau pinceau, MoteurGraphique moteurgraphique_, int r_, int center_)
+        {
+            Console.WriteLine("appliquer en " + i + ";" + j + " avec " + pinceau.ToString());
+            switch (pinceau)
+            {
+                case e_pinceau.Plaine:
+                    E_Sol = e_Typedesol.herbe;
+                    break;
+                case e_pinceau.Neige:
+                    E_Sol = e_Typedesol.neige;
+                    break;
+                case e_pinceau.Sable:
+                    E_Sol = e_Typedesol.sable;
+                    break;
+                case e_pinceau.Riviere:
+                    if (E_Sol != e_Typedesol.banquise && E_Sol != e_Typedesol.mer)
+                    {
+                        E_Riviere = e_Riviere.riviere;
+                        moteurgraphique_.river(i, j);
+                    }
+                    break;
+                case e_pinceau.Eau:
+                    E_Sol = e_Typedesol.mer;
+                    E_Riviere = e_Riviere.vide;
+                    break;
+                case e_pinceau.Banquise:
+                    E_Sol = e_Typedesol.banquise;
+                    E_Riviere = e_Riviere.vide;
+                    break;
+                case e_pinceau.Route:
+                    E_Route = e_Typederoute.route;
+                    break;
+                case e_pinceau.Bunker:
+                    if (E_Sol != e_Typedesol.banquise && E_Sol != e_Typedesol.mer)
+                    {
+                        E_DecorAvant = e_Decoravant.bunker;
+                        E_DecorArriere = e_Decorarriere.bunker;
+                    }
+                    else
+                    {
+                        E_DecorAvant = e_Decoravant.iceBunker;
+                        E_DecorArriere = e_Decorarriere.iceBunker;
+                    }
+                    break;
+                case e_pinceau.Foret:
+                    if (E_Sol != e_Typedesol.banquise && E_Sol != e_Typedesol.mer)
+                    {
+                        E_DecorAvant = e_Decoravant.foret;
+                        E_DecorArriere = e_Decorarriere.foret;
+                    }
+                    break;
+                case e_pinceau.Ruine:
+                    E_DecorAvant = e_Decoravant.vide;
+                    E_DecorArriere = e_Decorarriere.ruine;
+                    break;
+                case e_pinceau.Cratere:
+                    E_DecorAvant = e_Decoravant.vide;
+                    E_DecorArriere = e_Decorarriere.cratere;
+                    break;
+                case e_pinceau.Village:
+                    switch (E_Sol)
+                    {
+                        case e_Typedesol.herbe:
+                            if (E_Riviere != e_Riviere.riviere)
+                            {
+                                E_DecorAvant = e_Decoravant.vide;
+                                E_DecorArriere = e_Decorarriere.villagePanda;
+                            }
+                            break;
+                        case e_Typedesol.sable:
+                            if (E_Riviere != e_Riviere.riviere)
+                            {
+                                E_DecorAvant = e_Decoravant.vide;
+                                E_DecorArriere = e_Decorarriere.campementFenrir;
+                            }
+                            break;
+                        case e_Typedesol.neige:
+                        case e_Typedesol.banquise:
+                            E_DecorAvant = e_Decoravant.vide;
+                            E_DecorArriere = e_Decorarriere.villagePingvin;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case e_pinceau.Rien:
+                    E_Route = e_Typederoute.vide;
+                    E_Riviere = e_Riviere.vide;
+                    E_DecorArriere = e_Decorarriere.vide;
+                    E_DecorAvant = e_Decoravant.vide;
+                    break;
+                case e_pinceau.Montagne:
+                    altitude += r_ % center_;
+                    if (altitude > moteurgraphique_.altitudeMax(i, j))
+                    {
+                        altitude = moteurgraphique_.altitudeMax(i, j);
+                    }
+                    break;
+                case e_pinceau.Vallee:
+                    altitude -= r_ % center_;
+                    if (altitude < moteurgraphique_.altitudeMin(i, j))
+                    {
+                        altitude = moteurgraphique_.altitudeMin(i, j);
+                    }
+                    break;
+                case e_pinceau.Lissage:
+                    if (altitude > r_)
+                    {
+                        altitude--;
+                        if (altitude < moteurgraphique_.altitudeMin(i, j))
+                        {
+                            altitude = moteurgraphique_.altitudeMin(i, j);
+                        }
+                    }
+                    if (altitude < r_)
+                    {
+                        altitude++;
+                        if (altitude > moteurgraphique_.altitudeMax(i, j))
+                        {
+                            altitude = moteurgraphique_.altitudeMax(i, j);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (pinceau == e_pinceau.Route || pinceau == e_pinceau.Riviere)
+            {
+                moteurgraphique_.AdaptAutour(i, j);
+            }
+            else
+            {
+                Adapt(moteurgraphique_, r_ % 10);
+            }
+        }
     }
 }
