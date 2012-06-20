@@ -422,7 +422,7 @@ namespace animaltactics4
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Y))
             {
-                victory(1, hud_);
+                //victory(1, hud_);
             }
         }
 
@@ -456,7 +456,7 @@ namespace animaltactics4
                 listeDesJoueurs[moteurgraphique_.map[tresor_i, tresor_j].pointeurArmee].
                     bataillon[moteurgraphique_.map[tresor_i, tresor_j].pointeurUnite].porteTresor = true;
             }
-            for (int h = 0; h < 2; h++)
+            for (int h = 0; h < listeDesJoueurs.Count; h++)
             {
                 foreach (Unite mafe in listeDesJoueurs[h].bataillon)
                 {
@@ -468,7 +468,7 @@ namespace animaltactics4
                 }
                 if (tresor_i == listeDesJoueurs[h].QG.X && tresor_j == listeDesJoueurs[h].QG.Y)
                 {
-                    victory(h, hud_);
+                    victory(listeDesJoueurs[h].camp, hud_);
                 }
             }
         }
