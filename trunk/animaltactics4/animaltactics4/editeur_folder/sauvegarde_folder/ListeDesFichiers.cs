@@ -53,7 +53,6 @@ namespace animaltactics4
             t = "Pingvin01";
             SauvegardeArmee(ref t, listeA);
             listeA.NEW(e_race.Pandawan);
-            listeA.AddUnite(e_classe.PandawanSayan);
             listeA.AddUnite(e_classe.PandawanNinja);
             listeA.AddUnite(e_classe.PandawanSniper);
             listeA.AddUnite(e_classe.PandawanMoine);
@@ -65,7 +64,6 @@ namespace animaltactics4
             t = "Pandawan01";
             SauvegardeArmee(ref t, listeA);
             listeA.NEW(e_race.Krissa);
-            listeA.AddUnite(e_classe.KrissaChef);
             listeA.AddUnite(e_classe.KrissaAssassin);
             listeA.AddUnite(e_classe.KrissaAssassin);
             listeA.AddUnite(e_classe.KrissaLegionnaire);
@@ -77,7 +75,6 @@ namespace animaltactics4
             t = "Krissa01";
             SauvegardeArmee(ref t, listeA);
             listeA.NEW(e_race.Fenrir);
-            listeA.AddUnite(e_classe.FenrirOkami);
             listeA.AddUnite(e_classe.FenrirWarlord);
             listeA.AddUnite(e_classe.FenrirRailgun);
             listeA.AddUnite(e_classe.FenrirDreadnought);

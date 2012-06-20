@@ -103,7 +103,10 @@ namespace animaltactics4
                     {
                         waitForFinDeTour = false;
                         listeDesJoueurs[tourencours].FindeTour();
-                        tourencours = (tourencours + 1) % listeDesJoueurs.Count;
+                        do
+                        {
+                            tourencours = (tourencours + 1) % listeDesJoueurs.Count;
+                        } while (!listeDesJoueurs[(int)limiteDeTours].atLeastOneAlive);
                         listeDesJoueurs[tourencours].reactiverIA();
                         time = 0;
                         hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
@@ -346,10 +349,10 @@ namespace animaltactics4
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneHeroAlive;
                             }
-                            if (een)
-                            {
-                                victory(listeDesJoueurs[p].camp, hud_);
-                            }
+                        }
+                        if (een)
+                        {
+                            victory(listeDesJoueurs[p].camp, hud_);
                         }
                     }
                     #endregion
@@ -365,10 +368,10 @@ namespace animaltactics4
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneAlive;
                             }
-                            if (een)
-                            {
-                                victory(listeDesJoueurs[p].camp, hud_);
-                            }
+                        }
+                        if (een)
+                        {
+                            victory(listeDesJoueurs[p].camp, hud_);
                         }
                     }
                     #endregion
@@ -384,10 +387,10 @@ namespace animaltactics4
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneAlive;
                             }
-                            if (een)
-                            {
-                                victory(listeDesJoueurs[p].camp, hud_);
-                            }
+                        }
+                        if (een)
+                        {
+                            victory(listeDesJoueurs[p].camp, hud_);
                         }
                     }
                     #endregion
@@ -410,10 +413,10 @@ namespace animaltactics4
                             {
                                 een = een && !listeDesJoueurs[k].atLeastOneAlive;
                             }
-                            if (een)
-                            {
-                                victory( listeDesJoueurs[p].camp, hud_);
-                            }
+                        }
+                        if (een)
+                        {
+                            victory(listeDesJoueurs[p].camp, hud_);
                         }
                     }
                     #endregion
@@ -444,7 +447,7 @@ namespace animaltactics4
         }
         public void egalite(HUD hud_)
         {
-            hud_.victory(new List<Color>{Color.Black}, new List<e_race>{e_race.Random});
+            hud_.victory(new List<Color> { Color.Black }, new List<e_race> { e_race.Random });
         }
 
         //Loohy
