@@ -117,7 +117,7 @@ namespace animaltactics4
                     }
                     rect.Y -= (int)vagues;
                 }
-                Contents.Draw("Bridges", rect, sousRectSol);
+                Contents.Draw("Tiles", rect, sousRectSol);
                 #endregion
                 #region route
                 if (E_Riviere == e_Riviere.riviere)

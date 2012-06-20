@@ -30,6 +30,7 @@ namespace animaltactics4
         {
             Jackman = new HUD();
             Divers.telechargerMap(ref earthPenguin, nomDeLaMap_);
+            earthPenguin.invisible();
             earthPenguin.fog = fog_;
             earthPenguin.viderVue();
             gameplay.initializeWithListedArmies(nomDesArmees_, difficultes_, camp_, couleurs_,
@@ -37,6 +38,7 @@ namespace animaltactics4
             time = 0;
             lastUpdatesTime = 0;
             tempsMax = tempsMax_;
+            earthPenguin.centrerSur(16, 16);
         }
 
         //Loohy

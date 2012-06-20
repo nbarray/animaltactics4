@@ -46,7 +46,7 @@ namespace animaltactics4
             "Créer",// 16
             "Modifier",// 17
             "Points restants : ", // 18
-            "Force : ", //19
+            "Puissance : ", //19
             "Dextérité : ",//20
             "Constitution : ",//21
             "Défense : ",//22
@@ -178,6 +178,7 @@ namespace animaltactics4
             "Connection", // 148
             "Pseudonyme", // 149
             "Addresse IP", // 150
+            "Nouvelle", // 151
             });
 
             langues.Add("English", new string[]{
@@ -200,7 +201,7 @@ namespace animaltactics4
             "Create",
             "Modify",
             "Remaining points : ",
-            "Strength : ", //19
+            "Power : ", //19
             "Dexterity : ",//20
             "Constitution : ",//21
             "Defense : ",//22
@@ -332,6 +333,7 @@ namespace animaltactics4
             "Connection", // 148
             "Pseudonym", // 149
             "IP Address", // 150
+            "New", // 151
             });
 
             langues.Add("Schtroumpf", new string[]{
@@ -486,6 +488,7 @@ namespace animaltactics4
             "Connection", // 148
             "Schtroumpfonyme", // 149
             "Schtroumpf IP", // 150
+            "Nouvelle", // 151
             });
 
             langues.Add("Espagnol", new string[]{
@@ -640,6 +643,7 @@ namespace animaltactics4
             "Connection", // 148
             "Pseudonyme", // 149
             "Addresse IP", // 150
+            "Neo", // 151
             });
         }
     }

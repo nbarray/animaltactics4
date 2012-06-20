@@ -613,7 +613,7 @@ namespace animaltactics4
             {
                 mouvement = mouvementmax;
                 attaqOrNot = true;
-                if (xp >= 10)
+                if (xp >= 10 && lvl < 15)
                 {
                     LevelUp();
                 }

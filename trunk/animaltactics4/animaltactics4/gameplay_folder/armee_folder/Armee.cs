@@ -276,10 +276,8 @@ namespace animaltactics4
                     break;
                 case e_classe.PingvinOdin:
                     portee[1] = 10;
-                    portee[2] = 6;
-                    portee[3] = 6;
                     typedAttaque[1] = false;
-                    AddUnite(classe_, e_typeUnite.Heros, null, new Aura(Divers.getName(classe_), TypedAura.BoostArmure, 10), Divers.getName(classe_), 17, 12, 18, 20, 12, 14, 11, portee, typedAttaque,
+                    AddUnite(classe_, e_typeUnite.Heros, null, new Aura(Divers.getName(classe_), TypedAura.BoostArmure, 10), Divers.getName(classe_), 17, 12, 18, 18, 12, 14, 13, portee, typedAttaque,
                         this.numeroarmee, 34, 9, ia_);
                     break;
                 #endregion
@@ -430,12 +428,16 @@ namespace animaltactics4
                 #endregion
                 #region Krissa
                 case e_classe.KrissaCanonnier:
-                    portee[1] = 9;
-                    AddUnite(classe_, e_typeUnite.Base, null, null, Divers.getName(classe_), 13, 12, 6, 6, 9, 10, 14, portee, typedAttaque,
+                    portee[1] = 3;
+                    portee[3] = 7;
+                    portee[4] = 8;
+                    portee[5] = 9;
+                    portee[6] = 10;
+                    AddUnite(classe_, e_typeUnite.Base, null, null, Divers.getName(classe_), 14, 12, 6, 6, 9, 10, 14, portee, typedAttaque,
                         this.numeroarmee, 68, 8, ia_);
                     break;
                 case e_classe.KrissaAssassin:
-                    portee[1] = 9;
+                    portee[1] = 10;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Assassinat, e_typeDePouvoir.Degat, new List<int> { 1 },
                         true, 0, 0, 0, false), null, Divers.getName(classe_), 7, 14, 6, 7, 14, 12, 13, portee, typedAttaque,
                         this.numeroarmee, 69, 10, ia_);
@@ -447,7 +449,7 @@ namespace animaltactics4
                         this.numeroarmee, 70, 8, ia_);
                     break;
                 case e_classe.KrissaGeolier:
-                    portee[1] = 9;
+                    portee[1] = 10;
                     typedAttaque[1] = false;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Krissa1, e_typeDePouvoir.Boost, new List<int> { 1 },
                         true, 0, 0, 0, false), null, Divers.getName(classe_), 6, 14, 5, 4, 13, 13, 12, portee, typedAttaque,
@@ -455,14 +457,14 @@ namespace animaltactics4
                     break;
                 case e_classe.KrissaMaraudeur:
                     portee[1] = 9;
-                    portee[2] = 9;
-                    portee[3] = 9;
-                    portee[4] = 9;
-                    AddUnite(classe_, e_typeUnite.Base, null, null, Divers.getName(classe_), 8, 16, 6, 7, 7, 14, 15, portee, typedAttaque,
-                        this.numeroarmee, 72, 9, ia_);
+                    portee[2] = 8;
+                    portee[3] = 7;
+                    portee[4] = 6;
+                    AddUnite(classe_, e_typeUnite.Base, null, null, Divers.getName(classe_), 9, 14, 6, 7, 7, 14, 15, portee, typedAttaque,
+                        this.numeroarmee, 72, 11, ia_);
                     break;
                 case e_classe.KrissaVermine:
-                    portee[1] = 9;
+                    portee[1] = 10;
                     AddUnite(classe_, e_typeUnite.Base, null, null,
                         Divers.getName(classe_), 11, 15, 10, 8, 14, 15, 13, portee, typedAttaque,
                         this.numeroarmee, 73, 8, ia_);
@@ -475,6 +477,9 @@ namespace animaltactics4
                     break;
                 case e_classe.KrissaDesperado:
                     portee[1] = 9;
+                    portee[2] = 9;
+                    portee[3] = 9;
+                    portee[4] = 9;
                     AddUnite(classe_, e_typeUnite.Base, null, null,
                         Divers.getName(classe_), 13, 13, 8, 6, 11, 17, 14, portee, typedAttaque,
                         this.numeroarmee, 57, 8, ia_);
