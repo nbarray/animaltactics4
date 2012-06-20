@@ -855,7 +855,7 @@ namespace animaltactics4
 
         public void UpdateIA(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_, /*Lecteur coldman_,*/ HUD hud_, ref int time_)
         {
-            if (true/*!bataillon[uniteselect].IA.finish*/)
+            if (!bataillon[uniteselect].IA.finish)
             {
                 utiliserIA(moteurgraphique_, gameplay_, hud_);
             }
@@ -887,7 +887,7 @@ namespace animaltactics4
             bool b = true;
             foreach (Unite minion in bataillon)
             {
-                b = b && (/*minion.IA.finish || */!minion.alive);
+                b = b && (minion.IA.finish || !minion.alive);
             }
             return b;
         }
