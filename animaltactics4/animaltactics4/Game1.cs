@@ -28,8 +28,8 @@ namespace animaltactics4
         protected override void Initialize()
         {
             base.Initialize();
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.PreferredBackBufferWidth = /*GraphicsDevice.DisplayMode.Width*/ 800;
+            graphics.PreferredBackBufferHeight = /*GraphicsDevice.DisplayMode.Height*/ 600;
             graphics.PreferredBackBufferFormat = GraphicsDevice.DisplayMode.Format;
             graphics.ApplyChanges();
 
