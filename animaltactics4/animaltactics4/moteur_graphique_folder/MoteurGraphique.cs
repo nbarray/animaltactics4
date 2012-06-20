@@ -370,6 +370,7 @@ namespace animaltactics4
         public void Update(SystemeDeJeu gameplay_, HUD hud_)
         {
             Camera();
+            setSurbrillance(false);
             #region Souris
             for (int d = 0; d < 7; d++)
             {
@@ -381,7 +382,6 @@ namespace animaltactics4
                         //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                         //{
                             estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
-                            map[i + d, j + d].estEnSurbrillance = false;
                         //}
                     }
                 }
@@ -393,12 +393,12 @@ namespace animaltactics4
                         //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                         //{
                             estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
-                            map[i + d, j + d].estEnSurbrillance = false;
                         //}
                     }
                 }
             }
-            map[sourisI, sourisJ].estEnSurbrillance = true; 
+            if (sourisI != -1)
+                map[sourisI, sourisJ].estEnSurbrillance = true;
             #endregion
             setAttaqOrNotTiles(gameplay_.mood != e_modeAction.Mouvement);
             if (clicOrNot)
@@ -501,7 +501,7 @@ namespace animaltactics4
             }
             viderSurbrillance();
             if (sourisI != -1)
-            //updatePinceau(p_type_, p_taille_);
+            updatePinceau(p_type_, p_taille_);
             #endregion
             if (clicOrNot)
             {
@@ -1379,8 +1379,8 @@ namespace animaltactics4
         //Loohy
         public void centrerSur(int i_, int j_)
         {
-            camerax = -450 + 32 * i_ - 32 * j_;
-            cameray = -450 + 16 * i_ + 16 * j_;
+            camerax = -600 + 32 * i_ - 32 * j_;
+            cameray = -600 + 16 * i_ + 16 * j_;
         }
 
         //Loohy
@@ -1423,6 +1423,17 @@ namespace animaltactics4
                 {
                     map[i, j].estEnSurbrillance = false;
                     map[i, j].surbrillancePortee = 0;
+                }
+            }
+        }
+        //Loohy
+        public void setSurbrillance(bool b_)
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    map[i, j].estEnSurbrillance = b_;
                 }
             }
         }
@@ -1544,6 +1555,16 @@ namespace animaltactics4
             }
             return alt - 28;
         }
+        public void invisible()
+        {
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 32; j++)
+                {
+                    map[i, j].visible = true;
+                }
+            }
+        }
 
         public void NEW(int x_, int y_)
         {
@@ -1553,6 +1574,7 @@ namespace animaltactics4
                 for (int j = 0; j < y_; j++)
                 {
                     map[i, j] = new Tile(i, j);
+                    map[i, j].visible = true;
                 }
             }
             Adapt();
@@ -1560,11 +1582,12 @@ namespace animaltactics4
         }
         public void updatePinceau(e_pinceau type_, e_toolSize taille_)
         {
-            brille(taille_);
+            //brille(taille_);
             #region clic
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 int size;
+                #region getsize
                 switch (taille_)
                 {
                     case e_toolSize.XSmall:
@@ -1588,8 +1611,10 @@ namespace animaltactics4
                     default:
                         size = 1;
                         break;
-                }
+                } 
+                #endregion
 
+                #region Lissage
                 if (type_ == e_pinceau.Lissage)
                 {
                     int moy = 0;
@@ -1653,7 +1678,8 @@ namespace animaltactics4
                             }
                         }
                     }
-                }
+                } 
+                #endregion
                 map[sourisI, sourisJ].appliquer(type_, this, r.Next(100), 16);
                 for (int portee_ = 0; portee_ < size; portee_++)
                 {

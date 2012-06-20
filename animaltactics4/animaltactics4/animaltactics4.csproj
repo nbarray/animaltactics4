@@ -115,7 +115,6 @@
     <Compile Include="editeur_folder\armee_folder\MenuEditeurArmee.cs" />
     <Compile Include="editeur_folder\carte_folder\EditeurCarte.cs" />
     <Compile Include="editeur_folder\carte_folder\MenuEditeurCarte.cs" />
-    <Compile Include="editeur_folder\carte_folder\Pinceau.cs" />
     <Compile Include="editeur_folder\sauvegarde_folder\FausseUnite.cs" />
     <Compile Include="editeur_folder\sauvegarde_folder\ListeArmee.cs" />
     <Compile Include="editeur_folder\sauvegarde_folder\ListeDesFichiers.cs" />

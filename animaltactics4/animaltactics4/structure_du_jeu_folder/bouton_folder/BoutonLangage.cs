@@ -33,6 +33,9 @@ namespace animaltactics4
                             Dico.current = "Schtroumpf";
                             break;
                         case "Schtroumpf":
+                            Dico.current = "Espagnol";
+                            break;
+                        case "Espagnol":
                             Dico.current = "Francais";
                             break;
                         default:

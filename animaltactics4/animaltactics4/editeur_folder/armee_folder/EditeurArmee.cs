@@ -32,7 +32,7 @@ namespace animaltactics4
             army = new Armee(2, e_race.Random, Color.White, 0, 0,0);
             army.AddUnite(e_classe.PingvinOdin);
             pressed = false;
-            view = e_classe.FenrirTemplier;
+            view = e_classe.PingvinOdin;
             ToutesLesUnites = new Dictionary<e_race, List<FausseUnite>>();
             #region ping
             //0 ping

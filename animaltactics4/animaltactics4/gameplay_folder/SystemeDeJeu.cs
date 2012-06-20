@@ -143,7 +143,11 @@ namespace animaltactics4
                     waitForFinDeTour = false;
                     listeDesJoueurs[tourencours].FindeTour();
                     moteurgraphique_.viderChemin();
-                    tourencours = (tourencours + 1) % listeDesJoueurs.Count;
+                    listeDesJoueurs[tourencours].FindeTour();
+                    do
+                    {
+                        tourencours = (tourencours + 1) % listeDesJoueurs.Count;
+                    } while (!listeDesJoueurs[(int)limiteDeTours].atLeastOneAlive);
                     listeDesJoueurs[tourencours].reactiverIA();
                     time = 0;
                     hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
