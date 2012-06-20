@@ -22,6 +22,8 @@ namespace animaltactics4
             {
                 current = "Francais";
             }
+
+            
             langues = new Dictionary<string, string[]>();
 
             langues.Add("Francais", new string[]{
@@ -208,7 +210,7 @@ namespace animaltactics4
             "Movement : ",//26
             "Extremly small",//27
             "Small",//28
-            "Standart",//29
+            "Standard",//29
             "Medium",//30
             "Huge",//31
             "Extremly huge",//32

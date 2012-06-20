@@ -163,6 +163,8 @@ namespace animaltactics4
 
             if (moi_.alive)
             {
+                moi_.Afficher(moteurgraphique_.map[moi_.i, moi_.j], gameplay_);
+
                 if (moi_.attaqOrNot)
                 {
                     #region boucleTestCiblesPotentielles
@@ -173,7 +175,7 @@ namespace animaltactics4
                             && moi_.j + (portee_ - k) >= 0 && moi_.j + (portee_ - k) < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].camp)                                
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurUnite]);
@@ -184,7 +186,7 @@ namespace animaltactics4
                              && moi_.j - (portee_ - k) >= 0 && moi_.j - (portee_ - k) < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurUnite]);
@@ -195,7 +197,7 @@ namespace animaltactics4
                              && moi_.j - k >= 0 && moi_.j - k < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurUnite]);
@@ -206,7 +208,7 @@ namespace animaltactics4
                              && moi_.j + k >= 0 && moi_.j + k < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurUnite]);
@@ -411,7 +413,9 @@ namespace animaltactics4
                     checkContenuDansPorteeFacileJoute(moteurgraphique_, portee_, moi_, gameplay_, armee_, hud_);
                 }
             }
+
             finish = true;
+
         }
 
         #endregion
@@ -435,7 +439,7 @@ namespace animaltactics4
                         && moi_.j + (portee_ - k) >= 0 && moi_.j + (portee_ - k) < moteurgraphique_.largeur)
                     {
                         if (moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].presence &&
-                                moi_.numeroArmee != moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee)
+                                gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].camp)
                         {
                             ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurUnite]);
@@ -446,7 +450,7 @@ namespace animaltactics4
                          && moi_.j - (portee_ - k) >= 0 && moi_.j - (portee_ - k) < moteurgraphique_.largeur)
                     {
                         if (moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].presence &&
-                                moi_.numeroArmee != moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee)
+                                gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].camp)
                         {
                             ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurUnite]);
@@ -457,7 +461,7 @@ namespace animaltactics4
                          && moi_.j - k >= 0 && moi_.j - k < moteurgraphique_.largeur)
                     {
                         if (moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].presence &&
-                                moi_.numeroArmee != moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee)
+                                gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].camp)
                         {
                             ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurUnite]);
@@ -468,7 +472,7 @@ namespace animaltactics4
                          && moi_.j + k >= 0 && moi_.j + k < moteurgraphique_.largeur)
                     {
                         if (moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].presence &&
-                                moi_.numeroArmee != moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee)
+                                gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].camp)
                         {
                             ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].
                                 bataillon[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurUnite]);
@@ -550,7 +554,7 @@ namespace animaltactics4
 
             if (moi_.alive)
             {
-                for (int c = 6; c > 0; c--)
+                for (int c = 0; c < 7; c++)
                 {
                     if (moi_.portee[c] > 0)
                     {
@@ -558,37 +562,50 @@ namespace animaltactics4
                     }
                 }
 
-                foreach (Unite unite in gameplay_.listeDesJoueurs[(gameplay_.tourencours + 1) % 2].bataillon)
+                #region ajouterToutesLesUnitesEnnemies
+
+                for (int wazaaa = 0; wazaaa < gameplay_.listeDesJoueurs.Count; wazaaa++)
                 {
-                    if (unite.alive && Math.Abs(moi_.i - unite.i) + Math.Abs(moi_.j - unite.j) <= (moi_.mouvement + porteeMax))
+                    if (gameplay_.listeDesJoueurs[wazaaa].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp)
                     {
-                        unitesEnnemis.Add(unite);
-                        distanceAvecEnnemis.Add(Math.Abs(moi_.i - unite.i) + Math.Abs(moi_.j - unite.j));
-                        positionsEnnemies.Add(new Vector2(unite.i, unite.j));
+                        foreach (Unite unite in gameplay_.listeDesJoueurs[wazaaa].bataillon)
+                        {
+                            if (unite.alive && Math.Abs(moi_.i - unite.i) + Math.Abs(moi_.j - unite.j) <= (moi_.mouvement + porteeMax))
+                            {
+                                unitesEnnemis.Add(unite);
+                                distanceAvecEnnemis.Add(Math.Abs(moi_.i - unite.i) + Math.Abs(moi_.j - unite.j));
+                                positionsEnnemies.Add(new Vector2(unite.i, unite.j));
+                            }
+                        }
                     }
                 }
+
+                #endregion
+
+                #region obtenirUneListeDesMeilleuresPorteesDePrecision
+
+                for (int f = 10; f > 0; f--)
+                {
+                    for (int g = porteeMax; g > 0; g--)
+                    {
+                        if (moi_.portee[g] == f)
+                        {
+                            porteesDeMeilleuresPrecisions.Add(g);
+                        }
+                    }
+                }
+                #endregion
 
                 #region trouverEnnemiLeMieuxPlace
 
                 #region preTestDuLosange
+
                 for (int i = distanceAvecEnnemis.Count - 1; i >= 0; i--)
                 {
 
                     ilAFaussementBouger = false;
 
-                    #region obtenirUneListeDesMeilleuresPorteesDePrecision
-
-                    for (int f = 10; f > 0; f--)
-                    {
-                        for (int g = porteeMax; g > 0; g--)
-                        {
-                            if (moi_.portee[g] == f)
-                            {
-                                porteesDeMeilleuresPrecisions.Add(g);
-                            }
-                        }
-                    }
-                    #endregion
+                    
 
                     for (int n = porteesDeMeilleuresPrecisions.Count - 1; n > 0; n--)
                     {
@@ -596,37 +613,37 @@ namespace animaltactics4
                         {
                             if (ilABouger == false && dejaBienPlace == false)
                             {
-                                if (porteesDeMeilleuresPrecisions[n] == distanceAvecEnnemis[0])
+                                if (porteesDeMeilleuresPrecisions[n] == distanceAvecEnnemis[i])
                                 {
                                     ilAFaussementBouger = true;
                                 }
                                 else
                                 {
-                                    if ((int)positionsEnnemies[0].X + j >= 0 && (int)positionsEnnemies[0].X + j < moteurgraphique_.longueur &&
-                                        (int)positionsEnnemies[0].Y + (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[0].Y + (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.largeur)
+                                    if ((int)positionsEnnemies[i].X + j >= 0 && (int)positionsEnnemies[i].X + j < moteurgraphique_.longueur &&
+                                        (int)positionsEnnemies[i].Y + (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[i].Y + (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.largeur)
                                     {
-                                        if (moteurgraphique_.map[(int)positionsEnnemies[0].X + j, (int)positionsEnnemies[0].Y + (porteesDeMeilleuresPrecisions[n] - j)].cheminValid)
+                                        if (moteurgraphique_.map[(int)positionsEnnemies[i].X + j, (int)positionsEnnemies[i].Y + (porteesDeMeilleuresPrecisions[n] - j)].cheminValid)
                                         {
                                             ilAFaussementBouger = true;
                                         }
-                                        else if ((int)positionsEnnemies[0].X - j >= 0 && (int)positionsEnnemies[0].X - j < moteurgraphique_.longueur &&
-                                                 (int)positionsEnnemies[0].Y - (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[0].Y - (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.largeur)
+                                        else if ((int)positionsEnnemies[i].X - j >= 0 && (int)positionsEnnemies[i].X - j < moteurgraphique_.longueur &&
+                                                 (int)positionsEnnemies[i].Y - (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[i].Y - (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.largeur)
                                         {
-                                            if (moteurgraphique_.map[(int)positionsEnnemies[0].X - j, (int)positionsEnnemies[0].Y - (porteesDeMeilleuresPrecisions[n] - j)].cheminValid)
+                                            if (moteurgraphique_.map[(int)positionsEnnemies[i].X - j, (int)positionsEnnemies[i].Y - (porteesDeMeilleuresPrecisions[n] - j)].cheminValid)
                                             {
                                                 ilAFaussementBouger = true;
                                             }
-                                            else if ((int)positionsEnnemies[0].X + (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[0].X + (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.longueur &&
-                                                     (int)positionsEnnemies[0].Y - j >= 0 && (int)positionsEnnemies[0].Y - j < moteurgraphique_.largeur)
+                                            else if ((int)positionsEnnemies[i].X + (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[i].X + (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.longueur &&
+                                                     (int)positionsEnnemies[i].Y - j >= 0 && (int)positionsEnnemies[i].Y - j < moteurgraphique_.largeur)
                                             {
-                                                if (moteurgraphique_.map[(int)positionsEnnemies[0].X + (porteesDeMeilleuresPrecisions[n] - j), (int)positionsEnnemies[0].Y - j].cheminValid)
+                                                if (moteurgraphique_.map[(int)positionsEnnemies[i].X + (porteesDeMeilleuresPrecisions[n] - j), (int)positionsEnnemies[i].Y - j].cheminValid)
                                                 {
                                                     ilAFaussementBouger = true;
                                                 }
-                                                else if ((int)positionsEnnemies[0].X - (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[0].X - (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.longueur &&
-                                                         (int)positionsEnnemies[0].Y + j >= 0 && (int)positionsEnnemies[0].Y + j < moteurgraphique_.largeur)
+                                                else if ((int)positionsEnnemies[i].X - (porteesDeMeilleuresPrecisions[n] - j) >= 0 && (int)positionsEnnemies[i].X - (porteesDeMeilleuresPrecisions[n] - j) < moteurgraphique_.longueur &&
+                                                         (int)positionsEnnemies[i].Y + j >= 0 && (int)positionsEnnemies[i].Y + j < moteurgraphique_.largeur)
                                                 {
-                                                    if (moteurgraphique_.map[(int)positionsEnnemies[0].X - (porteesDeMeilleuresPrecisions[n] - j), (int)positionsEnnemies[0].Y + j].cheminValid)
+                                                    if (moteurgraphique_.map[(int)positionsEnnemies[i].X - (porteesDeMeilleuresPrecisions[n] - j), (int)positionsEnnemies[i].Y + j].cheminValid)
                                                     {
                                                         ilAFaussementBouger = true;
                                                     }
@@ -675,6 +692,7 @@ namespace animaltactics4
                 if (distanceAvecEnnemis.Count > 0)
                 {
                     #region seMettreALaMeilleurePortee
+
                     for (int i = 0; i < porteesDeMeilleuresPrecisions.Count; i++)
                     {
                         for (int j = 0; j <= porteesDeMeilleuresPrecisions[i] - 1; j++)
@@ -804,7 +822,7 @@ namespace animaltactics4
             if (moi_.alive)
             {
                 #region conditionSiJaiPasLeTresor
-                if (moi_.numeroArmee != moteurgraphique_.map[gameplay_.tresor_i, gameplay_.tresor_j].pointeurArmee)
+                if (moteurgraphique_.map[gameplay_.tresor_i, gameplay_.tresor_j].pointeurArmee == -1 ||  (moi_.numeroArmee != moteurgraphique_.map[gameplay_.tresor_i, gameplay_.tresor_j].pointeurArmee && gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[gameplay_.tresor_i, gameplay_.tresor_j].pointeurArmee].camp))
                 {
                     for (int portee_ = 0; portee_ < 32; portee_++)
                     {
@@ -930,7 +948,7 @@ namespace animaltactics4
                             }
                         }
                     }
-                    else
+                    else // si une unité alliée a le trésor
                     {
                         deplacementFacileJoute(moteurgraphique_, gameplay_, moi_, armee_);
                     }
@@ -974,12 +992,18 @@ namespace animaltactics4
 
             if (moi_.alive)
             {
-                foreach (Unite unite in gameplay_.listeDesJoueurs[(gameplay_.tourencours + 1) % 2].bataillon)
+                for (int i = 0; i < gameplay_.listeDesJoueurs.Count; i++)
                 {
-                    if (unite.typeUnite == e_typeUnite.Heros)
+                    if (gameplay_.listeDesJoueurs[i].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp)
                     {
-                        abscisseHerosEnnemi = unite.i;
-                        ordonneeHerosEnnemi = unite.j;
+                        foreach (Unite unite in gameplay_.listeDesJoueurs[i].bataillon)
+                        {
+                            if (unite.typeUnite == e_typeUnite.Heros)
+                            {
+                                abscisseHerosEnnemi = unite.i;
+                                ordonneeHerosEnnemi = unite.j;
+                            }
+                        }
                     }
                 }
 
@@ -993,7 +1017,7 @@ namespace animaltactics4
                             && moi_.j + (portee_ - k) >= 0 && moi_.j + (portee_ - k) < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurUnite]);
@@ -1004,7 +1028,7 @@ namespace animaltactics4
                              && moi_.j - (portee_ - k) >= 0 && moi_.j - (portee_ - k) < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurUnite]);
@@ -1015,7 +1039,7 @@ namespace animaltactics4
                              && moi_.j - k >= 0 && moi_.j - k < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurUnite]);
@@ -1026,7 +1050,7 @@ namespace animaltactics4
                              && moi_.j + k >= 0 && moi_.j + k < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurUnite]);
@@ -1216,7 +1240,7 @@ namespace animaltactics4
                             && moi_.j + (portee_ - k) >= 0 && moi_.j + (portee_ - k) < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i + k, moi_.j + (portee_ - k)].pointeurUnite]);
@@ -1227,7 +1251,7 @@ namespace animaltactics4
                              && moi_.j - (portee_ - k) >= 0 && moi_.j - (portee_ - k) < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i - k, moi_.j - (portee_ - k)].pointeurUnite]);
@@ -1238,7 +1262,7 @@ namespace animaltactics4
                              && moi_.j - k >= 0 && moi_.j - k < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i + (portee_ - k), moi_.j - k].pointeurUnite]);
@@ -1249,7 +1273,7 @@ namespace animaltactics4
                              && moi_.j + k >= 0 && moi_.j + k < moteurgraphique_.largeur)
                         {
                             if (moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].presence &&
-                                    moi_.numeroArmee != moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee)
+                                    gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp != gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].camp)
                             {
                                 ciblesPotentielles.Add(gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurArmee].
                                     bataillon[moteurgraphique_.map[moi_.i - (portee_ - k), moi_.j + k].pointeurUnite]);
@@ -1494,7 +1518,7 @@ namespace animaltactics4
                                 PlayFacileEchiquier(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Colline:
-                                PlayFacileColline(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             default:
                                 break;
@@ -1507,13 +1531,13 @@ namespace animaltactics4
                                 PlayMoyenJoute(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Tresor:
-                                PlayFacileTresor(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             case e_typeDePartie.Echiquier:
-                                PlayFacileEchiquier(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             case e_typeDePartie.Colline:
-                                PlayFacileColline(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             default:
                                 break;
@@ -1523,16 +1547,16 @@ namespace animaltactics4
                         switch (gameplay_.conditionsDeVictoire)
                         {
                             case e_typeDePartie.Joute:
-                                PlayMoyenJoute(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             case e_typeDePartie.Tresor:
-                                PlayFacileTresor(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             case e_typeDePartie.Echiquier:
-                                PlayFacileEchiquier(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             case e_typeDePartie.Colline:
-                                PlayFacileColline(moi_, moteurgraphique_, gameplay_, armee_, hud_);
+                                finish = true;
                                 break;
                             default:
                                 break;
