@@ -42,8 +42,8 @@ namespace animaltactics4
             pseudo.Draw();
             ip.Draw();
 
-            Contents.DrawString(Dico.langues[Dico.current][149], new Rectangle(700 - 100, 100, 400, 75), Divers.pseudoRejoindreColor);
-            Contents.DrawString(Dico.langues[Dico.current][150], new Rectangle(700 - 100, 200, 400, 75), Divers.ipRejoindreColor);
+            Contents.DrawString(Dico.langues[Dico.current][149], new Rectangle(700 - 200, 100, 400, 75), Divers.pseudoRejoindreColor);
+            Contents.DrawString(Dico.langues[Dico.current][150], new Rectangle(700 - 200, 200, 400, 75), Divers.ipRejoindreColor);
         }
     }
 }

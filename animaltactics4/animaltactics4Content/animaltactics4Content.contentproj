@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Image\Autres\" />
     <Folder Include="Image\Lecteur\" />
     <Folder Include="Image\Porte\" />
     <Folder Include="Son\Musique\" />

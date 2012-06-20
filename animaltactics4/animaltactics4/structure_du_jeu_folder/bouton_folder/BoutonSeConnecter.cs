@@ -38,7 +38,23 @@ namespace animaltactics4
                     }
                     else
                     {
-                        
+                        if (param1ok)
+                        {
+                            Divers.pseudoRejoindreColor = Color.Green;
+                        }
+                        else
+                        {
+                            Divers.pseudoRejoindreColor = Color.Red;
+                        }
+
+                        if (param2ok)
+                        {
+                            Divers.ipRejoindreColor = Color.Green;
+                        }
+                        else
+                        {
+                            Divers.ipRejoindreColor = Color.Red;
+                        }
                     }
                     een = true;
                 }
