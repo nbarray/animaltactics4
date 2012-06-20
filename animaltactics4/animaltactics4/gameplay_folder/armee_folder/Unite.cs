@@ -1792,7 +1792,7 @@ namespace animaltactics4
                 if (iArrivee_ != ivirtuel || jArrivee_ != jvirtuel)
                 {
                     #region Arriver sur la case la plus legere a cote
-                    if (moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_ + 1, jArrivee_].poidsAcces)//SNE
+                    if (iArrivee_ != 0 && moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_ + 1, jArrivee_].poidsAcces)//SNE
                     {
                         if (moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces)//SE
                         {
