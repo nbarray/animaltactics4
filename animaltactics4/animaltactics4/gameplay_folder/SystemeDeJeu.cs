@@ -280,19 +280,19 @@ namespace animaltactics4
             e_typeDePartie conditionsDeVictoire_, HUD hud_, float limiteDeTours_ = 0)
         {
             numeroDeTour = 1;
-            //TODO
-            //listeDesJoueurs[0].QG = new Vector2((int)(moteurgraphique_.longueur / 4), (int)(moteurgraphique_.largeur / 4));
-            //listeDesJoueurs[1].QG = new Vector2((int)((moteurgraphique_.longueur * 3) / 4), (int)((moteurgraphique_.largeur * 3) / 4));
             listeDesJoueurs = new List<Armee>();
             for (int p = 0; p < nomDesArmees_.Count; p++)
             {
                 listeDesJoueurs.Add(new Armee(p, e_race.Random, couleurs_[p], moteurgraphique_.longueur, moteurgraphique_.largeur, camp_[p]));
                 listeDesJoueurs[p].ConvertFromList(Divers.obtenirList(nomDesArmees_[p]), difficultes_[p]);
-                listeDesJoueurs[p].QG = new Vector2((int)((moteurgraphique_.longueur * (p + 1)) / 7), (int)((moteurgraphique_.largeur * (p + 1)) / 7));
+                listeDesJoueurs[p].QG = moteurgraphique_.getBase(p);
+                moteurgraphique_.QG(listeDesJoueurs[p].QG);
+                moteurgraphique_.Adapt();
+                listeDesJoueurs[p].pop(moteurgraphique_, this);
                 listeDesJoueurs[p].couleur = couleurs_[p];
             }
             conditionsDeVictoire = conditionsDeVictoire_;
-            pop(moteurgraphique_);
+            //pop(moteurgraphique_);
             hud_.Victory_ = false;
             tresor_i = (moteurgraphique_.longueur / 2);
             tresor_j = (moteurgraphique_.largeur / 2);
@@ -309,10 +309,7 @@ namespace animaltactics4
             if (conditionsDeVictoire_ == e_typeDePartie.Colline)
             {
                 limiteDeTours = limiteDeTours_;
-                moteurgraphique_.map[moteurgraphique_.longueur / 2, moteurgraphique_.largeur / 2].
-                    E_DecorArriere = e_Decorarriere.bunker;
-                moteurgraphique_.map[moteurgraphique_.longueur / 2, moteurgraphique_.largeur / 2].E_DecorAvant
-                    = e_Decoravant.bunker;
+                moteurgraphique_.ruines(moteurgraphique_.longueur / 2, moteurgraphique_.largeur / 2);
                 moteurgraphique_.Adapt();
             }
             else

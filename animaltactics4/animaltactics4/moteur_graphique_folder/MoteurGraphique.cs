@@ -46,7 +46,7 @@ namespace animaltactics4
                 compteur1++;
                 compteur2 = 0;
             }
-            mapAleaFaceToFaceGlace(longueur_, largeur_, 4, 4, 4);
+            mapAleaGlace(longueur_, largeur_, 4, 4, 4);
             //if (r.Next(100) % 2 == 0)
             //{
             //    mapAleaFaceToFace(32, 32, 3, 3, 2);
@@ -381,7 +381,7 @@ namespace animaltactics4
                     {
                         //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                         //{
-                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
                         //}
                     }
                 }
@@ -392,7 +392,7 @@ namespace animaltactics4
                     {
                         //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                         //{
-                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
                         //}
                     }
                 }
@@ -483,7 +483,7 @@ namespace animaltactics4
                     {
                         //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                         //{
-                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
                         //}
                     }
                 }
@@ -494,14 +494,14 @@ namespace animaltactics4
                     {
                         //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
                         //{
-                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
                         //}
                     }
                 }
             }
             viderSurbrillance();
             if (sourisI != -1)
-            updatePinceau(p_type_, p_taille_);
+                updatePinceau(p_type_, p_taille_);
             #endregion
             if (clicOrNot)
             {
@@ -587,6 +587,22 @@ namespace animaltactics4
                 }
             }
         }
+        public void montagneReguliere(int i_, int j_)
+        {
+            for (int d = 0; d < 10; d++)
+            {
+                for (int p = i_ - d; p < i_ + d; p++)
+                {
+                    for (int q = j_ - d; q < j_ + d; q++)
+                    {
+                        if (p >= 0 && p < longueur && q >= 0 && q < largeur)
+                        {
+                            map[p, q].altitude += 6;
+                        }
+                    }
+                }
+            }
+        }
         public void foret(int i_, int j_)
         {
             for (int d = 0; d < 6; d++)
@@ -623,6 +639,32 @@ namespace animaltactics4
                 return false;
             }
         }
+        public void bunkerforce(int i_, int j_)
+        {
+            map[i_, j_].E_DecorArriere = e_Decorarriere.bunker;
+            map[i_, j_].E_DecorAvant = e_Decoravant.bunker;
+            map[i_, j_].coutEnMouvement = 2;
+        }
+        public bool bunkerEcarte(int i_, int j_)
+        {
+            bool een = true;
+            for (int i = Math.Max(0, i_ - 4); i < Math.Min(longueur - 1, i_ + 4); i++)
+            {
+                for (int j = Math.Max(0, j_ - 4); j < Math.Min(largeur - 1, j_ + 4); j++)
+                {
+                    if (map[i, j].E_DecorArriere == e_Decorarriere.bunker)
+                    {
+                        een = false;
+                    }
+                }
+            }
+            if (een)
+            {
+                return bunker(i_, j_);
+            }
+            return false;
+
+        }
         public bool icebunker(int i_, int j_)
         {
             if (map[i_, j_].E_DecorArriere == e_Decorarriere.vide)
@@ -645,6 +687,25 @@ namespace animaltactics4
             {
                 return false;
             }
+        }
+        public bool icebunkerEcarte(int i_, int j_)
+        {
+            bool een = true;
+            for (int i = Math.Max(0, i_ - 4); i < Math.Min(longueur - 1, i_ + 4); i++)
+            {
+                for (int j = Math.Max(0, j_ - 4); j < Math.Min(largeur - 1, j_ + 4); j++)
+                {
+                    if (map[i, j].E_DecorArriere == e_Decorarriere.bunker)
+                    {
+                        een = false;
+                    }
+                }
+            }
+            if (een)
+            {
+                return icebunker(i_, j_);
+            }
+            return false;
         }
         public void roadTo(int i1_, int j1_, int i2_, int j2_)
         {
@@ -983,7 +1044,7 @@ namespace animaltactics4
         //Loohy
         #region generateurs de maps
         public void mapAleaHerbe(int i_, int j_, int nombreDeMontagne_,
-            int nombreDeForet_, int nombreDeBunker_, int nombreDeRivieres_)
+            int nombreDeForet_, int nombreDeRivieres_)
         {
             int a1 = r.Next(100) % i_;
             int b1 = r.Next(100) % j_;
@@ -1036,7 +1097,7 @@ namespace animaltactics4
                 a1 = r.Next(100) % i_;
                 b1 = r.Next(100) % j_;
             }
-            for (int z = 0; z < nombreDeBunker_; z++)
+            for (int z = 0; z < 4; z++)
             {
                 a1 = r.Next(100) % i_;
                 b1 = r.Next(100) % j_;
@@ -1065,7 +1126,7 @@ namespace animaltactics4
             viderVue();
         }
         public void mapAleaGlace(int i_, int j_, int nombreDeMontagne_,
-            int nombreDeForet_, int nombreDeBunker_, int nombreDeRivieres_)
+            int nombreDeForet_, int nombreDeRivieres_)
         {
             int a1 = r.Next(100) % i_;
             int b1 = r.Next(100) % j_;
@@ -1120,7 +1181,7 @@ namespace animaltactics4
                 a1 = r.Next(100) % i_;
                 b1 = r.Next(100) % j_;
             }
-            for (int z = 0; z < nombreDeBunker_; z++)
+            for (int z = 0; z < 6; z++)
             {
                 a1 = r.Next(100) % i_;
                 b1 = r.Next(100) % j_;
@@ -1336,6 +1397,46 @@ namespace animaltactics4
             }
             Adapt();
         }
+        public void mapreseau()
+        {
+            map = new Tile[32, 32];
+            for (int p = 0; p < 32; p++)
+            {
+                for (int q = 0; q < 32; q++)
+                {
+                    map[p, q] = new Tile(p, q);
+                    map[p, q].altitude -= 7;
+                }
+            }
+            montagneReguliere(16, 16);
+            montagneReguliere(10, 20);
+            montagneReguliere(20, 20);
+            montagneReguliere(20, 10);
+            montagneReguliere(10, 10);
+            #region sol(altitude)
+            for (int p = 0; p < 32; p++)
+            {
+                for (int q = 0; q < 32; q++)
+                {
+                    if (map[p, q].altitude < 0)
+                    {
+                        map[p, q].altitude = 0;
+                        map[p, q].E_Sol = e_Typedesol.mer;
+                        map[p, q].estAccessible = false;
+                    }
+                    else
+                    {
+                        if (map[p, q].altitude < 8)
+                        {
+                            map[p, q].altitude = 0;
+                            map[p, q].E_Sol = e_Typedesol.sable;
+                        }
+                    }
+                }
+            }
+            #endregion
+            Adapt();
+        }
         #endregion
 
         //Loohy
@@ -1498,7 +1599,7 @@ namespace animaltactics4
             switch (direction)
             {
                 case 0:
-                    return new Vector2((int)Math.Max(0, Math.Min(longueur - 1, (Mouse.GetState().X / Contents.pprc - 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 + camerax + 2 * cameray) / 64-3)), (int)
+                    return new Vector2((int)Math.Max(0, Math.Min(longueur - 1, (Mouse.GetState().X / Contents.pprc - 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 + camerax + 2 * cameray) / 64 - 3)), (int)
                         Math.Max(0, Math.Min(largeur - 1, (-Mouse.GetState().X / Contents.pprc + 32 + (Mouse.GetState().Y * 2) / Contents.pprc - 64 - camerax + 2 * cameray) / 64)));
                 case 1:
                     return new Vector2();
@@ -1566,6 +1667,7 @@ namespace animaltactics4
             }
         }
 
+        //Loohy
         public void NEW(int x_, int y_)
         {
             map = new Tile[x_, y_];
@@ -1611,7 +1713,7 @@ namespace animaltactics4
                     default:
                         size = 1;
                         break;
-                } 
+                }
                 #endregion
 
                 #region Lissage
@@ -1678,7 +1780,7 @@ namespace animaltactics4
                             }
                         }
                     }
-                } 
+                }
                 #endregion
                 map[sourisI, sourisJ].appliquer(type_, this, r.Next(100), 16);
                 for (int portee_ = 0; portee_ < size; portee_++)
@@ -1783,6 +1885,59 @@ namespace animaltactics4
                         }
                     }
                 }
+            }
+        }
+
+        //Loohy
+        public Point getNextBunker()
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    if (map[i, j].E_DecorArriere == e_Decorarriere.bunker && map[i, j].estAccessible)
+                    {
+                        return new Point(i, j);
+                    }
+                }
+            }
+            return new Point(longueur / 2, largeur / 2);
+        }
+
+
+        public void QG(Point p_)
+        {
+            for (int i = Math.Max(0, p_.X - 1); i < Math.Min(longueur - 1, p_.X + 2); i++)
+            {
+                for (int j = Math.Max(0, p_.Y - 1); j < Math.Min(largeur - 1, p_.Y + 2); j++)
+                {
+                    map[i, j].altitude = Math.Max(3, map[i, j].altitude);
+                    if (map[i, j].E_Sol == e_Typedesol.mer)
+                    {
+                        map[i, j].E_Sol = e_Typedesol.sable;
+                    }
+                }
+
+            }
+            bunkerforce(p_.X, p_.Y);
+            roadTo(p_.X, p_.Y, 16, 16);
+        }
+        public Point getBase(int d_)
+        {
+            switch (d_)
+            {
+                case 0:
+                    return new Point(16, 4);
+                case 1:
+                    return new Point(16, 27);
+                case 2:
+                    return new Point(4, 10);
+                case 3:
+                    return new Point(27, 20);
+                case 4:
+                    return new Point(27, 10);
+                default:
+                    return new Point(4, 20);
             }
         }
     }

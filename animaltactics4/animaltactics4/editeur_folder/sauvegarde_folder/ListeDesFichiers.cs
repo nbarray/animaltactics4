@@ -100,11 +100,14 @@ namespace animaltactics4
             MoteurGraphique Gaia = new MoteurGraphique(32, 32);
             t = "Carte nordique aléatoire";
             SauvegardeCarte(ref t, Gaia);
-            Gaia.mapAleaFaceToFace(32, 32, 4, 5, 4);
+            Gaia.mapAleaHerbe(32, 32, 4, 5, 4);
             t = "Carte asiatique aléatoire";
             SauvegardeCarte(ref t, Gaia);
-            Gaia.mapAleaHerbe(32, 32, 5,5,5,6);
+            Gaia.mapAleaHerbe(32, 32, 5,5,6);
             t = "Carte européenne aléatoire";
+            SauvegardeCarte(ref t, Gaia);
+            Gaia.mapreseau();
+            t = "Carte reseau";
             SauvegardeCarte(ref t, Gaia);
 
         }
