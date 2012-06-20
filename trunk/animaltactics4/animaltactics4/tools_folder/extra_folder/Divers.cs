@@ -464,6 +464,13 @@ namespace animaltactics4
             }
             
         }
-
+        public static void Pops(int i)
+        {
+            while (i>0)
+            {
+                Engine.scenes.Pop();
+                i--;
+            }
+        }
     }
 }

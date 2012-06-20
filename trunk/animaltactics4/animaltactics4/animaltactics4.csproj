@@ -128,6 +128,8 @@
     <Compile Include="moteur_graphique_folder\MoteurGraphique.cs" />
     <Compile Include="moteur_graphique_folder\Tile.cs" />
     <Compile Include="moteur_reseau_folder\Client.cs" />
+    <Compile Include="moteur_reseau_folder\MenuSalon.cs" />
+    <Compile Include="moteur_reseau_folder\Server.cs" />
     <Compile Include="moteur_reseau_folder\TraitementConnectionClient.cs" />
     <Compile Include="moteur_sonore_folder\MoteurSon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonFullScreen.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLangage.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLien.cs" />
+    <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonLien2.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonNouvellePartie.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonPause.cs" />
     <Compile Include="structure_du_jeu_folder\bouton_folder\BoutonSeConnecter.cs" />
@@ -154,7 +157,6 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuCredit.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuEditer.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuEncyclopedie.cs" />
-    <Compile Include="structure_du_jeu_folder\scene_folder\MenuHeberger.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuJouer.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuOption.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuOptionGraphisme.cs" />

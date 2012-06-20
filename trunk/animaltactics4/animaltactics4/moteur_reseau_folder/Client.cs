@@ -20,11 +20,16 @@ namespace animaltactics4
         static Socket sock;
 
         static bool phaseDeConnection;
+        public static string info1, info2, info3, info4;
 
         public static void Init()
         {
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             phaseDeConnection = false;
+            info1 = "Connection en cours ...";
+            info2 = "Reception du message d'accueil : ";
+            info3 = "Envoie du pseudo : " + Divers.pseudo;
+            info4 = "ok";
         }
 
         public static bool ConnectTo(string ip)
