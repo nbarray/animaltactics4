@@ -122,14 +122,15 @@ namespace animaltactics4
                     }
                     else
                     {
-                        if (listeDesJoueurs[0].score > listeDesJoueurs[1].score)
+                        int v = 0;
+                        for (int i = 0; i < listeDesJoueurs.Count; i++)
                         {
-                            victory(0, hud_);
+                            if (listeDesJoueurs[i].score > listeDesJoueurs[v].score)
+                            {
+                                v = listeDesJoueurs[i].score;
+                            }
                         }
-                        else
-                        {
-                            victory(1, hud_);
-                        }
+                        victory(listeDesJoueurs[v].camp, hud_);
                     }
                 }
                 #endregion

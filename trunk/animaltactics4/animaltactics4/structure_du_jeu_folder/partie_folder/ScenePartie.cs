@@ -50,6 +50,7 @@ namespace animaltactics4
         {
             //base.DrawScene();
             p.Draw();
+            if (!estEnPause && !p.Jackman.Victory_)
             boutons[3].Draw();
             if (estEnPause)
             {

@@ -12,7 +12,7 @@ namespace animaltactics4
     class MoteurGraphique
     {
         public int direction;//0n, 1o, 2s, 3e
-        public int longueur, largeur, camerax, cameray, lastcamerax, lastcameray;
+        public int longueur, largeur, camerax, cameray, lastcamerax, lastcameray, sourisI, sourisJ;
         float flammiches;
         public Tile[,] map;
         public e_brouillardDeGuerre fog;
@@ -56,6 +56,8 @@ namespace animaltactics4
             //    mapAleaFaceToFaceGlace(32, 32, 1, 3, 8);
             //}
             fog = e_brouillardDeGuerre.ToutVisible;
+            sourisI = 0;
+            sourisJ = 0;
             //Aplatir();
         }
 
@@ -368,6 +370,7 @@ namespace animaltactics4
         public void Update(SystemeDeJeu gameplay_, HUD hud_)
         {
             Camera();
+            #region Souris
             for (int d = 0; d < 7; d++)
             {
                 for (int i = (int)getCaseFromMouseAvecAltitude().X + 3; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
@@ -375,11 +378,11 @@ namespace animaltactics4
                     int j = (int)getCaseFromMouseAvecAltitude().Y - 1;
                     if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
                     {
-                        //map[i + d, j + d].estEnSurbrillance = true;
-                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
-                        {
-                            surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
-                        }
+                        //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        //{
+                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                            map[i + d, j + d].estEnSurbrillance = false;
+                        //}
                     }
                 }
                 for (int j = (int)getCaseFromMouseAvecAltitude().Y + 3; j >= (int)getCaseFromMouseAvecAltitude().Y - 1; j--)
@@ -387,15 +390,16 @@ namespace animaltactics4
                     int i = (int)getCaseFromMouseAvecAltitude().X - 1;
                     if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
                     {
-                        //map[i + d, j + d].estEnSurbrillance = true;
-                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
-                        {
-                            map[i + d, j + d].UpdateLosange(camerax, cameray, direction);
-                        }
-                        surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        //{
+                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                            map[i + d, j + d].estEnSurbrillance = false;
+                        //}
                     }
                 }
             }
+            map[sourisI, sourisJ].estEnSurbrillance = true; 
+            #endregion
             setAttaqOrNotTiles(gameplay_.mood != e_modeAction.Mouvement);
             if (clicOrNot)
             {
@@ -464,10 +468,12 @@ namespace animaltactics4
             #endregion
         }
         //Loohy
-        public void UpdateEditeur()
+        public void UpdateEditeur(e_pinceau p_type_, e_toolSize p_taille_)
         {
             Camera();
-            viderSurbrillance();
+            #region Souris
+            sourisI = -1;
+            sourisJ = -1;
             for (int d = 0; d < 7; d++)
             {
                 for (int i = (int)getCaseFromMouseAvecAltitude().X + 3; i >= (int)getCaseFromMouseAvecAltitude().X - 1; i--)
@@ -475,11 +481,10 @@ namespace animaltactics4
                     int j = (int)getCaseFromMouseAvecAltitude().Y - 1;
                     if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
                     {
-                        //map[i + d, j + d].estEnSurbrillance = true;
-                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
-                        {
-                            surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
-                        }
+                        //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        //{
+                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        //}
                     }
                 }
                 for (int j = (int)getCaseFromMouseAvecAltitude().Y + 3; j >= (int)getCaseFromMouseAvecAltitude().Y - 1; j--)
@@ -487,15 +492,17 @@ namespace animaltactics4
                     int i = (int)getCaseFromMouseAvecAltitude().X - 1;
                     if (i + d >= 0 && j + d >= 0 && i + d < longueur && j + d < largeur)
                     {
-                        //map[i + d, j + d].estEnSurbrillance = true;
-                        if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
-                        {
-                            map[i + d, j + d].UpdateLosange(camerax, cameray, direction);
-                        }
-                        surbrillance(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        //if ((lastcamerax != camerax || lastcameray != cameray) && clicOrNot)
+                        //{
+                            estCeLaSouris(i + d, j + d, new Rectangle(0, 0, 0, 0));
+                        //}
                     }
                 }
             }
+            viderSurbrillance();
+            if (sourisI != -1)
+            //updatePinceau(p_type_, p_taille_);
+            #endregion
             if (clicOrNot)
             {
                 lastcamerax = camerax;
@@ -522,23 +529,15 @@ namespace animaltactics4
         }
 
         //Loohy
-        public void surbrillance(int i_, int j_, Rectangle rect_)
+        public void estCeLaSouris(int i_, int j_, Rectangle rect_)
         {
             if ((i_ + 1 == longueur || !map[i_ + 1, j_].estEnSurbrillance)
                 && (i_ + 1 == longueur || (j_ + 1 == largeur || !map[i_ + 1, j_ + 1].estEnSurbrillance))
                 && (j_ + 1 == largeur || !map[i_, j_ + 1].estEnSurbrillance)
                 && map[i_, j_].estSurvolee(rect_, camerax, cameray, direction))
             {
-                map[i_, j_].estEnSurbrillance = true;
-                //map[i_, j_].surbrillancePortee = 9;
-                //map[i_, j_].sousRectportee.X = 19 * 64;
-                //Console.WriteLine(i_ +"/"+ j_);
-            }
-            else
-            {
-                map[i_, j_].estEnSurbrillance = false;
-                //map[i_, j_].surbrillancePortee = 2;
-                //map[i_, j_].sousRectportee.X = 11 * 64;
+                sourisI = i_;
+                sourisJ = j_;
             }
         }
 
@@ -1351,6 +1350,19 @@ namespace animaltactics4
                 }
             }
         }
+        public void AdaptAutour(int a_, int b_)
+        {
+            for (int p = -1; p < 2; p++)
+            {
+                for (int q = -1; q < 2; q++)
+                {
+                    if (a_ + p > -1 && a_ + p < longueur && b_ + q > -1 && b_ + q < largeur)
+                    {
+                        map[a_ + p, b_ + q].Adapt(this, r.Next(100) / 10);
+                    }
+                }
+            }
+        }
 
         //Loohy
         public void porteeEgal0()
@@ -1501,6 +1513,251 @@ namespace animaltactics4
             //        break;
             //}
             //return rect;
+        }
+        public int altitudeMax(int i_, int j_)
+        {
+            int alt = 320;
+            for (int p = -1; p < 2; p++)
+            {
+                for (int q = -1; q < 2; q++)
+                {
+                    if (i_ + p > -1 && i_ + p < longueur && j_ + q > -1 && j_ + q < largeur && (p != 0 || q != 0))
+                    {
+                        alt = Math.Min(alt, map[i_ + p, j_ + q].altitude);
+                    }
+                }
+            }
+            return alt + 32;
+        }
+        public int altitudeMin(int i_, int j_)
+        {
+            int alt = -320;
+            for (int p = -1; p < 2; p++)
+            {
+                for (int q = -1; q < 2; q++)
+                {
+                    if (i_ + p > -1 && i_ + p < longueur && j_ + q > -1 && j_ + q < largeur && (p != 0 || q != 0))
+                    {
+                        alt = Math.Max(alt, map[i_ + p, j_ + q].altitude);
+                    }
+                }
+            }
+            return alt - 28;
+        }
+
+        public void NEW(int x_, int y_)
+        {
+            map = new Tile[x_, y_];
+            for (int i = 0; i < x_; i++)
+            {
+                for (int j = 0; j < y_; j++)
+                {
+                    map[i, j] = new Tile(i, j);
+                }
+            }
+            Adapt();
+            centrerSur(x_ / 2, y_ / 2);
+        }
+        public void updatePinceau(e_pinceau type_, e_toolSize taille_)
+        {
+            brille(taille_);
+            #region clic
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                int size;
+                switch (taille_)
+                {
+                    case e_toolSize.XSmall:
+                        size = 1;
+                        break;
+                    case e_toolSize.Small:
+                        size = 2;
+                        break;
+                    case e_toolSize.Standard:
+                        size = 3;
+                        break;
+                    case e_toolSize.Medium:
+                        size = 4;
+                        break;
+                    case e_toolSize.Large:
+                        size = 5;
+                        break;
+                    case e_toolSize.XLarge:
+                        size = 6;
+                        break;
+                    default:
+                        size = 1;
+                        break;
+                }
+
+                if (type_ == e_pinceau.Lissage)
+                {
+                    int moy = 0;
+                    int n = 1;
+                    moy += map[sourisI, sourisJ].altitude;
+                    for (int portee_ = 0; portee_ < size; portee_++)
+                    {
+                        for (int k = 0; k < portee_; k++)
+                        {
+                            if (sourisI + k >= 0 && sourisI + k < longueur
+                                && sourisJ + (portee_ - k) >= 0 && sourisJ + (portee_ - k) < largeur)
+                            {
+                                moy += map[sourisI + k, sourisJ + (portee_ - k)].altitude;
+                                n++;
+                            }
+                            if (sourisI - k >= 0 && sourisI - k < longueur
+                                 && sourisJ - (portee_ - k) >= 0 && sourisJ - (portee_ - k) < largeur)
+                            {
+                                moy += map[sourisI - k, sourisJ - (portee_ - k)].altitude;
+                                n++;
+                            }
+                            if (sourisI + (portee_ - k) >= 0 && sourisI + (portee_ - k) < longueur
+                                 && sourisJ - k >= 0 && sourisJ - k < largeur)
+                            {
+                                moy += map[sourisI + (portee_ - k), sourisJ - k].altitude;
+                                n++;
+                            }
+                            if (sourisI - (portee_ - k) >= 0 && sourisI - (portee_ - k) < longueur
+                                 && sourisJ + k >= 0 && sourisJ + k < largeur)
+                            {
+                                moy += map[sourisJ - (portee_ - k), sourisJ + k].altitude;
+                                n++;
+                            }
+                        }
+                    }
+                    moy /= n;
+                    map[sourisI, sourisJ].appliquer(type_, this, moy, 16);
+                    for (int portee_ = 0; portee_ < size; portee_++)
+                    {
+                        for (int k = 0; k < portee_; k++)
+                        {
+                            if (sourisI + k >= 0 && sourisI + k < longueur
+                                && sourisJ + (portee_ - k) >= 0 && sourisJ + (portee_ - k) < largeur)
+                            {
+                                map[sourisI + k, sourisJ + (portee_ - k)].appliquer(type_, this, moy, 16 - portee_);
+                            }
+                            if (sourisI - k >= 0 && sourisI - k < longueur
+                                 && sourisJ - (portee_ - k) >= 0 && sourisJ - (portee_ - k) < largeur)
+                            {
+                                map[sourisI - k, sourisJ - (portee_ - k)].appliquer(type_, this, moy, 16 - portee_);
+                            }
+                            if (sourisI + (portee_ - k) >= 0 && sourisI + (portee_ - k) < longueur
+                                 && sourisJ - k >= 0 && sourisJ - k < largeur)
+                            {
+                                map[sourisI + (portee_ - k), sourisJ - k].appliquer(type_, this, moy, 16 - portee_);
+                            }
+                            if (sourisI - (portee_ - k) >= 0 && sourisI - (portee_ - k) < longueur
+                                 && sourisJ + k >= 0 && sourisJ + k < largeur)
+                            {
+                                map[sourisI - (portee_ - k), sourisJ + k].appliquer(type_, this, moy, 16 - portee_);
+                            }
+                        }
+                    }
+                }
+                map[sourisI, sourisJ].appliquer(type_, this, r.Next(100), 16);
+                for (int portee_ = 0; portee_ < size; portee_++)
+                {
+                    for (int k = 0; k < portee_; k++)
+                    {
+                        if (sourisI + k >= 0 && sourisI + k < longueur
+                            && sourisJ + (portee_ - k) >= 0 && sourisJ + (portee_ - k) < largeur)
+                        {
+                            map[sourisI + k, sourisJ + (portee_ - k)].appliquer(type_, this, r.Next(100), 16 - portee_);
+                        }
+                        if (sourisI - k >= 0 && sourisI - k < longueur
+                             && sourisJ - (portee_ - k) >= 0 && sourisJ - (portee_ - k) < largeur)
+                        {
+                            map[sourisI - k, sourisJ - (portee_ - k)].appliquer(type_, this, r.Next(100), 16 - portee_);
+                        }
+                        if (sourisI + (portee_ - k) >= 0 && sourisI + (portee_ - k) < longueur
+                             && sourisJ - k >= 0 && sourisJ - k < largeur)
+                        {
+                            map[sourisI + (portee_ - k), sourisJ - k].appliquer(type_, this, r.Next(100), 16 - portee_);
+                        }
+                        if (sourisI - (portee_ - k) >= 0 && sourisI - (portee_ - k) < longueur
+                             && sourisJ + k >= 0 && sourisJ + k < largeur)
+                        {
+                            map[sourisI - (portee_ - k), sourisJ + k].appliquer(type_, this, r.Next(100), 16 - portee_);
+                        }
+                    }
+                }
+            }
+            #endregion
+        }
+        public void brille(e_toolSize taille_)
+        {
+            int i = -1;
+            int j = -1;
+            for (int p = 0; p < longueur; p++)
+            {
+                for (int q = 0; q < largeur; q++)
+                {
+                    if (map[p, q].estSurvolee(new Rectangle(0, 0, 0, 0), camerax, cameray, direction))
+                    {
+                        i = p;
+                        j = q;
+                    }
+                }
+            }
+            foreach (Tile item in map)
+            {
+                item.estEnSurbrillance = false;
+            }
+            if (i != -1)
+            {
+                int size;
+                switch (taille_)
+                {
+                    case e_toolSize.XSmall:
+                        size = 1;
+                        break;
+                    case e_toolSize.Small:
+                        size = 2;
+                        break;
+                    case e_toolSize.Standard:
+                        size = 3;
+                        break;
+                    case e_toolSize.Medium:
+                        size = 4;
+                        break;
+                    case e_toolSize.Large:
+                        size = 5;
+                        break;
+                    case e_toolSize.XLarge:
+                        size = 6;
+                        break;
+                    default:
+                        size = 1;
+                        break;
+                }
+                map[i, j].estEnSurbrillance = true;
+                for (int portee_ = 0; portee_ < size; portee_++)
+                {
+                    for (int k = 0; k < portee_; k++)
+                    {
+                        if (i + k >= 0 && i + k < longueur
+                            && j + (portee_ - k) >= 0 && j + (portee_ - k) < largeur)
+                        {
+                            map[i + k, j + (portee_ - k)].estEnSurbrillance = true;
+                        }
+                        if (i - k >= 0 && i - k < longueur
+                             && j - (portee_ - k) >= 0 && j - (portee_ - k) < largeur)
+                        {
+                            map[i - k, j - (portee_ - k)].estEnSurbrillance = true;
+                        }
+                        if (i + (portee_ - k) >= 0 && i + (portee_ - k) < longueur
+                             && j - k >= 0 && j - k < largeur)
+                        {
+                            map[i + (portee_ - k), j - k].estEnSurbrillance = true;
+                        }
+                        if (i - (portee_ - k) >= 0 && i - (portee_ - k) < longueur
+                             && j + k >= 0 && j + k < largeur)
+                        {
+                            map[i - (portee_ - k), j + k].estEnSurbrillance = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -345,12 +345,12 @@ namespace animaltactics4
             if (Contents.contientLaSouris(mike))
             {
                 Contents.Draw("px", mike, Color.Gray);
-                Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 5, mike.Y + 10, 0, 0), Color.Black);
+                Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 10, mike.Y + 5, 0, 0), Color.Black);
             }
             else
             {
                 Contents.Draw("px", mike, Color.DarkGray);
-                Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 5, mike.Y + 10, 0, 0), Color.White);
+                Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 10, mike.Y + 5, 0, 0), Color.White);
             }
             #endregion
 
