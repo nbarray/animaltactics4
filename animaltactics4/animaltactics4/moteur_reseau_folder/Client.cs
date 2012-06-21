@@ -91,7 +91,8 @@ namespace animaltactics4
         public static void Draw() /* draw proust*/
         {
             writebox.Draw();
-            
         }
+
+        
     }
 }

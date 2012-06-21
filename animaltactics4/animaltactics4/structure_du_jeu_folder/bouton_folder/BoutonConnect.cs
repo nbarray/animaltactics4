@@ -26,7 +26,7 @@ namespace animaltactics4
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     een = true;
-                    Engine.scenes.Push(new Wallala());
+                    Engine.scenes.Push(new SceneClient());
                 }
             }
         }

@@ -86,6 +86,7 @@ namespace animaltactics4
                 {
                     Etape3_partie_en_cours = true;
                     // Partie lancée
+                    Netools.Send(sock, "o"); // Synch de l'horloge : "o+temps"
                 }
             }
         }

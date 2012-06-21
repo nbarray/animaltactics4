@@ -556,6 +556,7 @@ namespace animaltactics4
                 item.lireLaFile(loohy_, gameplay_.listeDesJoueurs[gameplay_.tourencours], gameplay_);
             }
         }
+
         public void UpdateSelonIAouNon(MoteurGraphique loohy_, SystemeDeJeu gameplay_, ref e_modeAction mood_,
             /*Lecteur coldman_,*/ HUD hud_, ref int time_)
         {
@@ -568,6 +569,8 @@ namespace animaltactics4
                 Update(loohy_, gameplay_, ref mood_, /*coldman_, */hud_);
             }
         }
+
+
         public void UpdateSansClicSelonIAouNon(MoteurGraphique loohy_, SystemeDeJeu gameplay_)
         {
             foreach (Unite item in bataillon)
