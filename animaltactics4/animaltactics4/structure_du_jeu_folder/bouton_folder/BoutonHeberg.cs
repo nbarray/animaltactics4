@@ -14,7 +14,6 @@ namespace animaltactics4
         public BoutonHeberg(int x, int y)
             : base(new Rectangle(x, y, 400, 75), new Rectangle(0, 0, 800, 300))
         {
-            Serveur.Initialiser();
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
         }
 
