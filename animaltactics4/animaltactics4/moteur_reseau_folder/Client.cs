@@ -38,15 +38,15 @@ namespace animaltactics4
 
         public static void Connecter() /*lancer*/
         {
-
-                try
-                {
-                    sock.Connect(new IPEndPoint(IPAddress.Parse(writebox.text), 4242));
-                }
-                catch
-                {
-                    Client.Draw();
-                }
+            try
+            {
+                sock.Connect(new IPEndPoint(IPAddress.Parse(writebox.text), 4242));
+            }
+            catch(Exception e)
+            {
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
+                Console.WriteLine(e.Message);
+            }
 
         }
 
@@ -85,8 +85,8 @@ namespace animaltactics4
 
         public static void ArreterLeClient() /* stop client */
         {
-            if(sock != null)
-            sock.Close();
+            if (sock != null)
+                sock.Close();
             received = "";
 
         }
