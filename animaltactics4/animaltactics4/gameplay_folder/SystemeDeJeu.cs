@@ -107,6 +107,7 @@ namespace animaltactics4
                         {
                             tourencours = (tourencours + 1) % listeDesJoueurs.Count;
                         } while (!listeDesJoueurs[tourencours].atLeastOneAlive);
+
                         listeDesJoueurs[tourencours].reactiverIA();
                         time = 0;
                         hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
@@ -128,10 +129,10 @@ namespace animaltactics4
                         {
                             if (listeDesJoueurs[i].score > listeDesJoueurs[v].score)
                             {
-                                v = listeDesJoueurs[i].score;
+                                v = listeDesJoueurs[i].camp;
                             }
                         }
-                        victory(listeDesJoueurs[v].camp, hud_);
+                        victory(v, hud_);
                     }
                 }
                 #endregion

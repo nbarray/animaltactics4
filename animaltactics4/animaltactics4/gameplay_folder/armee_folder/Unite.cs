@@ -614,6 +614,10 @@ namespace animaltactics4
             if (pvactuel > 0)
             {
                 mouvement = mouvementmax;
+                if (porteTresor)
+                {
+                    mouvement -= 4;
+                }
                 attaqOrNot = true;
                 if (xp >= 10 && lvl < 15)
                 {

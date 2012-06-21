@@ -17,6 +17,7 @@ namespace animaltactics4
         //Coldman & Loohy
         static public void Initialize()
         {
+            files = new ListeDesFichiers();
             scenes = new Stack<Scene>();
             scenes.Push(new Introduction());
             recharge();
