@@ -58,54 +58,6 @@ namespace animaltactics4
             lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
         }
 
-        //Coldman
-        public void UpdateClient(GameTime gameTime_)
-        {
-            if (gameplay.tourencours == 1)
-            {
-                int t = Convert.ToInt32((char)Netools.ReadTime(Client.sock));
-                gameplay.UpdateReseau(earthPenguin, Jackman);
-                earthPenguin.Update(gameplay, Jackman);
-            }
-            else
-            {
-                Netools.UpdateTransition(gameTime_);
-            }
-        }
-
-        //Coldman
-        public void UpdateServeur(GameTime gametime_)
-        {
-            if (gameplay.tourencours == 0)
-            {
-                bool een = true;
-                gameplay.Update(earthPenguin, Jackman, ref time, ref een);
-                earthPenguin.Update(gameplay, Jackman);
-                if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
-                {
-                    time++;
-                    Console.WriteLine(time);
-                    if (tempsMax - time <= 0)
-                    {
-                        bool eenne = true;
-                        gameplay.FinDeTour(earthPenguin, Jackman, ref time, ref eenne);
-                    }
-                }
-                lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
-            }
-            else
-            {
-                if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
-                {
-                    time++;
-                }
-                lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
-
-                Netools.UpdateTransition(gametime_);
-            }
-            
-        }
-
         //Loohy
         public void Draw()
         {

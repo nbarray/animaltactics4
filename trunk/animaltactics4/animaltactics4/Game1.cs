@@ -41,7 +41,7 @@ namespace animaltactics4
             MoteurSon.Initialize(Content);
             Contents.Initialize(GraphicsDevice);
             Engine.Initialize();
-            
+
         }
 
         protected override void LoadContent()
@@ -76,9 +76,7 @@ namespace animaltactics4
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
             Engine.Draw();
-
             base.Draw(gameTime);
         }
     }
