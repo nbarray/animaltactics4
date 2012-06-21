@@ -9,6 +9,12 @@ namespace animaltactics4
 {
     static class Netools
     {
+        static public WriteBox writebox;
+
+
+
+        #region Old Stuff
+
         public static Rectangle sub = new Rectangle(0, 0, 50, 50);
 
         public static void Send(Socket sock, string msg)
@@ -74,6 +80,7 @@ namespace animaltactics4
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
             Contents.DrawString("Tentative...(5 sec d'attente)", new Rectangle(600 - 200, 200, 1, 1), Color.White);
-        }
+        } 
+        #endregion
     }
 }
