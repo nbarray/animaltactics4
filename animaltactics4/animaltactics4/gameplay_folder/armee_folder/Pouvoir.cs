@@ -29,6 +29,10 @@ namespace animaltactics4
             coutEnergie = coutEnergie_;
             recharge = recharge_;
             efficacite = efficacite_;
+            if (nom == e_pouvoir.Geolier)
+            {
+                boost = e_typeDeBoost.BonusEsquive;
+            }
             vertical = vertical_;
         }
 
@@ -98,7 +102,7 @@ namespace animaltactics4
                                     break;
                                 case e_typeDeBoost.BonusEsquive:
                                     gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
-                                bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusEsquive += efficacite;
+                                bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].bonusEsquive *= efficacite;
                                     break;
                                 case e_typeDeBoost.BonusInitiative:
                                     gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].

@@ -102,7 +102,7 @@ namespace animaltactics4
         PandaSceau, PandaSniper, PandaNinja,
         PingvinSoin, PingvinThor, PingvinRage,
         FenrirMissiles, FenrirBoost, FenrirRailgun,
-        Krissa1, Legionnaire, Assassinat
+        Geolier, Legionnaire, Assassinat
     }
     enum e_typedAura
     {
