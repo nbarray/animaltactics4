@@ -10,13 +10,15 @@ namespace animaltactics4
     class SceneServer : Scene
     {
         public Partie p;
+        public bool u;
+
         public SceneServer()
             : base()
         {
             p = new Partie(32, 32);
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
-            
-            Serveur.Initialiser(p);
+
+            u = false;
         }
 
         public override void DrawScene()
@@ -32,6 +34,11 @@ namespace animaltactics4
             }
             else
             {
+                if (!u)
+                {
+                    Serveur.Initialiser(p);
+                    u = true;
+                }
                 Netools.UpdateTransition(gameTime);
             }
 

@@ -49,32 +49,21 @@ namespace animaltactics4
                                   42);
         }
 
-        public static void Ecoute() 
+        public static void Ecoute()
         {
-            while (true)
+            try
             {
-                try
-                {
-                    client = sock.Accept();
-                }
-                catch
-                {
-
-                }
-                
+                client = sock.Accept();
             }
+            catch { }
         }
 
-        public static void UpdateServer(Partie p, GameTime gameTime) 
+        public static void UpdateServer(Partie p, GameTime gameTime)
         {
             // UPDATE DU RESEAU COTE SERVEUR
             if (!Etape1_connection_du_client)
             {
-                if (!client.Connected)
-                {
-                    Ecoute();
-                }
-                else
+                if (client.Connected)
                 {
                     Netools.Send(client, "1");
                 }
@@ -98,12 +87,12 @@ namespace animaltactics4
             }
         }
 
-        public static bool ArreterLeServer() 
+        public static bool ArreterLeServer()
         {
-            if(sock != null)
-            sock.Close();
+            if (sock != null)
+                sock.Close();
             if (client != null)
-            client.Close();
+                client.Close();
             unique = false;
             if (t_init.ThreadState == ThreadState.Running)
             {

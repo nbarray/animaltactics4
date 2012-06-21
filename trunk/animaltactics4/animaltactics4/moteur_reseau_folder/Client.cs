@@ -14,7 +14,7 @@ namespace animaltactics4
         static public Socket sock;
         static public WriteBox writebox;
         static public string string_ip;
-        static public bool unique;
+
         static public string received;
 
         static public bool Etape1_connection_du_client = false;
@@ -27,10 +27,6 @@ namespace animaltactics4
         public static void Initialiser()
         {
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            string_ip = "";
-            
-            unique = false;
-            received = "";
 
             Etape1_connection_du_client = false;
             Etape2_synchronisation_des_joueurs = false;
@@ -42,19 +38,16 @@ namespace animaltactics4
 
         public static void Connecter() /*lancer*/
         {
-            if (!unique)
-            {
+
                 try
                 {
-                    sock.Connect(new IPEndPoint(IPAddress.Parse(string_ip), 4242));
+                    sock.Connect(new IPEndPoint(IPAddress.Parse(writebox.text), 4242));
                 }
                 catch
                 {
                     Client.Draw();
                 }
-                Console.Write(sock.Connected);
-                unique = true;
-            }
+
         }
 
         public static void Update(Partie p_, GameTime gameTime_) /*mise a jour*/
@@ -95,7 +88,7 @@ namespace animaltactics4
             if(sock != null)
             sock.Close();
             received = "";
-            unique = false;
+
         }
 
         public static void Draw() /* draw proust*/
