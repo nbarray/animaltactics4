@@ -13,7 +13,7 @@ namespace animaltactics4
     {
         #region Parametres
         int i, j;
-        public int altitude, pointeurArmee,pointeurUnite,surbrillancePortee,coutEnMouvement;
+        public int altitude, pointeurArmee, pointeurUnite, surbrillancePortee, coutEnMouvement;
         public bool estEnSurbrillance, estAccessible, presence;
         public Rectangle sousRectportee;
         public e_Typedesol E_Sol;
@@ -37,7 +37,7 @@ namespace animaltactics4
 
         Losange boundingbox;
         #endregion
-        
+
         //Loohy
         public Tile(int i_, int j_)
         {
@@ -179,21 +179,21 @@ namespace animaltactics4
                                     case e_EtatAnim.mouvement1:
                                         rect.X += iDepart * 24;
                                         rect.Y += jDepart * 12;
-                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f,0.7f, 0.7f), sousRectUnite);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 24;
                                         rect.Y -= jDepart * 12;
                                         break;
                                     case e_EtatAnim.mouvement2:
                                         rect.X += iDepart * 16;
                                         rect.Y += jDepart * 8;
-                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f,0.7f, 0.7f), sousRectUnite);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 16;
                                         rect.Y -= jDepart * 8;
                                         break;
                                     case e_EtatAnim.mouvement3:
                                         rect.X += iDepart * 8;
                                         rect.Y += jDepart * 4;
-                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f,0.7f, 0.7f), sousRectUnite);
+                                        Contents.Draw(textureUnite, rect, new Color(0.7f, 0.7f, 0.7f, 0.7f), sousRectUnite);
                                         rect.X -= iDepart * 8;
                                         rect.Y -= jDepart * 4;
                                         break;
@@ -373,7 +373,7 @@ namespace animaltactics4
             else
             {
                 Color gris = new Color(100, 100, 100);
-                gris = Color.Red;
+                //gris = Color.Red;
                 if (apercue)
                 {
                     #region sol
@@ -399,7 +399,7 @@ namespace animaltactics4
                     if (E_Riviere == e_Riviere.riviere)
                     {
                         Contents.Draw("Tiles", rect, gris, sousRectRiviere2);
-                    } 
+                    }
                     if (E_Route != e_Typederoute.vide)
                     {
                         if (E_Sol == e_Typedesol.mer || E_Sol == e_Typedesol.banquise)
@@ -421,7 +421,7 @@ namespace animaltactics4
                     if (E_DecorAvant != e_Decoravant.vide)
                     {
                         Contents.Draw("Tiles", rect, gris, sousRectDecorAvant);
-                    } 
+                    }
                     #endregion
                 }
                 else
@@ -447,7 +447,7 @@ namespace animaltactics4
                     #endregion
                 }
             }
-            //Contents.DrawStringInBoxCentered(i + ";" + j, rect);
+            //Contents.DrawStringInBoxCentered(visible.ToString().Substring(0, 1) + ";" + apercue.ToString().Substring(0, 1), rect);
         }
         //Loohy
         public void Drawpv(int camerax_, int cameray_, Color couleur_, int race_, int direction_)//1,2,3,4
@@ -458,7 +458,7 @@ namespace animaltactics4
                 rect.Y -= 32;
                 rect.Width = 16;
                 rect.Height = 48;
-                Contents.Draw("flag"+race_, rect, couleur_, 
+                Contents.Draw("flag" + race_, rect, couleur_,
                     new Rectangle(Math.Min(320 - ((pourcentageDePv / 10) * 32), 288), 0, 32, 100));
             }
         }
@@ -1029,6 +1029,7 @@ namespace animaltactics4
                 case e_pinceau.Eau:
                     E_Sol = e_Typedesol.mer;
                     E_Riviere = e_Riviere.vide;
+                    altitude = moteurgraphique_.altitudeMin(i, j);
                     break;
                 case e_pinceau.Banquise:
                     E_Sol = e_Typedesol.banquise;
@@ -1097,34 +1098,43 @@ namespace animaltactics4
                     E_DecorAvant = e_Decoravant.vide;
                     break;
                 case e_pinceau.Montagne:
-                    altitude += r_ % center_;
-                    if (altitude > moteurgraphique_.altitudeMax(i, j))
+                    if (E_Sol != e_Typedesol.mer && E_Sol != e_Typedesol.banquise)
                     {
-                        altitude = moteurgraphique_.altitudeMax(i, j);
+                        altitude += r_ % center_;
+                        if (altitude > moteurgraphique_.altitudeMax(i, j))
+                        {
+                            altitude = moteurgraphique_.altitudeMax(i, j);
+                        }
                     }
                     break;
                 case e_pinceau.Vallee:
-                    altitude -= r_ % center_;
-                    if (altitude < moteurgraphique_.altitudeMin(i, j))
+                    if (E_Sol != e_Typedesol.mer && E_Sol != e_Typedesol.banquise)
                     {
-                        altitude = moteurgraphique_.altitudeMin(i, j);
-                    }
-                    break;
-                case e_pinceau.Lissage:
-                    if (altitude > r_)
-                    {
-                        altitude--;
+                        altitude -= r_ % center_;
                         if (altitude < moteurgraphique_.altitudeMin(i, j))
                         {
                             altitude = moteurgraphique_.altitudeMin(i, j);
                         }
                     }
-                    if (altitude < r_)
+                    break;
+                case e_pinceau.Lissage:
+                    if (E_Sol != e_Typedesol.mer && E_Sol != e_Typedesol.banquise)
                     {
-                        altitude++;
-                        if (altitude > moteurgraphique_.altitudeMax(i, j))
+                        if (altitude > r_)
                         {
-                            altitude = moteurgraphique_.altitudeMax(i, j);
+                            altitude--;
+                            if (altitude < moteurgraphique_.altitudeMin(i, j))
+                            {
+                                altitude = moteurgraphique_.altitudeMin(i, j);
+                            }
+                        }
+                        if (altitude < r_)
+                        {
+                            altitude++;
+                            if (altitude > moteurgraphique_.altitudeMax(i, j))
+                            {
+                                altitude = moteurgraphique_.altitudeMax(i, j);
+                            }
                         }
                     }
                     break;

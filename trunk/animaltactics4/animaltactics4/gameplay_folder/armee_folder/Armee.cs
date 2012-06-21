@@ -27,7 +27,7 @@ namespace animaltactics4
             camp = camp_;
             QG = new Point(0, 0);
             IA = false;
-            score = 1;
+            score = 0;
             numeroarmee = numeroarmee_;
             if (espece_ == e_race.Random)
             {
@@ -617,7 +617,7 @@ namespace animaltactics4
             int p = bataillon[numeroDelUnite_].Agonie(moteurgraphique_);
             if (gameplay_.conditionsDeVictoire != e_typeDePartie.Colline)
             {
-                gameplay_.listeDesJoueurs[(numeroarmee + 1) % 2].score += p;
+                gameplay_.listeDesJoueurs[bataillon[numeroDelUnite_].assassin].score += bataillon[numeroDelUnite_].points;
             }
             gameplay_.listeDesJoueurs[gameplay_.tourencours].soeurAnne(moteurgraphique_, gameplay_);
         }
@@ -831,7 +831,7 @@ namespace animaltactics4
 
         public void NEW(e_race newRace_, Color newColor_, e_race saufCa_, int difficulte_)
         {
-            score = 1;
+            score = 0;
             do
             {
                 if (newRace_ == e_race.Random)
@@ -963,7 +963,8 @@ namespace animaltactics4
         {
             if (!IA)
             {
-                moteurgraphique_.viderVue();
+                if (moteurgraphique_.fog == e_brouillardDeGuerre.Normal)
+                    appliquerVues(moteurgraphique_);
                 foreach (Unite item in bataillon)
                 {
                     if (item.pvactuel > 0)
@@ -971,7 +972,6 @@ namespace animaltactics4
                         item.soeurAnne(moteurgraphique_, ref casesVisitees, gameplay_);
                     }
                 }
-                appliquerVues(moteurgraphique_);
             }
         }
         public void appliquerVues(MoteurGraphique moteurgraphique_)

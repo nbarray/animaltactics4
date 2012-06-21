@@ -64,6 +64,8 @@ namespace animaltactics4
                                     bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].pvactuel -= Math.Max(0, efficacite - gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
                                     bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].resistance);
                             }
+                            gameplay_.listeDesJoueurs[moteurgraphique_.map[i_, j_].pointeurArmee].
+                                    bataillon[moteurgraphique_.map[i_, j_].pointeurUnite].assassin = moi_.numeroArmee;
                             break;
                             #endregion
                         case e_typeDePouvoir.Soin:

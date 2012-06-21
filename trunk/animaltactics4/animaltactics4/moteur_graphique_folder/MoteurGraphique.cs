@@ -1747,7 +1747,7 @@ namespace animaltactics4
                                 moy += map[sourisI + (portee_ - k), sourisJ - k].altitude;
                                 n++;
                             }
-                            if (sourisI - (portee_ - k) >= 0 && sourisI - (portee_ - k) < longueur
+                            if (sourisI - (portee_ - k) >= 0 && sourisJ + k < largeur
                                  && sourisJ + k >= 0 && sourisJ + k < largeur)
                             {
                                 moy += map[sourisJ - (portee_ - k), sourisJ + k].altitude;

@@ -65,7 +65,7 @@ namespace animaltactics4
             #region HUD+Time
             Contents.Draw("px3", new Rectangle(0, 700, 1200, 200), Color.DarkGray);
             Contents.Draw("px3", new Rectangle(25, 725, 150, 150), Color.Red);
-            Contents.DrawStringInBoxCentered(Math.Max(0, tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
+            Contents.DrawStringInBoxCenteredChrono(Math.Max(0, tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
             #endregion
             if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0
                 && gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].alive)
@@ -82,7 +82,7 @@ namespace animaltactics4
                 int j = gameplay_.listeDesJoueurs[gameplay_.tourencours].bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].j;
                 Rectangle rect = genererRectangle(i, j, moteurgraphique_.map[i, j].altitude,
                     moteurgraphique_.camerax, moteurgraphique_.cameray, moteurgraphique_.direction);
-                DrawButtons(900, 725, gameplay_.listeDesJoueurs[gameplay_.tourencours].
+                DrawButtons(600, 725, gameplay_.listeDesJoueurs[gameplay_.tourencours].
                     bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == e_typeUnite.Elite);
                 UpdateButtons(ref gameplay_.mood, gameplay_.listeDesJoueurs[gameplay_.tourencours].
                     bataillon[gameplay_.listeDesJoueurs[gameplay_.tourencours].uniteselect].typeUnite == e_typeUnite.Elite);
@@ -306,10 +306,7 @@ namespace animaltactics4
             }
             #endregion
             #region score
-            if (gameplay_.listeDesJoueurs[gameplay_.tourencours].difficulte == 0)
-            {
-                //    DrawScore(sprite_, gameplay_, tex_, new Vector2(900, 170), (int)gameplay_.numeroDeTour);
-            }
+                DrawScore(gameplay_, new Point(900, 840));
             #endregion
             if (Victory /*&& AffichageCombat <= 0*/)
             {
@@ -332,8 +329,16 @@ namespace animaltactics4
             Contents.DrawString(s, new Rectangle((int)(v_.X - Contents.MeasureString(s).X / 2 + 1), (int)(v_.Y + 1), 0, 0), Color.DarkGray);
             Contents.DrawString(s, new Rectangle((int)(v_.X - Contents.MeasureString(s).X / 2), (int)(v_.Y), 0, 0));
         }
-        private void DrawScore(SystemeDeJeu gameplay_, Vector2 v_, int t_)
+        private void DrawScore(SystemeDeJeu gameplay_, Point v_)
         {
+            for (int i = 0; i < gameplay_.listeDesJoueurs.Count; i++)
+            {
+                Contents.Draw("px",
+                    new Rectangle(v_.X + 5 - 20 * gameplay_.listeDesJoueurs.Count + 40 * i, v_.Y - 5 - gameplay_.listeDesJoueurs[i].score /( gameplay_.listeDesJoueurs.Count * 2), 20, gameplay_.listeDesJoueurs[i].score / (gameplay_.listeDesJoueurs.Count * 2)), 
+                    gameplay_.listeDesJoueurs[i].couleur);
+                Contents.DrawString(gameplay_.listeDesJoueurs[i].score.ToString(), new Rectangle(v_.X - 20 * gameplay_.listeDesJoueurs.Count + 40 * i, v_.Y, 30, 30),
+                    gameplay_.listeDesJoueurs[i].couleur);
+            }
             //sprite_.Draw(Textures.textures[85],
             //        new Rectangle((int)v_.X + 9, (int)v_.Y - 1, 282, 32),
             //        Color.Black);
@@ -363,10 +368,10 @@ namespace animaltactics4
         public void DrawButtons(int x_, int y_, bool pouvoir_)
         {
             bAttaque.DrawPos(x_, y_);
-            bMouvement.DrawPos(x_, y_ + 30);
+            bMouvement.DrawPos(x_, y_ + 40);
             if (pouvoir_)
             {
-                bPouvoir.DrawPos(x_, y_ + 60);
+                bPouvoir.DrawPos(x_, y_ + 80);
             }
         }
         public void UpdateButtons(ref e_modeAction mood_, bool pouvoir_)
