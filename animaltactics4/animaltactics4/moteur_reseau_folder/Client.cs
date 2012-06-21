@@ -65,8 +65,6 @@ namespace animaltactics4
                 Console.WriteLine("connection en cours ... envoie du message de conn");
                 if (Netools.Read(sock) == 49) // 1
                 {
-                    Console.WriteLine("connecte !!! envoie du message de validation");
-                    Netools.Send(sock, "2");
                     Etape1_connection_du_client = true;
                 }
             }
