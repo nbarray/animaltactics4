@@ -112,7 +112,7 @@ namespace animaltactics4
                                  e_brouillardDeGuerre.Normal,
                                  42);
                     }
-                    p.Update(gameTime);
+                    p.UpdateReseau(gameTime);
                     Netools.Send(client, "o"); // Synch de l'horloge : "o+temps"
                     Netools.Send(client, p.Jackman.tempsRestant + "");
                 }

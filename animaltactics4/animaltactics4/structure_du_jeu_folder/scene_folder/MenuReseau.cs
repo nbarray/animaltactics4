@@ -21,7 +21,6 @@ namespace animaltactics4
         {
             base.UpdateScene(gameTime);
             Client.writebox.Update();
-            Client.ArreterLeClient();
         }
 
         public override void DrawScene()

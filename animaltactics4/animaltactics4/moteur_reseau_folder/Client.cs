@@ -12,7 +12,7 @@ namespace animaltactics4
     static class Client
     {
         //static public Socket sock;
-        //static public WriteBox writebox;
+        static public WriteBox writebox;
 
         //static public bool Etape0_connection = false;
         //static public bool Etape1_connection_du_client = false;

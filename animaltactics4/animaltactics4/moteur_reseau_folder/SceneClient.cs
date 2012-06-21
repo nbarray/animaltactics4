@@ -90,7 +90,8 @@ namespace animaltactics4
                     }
                     else
                     {
-                        p.Update(gameTime);
+                        
+                        p.UpdateReseau(gameTime);
                     }
                 }
                 
