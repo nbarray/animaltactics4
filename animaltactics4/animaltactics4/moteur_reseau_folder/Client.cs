@@ -42,7 +42,7 @@ namespace animaltactics4
             {
                 sock.Connect(new IPEndPoint(IPAddress.Parse(writebox.text), 4242));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 Console.WriteLine(e.Message);
@@ -56,10 +56,9 @@ namespace animaltactics4
             if (!Etape1_connection_du_client)
             {
                 Console.WriteLine("connection en cours ... envoie du message de conn");
-                if (Netools.Read(sock) == 49) // 1
-                {
-                    Etape1_connection_du_client = true;
-                }
+                Netools.Send(sock, "1");
+                Etape1_connection_du_client = true;
+
             }
             else
             {
@@ -67,11 +66,12 @@ namespace animaltactics4
                 {
                     Console.WriteLine("initialisation !!! envoie du message de validation");
                     // Initialisation de la partie reseau
-
-                    Netools.Send(sock, "3");
+                    
+                    Netools.Send(sock, "2");
                 }
                 else
                 {
+                    Console.Write(Netools.Read(sock));
                     p_.UpdateClient(gameTime_);
                 }
             }
