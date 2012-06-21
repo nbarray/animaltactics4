@@ -105,10 +105,9 @@ namespace animaltactics4
             videos.Add("intro", content_.Load<Video>("Video\\intro"));
 
             textures.Add("mouvement", content_.Load<Texture2D>("Image\\Info\\BarreDeMouvement"));
-            textures.Add("flag1", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
-
+            textures.Add("flag1", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
             textures.Add("flag2", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
-            textures.Add("flag3", content_.Load<Texture2D>("Image\\Info\\FlagPingvin"));
+            textures.Add("flag3", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
             textures.Add("flag4", content_.Load<Texture2D>("Image\\Info\\FlagPanda"));
             textures.Add("Tiles", content_.Load<Texture2D>("Image\\Tuile\\Tiles"));
             textures.Add("Bridges", content_.Load<Texture2D>("Image\\Tuile\\bridges"));
@@ -258,6 +257,19 @@ namespace animaltactics4
                     - (fonts["text"].MeasureString(text_).X / 2),
                     rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)
                     + (int)(rect_.Height * pprc / 2) - (fonts["text"].MeasureString(text_).Y / 2)),
+                    Color.White);
+            Atsushi_Okhubo.End();
+        }
+        //Loohy
+        static public void DrawStringInBoxCenteredChrono(string text_, Rectangle rect_)
+        {
+            Atsushi_Okhubo.Begin();
+            Atsushi_Okhubo.DrawString(fonts["chrono"], text_,
+                new Vector2(rect_.X * pprc + (int)((screenWidth - Divers.X * pprc) / 2)
+                    + (int)(rect_.Width * pprc / 2)
+                    - (fonts["chrono"].MeasureString(text_).X / 2),
+                    rect_.Y * pprc + (int)((screenHeight - Divers.Y * pprc) / 2)
+                    + (int)(rect_.Height * pprc / 2) - (fonts["chrono"].MeasureString(text_).Y / 2)),
                     Color.White);
             Atsushi_Okhubo.End();
         }

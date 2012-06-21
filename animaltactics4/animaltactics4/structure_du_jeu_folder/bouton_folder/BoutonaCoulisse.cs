@@ -39,6 +39,11 @@ namespace animaltactics4
                 bulles -= 375;
             }
         }
+        public void DrawTxt(int index)
+        {
+            Contents.Draw("px", new Rectangle(rect.X - 30, rect.Y -50, 80+ rect.Width, 30), couleur);
+            Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][index], new Rectangle(rect.X - 30, rect.Y -50, 80+ rect.Width, 30));
+        }
 
         public bool estActif()
         {

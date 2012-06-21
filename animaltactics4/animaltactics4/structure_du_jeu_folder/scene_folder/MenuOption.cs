@@ -36,6 +36,8 @@ namespace animaltactics4
         public override void DrawScene()
         {
             base.DrawScene();
+            ((BoutonaCoulisse)boutons[3]).DrawTxt(152);
+            ((BoutonaCoulisse)boutons[4]).DrawTxt(153);
         }
     }
 }

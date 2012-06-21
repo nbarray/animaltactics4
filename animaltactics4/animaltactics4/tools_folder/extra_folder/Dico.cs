@@ -26,6 +26,7 @@ namespace animaltactics4
             
             langues = new Dictionary<string, string[]>();
 
+            #region Francais
             langues.Add("Francais", new string[]{
             "Jouer", // 0
             "Editer", // 1
@@ -179,8 +180,12 @@ namespace animaltactics4
             "Pseudonyme", // 149
             "Addresse IP", // 150
             "Nouvelle", // 151
-            });
+            "Musique", //152
+            "Sons", //153
+            }); 
+            #endregion
 
+            #region Anglais
             langues.Add("English", new string[]{
             "Play",
             "Edit",
@@ -289,42 +294,42 @@ namespace animaltactics4
             "Alvin dort tout le temps",
             "Alvin branle que dalle",//105
             "Animal Spirit",
-            "Unité de base des Pingvin présente dans toutes les armées. \nElle attaque au corps-à-corps à l'aide de son épée tronconneuse, \net possède un bouclier. Très polyvalente.",//107
-            "Unité utilisant un lance-flamme qui contrairement à la pensée\n commune ne fait pas très mal mais ne risque pas de manquer \nsouvent sa cible.",
-            "Unité très puissante offensivement si l'on ne tient pas compte\n de sa faible précision. Elle est également très résistante \nmais ne peut pas riposter au corps-à-corps. De plus sa rapidité est \nun atout non négligeable.",
-            "Mage efficace offensivement mais n'attaquant qu'au corps-à-corps.\n Utile face aux unités résistant aux attaques physiques mais \npas aux attaques magiques.",
-            "Unité la moins chère et donc la moins efficace de l'armée\n Pingvin.",//111
-            "Unité élite de corps-à-corps. Elle possède une grande force\n d'attaque qu'il peut booster grace à son pouvoir Rage Berserke. \nElle a un grand nombre de points de vie mais n'est pas très \nrésitante, surtout face à la magie.",
-            "Unité la plus renommée chez les Pingvin. Possède un sort de\n foudre devastateur.",
-            "Unité soigneur de l'armée Pingvin. Ils sont equipés d'armes\n lourdes afin d'avoir l'impression de se rendre utiles.",
-            "Héros Pingvin. Il chevauche un ours a huit pattes. Il attaque\n au corps-à-corps à l'aide de sa lance divine.",
-            "Unité soigneur des Pandawan. Il effectue des attaques magiques\n courtes à l'aide de son baton.",//116
-            "Archer Pandawan équipé d'un Yumi, un arc asymétrique, il est \nplutôt résistant et assez efficace offensivement mais est tres \nfaible au corps-à-corps.",
-            "Samourai Pandawan bien résistant et performant offensivement \nmais n'attaque qu'au contact.",//118
-            "Char Pandawan équipé de faux et de lames de démolition ainsi \nque d'un lance-flamme ce qui lui permet d'être efficace à courte \nportée. Il n'est pas très réactif et surtout extrêmement vulnérable \nà la magie.",
-            "Pandawans équipés d'armes modernes volées aux autres espèces. \nUnité moyenne de tir avec un bon rapport qualité-prix.",
-            "Unité Pandawan très stupide donc très vulnérable à la magie. \nDispose d'une résistance et d'une efficacité moyenne.",
-            "Unité d'inflitration dotée de la capacité de se rendre invisible.\n Efficace au corps-à-corps et à très courte portée mais peu \nrésistant.",
-            "Unité capable d'attaquer efficacement à très longue distance \npourvu que les unités adverses soient visibles. Elle fonctionne donc \ntrès bien avec les unités d'inflitration comme le Ninja. Mais \nattention à sa faiblesse au corps-à-corps.",
-            "Héros Pandawan doté d'une force supérieure et dont la fourrure \nchange de couleur lorsqu'il est en colère.",
-            "Unité de corps-à-corps classique. Efficace mais peu résistante.\n",//125
-            "Unité classique d'attaquant à distance. Faible au corps-à-corps.\n",//126
-            "Seul mage Fenrir permettant d'être efficace contres certaines \nunités très resistantes physiques par exemple les tanks ou Odin. Il \nattaque à moyenne distance.",
-            "Une sorte de chevalier Fenrir relativement défensif se \nbattant au contact.",
-            "Unité rapide mais très faible attaquant au corps-à-corps.\n",//129
-            "Unité d'élite extrêmement résistante même à la magie capable \nde lancer des missiles à distance et attaquant au corps-à-corps.",
-            "Tireur d'élite effectuant des attaques magiques et attaquant \nà longue portée mais vulnérable.",
-            "Unité  d'élite attaquant physiquement au corps-à-corps et à \ncourte distance et sont capables de lancer des salves de magie à moyenne \ndistance. Ils peuvent également utiliser Art de la Guerre afin \nde booster un Fenrir allié. Mais ils sont peu précis et quasiment incapables \nd'esquiver.",
-            "Heros Fenrir de corps-à-corps se battant avec une épée géante.\nGrosse brute déchaînée.",//133
-            "Héros Krissa effectuant des attaques magiques très \npuissantes au corps-à-corps et excessivement rapide mais légèrement \nvulnérable physiquement.",
-            "Unité d'élite très rapide et très puissante, qui possède un \npouvoir permettant d'effectuer beaucoup de dégats d'un seul coup mais très \npeu résistante.",
-            "Unité d'élite relativement polyvalente, plus défensive \nqu'offensive, son pouvoir permet d'ailleurs de booster la défense \nphysique et magique d'un Krissa allié.",
-            "Unité d'élite polyvalente, effectuant des attaques magiques \net utilisant un pouvoir capable de ralentir les mouvements d'un ennemi.",
-            "Unité Krissa relativement faible mais attaquant à distance \net très précise.",//138
-            "Unité polyvalente, très résistante à la magie.",//139
-            "Combattant de corps-à-corps très efficace physiquement mais \nextrêmement faible face à la magie.",
-            "Unité Krissa d'attaque à distance, plutôt rapide mais faible\n face à la magie.",//141
-            "Unité attaquant uniquement à longue et très longue portée. \nUtile dans les lignes arrières et assez résistante, elle est par contre \ninutile au corps-à-corps.",
+            "Basic unit which every Pingvin army has. It attacks body to body with its chainsaw sword and has a shield. Very polyvalent.",
+            "Unit using a flamethrower that contrary to common thought is does not deal much damage but is not likely to miss its target often.",
+            "Offensively very powerful unit if one ignores its low accuracy. It is also highly resistant but can not respond to body to body. Also its speed is an important asset.",
+             "Mage effective offensively but it does not attack body to body. Useful against units resistant to physical attacks but not to magical attacks.",
+            "The least expensive unit and therefore the least effective of the army Pingvin.",
+            "Elite unit of body to body. It has a great attack force which it can boost thanks to Rage Berserke. It has many hit points but is not very tough, especially against magic.",
+            "The most renowned unit among Pingvin. It has a devastatting lightning spell.",
+            "Healing unit of the Pingvin's army. They are equipped with heavy weapons in order to feel useful.",
+            "Pingvin hero. It rides a eight legs bear. It attacks body to body with its divine spear.",
+            "Healing unit of the Pandawan's army. It conducts short magical attacks using his stick.",
+            "Pandawan archer equipped with Yumi, an asymmetrical arc, it is quite durable and efficient enough offensively but is very weak body to body.",
+            "Pandawan samurai well offensively strong and powerful but it does attack upon contact.",
+            "Pandawan tank equipped with scythes and demolition blades and a flamethrower which allows it to be effective at close range. It is not very responsive and above all extremely vulnerable to magic.",
+            "Pandawans equipped with modern weapons stolen from other species. Average unit firing with good value for money.",
+            "A very stupid Pandawan unit and so very vulnerable to magic. It has an average resistance and efficiency.",
+            "Infiltration unit with the ability to make itself invisible. Effective body to body at short and very short range but not very tough.",
+            "Unit able to attack effectively over long distances as long as the enemy units are visible. It works very well with units like Ninja. But beware of his weakness to the body to body. ",
+            "Pandawan hero with a superior force and whose fur changes color when angry.",
+            "Classic unit of body to body. Efficient but not very tough.",
+            "Classic firing unit. Weak to body to body.",
+            "Only mage Fenrir effective against some resistant physical units such as tanks or Odin. It attacks at medium range. ",
+            "A kind of knight relatively defensive and fighting in contact.",
+            "Fast but weak unit attacking body to body.",
+            "Elite unit highly resistant even to magic, capable of launching missiles from a distance and attacking body to body.",
+            "Sniper performing magic attacks and attacking at long range but vulnerable.",
+            "Elite unit attacking body to body and at short range. It is able of firing bursts of magic at medium range. It can also use Art of War to boost an ally. But it is imprecise and almost unable to dodge.",
+            "Fenrir hero of body to body fighting with a giant sword.",
+            "Krissa hero performing very powerful magical attacks at body to body and exceedingly rapid but slightly vulnerable physically.",
+            "Elite unit very fast and powerful, which has a power which allows it to make a lot of damage in one go but has very little toughness.",
+            "Elite unit relatively polyvalent, more defensive than offensive, its power can also boost physical and magical defense of an ally.",
+            "Elite unit polyvalent, performing magic attacks and using a power capable of slowing the movement of an enemy.",
+            "Unit Krissa relatively weak but ranged attacker and very precise.",
+            "Polyvalent unit, very resistant to magic.",
+            "Unit fighting body to body very effective physically but extremely weak against magic.",
+            "Krissa unit ranged attack quite fast but weak against magic.",
+            "Attacking unit only at long and very long range. Useful in the backs and strong enough, it is useless in close combat.",
             "Animal Spirit",//143
             "Level", //144
             "Attack", //145
@@ -334,8 +339,12 @@ namespace animaltactics4
             "Pseudonym", // 149
             "IP Address", // 150
             "New", // 151
-            });
+            "Music", //152
+            "Sound", //153
+            }); 
+            #endregion
 
+            #region Schtroumpf
             langues.Add("Schtroumpf", new string[]{
             "Schtroumpfer",
             "Schtroumpfer",
@@ -489,8 +498,12 @@ namespace animaltactics4
             "Schtroumpfonyme", // 149
             "Schtroumpf IP", // 150
             "Nouvelle", // 151
-            });
+            "Musique", //152
+            "Sons", //153
+            }); 
+            #endregion
 
+            #region Espagnol
             langues.Add("Espagnol", new string[]{
             "Jugar", // 0
             "Editar", // 1
@@ -550,10 +563,10 @@ namespace animaltactics4
             "Fenrir", //55
             "Krissa", //56
             "Unidades", //57
-            "Año 2014 : Raros son los escritos del tiempo pasado que hablan de la vuelta à la normalidad después de un año de cataclismo, cuando las fuerzas naturales se han ponido salvajes.Alli y alla, las rumores de un castigo divino se derraman :Hablamos de monstros gigantescos con poderes tan fuertes que son capazde destruir las ciudades. Los raros sobreviviantes no se mustran, la natura se vuelvo loca, las bestias salvages, el cielo negro, la tempesta violento. Los volcanos entran en erupcion perpetual, los vientos del norte son tan fuertes que es imposible de salir en la noche sin riscar su vida. Los mares se derraman, la humanidad disparece poco a poco. Las grandes ciudades estan destruidas y la tecnologia no fonciona mas sin milagro. La hora es sombra para los hombres. Año 2222 : La vida empieza de nuevo, la situacion se calmo. Las aldeas se forman, la raza humana no sobrevivio. \nLos animales retomaron una vida tranquila, sin preocuparse de otros peligros de destruccion. Es como si la natura misma intenta de ocultar los tiempos dificiles que pasaron. Algunas especias han cambiado... Año 2300 : Los primeros reinos se forman, un sistema feodal se instala. La antigua generacion disparecio totalmenta, y el saber del pasado tambien. El primer imperio Fenrir, gran pueblo de lobos guerreros, esta sacrado con la unificacion de mas de diez pequenitos reinos, mas con la fuerza y el uso de la guerra. En el norte los Pingvin construyen castillos flotantes, viven en autarcia y hacen tranquilamente sus experiencias. Los Pandawans cultivan su arroz para la cerveza tan buena. Sobre la tierra son los Krissas que cavan galerias y citadelas en donde los otros ojos no le pueden ver. Año 2314 : Los primeros juegos de Animalotopia. Quien sera el futuro protector de Blacksheep ? Las fuerzas de cada uno son diferentes. A los Fenrir le gustan el metal, las espadas y los canones. Sus lamas inspiran la confianza. Los Pingvin estan armados de equipamiento ingeniosos y sorprendientes. Pandawans usan una fuerza magica que proviene de las bebibas y de la meditacion. No le gustan la guerra pero iran si se necesita. Al fin los Krissas, imprevisibles y poco confiables. Año 2377 : En nuestros dias. ", //58
+            "Año 2014 : Raros son los escritos del tiempo pasado que hablan de la vuelta à la normalidad después de un año de cataclismo, cuando las fuerzas naturales se han ponido salvajes.Alli y alla, las rumores de un castigo divino se derraman :Hablamos de monstros gigantescos con poderes tan fuertes que son capazde destruir las ciudades. Los raros sobreviviantes no se mustran, la natura se vuelvo loca, las bestias salvages, el cielo negro, la tempesta violento. Los volcanos entran en erupcion perpetual, los vientos del norte son tan fuertes que es imposible de salir en la noche sin riscar su vida. Los mares se derraman, la humanidad disparece poco a poco. Las grandes ciudades estan destruidas y la tecnologia no fonciona mas sin milagro. La hora es sombra para los hombres. Año 2222 : La vida empieza de nuevo, la situacion se calmo. Las aldeas se forman, la raza humana no sobrevivio. Los animales retomaron una vida tranquila, sin preocuparse de otros peligros de destruccion. Es como si la natura misma intenta de ocultar los tiempos dificiles que pasaron. Algunas especias han cambiado... Año 2300 : Los primeros reinos se forman, un sistema feodal se instala. La antigua generacion disparecio totalmenta, y el saber del pasado tambien. El primer imperio Fenrir, gran pueblo de lobos guerreros, esta sacrado con la unificacion de mas de diez pequenitos reinos, mas con la fuerza y el uso de la guerra. En el norte los Pingvin construyen castillos flotantes, viven en autarcia y hacen tranquilamente sus experiencias. Los Pandawans cultivan su arroz para la cerveza tan buena. Sobre la tierra son los Krissas que cavan galerias y citadelas en donde los otros ojos no le pueden ver. Año 2314 : Los primeros juegos de Animalotopia. Quien sera el futuro protector de Blacksheep ? Las fuerzas de cada uno son diferentes. A los Fenrir le gustan el metal, las espadas y los canones. Sus lamas inspiran la confianza. Los Pingvin estan armados de equipamiento ingeniosos y sorprendientes. Pandawans usan una fuerza magica que proviene de las bebibas y de la meditacion. No le gustan la guerra pero iran si se necesita. Al fin los Krissas, imprevisibles y poco confiables. Año 2377 : En nuestros dias. ", //58
             "El Pingvin es una especia de pajaro marino que vive en la parte del sur de Animalotopia. Le gusta particularmente  el climato glacial. No pueden volar pero son demasiado rapidos en la agua. Son les reyes de los 6 mares. El Pingvin come pescados, y otros productos que encuentran en su teritorio marino tambien para hacer comercio. El animal es conocido por sur grandes descubrimientos en las implantaciones mecanicas y aumentaciones de las facultades del cuerpo. La armada Pingvin tiene su especializacion en la robotica, la gran majoria de sus soldados estanaumentados. El armamiento tiene principalmente armas nucleares y una produccion de maquinas de guerra gigantescas.", //59
             "Le fabuleux recit sur les Pandawans", //60
-            "En la carne se encuentra la fuerza. Para los Fenrir la vida es combate y fiesta. Son brutales, combativos y leales. Esos lobos guerroros viven al limite de los bosques y de las montañas. El honor es muy conocido entre los Fenrirs, vale casi mas que su propia vida. coraje Fenrir es incomensurable, los generales tienen una habilitad de combate muy famosa. Solo los mejores pueden dirigir al pueblo. Porque hablamos de un pueblo que le gusta la guerra, todos viven entre los muros gigantescos de piedra y de metal que protegen sus citadelas. La iniciacion de los Fenrir al arte de la guerra empieza muy temprano. Antes de la majoria de los jovenes Fenrir se van a cazar durante un año. Los riscos, la posibilidad de morir. \nEl placer de los combates heroicos, eso es la vida de un Fenrir. Las historias de batallas epicas animan las horas de comida, que son siempre entre une cerveza y piezas de carne. \nEl arte Fenrir se concentra en la maestria de la fragua. \nLos artesanos hacen la fortuna de sus familias, porque es bueno de ser un gran guerrero pero sin una buena espada no vale la pena. El avanzamiento tecnologico interesa mucho los jefes Fenrir, que dan mucho de su dinero para mejorar siempre sus armas y armuras, para ser hasta el fin la mejora armada del mundo.", //61
+            "En la carne se encuentra la fuerza. Para los Fenrir la vida es combate y fiesta. Son brutales, combativos y leales. Esos lobos guerroros viven al limite de los bosques y de las montañas. El honor es muy conocido entre los Fenrirs, vale casi mas que su propia vida. coraje Fenrir es incomensurable, los generales tienen una habilitad de combate muy famosa. Solo los mejores pueden dirigir al pueblo. Porque hablamos de un pueblo que le gusta la guerra, todos viven entre los muros gigantescos de piedra y de metal que protegen sus citadelas. La iniciacion de los Fenrir al arte de la guerra empieza muy temprano. Antes de la majoria de los jovenes Fenrir se van a cazar durante un año. Los riscos, la posibilidad de morir. El placer de los combates heroicos, eso es la vida de un Fenrir. Las historias de batallas epicas animan las horas de comida, que son siempre entre une cerveza y piezas de carne. El arte Fenrir se concentra en la maestria de la fragua. Los artesanos hacen la fortuna de sus familias, porque es bueno de ser un gran guerrero pero sin una buena espada no vale la pena. El avanzamiento tecnologico interesa mucho los jefes Fenrir, que dan mucho de su dinero para mejorar siempre sus armas y armuras, para ser hasta el fin la mejora armada del mundo.", //61
             "Le Krissa dormant", //62
             "L'explication sur les Unités pandawans", //63
             "Alojar", // 64
@@ -644,7 +657,10 @@ namespace animaltactics4
             "Pseudonimo", // 149
             "Addresse IP", // 150
             "Neo", // 151
-            });
+            "Musica", //152
+            "FX", //153
+            }); 
+            #endregion
         }
     }
 }

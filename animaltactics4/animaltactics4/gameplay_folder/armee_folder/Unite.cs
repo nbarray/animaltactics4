@@ -64,6 +64,8 @@ namespace animaltactics4
         private float vitesseAnim;
         public e_EtatAnim state;
 
+        public int assassin;
+
         public bool alive, profiteDuneAura;
 
         public int debug;
@@ -448,6 +450,8 @@ namespace animaltactics4
             if (!ennemi_.estInvisible)
             {
                 estInvisible = false;
+                assassin = ennemi_.numeroArmee;
+                ennemi_.assassin = numeroArmee;
                 if ((initiative + bonusInitiative) >= ennemi_.initiative)
                 {
                     Frappe(ennemi_, porteDeFrappe_, moteurgraphique_, gameplay_, hud_);
@@ -1797,7 +1801,7 @@ namespace animaltactics4
                     #region Arriver sur la case la plus legere a cote
                     if (iArrivee_ != 0 && moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_ + 1, jArrivee_].poidsAcces)//SNE
                     {
-                        if (moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces)//SE
+                        if (jArrivee_ != 0 && moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces)//SE
                         {
                             if (moteurgraphique_.map[iArrivee_ - 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ + 1].poidsAcces)//E
                             {
@@ -1810,7 +1814,7 @@ namespace animaltactics4
                         }
                         else//SN
                         {
-                            if (moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ + 1].poidsAcces)//N
+                            if (jArrivee_ != 0 && moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ + 1].poidsAcces)//N
                             {
                                 PathFindingLoohy(moteurgraphique_, iArrivee_, jArrivee_ - 1);
                             }
@@ -1822,7 +1826,7 @@ namespace animaltactics4
                     }
                     else//SNO
                     {
-                        if (moteurgraphique_.map[iArrivee_ + 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces)//SO
+                        if (jArrivee_ != 0 && moteurgraphique_.map[iArrivee_ + 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces)//SO
                         {
                             if (moteurgraphique_.map[iArrivee_ + 1, jArrivee_].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ + 1].poidsAcces)//O
                             {
@@ -1835,7 +1839,7 @@ namespace animaltactics4
                         }
                         else//SN
                         {
-                            if (moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ + 1].poidsAcces)//N
+                            if (jArrivee_ != 0 && moteurgraphique_.map[iArrivee_, jArrivee_ - 1].poidsAcces < moteurgraphique_.map[iArrivee_, jArrivee_ + 1].poidsAcces)//N
                             {
                                 PathFindingLoohy(moteurgraphique_, iArrivee_, jArrivee_ - 1);
                             }

@@ -13,7 +13,7 @@ namespace animaltactics4
         Color color;
 
         public BoutonAction(e_modeAction type_)
-            : base(new Rectangle(0, 0, 24, 24), new Rectangle(0, 0, 500, 500))
+            : base(new Rectangle(0, 0, 32, 32), new Rectangle(0, 0, 500, 500))
         {
             type = type_;
             switch (type_)
