@@ -13,10 +13,8 @@ namespace animaltactics4
     {
         static public Socket sock;
         static public WriteBox writebox;
-        static public string string_ip;
 
-        static public string received;
-
+        static public bool Etape0_connection = false;
         static public bool Etape1_connection_du_client = false;
         static public bool Etape2_synchronisation_des_joueurs = false;
         static public bool Etape3_partie_en_cours = false;
@@ -41,13 +39,13 @@ namespace animaltactics4
             try
             {
                 sock.Connect(new IPEndPoint(IPAddress.Parse(writebox.text), 4242));
+                Etape0_connection = true;
             }
             catch (Exception e)
             {
                 sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 Console.WriteLine(e.Message);
             }
-
         }
 
         public static void Update(Partie p_, GameTime gameTime_) /*mise a jour*/
@@ -57,11 +55,13 @@ namespace animaltactics4
             {
                 Console.WriteLine("connection en cours ... envoie du message de conn");
                 Netools.Send(sock, "1");
+                Console.WriteLine("send 1");
                 Etape1_connection_du_client = true;
 
             }
             else
             {
+                Console.WriteLine("conenction client true");
                 if (!Etape2_synchronisation_des_joueurs)
                 {
                     Console.WriteLine("initialisation !!! envoie du message de validation");
@@ -77,23 +77,10 @@ namespace animaltactics4
             }
         }
 
-        public static void UpdateWriteBox()
-        {
-            writebox.Update();
-            Client.string_ip = writebox.text;
-        }
-
         public static void ArreterLeClient() /* stop client */
         {
             if (sock != null)
                 sock.Close();
-            received = "";
-
-        }
-
-        public static void Draw() /* draw proust*/
-        {
-            writebox.Draw();
         }
     }
 }

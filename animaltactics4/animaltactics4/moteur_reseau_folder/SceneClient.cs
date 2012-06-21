@@ -10,7 +10,6 @@ namespace animaltactics4
     class SceneClient : Scene
     {
         Partie p;
-
         public SceneClient()
             : base()
         {
@@ -23,13 +22,12 @@ namespace animaltactics4
                                   e_typeDePartie.Joute,
                                   e_brouillardDeGuerre.Normal,
                                   42);
-            Client.Initialiser();
         }
 
         int attempt = 10;
         public override void UpdateScene(GameTime gameTime)
         {
-            if (!Client.sock.Connected)
+            if (!Client.Etape0_connection)
             {
                 if (attempt > 0)
                 {
@@ -61,14 +59,18 @@ namespace animaltactics4
             }
             else
             {
-                if (!Client.sock.Connected)
+                if (Client.sock != null)
                 {
-                    Netools.DrawTentativeDeConnection();
+                    if (!Client.sock.Connected)
+                    {
+                        Netools.DrawTentativeDeConnection();
+                    }
+                    else
+                    {
+                        Netools.DrawTransition();
+                    }
                 }
-                else
-                {
-                    Netools.DrawTransition();
-                }
+               
             }
         }
     }
