@@ -77,11 +77,6 @@ namespace animaltactics4
                 else
                 {
                     Netools.Send(client, "1");
-                 
-                    if (Netools.Read(client) == 50) // 2
-                    {
-                        Etape1_connection_du_client = true;
-                    }
                 }
             }
             else
