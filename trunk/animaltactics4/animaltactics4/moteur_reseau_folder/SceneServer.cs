@@ -11,54 +11,26 @@ namespace animaltactics4
 {
     class SceneServer : Scene
     {
-        public Partie p;
-        public bool u;
+        public Partie partie;
+        public EtapeReseau etape;
+        public Socket client;
+        public Socket sock;
 
-        static public Socket client;
-        static public Socket sock;
-        static public bool unique;
-        static public Thread t_init = new Thread(Ecoute);
+        Thread _TFinDeTour;
 
-        static public bool Etape1_connection_du_client = false;
-        static public bool Etape2_synchronisation_des_joueurs = false;
-        static public bool Etape3_partie_en_cours = false;
-        static public bool Etape3_SEtape1_partie_en_cours = false;
-        static public bool Etape3_SEtape2_partie_en_cours = false;
-        static public bool Etape4_fin_de_partie = false;
+        public bool een3 = false;
 
         public SceneServer()
             : base()
         {
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
 
-            if (t_init.ThreadState == ThreadState.Unstarted)
-            {
-                t_init.Start();
-            }
-            sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _TFinDeTour = new Thread(TFinDeTour);
+            etape = EtapeReseau.etape1_initialisation;
             client = null;
-
-            Etape1_connection_du_client = false;
-            Etape2_synchronisation_des_joueurs = false;
-            Etape3_partie_en_cours = false;
-            Etape3_SEtape1_partie_en_cours = false;
-            Etape3_SEtape2_partie_en_cours = false;
-            Etape4_fin_de_partie = false;
-            p = new Partie(32, 32);
-            p.Initialize("carte reseau",
-                                  new List<string>() { "Pandawan01", "Pingvin01" },
-                                  new List<int>() { 0, 0 },
-                                  new List<int>() { 0, 1 },
-                                  new List<Color>() { Color.Blue, Color.Red },
-                                  e_typeDePartie.Joute,
-                                  e_brouillardDeGuerre.Normal,
-                                  42);
-            unique = false;
-
-            u = false;
         }
 
-        public static void Ecoute()
+        public void Ecoute()
         {
             try
             {
@@ -74,7 +46,25 @@ namespace animaltactics4
 
         public override void DrawScene()
         {
-            base.DrawScene();
+            switch (etape)
+            {
+                case EtapeReseau.etape1_initialisation:
+                    Netools.DrawMessage("Initialisation ...");
+                    break;
+                case EtapeReseau.etape2_connection:
+                    Netools.DrawMessage("En attente de la connexion de l'adversaire ...");
+                    break;
+                case EtapeReseau.etape3_synchronisation:
+                    Netools.DrawMessage("Connexion effectuée, synchronisation des joueurs ...");
+                    break;
+                case EtapeReseau.etape4_partie:
+                    partie.DrawClient(0);
+                    break;
+                case EtapeReseau.etap5_fin_de_partie:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public override void UpdateScene(GameTime gameTime)
@@ -120,28 +110,110 @@ namespace animaltactics4
             //} 
             #endregion
 
-            //((BoutonLien)boutons[0]).Update(gameTime, new Func<bool>(Serveur.ArreterLeServer));
+            Console.SetCursorPosition(0, 0);
+            Console.Write(etape);
+            Console.SetCursorPosition(0, 1);
+            Console.Write("Partie initialisée ? " + een3);
+            Console.SetCursorPosition(0, 2);
+            if (etape == EtapeReseau.etape4_partie)
+            {
+                Console.Write(partie.gameplay.tourencours);
+            }
+            
+            switch (etape)
+            {
+                case EtapeReseau.etape1_initialisation:
+                    sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    etape = EtapeReseau.etape2_connection;
+                    break;
+                case EtapeReseau.etape2_connection:
+                    Ecoute();
+                    etape = EtapeReseau.etape3_synchronisation;
+                    break;
+                case EtapeReseau.etape3_synchronisation:
+                    if (!een3)
+                    {
+                        InitialiserPartie();
+                        een3 = true;
+                    }
+                    int i;
+                    if ((i = Netools.Read(client)) == 72)// h
+                    {
+                        int j;
+                        if ((j = Netools.Read(client)) == 105)// i
+                        {
+                            Console.SetCursorPosition(0, 2);
+                            Console.WriteLine((char)i +" "+ (char)j);
+                            etape = EtapeReseau.etape4_partie;
+                        }
+                    }
+                    _TFinDeTour.Start();
+                    break;
+                case EtapeReseau.etape4_partie:
+                    if (partie.gameplay.tourencours == 0)
+                    {
+                        if (partie.Jackman.tempsRestant == 0)
+                        {
+                            ChangementTour();
+                            Netools.Send(client, "]"); // => fin du tour : 93
+                            Console.WriteLine("Ordre de changementde tour envoyé !");
+                        }
+                        partie.UpdateReseau(gameTime);
+                    }
+                    else
+                    {
+                        Netools.UpdateTransition(gameTime);
+                    }
+                    break;
+                case EtapeReseau.etap5_fin_de_partie:
+                    break;
+                default:
+                    break;
+            }
+
         }
 
-        public static bool ArreterLeServer()
+        public bool ArreterLeServer()
         {
             if (sock != null)
                 sock.Close();
             if (client != null)
                 client.Close();
-            unique = false;
-            if (t_init.ThreadState == ThreadState.Running)
-            {
-                t_init.Abort();
-            }
-            Etape1_connection_du_client = false;
-            Etape2_synchronisation_des_joueurs = false;
-            Etape3_partie_en_cours = false;
-            Etape3_SEtape1_partie_en_cours = false;
-            Etape3_SEtape2_partie_en_cours = false;
-            Etape4_fin_de_partie = false;
-
             return false;
+        }
+
+        public void InitialiserPartie()
+        {
+            partie = new Partie(32, 32);
+            partie.Initialize("carte reseau",
+                                  new List<string>() { "Pandawan01", "Pingvin01" },
+                                  new List<int>() { 0, 0 },
+                                  new List<int>() { 0, 1 },
+                                  new List<Color>() { Color.Blue, Color.Red },
+                                  e_typeDePartie.Joute,
+                                  e_brouillardDeGuerre.Normal,
+                                  42);
+        }
+
+        private void ChangementTour()
+        {
+            int epita42epita = 0;
+            bool epita41epita = true;
+            partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epita42epita, ref epita41epita);
+        }
+        public void TFinDeTour()
+        {
+            while (true)
+            {
+                int f;
+                if ((f = Netools.Read(client)) == 93)
+                {
+                    ChangementTour();
+                    Console.SetCursorPosition(0, 3);
+                    Console.WriteLine("Ordre de changementde tour reçu !");
+                }
+            }
+            
         }
     }
 }
