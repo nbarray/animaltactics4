@@ -18,31 +18,31 @@ namespace animaltactics4
         public override void DrawScene()
         {
             base.DrawScene();
-            Contents.DrawString(Chaka.received, new Rectangle(100, 100, 100, 100));
+            Contents.DrawString(Client.received, new Rectangle(100, 100, 100, 100));
         }
 
         int time = 10;
         public override void UpdateScene(GameTime gameTime)
         {
-            if (!Chaka.chausettes_de_l_archiduchesse.Connected)
+            if (!Client.sock.Connected)
             {
                 if (time > 0)
                 {
-                    Chaka._instramgram();
+                    Client.Connecter();
                     Console.WriteLine(time);
                     time--;
                     Thread.Sleep(1000);
                 }
                 else
                 {
-                    Chaka._feu_rouge();
+                    Client.ArreterLeClient();
                     Engine.scenes.Pop();
                 }
                 
             }
             else
             {
-                Chaka._que_vois_tu_Louis();
+                Client.Update();
                 base.UpdateScene(gameTime);
             }
            

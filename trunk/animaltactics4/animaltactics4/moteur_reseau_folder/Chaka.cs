@@ -8,61 +8,63 @@ using Microsoft.Xna.Framework;
 
 namespace animaltactics4
 {
-    static class Chaka
+    static class Client
     {
-        static /*volatile*/ public Socket chausettes_de_l_archiduchesse;
-        static /*internal virtual abstract */ public WriteBox proust;
-        static public string _quarante_deux_rue_du_marechal_bluton;
-        static public bool /*volaile virtual*/ cratos;
+        static public Socket sock;
+        static public WriteBox writebox;
+        static public string string_ip;
+        static public bool unique;
         static public string received;
 
-        public static void _sont_elles_sechent() /*initialiser*/
+        public static void Initialiser()
         {
-            chausettes_de_l_archiduchesse = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _quarante_deux_rue_du_marechal_bluton = "";
-            proust = new WriteBox(new Rectangle(Divers.X / 2 - 200, Divers.Y / 2 - 75 / 2, 400, 75));
-            cratos = false;
+            sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            string_ip = "";
+            writebox = new WriteBox(new Rectangle(Divers.X / 2 - 200, Divers.Y / 2 - 75 / 2, 400, 75));
+            unique = false;
             received = "";
         }
 
-        public static void _instramgram() /*lancer*/
+        public static void Connecter() /*lancer*/
         {
-            if (!cratos)
+            if (!unique)
             {
                 try
                 {
-                    chausettes_de_l_archiduchesse.Connect(new IPEndPoint(IPAddress.Parse(_quarante_deux_rue_du_marechal_bluton), 4242));
+                    sock.Connect(new IPEndPoint(IPAddress.Parse(string_ip), 4242));
                 }
                 catch
                 {
-                    Chaka._dans_ton_cul();
+                    Client.Draw();
                 }
-                Console.Write(chausettes_de_l_archiduchesse.Connected);
-                cratos = true;
+                Console.Write(sock.Connected);
+                unique = true;
             }
         }
 
-        public static void _que_vois_tu_Louis() /*mise a jour*/
+        public static void Update() /*mise a jour*/
         {
-            Chakaponk_tools.trolololol(chausettes_de_l_archiduchesse);
+            // UPDATE DU RESEAU COTE CLIENT
+
+            Chakaponk_tools.Read(sock);
         }
 
-        public static void mini_qui_vois_tu_Louis()
+        public static void UpdateWriteBox()
         {
-            proust.Update();
-            Chaka._quarante_deux_rue_du_marechal_bluton = proust.text;
+            writebox.Update();
+            Client.string_ip = writebox.text;
         }
 
-        public static void _feu_rouge() /* stop client */
+        public static void ArreterLeClient() /* stop client */
         {
-            chausettes_de_l_archiduchesse.Close();
+            sock.Close();
             received = "";
-            cratos = false;
+            unique = false;
         }
 
-        public static void _dans_ton_cul() /* draw proust*/
+        public static void Draw() /* draw proust*/
         {
-            proust.Draw();
+            writebox.Draw();
             
         }
     }

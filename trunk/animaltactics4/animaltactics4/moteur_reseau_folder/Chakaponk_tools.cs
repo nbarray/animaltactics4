@@ -9,7 +9,7 @@ namespace animaltactics4
 {
     static class Chakaponk_tools
     {
-        public static /*volatile*/ void trolololol(Socket sock, string msg)
+        public static /*volatile*/ void Send(Socket sock, string msg)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace animaltactics4
             }
         }
 
-        public static /*volatile*/ int trolololol(Socket sock)
+        public static /*volatile*/ int Read(Socket sock)
         {
             try
             {

@@ -19,8 +19,8 @@ namespace animaltactics4
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
-            Chaka.proust.Update();
-            Chaka.mini_qui_vois_tu_Louis();
+            Client.writebox.Update();
+            Client.UpdateWriteBox();
         }
 
         public override void DrawScene()
@@ -28,7 +28,7 @@ namespace animaltactics4
             base.DrawScene();
             Contents.Draw("bouton_selected", new Rectangle(160, 100, 2* Divers.X / 3 + 100, 300));
             Contents.DrawStringInBoxCentered("titre", Dico.langues[Dico.current][65], new Rectangle(0, 100, 1200, 300));
-            Chaka.proust.Draw();
+            Client.writebox.Draw();
         }
     }
 }

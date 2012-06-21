@@ -9,25 +9,31 @@ namespace animaltactics4
 {
     class Enfer : Scene
     {
+        public Partie p;
+
         public Enfer()
             : base()
         {
+            p = new Partie(32, 32);
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
         }
 
         public override void DrawScene()
         {
+            
             base.DrawScene();
+            p.Draw();
         }
 
         public override void UpdateScene(GameTime gameTime)
         {
-            if (Ponk.chaussure_de_l_archiduc != null)
+            if (Serveur.client != null)
             {
-                Ponk._que_vois_tu_Louis();
+                Serveur._que_vois_tu_Louis();
+                p.Update(gameTime);
             }
 
-            ((BoutonLien)boutons[0]).Update(gameTime, new Func<bool>(Ponk._feu_rouge));
+            ((BoutonLien)boutons[0]).Update(gameTime, new Func<bool>(Serveur.ArreterLeServer));
         }
     }
 }
