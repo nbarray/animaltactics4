@@ -153,7 +153,7 @@ namespace animaltactics4
                     Netools.DrawMessage("Connexion effectuée, synchronisation des joueurs ...");
                     break;
                 case EtapeReseau.etape4_partie:
-                    partie.DrawClient();
+                    partie.DrawClient(1);
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
