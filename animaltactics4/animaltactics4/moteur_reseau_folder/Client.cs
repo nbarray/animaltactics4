@@ -44,7 +44,7 @@ namespace animaltactics4
             }
             catch(Exception e)
             {
-                sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 Console.WriteLine(e.Message);
             }
 
