@@ -14,7 +14,7 @@ namespace animaltactics4
         Partie p;
         public Socket sock;
         public int tentative = 10;
-
+        //trol
         public SceneClient()
             : base()
         {
