@@ -79,44 +79,46 @@ namespace animaltactics4
 
         public override void UpdateScene(GameTime gameTime)
         {
-            if (!Etape1_connection_du_client)
-            {
-                if (Netools.Read(client) == 49) // 1
-                {
-                    Etape1_connection_du_client = true;
-                }
-            }
-            else
-            {
-                if (!Etape2_synchronisation_des_joueurs)
-                {
-                    if (Netools.Read(client) == 50) // 2
-                    {
-                        // ---
-                        Etape2_synchronisation_des_joueurs = true;
-                    }
-                }
-                else
-                {
-                    Etape3_partie_en_cours = true;
-                    // Partie lancée
-                    if (!unique)
-                    {
-                        p = new Partie(32, 32);
-                        p.Initialize("carte reseau",
-                                 new List<string>() { "Pandawan01", "Pingvin01" },
-                                 new List<int>() { 0, 0 },
-                                 new List<int>() { 0, 1 },
-                                 new List<Color>() { Color.Blue, Color.Red },
-                                 e_typeDePartie.Joute,
-                                 e_brouillardDeGuerre.Normal,
-                                 42);
-                    }
-                    p.UpdateReseau(gameTime);
-                    Netools.Send(client, "o"); // Synch de l'horloge : "o+temps"
-                    Netools.Send(client, p.Jackman.tempsRestant + "");
-                }
-            }
+            #region Ancien update serveur
+            //if (!Etape1_connection_du_client)
+            //{
+            //    if (Netools.Read(client) == 49) // 1
+            //    {
+            //        Etape1_connection_du_client = true;
+            //    }
+            //}
+            //else
+            //{
+            //    if (!Etape2_synchronisation_des_joueurs)
+            //    {
+            //        if (Netools.Read(client) == 50) // 2
+            //        {
+            //            // ---
+            //            Etape2_synchronisation_des_joueurs = true;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Etape3_partie_en_cours = true;
+            //        // Partie lancée
+            //        if (!unique)
+            //        {
+            //            p = new Partie(32, 32);
+            //            p.Initialize("carte reseau",
+            //                     new List<string>() { "Pandawan01", "Pingvin01" },
+            //                     new List<int>() { 0, 0 },
+            //                     new List<int>() { 0, 1 },
+            //                     new List<Color>() { Color.Blue, Color.Red },
+            //                     e_typeDePartie.Joute,
+            //                     e_brouillardDeGuerre.Normal,
+            //                     42);
+            //        }
+            //        p.UpdateReseau(gameTime);
+            //        Netools.Send(client, "o"); // Synch de l'horloge : "o+temps"
+            //        Netools.Send(client, p.Jackman.tempsRestant + "");
+            //    }
+            //} 
+            #endregion
 
             //((BoutonLien)boutons[0]).Update(gameTime, new Func<bool>(Serveur.ArreterLeServer));
         }
