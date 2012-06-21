@@ -58,12 +58,87 @@ namespace animaltactics4
             lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
         }
 
+        //Coldman
+        public void UpdateClient(GameTime gameTime_)
+        {
+            if (gameplay.tourencours == 1)
+            {
+                int t = Convert.ToInt32((char)Netools.ReadTime(Client.sock));
+                gameplay.UpdateReseau(earthPenguin, Jackman);
+                earthPenguin.Update(gameplay, Jackman);
+            }
+            else
+            {
+                Netools.UpdateTransition(gameTime_);
+            }
+        }
+
+        //Coldman
+        public void UpdateServeur(GameTime gametime_)
+        {
+            if (gameplay.tourencours == 0)
+            {
+                gameplay.Update(earthPenguin, Jackman, ref time);
+                earthPenguin.Update(gameplay, Jackman);
+                if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
+                {
+                    time++;
+                    Console.WriteLine(time);
+                    if (tempsMax - time <= 0)
+                    {
+                        gameplay.FinDeTour(earthPenguin, Jackman, ref time);
+                    }
+                }
+                lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
+            }
+            else
+            {
+                if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
+                {
+                    time++;
+                }
+                lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
+
+                Netools.UpdateTransition(gametime_);
+            }
+            
+        }
+
         //Loohy
         public void Draw()
         {
             earthPenguin.Draw(gameplay);
             Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
             Contents.DrawString(gameplay.conditionsDeVictoire.ToString()+", "+earthPenguin.fog.ToString(), new Rectangle(700,5,100,100));
+        }
+
+        //Coldman
+        public void DrawClient()
+        {
+            if (gameplay.tourencours == 1)
+            {
+                earthPenguin.Draw(gameplay);
+                Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
+                Contents.DrawString(gameplay.conditionsDeVictoire.ToString()+", "+earthPenguin.fog.ToString(), new Rectangle(700,5,100,100));
+            }
+            else
+            {
+                Netools.DrawTransition();
+            }
+        }
+
+        public void DrawServer()
+        {
+            if (gameplay.tourencours == 0)
+            {
+                earthPenguin.Draw(gameplay);
+                Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
+                Contents.DrawString(gameplay.conditionsDeVictoire.ToString()+", "+earthPenguin.fog.ToString(), new Rectangle(700,5,100,100));
+            }
+            else
+            {
+                Netools.DrawTransition();
+            }
         }
     }
 }

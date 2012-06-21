@@ -138,6 +138,8 @@ namespace animaltactics4
 
             textures.Add("gordon", content_.Load<Texture2D>("Image\\Animation\\flash"));
             textures.Add("gordon inverse", content_.Load<Texture2D>("Image\\Animation\\flashreverse"));
+
+            textures.Add("waitforplayer", content_.Load<Texture2D>("Image\\Divers\\waitforplayer"));
         }
 
         //Loohy

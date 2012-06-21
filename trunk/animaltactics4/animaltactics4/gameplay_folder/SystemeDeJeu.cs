@@ -84,6 +84,15 @@ namespace animaltactics4
             Afficher(loohy_);
         }
 
+        //Coldman
+        public void UpdateReseau(MoteurGraphique loohy_, HUD hud_)
+        {
+
+            listeDesJoueurs[tourencours].Update(loohy_, this, ref mood, hud_);
+
+            Afficher(loohy_);
+        }
+
         public void FinDeTour(MoteurGraphique moteurgraphique_, /*Lecteur coldman_,*/ HUD hud_, ref int time)
         {
             numeroDeTour += 0.5f;

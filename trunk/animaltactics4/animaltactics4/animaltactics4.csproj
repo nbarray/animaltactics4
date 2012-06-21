@@ -129,9 +129,9 @@
     <Compile Include="moteur_graphique_folder\Tile.cs" />
     <Compile Include="moteur_reseau_folder\Netools.cs" />
     <Compile Include="moteur_reseau_folder\Client.cs" />
-    <Compile Include="moteur_reseau_folder\Enfer.cs" />
+    <Compile Include="moteur_reseau_folder\SceneServer.cs" />
     <Compile Include="moteur_reseau_folder\Serveur.cs" />
-    <Compile Include="moteur_reseau_folder\Wallala.cs" />
+    <Compile Include="moteur_reseau_folder\SceneClient.cs" />
     <Compile Include="moteur_sonore_folder\MoteurSon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
