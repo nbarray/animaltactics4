@@ -558,11 +558,11 @@ namespace animaltactics4
         }
 
         public void UpdateSelonIAouNon(MoteurGraphique loohy_, SystemeDeJeu gameplay_, ref e_modeAction mood_,
-            /*Lecteur coldman_,*/ HUD hud_, ref int time_)
+            /*Lecteur coldman_,*/ HUD hud_, ref int time_, ref bool transition_)
         {
             if (IA)
             {
-                UpdateIA(loohy_, gameplay_,/* coldman_,*/ hud_, ref time_);
+                UpdateIA(loohy_, gameplay_,/* coldman_,*/ hud_, ref time_, ref transition_);
             }
             else
             {
@@ -903,7 +903,7 @@ namespace animaltactics4
             }
         }
 
-        public void UpdateIA(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_, /*Lecteur coldman_,*/ HUD hud_, ref int time_)
+        public void UpdateIA(MoteurGraphique moteurgraphique_, SystemeDeJeu gameplay_, /*Lecteur coldman_,*/ HUD hud_, ref int time_, ref bool transition_)
         {
             if (!bataillon[uniteselect].IA.finish)
             {
@@ -913,7 +913,7 @@ namespace animaltactics4
             {
                 if (allFinished())
                 {
-                    gameplay_.FinDeTour(moteurgraphique_, /*coldman_,*/ hud_, ref time_);
+                    gameplay_.FinDeTour(moteurgraphique_, /*coldman_,*/ hud_, ref time_, ref transition_);
                 }
                 else
                 {
@@ -965,6 +965,8 @@ namespace animaltactics4
             {
                 if (moteurgraphique_.fog == e_brouillardDeGuerre.Normal)
                     appliquerVues(moteurgraphique_);
+                if (moteurgraphique_.fog == e_brouillardDeGuerre.ToutVisite)
+                    moteurgraphique_.viderVue();
                 foreach (Unite item in bataillon)
                 {
                     if (item.pvactuel > 0)

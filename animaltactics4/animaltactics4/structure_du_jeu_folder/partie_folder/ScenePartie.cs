@@ -9,7 +9,7 @@ namespace animaltactics4
     class ScenePartie : Scene
     {
         public Partie p;
-        public bool estEnPause;
+        public bool estEnPause, transition;
 
         public ScenePartie(int map_width_, int map_height_)
             : base()
@@ -21,14 +21,16 @@ namespace animaltactics4
             boutons.Add(new BoutonPause(Divers.X / 2 - 200, 300, 69, false));
             boutons.Add(new BoutonPause(0, 0, 68, true));
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 750, new Rectangle(0, 0, 800, 300), null, 5, false));
+            boutons.Add(new BoutonPret(Divers.X / 2 - 200, 300, 154, false));
+            transition = false;
         }
 
         public override void UpdateScene(GameTime gameTime)
         {
             //base.UpdateScene(gameTime);
-            if (!estEnPause && !p.Jackman.Victory_)
+            if (!estEnPause && !p.Jackman.Victory_ && !transition)
             {
-                p.Update(gameTime);
+                p.Update(gameTime, ref transition);
                 ((BoutonPause)boutons[3]).UpdatePause(ref estEnPause);
             }
             else
@@ -41,7 +43,15 @@ namespace animaltactics4
                 }
                 else
                 {
-                    boutons[4].Update(gameTime);
+                    if (transition)
+                    {
+                        ((BoutonPret)boutons[5]).UpdateTransition(ref transition);
+                        ((BoutonPause)boutons[3]).UpdatePause(ref estEnPause);
+                    }
+                    else
+                    {
+                        boutons[4].Update(gameTime);
+                    }
                 }
             }
         }
@@ -51,7 +61,18 @@ namespace animaltactics4
             //base.DrawScene();
             p.Draw();
             if (!estEnPause && !p.Jackman.Victory_)
-            boutons[3].Draw();
+                boutons[3].Draw();
+            if (p.Jackman.Victory_)
+            {
+                boutons[4].Draw();
+            }
+            if (transition)
+            {
+                p.gameplay.clic = false;
+                if (p.earthPenguin.fog != e_brouillardDeGuerre.ToutVisible)
+                Contents.Draw("porte", fond);
+                ((BoutonPret)boutons[5]).DrawColor(p.gameplay.listeDesJoueurs[p.gameplay.tourencours].couleur);
+            }
             if (estEnPause)
             {
                 Contents.Draw("px", new Rectangle(0, 0, 1200, 900), new Color(0, 0, 0, 0.5f));
@@ -59,10 +80,6 @@ namespace animaltactics4
                 {
                     boutons[i].Draw();
                 }
-            }
-            if (p.Jackman.Victory_)
-            {
-                boutons[4].Draw();
             }
         }
     }

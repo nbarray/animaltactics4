@@ -15,7 +15,7 @@ namespace animaltactics4
         public int tourencours;
         public float limiteDeTours, numeroDeTour;
         public List<Armee> listeDesJoueurs;
-        bool clic, waitForFinDeTour;
+        public bool clic, waitForFinDeTour;
         public e_modeAction mood;
         public e_typeDePartie conditionsDeVictoire;
 
@@ -54,11 +54,11 @@ namespace animaltactics4
             }
         }
 
-        public void Update(MoteurGraphique loohy_, /*Lecteur coldman_,*/ HUD hud_, ref int time_)
+        public void Update(MoteurGraphique loohy_, /*Lecteur coldman_,*/ HUD hud_, ref int time_, ref bool transition_)
         {
             if (waitForFinDeTour)
             {
-                FinDeTour(loohy_, /*coldman_,*/ hud_, ref time_);
+                FinDeTour(loohy_, /*coldman_,*/ hud_, ref time_, ref transition_);
                 if (waitForFinDeTour)
                 {
                     listeDesJoueurs[tourencours].UpdateSansClicSelonIAouNon(loohy_, this);
@@ -66,10 +66,10 @@ namespace animaltactics4
             }
             else
             {
-                listeDesJoueurs[tourencours].UpdateSelonIAouNon(loohy_, this, ref mood, /*coldman_,*/ hud_, ref time_);
+                listeDesJoueurs[tourencours].UpdateSelonIAouNon(loohy_, this, ref mood, /*coldman_,*/ hud_, ref time_, ref transition_);
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && clic)
                 {
-                    FinDeTour(loohy_, /*coldman_,*/ hud_, ref time_);
+                    FinDeTour(loohy_, /*coldman_,*/ hud_, ref time_, ref transition_);
                     clic = false;
                 }
                 if (Keyboard.GetState().IsKeyUp(Keys.Enter))
@@ -93,7 +93,7 @@ namespace animaltactics4
             Afficher(loohy_);
         }
 
-        public void FinDeTour(MoteurGraphique moteurgraphique_, /*Lecteur coldman_,*/ HUD hud_, ref int time)
+        public void FinDeTour(MoteurGraphique moteurgraphique_, /*Lecteur coldman_,*/ HUD hud_, ref int time, ref bool transition_)
         {
             numeroDeTour += 0.5f;
             //coldman_.Play(Lecteur.EffectKey.laser);
@@ -104,6 +104,7 @@ namespace animaltactics4
             }
             if (vousAvezTousFini)
             {
+                transition_ = listeDesJoueurs[(tourencours + 1) % listeDesJoueurs.Count].difficulte == 0;
                 #region si limite de tours
                 if (conditionsDeVictoire == e_typeDePartie.Colline)
                 {
@@ -120,6 +121,7 @@ namespace animaltactics4
                         listeDesJoueurs[tourencours].reactiverIA();
                         time = 0;
                         hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
+                        moteurgraphique_.viderVueChangementDeJoueur();
                         listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
                         listeDesJoueurs[tourencours].auras(moteurgraphique_, this);
                         mood = e_modeAction.Mouvement;
@@ -159,11 +161,14 @@ namespace animaltactics4
                     listeDesJoueurs[tourencours].reactiverIA();
                     time = 0;
                     hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
+                    moteurgraphique_.viderVueChangementDeJoueur();
                     listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
                     listeDesJoueurs[tourencours].auras(moteurgraphique_, this);
                     mood = e_modeAction.Mouvement;
                 }
                 #endregion
+                moteurgraphique_.centrerSur(listeDesJoueurs[tourencours].QG.X, listeDesJoueurs[tourencours].QG.Y);
+                clic = false;
             }
             else
             {
@@ -324,7 +329,8 @@ namespace animaltactics4
             }
             tourencours = nomDesArmees_.Count - 1;
             int t = 0;
-            FinDeTour(moteurgraphique_, hud_, ref t);
+            bool een = true;
+            FinDeTour(moteurgraphique_, hud_, ref t, ref een);
             //voir les points
             //Classe kikoo = Classe.PingvinWalkyrie;
             //do
