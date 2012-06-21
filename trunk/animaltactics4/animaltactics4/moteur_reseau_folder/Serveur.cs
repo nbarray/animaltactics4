@@ -55,7 +55,10 @@ namespace animaltactics4
             {
                 client = sock.Accept();
             }
-            catch { }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public static void UpdateServer(Partie p, GameTime gameTime)
