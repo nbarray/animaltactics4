@@ -16,9 +16,6 @@ namespace animaltactics4
     {
         static public WriteBox writebox;
 
-
-
-
         #region Old Stuff
 
         public static Rectangle sub = new Rectangle(0, 0, 50, 50);
@@ -82,10 +79,10 @@ namespace animaltactics4
             Contents.DrawString("En attente de votre adversaire", new Rectangle(600 - 200, 200, 1, 1), Color.White);
         }
 
-        public static void DrawTentativeDeConnection()
+        public static void DrawMessage(string str)
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
-            Contents.DrawString("Tentative...(5 sec d'attente)", new Rectangle(600 - 200, 200, 1, 1), Color.White);
+            Contents.DrawString(str, new Rectangle(600 - (int)Contents.MeasureString(str).X/2, 200, 1, 1), Color.White);
         } 
         #endregion
     }
