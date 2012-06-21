@@ -74,23 +74,9 @@ namespace animaltactics4
         }
 
         //Coldman
-        public void DrawClient()
+        public void DrawClient(int i)
         {
-            if (gameplay.tourencours == 1)
-            {
-                earthPenguin.Draw(gameplay);
-                Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
-                Contents.DrawString(gameplay.conditionsDeVictoire.ToString()+", "+earthPenguin.fog.ToString(), new Rectangle(700,5,100,100));
-            }
-            else
-            {
-                Netools.DrawTransition();
-            }
-        }
-
-        public void DrawServer()
-        {
-            if (gameplay.tourencours == 0)
+            if (gameplay.tourencours == i)
             {
                 earthPenguin.Draw(gameplay);
                 Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
