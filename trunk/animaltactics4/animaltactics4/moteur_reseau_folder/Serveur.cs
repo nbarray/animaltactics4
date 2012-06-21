@@ -31,7 +31,7 @@ namespace animaltactics4
             }
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             sock.Bind(new IPEndPoint(IPAddress.Any, 4242));
-            sock.Listen(2);
+            sock.Listen(20);
             client = null;
             Etape1_connection_du_client = false;
             Etape2_synchronisation_des_joueurs = false;
@@ -66,9 +66,9 @@ namespace animaltactics4
             // UPDATE DU RESEAU COTE SERVEUR
             if (!Etape1_connection_du_client)
             {
-                if (client.Connected)
+                if (Netools.Read(client) == 49) // 1
                 {
-                    Netools.Send(client, "1");
+                    Etape1_connection_du_client = true;
                 }
             }
             else
@@ -85,7 +85,8 @@ namespace animaltactics4
                     Etape3_partie_en_cours = true;
                     // Partie lancée
                     p.UpdateServeur(gameTime);
-                    Netools.Send(sock, "o"); // Synch de l'horloge : "o+temps"
+                    Netools.Send(client, "o"); // Synch de l'horloge : "o+temps"
+                    Netools.Send(client, p.Jackman.tempsRestant + "");
                 }
             }
         }
