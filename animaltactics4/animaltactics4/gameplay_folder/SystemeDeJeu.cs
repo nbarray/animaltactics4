@@ -108,7 +108,7 @@ namespace animaltactics4
                 #region si limite de tours
                 if (conditionsDeVictoire == e_typeDePartie.Colline)
                 {
-                    limiteDeTours -= 0.5f;
+                    limiteDeTours -= 1/(float)listeDesJoueurs.Count;
                     if (limiteDeTours > 0)
                     {
                         waitForFinDeTour = false;

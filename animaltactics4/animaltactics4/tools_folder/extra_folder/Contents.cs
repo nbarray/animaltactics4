@@ -120,6 +120,7 @@ namespace animaltactics4
             textures.Add("aqme", content_.Load<Texture2D>("Image\\Bouton\\barre de texte"));
             textures.Add("dif", content_.Load<Texture2D>("Image\\Bouton\\difficultes"));
             textures.Add("mod", content_.Load<Texture2D>("Image\\Bouton\\modes"));
+            textures.Add("sauvegarde", content_.Load<Texture2D>("Image\\Bouton\\sauvegarde"));
             textures.Add("Bulles", content_.Load<Texture2D>("Image\\Bouton\\Bulles"));
             textures.Add("Tube", content_.Load<Texture2D>("Image\\Bouton\\Tube"));
             textures.Add("CurseurCoulisse", content_.Load<Texture2D>("Image\\Bouton\\CurseurCoulisse"));

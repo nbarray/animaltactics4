@@ -35,7 +35,7 @@ namespace animaltactics4
             ((BoutonDeroulant)boutons[0]).UpdateDeroulantNicoTuFaitPasChier(ref  tsize, ref tstate);
             ((BoutonDeroulant)boutons[1]).UpdateDeroulantNicoTuFaitPasChier(ref  tsize, ref tstate);
             //}
-            Rectangle mike = new Rectangle(1000, 800, 150, 50);
+            Rectangle mike = new Rectangle(900, 770, 200, 70);
             writer.Update();
             if (Contents.contientLaSouris(mike) && writer.text != "")
             {
@@ -72,16 +72,16 @@ namespace animaltactics4
                 Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][151], izia);
             }
             #region bouton save
-            Rectangle mike = new Rectangle(1000, 800, 150, 50);
+            Rectangle mike = new Rectangle(900, 770, 200, 70);
             if (Contents.contientLaSouris(mike))
             {
-                Contents.Draw("px", mike, Color.Gray);
-                Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 10, mike.Y + 5, 0, 0), Color.Black);
+                Contents.Draw("sauvegarde", mike, Color.Gray);
+                Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][155], mike, Color.Black);
             }
             else
             {
-                Contents.Draw("px", mike, Color.DarkGray);
-                Contents.DrawString("Sauvegarde", new Rectangle(mike.X + 10, mike.Y + 5, 0, 0), Color.White);
+                Contents.Draw("sauvegarde", mike, Color.DarkGray);
+                Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][155], mike, Color.White);
             }
             #endregion
         }

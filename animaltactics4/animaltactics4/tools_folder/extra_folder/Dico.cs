@@ -183,6 +183,7 @@ namespace animaltactics4
             "Musique", //152
             "Sons", //153
             "Prêt ?", //154
+            "Sauvegarde", //155
             }); 
             #endregion
 
@@ -343,6 +344,7 @@ namespace animaltactics4
             "Music", //152
             "Sound", //153
             "Ready ?", //154
+            "Save", //155
             }); 
             #endregion
 
@@ -503,6 +505,7 @@ namespace animaltactics4
             "Musique", //152
             "Sons", //153
             "Schtroumpf ?", //154
+            "Schtroumpf", //155
             }); 
             #endregion
 
@@ -663,6 +666,7 @@ namespace animaltactics4
             "Musica", //152
             "FX", //153
             "Ser nisto ?", //154
+            "Salvar", //155
             }); 
             #endregion
         }
