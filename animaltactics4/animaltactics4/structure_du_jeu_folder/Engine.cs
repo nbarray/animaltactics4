@@ -42,8 +42,15 @@ namespace animaltactics4
                 scenes.Peek().DrawScene();
             }
             Contents.Cadre();
-        }
 
+            Contents.DrawString(Serveur.Etape1_connection_du_client.ToString(), new Rectangle(0, 0, 100, 50));
+            Contents.DrawString(Serveur.Etape2_synchronisation_des_joueurs.ToString(), new Rectangle(0, 100, 100, 50));
+            Contents.DrawString(Serveur.Etape3_partie_en_cours.ToString(), new Rectangle(0, 200, 100, 50));
+            Contents.DrawString(Serveur.Etape3_SEtape1_partie_en_cours.ToString(), new Rectangle(0, 300, 100, 50));
+            Contents.DrawString(Serveur.Etape3_SEtape2_partie_en_cours.ToString(), new Rectangle(0, 400, 100, 50));
+            Contents.DrawString(Serveur.Etape4_fin_de_partie.ToString(), new Rectangle(0, 500, 100, 50));
+
+        }
         //Loohy
         static public void recharge()
         {
