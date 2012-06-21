@@ -19,7 +19,6 @@ namespace animaltactics4
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
-            Client.writebox.Update();
             Client.UpdateWriteBox();
         }
 
