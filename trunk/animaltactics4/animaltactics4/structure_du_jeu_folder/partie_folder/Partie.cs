@@ -58,6 +58,13 @@ namespace animaltactics4
             lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
         }
 
+        //Coldman
+        public void UpdateReseau(GameTime gameTime_)
+        {
+            bool erence = false;
+            Update(gameTime_, ref erence);
+        }
+
         //Loohy
         public void Draw()
         {
