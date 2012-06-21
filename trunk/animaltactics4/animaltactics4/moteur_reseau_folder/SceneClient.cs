@@ -150,8 +150,10 @@ namespace animaltactics4
                     Netools.DrawMessage("Tentative de connection avec le serveur ...");
                     break;
                 case EtapeReseau.etape3_synchronisation:
+                    Netools.DrawMessage("Connexion effectuée, synchronisation des joueurs ...");
                     break;
                 case EtapeReseau.etape4_partie:
+                    partie.DrawClient();
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
