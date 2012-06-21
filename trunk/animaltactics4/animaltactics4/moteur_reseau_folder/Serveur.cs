@@ -30,15 +30,15 @@ namespace animaltactics4
                 t_init.Start();
             }
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sock.Bind(new IPEndPoint(IPAddress.Any, 4242));
-            sock.Listen(20);
-            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            client = null;
+
             Etape1_connection_du_client = false;
             Etape2_synchronisation_des_joueurs = false;
             Etape3_partie_en_cours = false;
             Etape3_SEtape1_partie_en_cours = false;
             Etape3_SEtape2_partie_en_cours = false;
             Etape4_fin_de_partie = false;
+            p = new Partie(32, 32);
             p.Initialize("carte reseau",
                                   new List<string>() { "Pandawan01", "Pingvin01" },
                                   new List<int>() { 0, 0 },
@@ -53,11 +53,13 @@ namespace animaltactics4
         {
             try
             {
+                sock.Bind(new IPEndPoint(IPAddress.Any, 4242));
+                sock.Listen(20);
                 client = sock.Accept();
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Ecoute: " + e.Message);
             }
         }
 
