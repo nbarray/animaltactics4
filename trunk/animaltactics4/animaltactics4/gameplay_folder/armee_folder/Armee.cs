@@ -439,20 +439,20 @@ namespace animaltactics4
                 case e_classe.KrissaAssassin:
                     portee[1] = 10;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Assassinat, e_typeDePouvoir.Degat, new List<int> { 1 },
-                        true, 0, 0, 0, false), null, Divers.getName(classe_), 7, 14, 6, 7, 14, 12, 13, portee, typedAttaque,
+                        true, 28, 0, 28, false), null, Divers.getName(classe_), 7, 14, 6, 7, 14, 12, 13, portee, typedAttaque,
                         this.numeroarmee, 69, 10, ia_);
                     break;
                 case e_classe.KrissaLegionnaire:
                     portee[1] = 9;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Legionnaire, e_typeDePouvoir.Boost, new List<int> { 0, 1, 2 },
-                        true, 0, 0, 0, false), null, Divers.getName(classe_), 12, 11, 8, 12, 10, 11, 11, portee, typedAttaque,
+                        true, 10, 1, 6, false), null, Divers.getName(classe_), 12, 11, 10, 12, 10, 11, 11, portee, typedAttaque,
                         this.numeroarmee, 70, 8, ia_);
                     break;
                 case e_classe.KrissaGeolier:
                     portee[1] = 10;
                     typedAttaque[1] = false;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Geolier, e_typeDePouvoir.Boost, new List<int> { 1 },
-                        true, 0, 0, 0, false), null, Divers.getName(classe_), 6, 14, 5, 4, 13, 13, 12, portee, typedAttaque,
+                        true, 20, 0, 0, false), null, Divers.getName(classe_), 6, 14, 5, 4, 13, 13, 12, portee, typedAttaque,
                         this.numeroarmee, 57, 8, ia_);
                     break;
                 case e_classe.KrissaMaraudeur:
