@@ -16,6 +16,7 @@ namespace animaltactics4
         {
             p = new Partie(32, 32);
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
+
         }
 
         public override void DrawScene()
@@ -29,7 +30,7 @@ namespace animaltactics4
         {
             if (Serveur.client != null)
             {
-                Serveur._que_vois_tu_Louis();
+                Serveur.UpdateServer();
                 p.Update(gameTime);
             }
 
