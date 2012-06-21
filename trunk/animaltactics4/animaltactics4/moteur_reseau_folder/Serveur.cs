@@ -13,7 +13,6 @@ namespace animaltactics4
     {
         static public Socket client;
         static public Socket sock;
-        static public WriteBox writebox;
         static public bool unique;
         static public Thread t_init = new Thread(Ecoute);
 
@@ -34,8 +33,6 @@ namespace animaltactics4
             sock.Bind(new IPEndPoint(IPAddress.Any, 4242));
             sock.Listen(2);
             client = null;
-            writebox = new WriteBox(new Rectangle(Divers.X / 2 - 200, Divers.Y / 2 - 75 / 2, 400, 75));
-            unique = false;
             Etape1_connection_du_client = false;
             Etape2_synchronisation_des_joueurs = false;
             Etape3_partie_en_cours = false;
@@ -46,8 +43,6 @@ namespace animaltactics4
 
         public static void Ecoute() 
         {
-            if (!unique)
-            {
                 try
                 {
                     client = sock.Accept();
@@ -58,8 +53,7 @@ namespace animaltactics4
                 }
                 unique = true;
                 Console.Write(sock.Connected);
-
-            }
+            
         }
 
         public static void UpdateServer() 
@@ -67,10 +61,17 @@ namespace animaltactics4
             // UPDATE DU RESEAU COTE SERVEUR
             if (!Etape1_connection_du_client)
             {
-                Netools.Send(client, "1");
-                if (Netools.Read(client) == 50) // 2
+                if (!client.Connected)
                 {
-                    Etape1_connection_du_client = true; 
+                    Ecoute();
+                }
+                else
+                {
+                    Netools.Send(client, "1");
+                    if (Netools.Read(client) == 50) // 2
+                    {
+                        Etape1_connection_du_client = true;
+                    }
                 }
             }
             else
@@ -100,7 +101,6 @@ namespace animaltactics4
             {
                 t_init.Abort();
             }
-            
             Etape1_connection_du_client = false;
             Etape2_synchronisation_des_joueurs = false;
             Etape3_partie_en_cours = false;
@@ -109,11 +109,6 @@ namespace animaltactics4
             Etape4_fin_de_partie = false;
 
             return false;
-        }
-
-        public static void Draw() 
-        {
-
         }
     }
 }

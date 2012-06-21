@@ -10,6 +10,7 @@ namespace animaltactics4
     class SceneServer : Scene
     {
         public Partie p;
+        private bool unique;
 
         public SceneServer()
             : base()
@@ -24,6 +25,7 @@ namespace animaltactics4
                                   e_typeDePartie.Joute,
                                   e_brouillardDeGuerre.Normal,
                                   42);
+            unique = false;
         }
 
         public override void DrawScene()
@@ -56,6 +58,12 @@ namespace animaltactics4
             else
             {
                 Netools.UpdateTransition(gameTime);
+                if (!unique)
+                {
+                    Serveur.Initialiser();
+                    unique = true;
+                }
+                
             }
 
             ((BoutonLien)boutons[0]).Update(gameTime, new Func<bool>(Serveur.ArreterLeServer));
