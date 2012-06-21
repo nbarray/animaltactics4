@@ -19,6 +19,7 @@ namespace animaltactics4
         }
 
         public abstract void Update(GameTime gameTime);
+
         public abstract void Draw();
         
     }

@@ -44,15 +44,15 @@ namespace animaltactics4
             }
             Contents.Cadre();
 
-            Contents.DrawString("1.S : " + Serveur.Etape1_connection_du_client.ToString() + " : Connection du client", new Rectangle(0, 0, 100, 50));
+            Contents.DrawString("1.S : " + Serveur.Etape1_connection_du_client.ToString() + " : Connection du client", new Rectangle(0, 0, 100, 50), Color.Red);
             Contents.DrawString("1.C : " + Client.Etape1_connection_du_client.ToString() + " : Connection du client", new Rectangle(0, 50, 100, 50));
-            Contents.DrawString("2.S : " + Serveur.Etape2_synchronisation_des_joueurs.ToString() + " : Syncho des joueurs", new Rectangle(0, 100, 100, 50));
+            Contents.DrawString("2.S : " + Serveur.Etape2_synchronisation_des_joueurs.ToString() + " : Syncho des joueurs", new Rectangle(0, 100, 100, 50), Color.Red);
             Contents.DrawString("2.C : " + Client.Etape2_synchronisation_des_joueurs.ToString() + " : Syncho des joueurs", new Rectangle(0, 150, 100, 50));
-            Contents.DrawString("3.S : " + Serveur.Etape3_partie_en_cours.ToString() + " : Partie en cours", new Rectangle(0, 200, 100, 50));
+            Contents.DrawString("3.S : " + Serveur.Etape3_partie_en_cours.ToString() + " : Partie en cours", new Rectangle(0, 200, 100, 50), Color.Red);
             Contents.DrawString("3.C : " + Client.Etape3_partie_en_cours.ToString() + " : Partie en cours", new Rectangle(0, 250, 100, 50));
-            Contents.DrawString("S : " + Serveur.Etape3_SEtape1_partie_en_cours.ToString(), new Rectangle(0, 300, 100, 50));
-            Contents.DrawString("S : " + Serveur.Etape3_SEtape2_partie_en_cours.ToString(), new Rectangle(0, 400, 100, 50));
-            Contents.DrawString("S : " + Serveur.Etape4_fin_de_partie.ToString(), new Rectangle(0, 500, 100, 50));
+            Contents.DrawString("S : " + Serveur.Etape3_SEtape1_partie_en_cours.ToString(), new Rectangle(0, 300, 100, 50), Color.Red);
+            Contents.DrawString("S : " + Serveur.Etape3_SEtape2_partie_en_cours.ToString(), new Rectangle(0, 400, 100, 50), Color.Red);
+            Contents.DrawString("S : " + Serveur.Etape4_fin_de_partie.ToString(), new Rectangle(0, 500, 100, 50), Color.Red);
 
         }
         //Loohy

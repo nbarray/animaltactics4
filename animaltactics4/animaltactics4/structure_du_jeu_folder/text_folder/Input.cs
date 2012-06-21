@@ -59,7 +59,7 @@ namespace animaltactics4
             {
                 return "9";
             }
-            else if (k == (Keys)190)
+            else if (k == (Keys)110)
             {
                 return ".";
             }
