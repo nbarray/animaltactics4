@@ -70,7 +70,7 @@ namespace animaltactics4
         {
             earthPenguin.Draw(gameplay);
             Jackman.Draw(gameplay, earthPenguin, tempsMax-time);
-            Contents.DrawString(gameplay.conditionsDeVictoire.ToString()+", "+earthPenguin.fog.ToString(), new Rectangle(700,5,100,100));
+            //Contents.DrawString(gameplay.conditionsDeVictoire.ToString()+", "+earthPenguin.fog.ToString(), new Rectangle(700,5,100,100));
         }
 
         //Coldman
