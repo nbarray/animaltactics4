@@ -76,7 +76,7 @@ namespace animaltactics4
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
             Contents.Draw("waitforplayer", new Rectangle(600 - 75, 300 - 75, 150, 150), sub);
-            Contents.DrawString("En attente de votre adversaire", new Rectangle(600 - 200, 200, 1, 1), Color.White);
+            Contents.DrawString("Tour de votre adversaire en cours", new Rectangle(600 - 200, 200, 1, 1), Color.White);
         }
 
         public static void DrawMessage(string str)
