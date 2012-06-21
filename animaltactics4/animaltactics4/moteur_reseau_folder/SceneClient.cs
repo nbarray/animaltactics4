@@ -25,26 +25,6 @@ namespace animaltactics4
                                   42);
         }
 
-        public override void DrawScene()
-        {
-            base.DrawScene();
-            if (Client.Etape3_partie_en_cours)
-            {
-                p.DrawClient();   
-            }
-            else
-            {
-                if (!Client.sock.Connected)
-                {
-                    Netools.DrawTentativeDeConnection();
-                }
-                else
-                {
-                    Netools.DrawTransition();
-                }
-            }
-        }
-
         int attempt = 10;
         public override void UpdateScene(GameTime gameTime)
         {
@@ -70,6 +50,26 @@ namespace animaltactics4
                 base.UpdateScene(gameTime);
             }
 
+        }
+
+        public override void DrawScene()
+        {
+            base.DrawScene();
+            if (Client.Etape3_partie_en_cours)
+            {
+                p.DrawClient();
+            }
+            else
+            {
+                if (!Client.sock.Connected)
+                {
+                    Netools.DrawTentativeDeConnection();
+                }
+                else
+                {
+                    Netools.DrawTransition();
+                }
+            }
         }
     }
 }

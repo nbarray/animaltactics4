@@ -23,7 +23,7 @@ namespace animaltactics4
         static public bool Etape3_SEtape2_partie_en_cours = false;
         static public bool Etape4_fin_de_partie = false;
 
-        static public void Initialiser()
+        static public void Initialiser(Partie p)
         {
             if (t_init.ThreadState == ThreadState.Unstarted)
             {
@@ -39,6 +39,14 @@ namespace animaltactics4
             Etape3_SEtape1_partie_en_cours = false;
             Etape3_SEtape2_partie_en_cours = false;
             Etape4_fin_de_partie = false;
+            p.Initialize("carte reseau",
+                                  new List<string>() { "Pandawan01", "Pingvin01" },
+                                  new List<int>() { 0, 0 },
+                                  new List<int>() { 0, 1 },
+                                  new List<Color>() { Color.Blue, Color.Red },
+                                  e_typeDePartie.Joute,
+                                  e_brouillardDeGuerre.Normal,
+                                  42);
         }
 
         public static void Ecoute() 
@@ -56,7 +64,7 @@ namespace animaltactics4
             
         }
 
-        public static void UpdateServer() 
+        public static void UpdateServer(Partie p, GameTime gameTime) 
         {
             // UPDATE DU RESEAU COTE SERVEUR
             if (!Etape1_connection_du_client)
@@ -68,6 +76,7 @@ namespace animaltactics4
                 else
                 {
                     Netools.Send(client, "1");
+                 
                     if (Netools.Read(client) == 50) // 2
                     {
                         Etape1_connection_du_client = true;
@@ -87,6 +96,7 @@ namespace animaltactics4
                 {
                     Etape3_partie_en_cours = true;
                     // Partie lancée
+                    p.UpdateServeur(gameTime);
                     Netools.Send(sock, "o"); // Synch de l'horloge : "o+temps"
                 }
             }
