@@ -7,9 +7,15 @@ using Microsoft.Xna.Framework;
 
 namespace animaltactics4
 {
+    enum EtapeReseau
+    {
+        etape1_initialisation, etape2_connection, etape3_synchronisation, etape4_partie, etap5_fin_de_partie
+    }
+
     static class Netools
     {
         static public WriteBox writebox;
+
 
 
 
