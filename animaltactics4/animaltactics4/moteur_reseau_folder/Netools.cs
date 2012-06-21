@@ -73,7 +73,7 @@ namespace animaltactics4
         public static void DrawTentativeDeConnection()
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
-            Contents.DrawString("Tentative...(10 sec d'attente)", new Rectangle(600 - 200, 200, 1, 1), Color.White);
+            Contents.DrawString("Tentative...(5 sec d'attente)", new Rectangle(600 - 200, 200, 1, 1), Color.White);
         }
     }
 }

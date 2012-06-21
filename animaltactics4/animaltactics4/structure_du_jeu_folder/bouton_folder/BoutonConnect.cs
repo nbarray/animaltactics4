@@ -15,7 +15,6 @@ namespace animaltactics4
         public BoutonConnect(int x, int y)
             : base(new Rectangle(x, y, 400, 75), new Rectangle(0, 0, 800, 300))
         {
-            Client.Initialiser();
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
         }
 

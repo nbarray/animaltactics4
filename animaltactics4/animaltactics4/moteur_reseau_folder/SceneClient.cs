@@ -23,6 +23,7 @@ namespace animaltactics4
                                   e_typeDePartie.Joute,
                                   e_brouillardDeGuerre.Normal,
                                   42);
+            Client.Initialiser();
         }
 
         int attempt = 10;
@@ -35,7 +36,7 @@ namespace animaltactics4
                     Client.Connecter();
                     Console.WriteLine(attempt);
                     attempt--;
-                    //Thread.Sleep(1000);
+                    Thread.Sleep(500);
                 }
                 else
                 {
