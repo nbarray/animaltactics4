@@ -164,7 +164,6 @@
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuOptionJeu.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuOptionSon.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuPrincipal.cs" />
-    <Compile Include="structure_du_jeu_folder\scene_folder\MenuRejoindre.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\MenuReseau.cs" />
     <Compile Include="structure_du_jeu_folder\scene_folder\Scene.cs" />
     <Compile Include="structure_du_jeu_folder\text_folder\Input.cs" />

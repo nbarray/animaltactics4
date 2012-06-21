@@ -32,7 +32,7 @@ namespace animaltactics4
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             sock.Bind(new IPEndPoint(IPAddress.Any, 4242));
             sock.Listen(20);
-            client = null;
+            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Etape1_connection_du_client = false;
             Etape2_synchronisation_des_joueurs = false;
             Etape3_partie_en_cours = false;
