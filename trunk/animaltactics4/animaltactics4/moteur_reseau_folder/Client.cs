@@ -49,7 +49,7 @@ namespace animaltactics4
             }
         }
 
-        public static void Update(Partie p_) /*mise a jour*/
+        public static void Update(Partie p_, GameTime gameTime_) /*mise a jour*/
         {
             // UPDATE DU RESEAU COTE CLIENT
             if (!Etape1_connection_du_client)
@@ -70,7 +70,7 @@ namespace animaltactics4
                 }
                 else
                 {
-
+                    p_.UpdateClient(gameTime_);
                 }
             }
         }

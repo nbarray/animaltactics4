@@ -55,7 +55,7 @@ namespace animaltactics4
                     Client.Connecter();
                     Console.WriteLine(attempt);
                     attempt--;
-                    Thread.Sleep(1000);
+                    //Thread.Sleep(1000);
                 }
                 else
                 {
@@ -65,17 +65,8 @@ namespace animaltactics4
             }
             else
             {
-                if (Client.Etape1_connection_du_client && 
-                    !Client.Etape2_synchronisation_des_joueurs)
-                {
-                    Client.Update(p);
-                    p.UpdateClient(gameTime);
-                }
-                else
-                {
-
-                }
-
+                Client.Update(p, gameTime);
+                
                 base.UpdateScene(gameTime);
             }
 
