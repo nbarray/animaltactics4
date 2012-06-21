@@ -50,7 +50,6 @@ namespace animaltactics4
                 
                 base.UpdateScene(gameTime);
             }
-
         }
 
         public override void DrawScene()
