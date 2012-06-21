@@ -57,7 +57,6 @@ namespace animaltactics4
                 if (Netools.Read(sock) == 49) // 1
                 {
                     Netools.Send(sock, "2");
-                   
                     Etape1_connection_du_client = true;
                 }   
             }

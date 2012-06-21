@@ -16,6 +16,14 @@ namespace animaltactics4
         {
             p = new Partie(32, 32);
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
+            p.Initialize("carte reseau",
+                                  new List<string>() { "Pandawan01", "Pingvin01" },
+                                  new List<int>() { 0, 0 },
+                                  new List<int>() { 0, 1 },
+                                  new List<Color>() { Color.Blue, Color.Red },
+                                  e_typeDePartie.Joute,
+                                  e_brouillardDeGuerre.Normal,
+                                  42);
 
         }
 
@@ -31,7 +39,11 @@ namespace animaltactics4
             if (Serveur.client != null)
             {
                 Serveur.UpdateServer();
-                p.Update(gameTime);
+                if (Serveur.Etape2_synchronisation_des_joueurs)
+                {
+                    p.Update(gameTime);
+                }
+                
             }
 
             ((BoutonLien)boutons[0]).Update(gameTime, new Func<bool>(Serveur.ArreterLeServer));
