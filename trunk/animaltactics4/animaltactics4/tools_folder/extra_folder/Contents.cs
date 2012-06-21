@@ -30,8 +30,8 @@ namespace animaltactics4
         {
             Atsushi_Okhubo = new SpriteBatch(device_);
             Miyazaki = new VideoPlayer();
-            adapter(device_.DisplayMode.Width, device_.DisplayMode.Height);
-            //adapter(800, 600);
+            //adapter(device_.DisplayMode.Width, device_.DisplayMode.Height);
+            adapter(800, 600);
             ouvertureDePorte = 0;
         }
 

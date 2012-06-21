@@ -16,11 +16,14 @@ namespace animaltactics4
         int tentative = 5;
         EtapeReseau etape;
 
+        Thread _TFinDeTour;
+
         bool een3;
 
         public SceneClient()
             : base()
         {
+            _TFinDeTour = new Thread(TFinDeTour);
             etape = EtapeReseau.etape1_initialisation;
             een3 = false;
         }
@@ -30,10 +33,14 @@ namespace animaltactics4
             Console.SetCursorPosition(0, 0);
             Console.Write(etape);
             Console.SetCursorPosition(0, 1);
-            Console.ForegroundColor = een3?ConsoleColor.Green:ConsoleColor.Red;
             Console.Write("Partie Initialisée ? " + een3);
             Console.ForegroundColor = ConsoleColor.Gray;
-
+            if (etape == EtapeReseau.etape4_partie)
+            {
+                Console.SetCursorPosition(0, 2);
+                Console.WriteLine("Tour en cours : " + partie.gameplay.tourencours);
+            }
+            
             switch (etape)
             {
                 case EtapeReseau.etape1_initialisation:
@@ -71,16 +78,31 @@ namespace animaltactics4
                     if (!een3)
                     {
                         InitialiserPartie();
+                        partie.gameplay.tourencours = 1;
                         een3 = true;
                     }
                     Netools.Send(sock, "H"); // H -> en binaire sheet: 72
                     Netools.Send(sock, "i"); // i -> en binaire sheet: 105
 
                     etape = EtapeReseau.etape4_partie;
-
+                    _TFinDeTour.Start();
                     break;
                 case EtapeReseau.etape4_partie:
-                    partie.UpdateReseau(gameTime);
+                    if (partie.gameplay.tourencours == 1) // Si c'est a mon tour
+                    {
+                        if (partie.Jackman.tempsRestant == 1) // si le temps est écoulé
+                        {
+                            ChangementTour();
+                            Netools.Send(sock, "]"); // ] -> fin du tour : 93
+                            Console.SetCursorPosition(0, 3);
+                            Console.WriteLine("Orde de changement de tour envoyé");
+                        }
+                        partie.UpdateReseau(gameTime);
+                    }
+                    else
+                    {
+                        Netools.UpdateTransition(gameTime);
+                    }
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
@@ -160,27 +182,6 @@ namespace animaltactics4
                 default:
                     break;
             }
-
-            //base.DrawScene();
-            //if (Etape3_partie_en_cours)
-            //{
-            //    p.DrawClient();
-            //}
-            //else
-            //{
-            //    if (sock != null)
-            //    {
-            //        if (!sock.Connected)
-            //        {
-            //            Netools.DrawTentativeDeConnection();
-            //        }
-            //        else
-            //        {
-            //            Netools.DrawTransition();
-            //        }
-            //    }
-
-            //}
         }
 
         public void InitialiserPartie()
@@ -204,6 +205,27 @@ namespace animaltactics4
             //Etape3_SEtape1_partie_en_cours = false;
             //Etape3_SEtape2_partie_en_cours = false;
             //Etape4_fin_de_partie = false;
+        }
+
+        private void ChangementTour()
+        {
+            int epitaa = 0;
+            bool epitaaa = true;
+            partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
+        }
+        
+        private void TFinDeTour()
+        {
+            while (true)
+            {
+                int f;
+                if ((f = Netools.Read(sock)) == 93)
+                {
+                    ChangementTour();
+                    Console.SetCursorPosition(0, 3);
+                    Console.WriteLine("Orde de changement de tour reçu");
+                }
+            }
         }
     }
 }
