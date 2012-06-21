@@ -21,7 +21,6 @@ namespace animaltactics4
             onglets.Add(Dico.langues[Dico.current][54]);
             onglets.Add(Dico.langues[Dico.current][55]);
             onglets.Add(Dico.langues[Dico.current][56]);
-            onglets.Add(Dico.langues[Dico.current][57]);
         }
 
         public override void UpdateScene(GameTime gameTime)

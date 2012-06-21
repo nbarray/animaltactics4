@@ -106,12 +106,10 @@ namespace animaltactics4
                         do
                         {
                             tourencours = (tourencours + 1) % listeDesJoueurs.Count;
-                        } while (!listeDesJoueurs[(int)limiteDeTours].atLeastOneAlive);
+                        } while (!listeDesJoueurs[tourencours].atLeastOneAlive);
                         listeDesJoueurs[tourencours].reactiverIA();
                         time = 0;
                         hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
-                        listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
-                        listeDesJoueurs[tourencours].appliquerVues(moteurgraphique_);
                         listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
                         listeDesJoueurs[tourencours].auras(moteurgraphique_, this);
                         mood = e_modeAction.Mouvement;
@@ -151,8 +149,6 @@ namespace animaltactics4
                     listeDesJoueurs[tourencours].reactiverIA();
                     time = 0;
                     hud_.DoAFlash(listeDesJoueurs[tourencours].couleur);
-                    listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
-                    listeDesJoueurs[tourencours].appliquerVues(moteurgraphique_);
                     listeDesJoueurs[tourencours].soeurAnne(moteurgraphique_, this);
                     listeDesJoueurs[tourencours].auras(moteurgraphique_, this);
                     mood = e_modeAction.Mouvement;

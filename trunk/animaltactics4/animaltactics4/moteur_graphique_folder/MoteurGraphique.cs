@@ -1508,6 +1508,9 @@ namespace animaltactics4
                         case e_brouillardDeGuerre.ToutVisible:
                             map[i, j].visible = true;
                             break;
+                        case e_brouillardDeGuerre.ToutVisite:
+                            map[i, j].apercue = true;
+                            goto default;
                         default:
                             map[i, j].visible = false;
                             break;

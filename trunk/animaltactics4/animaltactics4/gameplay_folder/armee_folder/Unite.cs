@@ -605,7 +605,9 @@ namespace animaltactics4
                 }
                 #endregion
             }
+            float pourCent = pvactuel / (float)pvmax;
             CaracFromStats();
+            pvactuel = (int)(pvmax * pourCent);
         }
         public void FindeTour()//remettre bonus stats a 0
         {
@@ -1058,11 +1060,12 @@ namespace animaltactics4
 
         public void soeurAnne(MoteurGraphique moteurgraphique_, ref bool[,] casesVisitees_, SystemeDeJeu gameplay_)
         {
-            if (/*IA.difficulte == 0 &&*/ alive)
+            if (IA.difficulte == 0 && alive)
             {
                 if (i >= 0 && i < moteurgraphique_.longueur && j >= 0 && j < moteurgraphique_.largeur)
                 {
                     casesVisitees_[i, j] = true;
+                    moteurgraphique_.map[i, j].apercue = true;
                     moteurgraphique_.map[i, j].visible = true;
                     #region detecter les invisibles proches
                     for (int p = -1; p < 2; p++)
@@ -1513,7 +1516,6 @@ namespace animaltactics4
                 iDepart = 1;
                 moteurgraphique_.viderChemin();
                 lookAtCheminsInitialize(moteurgraphique_);
-                moteurgraphique_.viderVue();
                 armee_.soeurAnne(moteurgraphique_, gameplay_);
                 armee_.auras(moteurgraphique_, gameplay_);
                 return true;
@@ -1558,7 +1560,6 @@ namespace animaltactics4
                 iDepart = -1;
                 moteurgraphique_.viderChemin();
                 lookAtCheminsInitialize(moteurgraphique_);
-                moteurgraphique_.viderVue();
                 armee_.soeurAnne(moteurgraphique_, gameplay_);
                 armee_.auras(moteurgraphique_, gameplay_);
                 return true;
@@ -1603,7 +1604,6 @@ namespace animaltactics4
                 iDepart = +1;
                 moteurgraphique_.viderChemin();
                 lookAtCheminsInitialize(moteurgraphique_);
-                moteurgraphique_.viderVue();
                 armee_.soeurAnne(moteurgraphique_, gameplay_);
                 armee_.auras(moteurgraphique_, gameplay_);
                 return true;
@@ -1648,7 +1648,6 @@ namespace animaltactics4
                 iDepart = -1;
                 moteurgraphique_.viderChemin();
                 lookAtCheminsInitialize(moteurgraphique_);
-                moteurgraphique_.viderVue();
                 armee_.soeurAnne(moteurgraphique_, gameplay_);
                 armee_.auras(moteurgraphique_, gameplay_);
                 return true;

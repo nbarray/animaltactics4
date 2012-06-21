@@ -372,6 +372,8 @@ namespace animaltactics4
             }
             else
             {
+                Color gris = new Color(100, 100, 100);
+                gris = Color.Red;
                 if (apercue)
                 {
                     #region sol
@@ -391,22 +393,22 @@ namespace animaltactics4
                         }
                         rect.Y -= (int)vagues;
                     }
-                    Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectSol);
+                    Contents.Draw("Tiles", rect, gris, sousRectSol);
                     #endregion
                     #region route
                     if (E_Riviere == e_Riviere.riviere)
                     {
-                        Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectRiviere2);
-                    }
+                        Contents.Draw("Tiles", rect, gris, sousRectRiviere2);
+                    } 
                     if (E_Route != e_Typederoute.vide)
                     {
                         if (E_Sol == e_Typedesol.mer || E_Sol == e_Typedesol.banquise)
                         {
-                            Contents.Draw("Bridges", rect, new Color(60, 60, 60), sousRectRoute);
+                            Contents.Draw("Bridges", rect, gris, sousRectRoute);
                         }
                         else
                         {
-                            Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectRoute);
+                            Contents.Draw("Tiles", rect, gris, sousRectRoute);
                         }
                     }
                     #endregion
@@ -414,11 +416,11 @@ namespace animaltactics4
                     #region decor
                     if (E_DecorArriere != e_Decorarriere.vide)
                     {
-                        Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectDecorArriere);
+                        Contents.Draw("Tiles", rect, gris, sousRectDecorArriere);
                     }
                     if (E_DecorAvant != e_Decoravant.vide)
                     {
-                        Contents.Draw("Tiles", rect, new Color(60, 60, 60), sousRectDecorAvant);
+                        Contents.Draw("Tiles", rect, gris, sousRectDecorAvant);
                     } 
                     #endregion
                 }

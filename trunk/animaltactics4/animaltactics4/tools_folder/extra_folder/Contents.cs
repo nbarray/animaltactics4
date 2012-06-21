@@ -71,12 +71,12 @@ namespace animaltactics4
             textures.Add(e_classe.KrissaChef.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaChef"));
             textures.Add(e_classe.KrissaAssassin.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaAssassin"));
             textures.Add(e_classe.KrissaLegionnaire.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaLegionnaire"));
-            textures.Add(e_classe.KrissaGeolier.ToString(), content_.Load<Texture2D>("Image\\Unite\\PandaSimple"));
+            textures.Add(e_classe.KrissaGeolier.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaGeolier"));
             textures.Add(e_classe.KrissaMaraudeur.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaMaraudeur"));
             textures.Add(e_classe.KrissaVermine.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaVermine"));
             textures.Add(e_classe.KrissaAbomination.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaAbomination"));
             textures.Add(e_classe.KrissaDesperado.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaDesperado"));
-            textures.Add(e_classe.KrissaCanonnier.ToString(), content_.Load<Texture2D>("Image\\Unite\\PingvinSimple"));
+            textures.Add(e_classe.KrissaCanonnier.ToString(), content_.Load<Texture2D>("Image\\Unite\\KrissaCanonnier"));
             textures.Add(e_classe.Overlord.ToString(), content_.Load<Texture2D>("Image\\Unite\\PingvinWalkyrie"));
             #endregion
             textures.Add("bouton_normal", content_.Load<Texture2D>("Image\\Bouton\\bouton_normal"));
@@ -118,6 +118,7 @@ namespace animaltactics4
             textures.Add("cursor_tb", content_.Load<Texture2D>("Image\\Bouton\\cursor_textbox"));
             textures.Add("play", content_.Load<Texture2D>("Image\\Bouton\\lec_play"));
             textures.Add("fog", content_.Load<Texture2D>("Image\\Bouton\\fog"));
+            textures.Add("aqme", content_.Load<Texture2D>("Image\\Bouton\\barre de texte"));
             textures.Add("dif", content_.Load<Texture2D>("Image\\Bouton\\difficultes"));
             textures.Add("mod", content_.Load<Texture2D>("Image\\Bouton\\modes"));
             textures.Add("Bulles", content_.Load<Texture2D>("Image\\Bouton\\Bulles"));

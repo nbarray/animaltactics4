@@ -174,7 +174,7 @@ namespace animaltactics4
             {
                 for (int j = 0; j < sizeY_; j++)
                 {
-                    casesVisitees[i, j] = false;
+                    casesVisitees[i, j] = true;
                 }
             }
         }
@@ -451,7 +451,7 @@ namespace animaltactics4
                 case e_classe.KrissaGeolier:
                     portee[1] = 10;
                     typedAttaque[1] = false;
-                    AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Krissa1, e_typeDePouvoir.Boost, new List<int> { 1 },
+                    AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Geolier, e_typeDePouvoir.Boost, new List<int> { 1 },
                         true, 0, 0, 0, false), null, Divers.getName(classe_), 6, 14, 5, 4, 13, 13, 12, portee, typedAttaque,
                         this.numeroarmee, 57, 8, ia_);
                     break;
@@ -968,6 +968,7 @@ namespace animaltactics4
                         item.soeurAnne(moteurgraphique_, ref casesVisitees, gameplay_);
                     }
                 }
+                appliquerVues(moteurgraphique_);
             }
         }
         public void appliquerVues(MoteurGraphique moteurgraphique_)

@@ -82,7 +82,8 @@ namespace animaltactics4
             acwl = new Rectangle(100, 400, 475, (int)Contents.MeasureString("S").Y);
             foreach (string item in Engine.files.listeDesMaps)
             {
-                Contents.Draw("px", acwl, Color.DarkBlue);
+                Contents.Draw("aqme", acwl);
+                Contents.Draw("px", acwl, new Color(0,0,215,20));
                 Contents.DrawString(item, acwl);
                 if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(acwl))
                 {
@@ -94,7 +95,8 @@ namespace animaltactics4
             acwl.Y = 400;
             foreach (string item in Engine.files.listeDesListesdArmee)
             {
-                Contents.Draw("px", acwl, Color.DarkBlue);
+                Contents.Draw("aqme", acwl);
+                Contents.Draw("px", acwl, new Color(0, 0, 215, 20));
                 Contents.DrawString(item, acwl);
                 if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(acwl) && !p)
                 {
@@ -120,20 +122,23 @@ namespace animaltactics4
             Rectangle noOneIsInnocent = new Rectangle(628 + (int)Contents.MeasureString("S").Y, 30 + ((int)Contents.MeasureString("S").Y - 20) / 2, 20, 20);
             acwl = new Rectangle(651 + (int)Contents.MeasureString("S").Y, 30, 300, (int)Contents.MeasureString("S").Y);
             Rectangle noirDesir = new Rectangle(954 + (int)Contents.MeasureString("S").Y, 30 + ((int)Contents.MeasureString("S").Y - 20) / 2, 20, 20);
+
             for (int i = 0; i < 6; i++)
             {
-                Contents.Draw("px", blankass, Color.DarkGray);
-                Contents.DrawString(difficulte[i].ToString(), new Rectangle(blankass.X + 4, blankass.Y + 4, 0, 0));
+                Contents.Draw("dif", blankass, new Rectangle(100 * difficulte[i], 0, 100, 100));
                 Contents.Draw("px", noOneIsInnocent, Color.DarkGray);
                 Contents.DrawString(camp[i].ToString(), new Rectangle(noOneIsInnocent.X + 2, noOneIsInnocent.Y + 2, 0, 0));
                 Contents.Draw("px", noirDesir, couleurs[i]);
                 if (armees[i] == "")
                 {
-                    Contents.Draw("px", acwl, Color.DarkGray);
+                    Contents.Draw("aqme", acwl);
+                    Contents.Draw("px", acwl, new Color(100, 100, 100, 20));
                 }
                 else
                 {
-                    Contents.Draw("px", acwl, Color.DarkRed);
+                    Contents.Draw("aqme", acwl);
+                    Contents.Draw("px", acwl, new Color(215, 0, 0, 20));
+
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed && Contents.contientLaSouris(noirDesir) && !p)
                     {
                         couleurSuivante(i);
