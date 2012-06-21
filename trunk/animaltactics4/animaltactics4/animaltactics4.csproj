@@ -127,10 +127,10 @@
     <Compile Include="gameplay_folder\SystemeDeJeu.cs" />
     <Compile Include="moteur_graphique_folder\MoteurGraphique.cs" />
     <Compile Include="moteur_graphique_folder\Tile.cs" />
-    <Compile Include="moteur_reseau_folder\Chaka.cs" />
-    <Compile Include="moteur_reseau_folder\Chakaponk_tools.cs" />
+    <Compile Include="moteur_reseau_folder\Netools.cs" />
+    <Compile Include="moteur_reseau_folder\Client.cs" />
     <Compile Include="moteur_reseau_folder\Enfer.cs" />
-    <Compile Include="moteur_reseau_folder\Ponk.cs" />
+    <Compile Include="moteur_reseau_folder\Serveur.cs" />
     <Compile Include="moteur_reseau_folder\Wallala.cs" />
     <Compile Include="moteur_sonore_folder\MoteurSon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

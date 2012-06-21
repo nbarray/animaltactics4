@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace animaltactics4
 {
-    static class Chakaponk_tools
+    static class Netools
     {
         public static /*volatile*/ void Send(Socket sock, string msg)
         {
@@ -22,11 +22,10 @@ namespace animaltactics4
             }
         }
 
-        public static /*volatile*/ int Read(Socket sock)
+        public static int Read(Socket sock)
         {
             try
             {
-                byte[] buffer = new byte[8];
                 NetworkStream str = new NetworkStream(sock);
                 return str.ReadByte();
             }

@@ -17,7 +17,12 @@ namespace animaltactics4
         static public bool unique;
         static public Thread t_init = new Thread(Ecoute);
 
-        static public bool Etape1_connection_du_client;
+        static public bool Etape1_connection_du_client = false;
+        static public bool Etape2_synchronisation_des_joueurs = false;
+        static public bool Etape3_partie_en_cours = false;
+        static public bool Etape3_SEtape1_partie_en_cours = false;
+        static public bool Etape3_SEtape2_partie_en_cours = false;
+        static public bool Etape4_fin_de_partie = false;
 
         static public void Initialiser()
         {
@@ -31,9 +36,15 @@ namespace animaltactics4
             client = null;
             writebox = new WriteBox(new Rectangle(Divers.X / 2 - 200, Divers.Y / 2 - 75 / 2, 400, 75));
             unique = false;
+            Etape1_connection_du_client = false;
+            Etape2_synchronisation_des_joueurs = false;
+            Etape3_partie_en_cours = false;
+            Etape3_SEtape1_partie_en_cours = false;
+            Etape3_SEtape2_partie_en_cours = false;
+            Etape4_fin_de_partie = false;
         }
 
-        public static void Ecoute() /*lancer*/
+        public static void Ecoute() 
         {
             if (!unique)
             {
@@ -47,18 +58,39 @@ namespace animaltactics4
                 }
                 unique = true;
                 Console.Write(sock.Connected);
-                
+
             }
         }
 
-        public static void _que_vois_tu_Louis() /*mise a jour*/
+        public static void UpdateServer() 
         {
             // UPDATE DU RESEAU COTE SERVEUR
-
-            Chakaponk_tools.Send(client, "Bonjour client");
+            if (!Etape1_connection_du_client)
+            {
+                Netools.Send(client, "1");
+                if (Netools.Read(client) == 50) // 2
+                {
+                    Etape1_connection_du_client = true; 
+                }
+            }
+            else
+            {
+                if (!Etape2_synchronisation_des_joueurs)
+                {
+                    if (Netools.Read(client) == 51) // 3
+                    {
+                        Etape2_synchronisation_des_joueurs = true;
+                    }
+                }
+                else
+                {
+                    Etape3_partie_en_cours = true;
+                    // Partie lancée
+                }
+            }
         }
 
-        public static bool ArreterLeServer() /* stop srv */
+        public static bool ArreterLeServer() 
         {
             sock.Close();
             client.Close();
@@ -67,10 +99,18 @@ namespace animaltactics4
             {
                 t_init.Abort();
             }
+            
+            Etape1_connection_du_client = false;
+            Etape2_synchronisation_des_joueurs = false;
+            Etape3_partie_en_cours = false;
+            Etape3_SEtape1_partie_en_cours = false;
+            Etape3_SEtape2_partie_en_cours = false;
+            Etape4_fin_de_partie = false;
+
             return false;
         }
 
-        public static void Draw() /* draw proust*/
+        public static void Draw() 
         {
 
         }

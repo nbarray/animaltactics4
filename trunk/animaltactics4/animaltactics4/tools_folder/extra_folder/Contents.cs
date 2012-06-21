@@ -97,6 +97,7 @@ namespace animaltactics4
             fonts.Add("text", content_.Load<SpriteFont>("SpriteFont\\sftext"));
             fonts.Add("titre", content_.Load<SpriteFont>("SpriteFont\\titre"));
             fonts.Add("writebox", content_.Load<SpriteFont>("SpriteFont\\writebox"));
+            fonts.Add("chrono", content_.Load<SpriteFont>("SpriteFont\\chrono"));
 
             textures.Add("tresor", content_.Load<Texture2D>("Image\\Info\\tresor"));
             textures.Add("grade", content_.Load<Texture2D>("Image\\Info\\Grade"));

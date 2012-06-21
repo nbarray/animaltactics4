@@ -9,10 +9,21 @@ namespace animaltactics4
 {
     class Wallala : Scene
     {
+        Partie p;
+
         public Wallala()
             : base()
         {
-            
+            p = new Partie(32, 32);
+            p.Initialize("carte reseau",
+                                  new List<string>() { "Pandawan01", "Pingvin01" },
+                                  new List<int>() { 0, 0 },
+                                  new List<int>() { 0, 1 },
+                                  new List<Color>() { Color.Blue, Color.Red },
+                                  e_typeDePartie.Joute,
+                                  e_brouillardDeGuerre.Normal,
+                                  42);
+
         }
 
         public override void DrawScene()
@@ -38,14 +49,20 @@ namespace animaltactics4
                     Client.ArreterLeClient();
                     Engine.scenes.Pop();
                 }
-                
             }
             else
             {
-                Client.Update();
+                Client.Update(p);
+
+                if (Client.Etape1_connection_du_client && 
+                    !Client.Etape2_synchronisation_des_joueurs)
+                {
+                    
+                }
+
                 base.UpdateScene(gameTime);
             }
-           
+
         }
     }
 }
