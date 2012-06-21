@@ -51,17 +51,18 @@ namespace animaltactics4
 
         public static void Ecoute() 
         {
+            while (true)
+            {
                 try
                 {
                     client = sock.Accept();
                 }
                 catch
                 {
-                    Client.Draw();
+
                 }
-                unique = true;
-                Console.Write(sock.Connected);
-            
+                
+            }
         }
 
         public static void UpdateServer(Partie p, GameTime gameTime) 
@@ -104,7 +105,9 @@ namespace animaltactics4
 
         public static bool ArreterLeServer() 
         {
+            if(sock != null)
             sock.Close();
+            if (client != null)
             client.Close();
             unique = false;
             if (t_init.ThreadState == ThreadState.Running)

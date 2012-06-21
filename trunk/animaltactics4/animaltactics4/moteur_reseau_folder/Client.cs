@@ -5,6 +5,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using Microsoft.Xna.Framework;
+using System.Threading;
 
 namespace animaltactics4
 {
@@ -27,7 +28,7 @@ namespace animaltactics4
         {
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             string_ip = "";
-            writebox = new WriteBox(new Rectangle(Divers.X / 2 - 200, Divers.Y / 2 - 75 / 2, 400, 75));
+            
             unique = false;
             received = "";
 
@@ -93,6 +94,7 @@ namespace animaltactics4
 
         public static void ArreterLeClient() /* stop client */
         {
+            if(sock != null)
             sock.Close();
             received = "";
             unique = false;
@@ -102,7 +104,5 @@ namespace animaltactics4
         {
             writebox.Draw();
         }
-
-
     }
 }

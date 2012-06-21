@@ -14,12 +14,15 @@ namespace animaltactics4
             boutons.Add(new BoutonConnect(2 * Divers.X / 3 - 200, 600));
             boutons.Add(new BoutonHeberg(Divers.X / 3 - 200, 600));
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
+            Client.writebox = new WriteBox(new Rectangle(Divers.X / 2 - 200, Divers.Y / 2 - 75 / 2, 400, 75));
         }
 
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
             Client.UpdateWriteBox();
+            Client.ArreterLeClient();
+            Serveur.ArreterLeServer();
         }
 
         public override void DrawScene()
