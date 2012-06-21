@@ -182,6 +182,7 @@ namespace animaltactics4
             "Nouvelle", // 151
             "Musique", //152
             "Sons", //153
+            "Prêt ?", //154
             }); 
             #endregion
 
@@ -341,6 +342,7 @@ namespace animaltactics4
             "New", // 151
             "Music", //152
             "Sound", //153
+            "Ready ?", //154
             }); 
             #endregion
 
@@ -500,6 +502,7 @@ namespace animaltactics4
             "Nouvelle", // 151
             "Musique", //152
             "Sons", //153
+            "Schtroumpf ?", //154
             }); 
             #endregion
 
@@ -659,6 +662,7 @@ namespace animaltactics4
             "Neo", // 151
             "Musica", //152
             "FX", //153
+            "Ser nisto ?", //154
             }); 
             #endregion
         }

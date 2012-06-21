@@ -372,7 +372,7 @@ namespace animaltactics4
             }
             else
             {
-                Color gris = new Color(100, 100, 100);
+                Color gris = new Color(160, 160, 160);
                 //gris = Color.Red;
                 if (apercue)
                 {

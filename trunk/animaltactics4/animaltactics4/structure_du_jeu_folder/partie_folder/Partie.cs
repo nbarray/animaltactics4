@@ -9,8 +9,8 @@ namespace animaltactics4
     //Loohy
     class Partie
     {
-        SystemeDeJeu gameplay;
-        MoteurGraphique earthPenguin;
+        public SystemeDeJeu gameplay;
+        public MoteurGraphique earthPenguin;
         private int lastUpdatesTime;
         public int time, tempsMax;
         public HUD Jackman;
@@ -42,9 +42,9 @@ namespace animaltactics4
         }
 
         //Loohy
-        public void Update(GameTime gametime_)
+        public void Update(GameTime gametime_, ref bool transition_)
         {
-            gameplay.Update(earthPenguin, Jackman, ref time);
+            gameplay.Update(earthPenguin, Jackman, ref time, ref transition_);
             earthPenguin.Update(gameplay, Jackman);
             if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
             {
@@ -52,7 +52,7 @@ namespace animaltactics4
                 Console.WriteLine(time);
                 if (tempsMax-time <= 0)
                 {
-                    gameplay.FinDeTour(earthPenguin, Jackman, ref time);
+                    gameplay.FinDeTour(earthPenguin, Jackman, ref time, ref transition_);
                 }
             }
             lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;
@@ -78,7 +78,8 @@ namespace animaltactics4
         {
             if (gameplay.tourencours == 0)
             {
-                gameplay.Update(earthPenguin, Jackman, ref time);
+                bool een = true;
+                gameplay.Update(earthPenguin, Jackman, ref time, ref een);
                 earthPenguin.Update(gameplay, Jackman);
                 if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
                 {
@@ -86,7 +87,8 @@ namespace animaltactics4
                     Console.WriteLine(time);
                     if (tempsMax - time <= 0)
                     {
-                        gameplay.FinDeTour(earthPenguin, Jackman, ref time);
+                        bool eenne = true;
+                        gameplay.FinDeTour(earthPenguin, Jackman, ref time, ref eenne);
                     }
                 }
                 lastUpdatesTime = gametime_.TotalGameTime.Milliseconds;

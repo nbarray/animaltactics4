@@ -1481,7 +1481,7 @@ namespace animaltactics4
         public void centrerSur(int i_, int j_)
         {
             camerax = -600 + 32 * i_ - 32 * j_;
-            cameray = -600 + 16 * i_ + 16 * j_;
+            cameray = -350 + 16 * i_ + 16 * j_;
         }
 
         //Loohy
@@ -1513,6 +1513,26 @@ namespace animaltactics4
                             goto default;
                         default:
                             map[i, j].visible = false;
+                            break;
+                    }
+                }
+            }
+        }
+        //Loohy
+        public void viderVueChangementDeJoueur()
+        {
+            for (int i = 0; i < longueur; i++)
+            {
+                for (int j = 0; j < largeur; j++)
+                {
+                    switch (fog)
+                    {
+                        case e_brouillardDeGuerre.ToutVisible:
+                            map[i, j].visible = true;
+                            break;
+                        default:
+                            map[i, j].visible = false;
+                            map[i, j].apercue = false;
                             break;
                     }
                 }
