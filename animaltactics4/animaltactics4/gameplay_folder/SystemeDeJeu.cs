@@ -94,7 +94,7 @@ namespace animaltactics4
                 // envoyer le crochet fermant
                 
                 estRoi.partie.time = 0;
-                Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
+                 // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
                 //Netools.Send(estRoi.sock, 57); // 9 
                 if (tourencours == 1)
@@ -105,8 +105,7 @@ namespace animaltactics4
                 {
                     estRoi.fileState = FileReseau.reception_en_cours;
                 }
-                
-                estRoi.ChangementTour();
+                Netools.Send(estRoi.sock, "]");
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))
@@ -125,7 +124,7 @@ namespace animaltactics4
                 // envoyer le crochet fermant
                 
                 garcon.partie.time = 0;
-                Netools.Send(garcon.client, "]"); // => fin du tour : 93
+                 // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
                 //Netools.Send(garcon.client, 57);
                 if (tourencours == 0)
@@ -136,8 +135,7 @@ namespace animaltactics4
                 {
                     garcon.fileState = FileReseau.reception_en_cours;
                 }
-
-                garcon.ChangementTour();
+                Netools.Send(garcon.client, "]");
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))

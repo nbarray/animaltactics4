@@ -69,7 +69,6 @@ namespace animaltactics4
                 if (tempsMax - time <= 0)
                 {
                     
-                    Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
                     //Netools.Send(estRoi.sock, 57); // 9 
                     if (gameplay.tourencours == 1)
@@ -81,7 +80,7 @@ namespace animaltactics4
                         estRoi.fileState = FileReseau.reception_en_cours;
                     }
 
-                    estRoi.ChangementTour();
+                    Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                 }
             }
             lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
@@ -99,8 +98,6 @@ namespace animaltactics4
                 time++;
                 if (tempsMax - time <= 0)
                 {
-                    
-                    Netools.Send(garcon.client, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
                     //Netools.Send(garcon.client, 57);
                     if (gameplay.tourencours == 0)
@@ -111,7 +108,7 @@ namespace animaltactics4
                     {
                         garcon.fileState = FileReseau.reception_en_cours;
                     }
-                    garcon.ChangementTour();
+                    Netools.Send(garcon.client, "]"); // => fin du tour : 93
                 }
             }
             lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
