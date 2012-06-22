@@ -97,8 +97,9 @@ namespace animaltactics4
                 case EtapeReseau.etape4_partie:
                     if (fileState == FileReseau.running)
                     {
+                        Netools.Send(sock, "6");
                         int i;
-                        if ((i = Netools.Read(sock)) != 0)
+                        while ((i = Netools.Read(sock)) != 3)
                         {
                             receive += (char)i;
                         }
@@ -192,7 +193,7 @@ namespace animaltactics4
             while (true)
             {
                 int i;
-                if ((i = Netools.Read(sock)) == 57)
+                if ((i = Netools.Read(sock)) == 57)//9
                 {
                     fileState = FileReseau.running;
                 }
