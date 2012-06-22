@@ -196,7 +196,7 @@ namespace animaltactics4
                 int i;
                 if ((i = Netools.Read(sock)) == 57)//9
                 {
-                    //fileState = FileReseau.reception_en_cours;
+                     fileState = FileReseau.reception_en_cours;
                 }
             }
         }
@@ -208,6 +208,7 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(sock)) == 93)
                 {
+                    fileState = FileReseau.reception_en_cours;
                     ChangementTour();
                     partie.time = 0;
                 }
