@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    [Serializable]
     class Armee
     {
         public List<Unite> bataillon;

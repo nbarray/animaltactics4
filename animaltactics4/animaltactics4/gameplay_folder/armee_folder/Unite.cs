@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 namespace animaltactics4
 {
     //Loohy & Marvin
+    [Serializable]
     class Unite
     {
         #region stats

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Threading;
 using System.Net.Sockets;
 using System.Net;
+using System.IO;
 
 namespace animaltactics4
 {
@@ -225,6 +226,29 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(sock)) == 93)
                 {
+                    try
+                    {
+                        StreamReader reader = new StreamReader(new NetworkStream(sock));
+                        FileStream file = new FileStream("g c", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                        string temp = reader.ReadToEnd();
+                        file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
+                        temp = "";
+                        FileStream file2 = new FileStream("e c", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                        temp = reader.ReadToEnd();
+                        file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
+
+                        partie.gameplay = (SystemeDeJeu)Divers.deserializer("g c");
+                        partie.earthPenguin = (MoteurGraphique)Divers.deserializer("e c");
+
+                        file.Close();
+                        file2.Close();
+                        reader.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("FILE : " + e.Message);
+                    }
+                    
                     ChangementTour();
                     partie.time = 0;
                     Console.SetCursorPosition(0, 3);

@@ -100,7 +100,7 @@ namespace animaltactics4
                 if (tempsMax - time <= 0)
                 {
                     garcon.ChangementTour();
-                    Netools.Send(garcon.sock, "]"); // => fin du tour : 93
+                    Netools.Send(garcon.client, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
                 }
             }
