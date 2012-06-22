@@ -182,10 +182,9 @@ namespace animaltactics4
             int epita42epita = 0;
             bool epita41epita = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epita42epita, ref epita41epita);
-            Divers.serializer(partie.gameplay, "g s");
-            Divers.serializer(partie.earthPenguin, "e s");
-            client.SendFile("g s");
-            client.SendFile("e s");
+            Netools.Send(client, "9");
+            Divers.serializer(partie.gameplay, "G");
+            client.SendFile("G.bin");
         }
 
         private void TReceiveFile()
@@ -193,7 +192,7 @@ namespace animaltactics4
             while (true)
             {
                 int i;
-                if ((i = Netools.Read(sock)) == 57)
+                if ((i = Netools.Read(sock)) == 57) // 9
                 {
                     fileState = FileReseau.running;
                 }
@@ -209,32 +208,6 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(client)) == 93)
                 {
-                    try
-                    {
-                        fileState = FileReseau.running;
-                        Netools.Send(sock, "9"); // 57 début d'envoie d'un fichier
-                        Netools.ClearPresence(partie.earthPenguin);
-
-                        StreamReader reader = new StreamReader(new NetworkStream(sock));
-
-                        string temp = "";
-                        while (reader.Peek() != '\0')
-                        {
-                            Console.WriteLine(temp);
-                            temp += reader.Read();
-                        }
-
-                        FileStream file = new FileStream("g_c_.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                        file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
-                        temp = "";
-
-                        file.Close();
-                        reader.Close();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("FILE : " + e.Message);
-                    }
                     ChangementTour();
                     partie.time = 0;
                     Console.SetCursorPosition(0, 4);
