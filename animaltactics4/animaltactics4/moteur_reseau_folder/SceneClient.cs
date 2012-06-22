@@ -39,14 +39,7 @@ namespace animaltactics4
             Console.SetCursorPosition(0, 0);
             Console.Write(etape);
             Console.SetCursorPosition(0, 1);
-            Console.Write("Partie Initialisée ? " + een3);
-            Console.ForegroundColor = ConsoleColor.Gray;
-            if (etape == EtapeReseau.etape4_partie)
-            {
-                Console.SetCursorPosition(0, 2);
-                Console.WriteLine("Tour en cours : " + partie.gameplay.tourencours);
-            }
-
+            
             switch (etape)
             {
                 case EtapeReseau.etape1_initialisation:
@@ -96,13 +89,16 @@ namespace animaltactics4
                 case EtapeReseau.etape4_partie:
                     if (fileState == FileReseau.reception_en_cours)
                     {
+                        Console.WriteLine("reception_avant");
                         Netools.ReadText(sock, (byte)'$', receive);
-                        Console.WriteLine("Receive : " + receive);
+                        Console.WriteLine("reception_apres : " + receive);
                         try
                         {
+                            Console.WriteLine("deserializer_avant");
                             StreamWriter writer = new StreamWriter(new FileStream("G.bin", FileMode.Create, FileAccess.ReadWrite));
                             partie.gameplay = (SystemeDeJeu)Divers.deserializer("G");
                             Netools.ClearPresence(partie.earthPenguin);
+                            Console.WriteLine("deserializer_apres");
                         }
                         catch (Exception e)
                         {
@@ -110,20 +106,22 @@ namespace animaltactics4
                         }
 
                         fileState = FileReseau.sleep;
+                        Console.WriteLine("filereseau_to_sleep");
                     }
                     else if (fileState == FileReseau.envoie_en_cours)
                     {
-                        Divers.serializer(partie.gameplay, "G");
                         try
                         {
+                            Console.WriteLine("serializer_");
                             Divers.serializer(partie.gameplay, "G");
+                            Console.WriteLine("send_serializer");
                             Netools.SendText(sock, "G.bin");
                         }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
-                        
+                        Console.WriteLine("filereseau_to_sleep");
                         fileState = FileReseau.sleep;
                     }
                     else
