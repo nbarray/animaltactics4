@@ -198,7 +198,7 @@ namespace animaltactics4
                 int i;
                 if ((i = Netools.Read(sock)) == 57)//9
                 {
-                    fileState = FileReseau.reception_en_cours;
+                    //fileState = FileReseau.reception_en_cours;
                 }
             }
         }
