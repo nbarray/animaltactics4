@@ -49,7 +49,6 @@ namespace animaltactics4
             if (lastUpdatesTime > gametime_.TotalGameTime.Milliseconds)
             {
                 time++;
-                Console.WriteLine(time);
                 if (tempsMax-time <= 0)
                 {
                     gameplay.FinDeTour(earthPenguin, Jackman, ref time, ref transition_);
@@ -63,6 +62,8 @@ namespace animaltactics4
         {
             bool erence = false;
             Update(gameTime_, ref erence);
+            Console.SetCursorPosition(20, 2);
+            Console.WriteLine(time);
         }
 
         //Loohy
