@@ -171,7 +171,8 @@ namespace animaltactics4
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epita42epita, ref epita41epita);
             Divers.serializer(partie.gameplay, "g s");
             Divers.serializer(partie.earthPenguin, "e s");
-            sock.SendFile("g s");
+            client.SendFile("g s");
+            client.SendFile("e s");
         }
         public void TFinDeTour()
         {

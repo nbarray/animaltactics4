@@ -11,7 +11,7 @@ namespace animaltactics4
     {
         Defensive, Aggressive, Lache, Passive
     }
-
+    [Serializable]
     class IntelligenceArtificielle
     {
         public int difficulte; //1 : facile 2 : moyen 3 : difficile 0 : joueur
