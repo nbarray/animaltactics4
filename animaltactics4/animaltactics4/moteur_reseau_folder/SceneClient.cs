@@ -11,7 +11,7 @@ namespace animaltactics4
 {
     class SceneClient : Scene
     {
-        Partie partie;
+        public Partie partie;
         public Socket sock;
         int tentative = 5;
         EtapeReseau etape;
@@ -92,11 +92,6 @@ namespace animaltactics4
                     
                     if (partie.gameplay.tourencours == 1) // Si c'est a mon tour
                     {
-                        if (_TFinDeTour.ThreadState == ThreadState.Running)
-                        {
-                            _TFinDeTour.Suspend(); // VA TE FAIRE METTRE PAR DES LUTINS
-                        }
-
                         partie.UpdateReseauClient(gameTime, this);
                         //if (partie.time > 41)
                         //{
@@ -107,10 +102,7 @@ namespace animaltactics4
                     }
                     else
                     {
-                        if (_TFinDeTour.ThreadState == ThreadState.Suspended)
-                        {
-                            _TFinDeTour.Resume();
-                        }
+                        
                         Netools.UpdateTransition(gameTime);
                     }
                     break;
@@ -234,6 +226,7 @@ namespace animaltactics4
                 if ((f = Netools.Read(sock)) == 93)
                 {
                     ChangementTour();
+                    partie.time = 0;
                     Console.SetCursorPosition(0, 3);
                     Console.WriteLine("Orde de changement de tour reçu");
                 }
