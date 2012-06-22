@@ -17,6 +17,7 @@ namespace animaltactics4
         {
             fond = new Rectangle(0, 0, Divers.X, Divers.Y);
             boutons = new List<Bouton>();
+            MoteurSon.PlayRandom();
         }
         public virtual void UpdateScene(GameTime gameTime)
         {
