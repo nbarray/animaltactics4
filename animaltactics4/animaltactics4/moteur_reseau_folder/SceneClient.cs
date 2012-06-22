@@ -18,7 +18,7 @@ namespace animaltactics4
 
         Thread _TFinDeTour;
 
-        bool een3;
+        bool een3, een4;
 
         public SceneClient()
             : base()
@@ -26,6 +26,7 @@ namespace animaltactics4
             _TFinDeTour = new Thread(TFinDeTour);
             etape = EtapeReseau.etape1_initialisation;
             een3 = false;
+            een4 = false;
         }
 
         public override void UpdateScene(GameTime gameTime)
@@ -40,7 +41,7 @@ namespace animaltactics4
                 Console.SetCursorPosition(0, 2);
                 Console.WriteLine("Tour en cours : " + partie.gameplay.tourencours);
             }
-            
+
             switch (etape)
             {
                 case EtapeReseau.etape1_initialisation:
@@ -78,7 +79,7 @@ namespace animaltactics4
                     if (!een3)
                     {
                         InitialiserPartie();
-                        partie.gameplay.tourencours = 1;
+                        partie.gameplay.tourencours = 0;
                         een3 = true;
                     }
                     Netools.Send(sock, "H"); // H -> en binaire sheet: 72
@@ -90,13 +91,6 @@ namespace animaltactics4
                 case EtapeReseau.etape4_partie:
                     if (partie.gameplay.tourencours == 1) // Si c'est a mon tour
                     {
-                        if (partie.Jackman.tempsRestant == 1) // si le temps est écoulé
-                        {
-                            ChangementTour();
-                            Netools.Send(sock, "]"); // ] -> fin du tour : 93
-                            Console.SetCursorPosition(0, 3);
-                            Console.WriteLine("Orde de changement de tour envoyé");
-                        }
                         partie.UpdateReseau(gameTime);
                     }
                     else
@@ -213,11 +207,12 @@ namespace animaltactics4
             bool epitaaa = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
         }
-        
+
         private void TFinDeTour()
         {
             while (true)
             {
+                Console.SetCursorPosition(20, 3);
                 int f;
                 if ((f = Netools.Read(sock)) == 93)
                 {

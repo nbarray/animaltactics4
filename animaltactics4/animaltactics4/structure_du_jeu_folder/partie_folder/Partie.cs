@@ -61,7 +61,15 @@ namespace animaltactics4
         public void UpdateReseau(GameTime gameTime_)
         {
             bool erence = false;
-            Update(gameTime_, ref erence);
+            int inerance = 0;
+            gameplay.Update(earthPenguin, Jackman, ref inerance, ref erence);
+            earthPenguin.Update(gameplay, Jackman);
+            
+            Console.SetCursorPosition(20, 2);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(time);
+            Console.ForegroundColor = ConsoleColor.Gray;
+
             Console.SetCursorPosition(20, 2);
             Console.WriteLine(time);
         }
