@@ -105,6 +105,7 @@ namespace animaltactics4
                 {
                     estRoi.fileState = FileReseau.reception_en_cours;
                 }
+                estRoi.ChangementTour();
                 Netools.Send(estRoi.sock, "]");
                 clic = false;
             }
@@ -135,6 +136,7 @@ namespace animaltactics4
                 {
                     garcon.fileState = FileReseau.reception_en_cours;
                 }
+                garcon.ChangementTour();
                 Netools.Send(garcon.client, "]");
                 clic = false;
             }
