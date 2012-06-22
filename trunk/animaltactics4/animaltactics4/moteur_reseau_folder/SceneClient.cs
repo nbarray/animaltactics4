@@ -113,7 +113,8 @@ namespace animaltactics4
                             Console.WriteLine("serializer_");
                             Divers.serializer(partie.gameplay, "G");
                             Console.WriteLine("send_serializer");
-                            Netools.SendText(sock, "G.bin");
+                            Thread.Sleep(5000);
+                            Netools.SendText(sock, "G");
                         }
                         catch (Exception e)
                         {
