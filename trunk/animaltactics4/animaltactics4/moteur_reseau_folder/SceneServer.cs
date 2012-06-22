@@ -111,12 +111,28 @@ namespace animaltactics4
                 case EtapeReseau.etape4_partie:
                     if (partie.gameplay.tourencours == 0)
                     {
+                        //if (_TFinDeTour.ThreadState == ThreadState.Running)
+                        //{
+                        //    _TFinDeTour.Suspend(); // VA TE FAIRE METTRE PAR DES LUTTINS
+                        //}
+                        //if (partie.time > 41)
+                        //{
+                        //    ChangementTour();
+                        //    Netools.Send(client, "]"); // => fin du tour : 93
+                        //    Console.WriteLine("Ordre de changement de tour envoyé !");
+                        //}
+
                         partie.UpdateReseauServer(gameTime, this);
                     }
                     else
                     {
+                        //if (_TFinDeTour.ThreadState == ThreadState.Suspended)
+                        //{
+                        //    _TFinDeTour.Resume();
+                        //}
                         Netools.UpdateTransition(gameTime);
                     }
+                    
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
@@ -161,13 +177,14 @@ namespace animaltactics4
         {
             while (true)
             {
-                Console.SetCursorPosition(20, 3);
+                Console.SetCursorPosition(0, 6);
                 Console.Write("Thread: " + new Random().Next(42));
                 int f;
                 if ((f = Netools.Read(client)) == 93)
                 {
                     ChangementTour();
-                    Console.SetCursorPosition(0, 3);
+                    partie.time = 0;
+                    Console.SetCursorPosition(0, 4);
                     Console.WriteLine("Ordre de changementde tour reçu !");
                 }
             }
