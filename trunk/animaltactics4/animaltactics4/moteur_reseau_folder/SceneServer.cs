@@ -216,7 +216,6 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(client)) == 93) // ']'
                 {
-                    fileState = FileReseau.reception_en_cours;
                     ChangementTour();
                     partie.time = 0;
                 }
