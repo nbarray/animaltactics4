@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+using System.Text;                  
+using Microsoft.Xna.Framework;      
 using Microsoft.Xna.Framework.Input;
 
 namespace animaltactics4
 {
+    [Serializable]
     class SystemeDeJeu
     {
         public bool tresor_existe;
@@ -112,7 +113,7 @@ namespace animaltactics4
             {
                 // envoyer le crochet fermant
                 garcon.ChangementTour();
-                Netools.Send(garcon.sock, "]"); // => fin du tour : 93
+                Netools.Send(garcon.client, "]"); // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
                 clic = false;
             }

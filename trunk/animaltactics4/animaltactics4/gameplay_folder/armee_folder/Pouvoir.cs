@@ -5,6 +5,7 @@ using System.Text;
 
 namespace animaltactics4
 {
+    [Serializable]
     class Pouvoir
     {
         e_pouvoir nom;
