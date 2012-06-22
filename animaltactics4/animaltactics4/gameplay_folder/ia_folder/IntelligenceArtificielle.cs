@@ -1622,49 +1622,49 @@ namespace animaltactics4
                         }
                     }
                 }
-            }
 
-            if (moi_.pvactuel < moi_.pvmax * (3 / 10) && !ilABouger && !dejaBienPlace)
-            {
-                #region battreEnRetraite
-
-                for (int distanceQG = 0; distanceQG < 32; distanceQG++)
+                if (moi_.pvactuel < moi_.pvmax * (3 / 10) && !ilABouger && !dejaBienPlace)
                 {
-                    for (int k = 0; k <= distanceQG; k++)
+                    #region battreEnRetraite
+
+                    for (int distanceQG = 0; distanceQG < 32; distanceQG++)
                     {
-                        if (ilABouger == false)
+                        for (int k = 0; k <= distanceQG; k++)
                         {
-                            if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k < moteurgraphique_.longueur &&
-                                (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k) < moteurgraphique_.largeur)
+                            if (ilABouger == false)
                             {
-                                if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k)].cheminValid)
+                                if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k < moteurgraphique_.longueur &&
+                                    (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k) < moteurgraphique_.largeur)
                                 {
-                                    ilABouger = true;
-                                    moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k));
-                                }
-                                else if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k < moteurgraphique_.longueur &&
-                                         (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k) < moteurgraphique_.largeur)
-                                {
-                                    if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k)].cheminValid)
+                                    if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k)].cheminValid)
                                     {
                                         ilABouger = true;
-                                        moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k));
+                                        moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + (distanceQG - k));
                                     }
-                                    else if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k) < moteurgraphique_.longueur &&
-                                             (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k < moteurgraphique_.largeur)
+                                    else if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k < moteurgraphique_.longueur &&
+                                             (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k) < moteurgraphique_.largeur)
                                     {
-                                        if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k].cheminValid)
+                                        if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k)].cheminValid)
                                         {
                                             ilABouger = true;
-                                            moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k);
+                                            moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - k, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - (distanceQG - k));
                                         }
-                                        else if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k) < moteurgraphique_.longueur &&
-                                             (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k < moteurgraphique_.largeur)
+                                        else if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k) < moteurgraphique_.longueur &&
+                                                 (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k < moteurgraphique_.largeur)
                                         {
-                                            if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k].cheminValid)
+                                            if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k].cheminValid)
                                             {
                                                 ilABouger = true;
-                                                moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k);
+                                                moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X + (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y - k);
+                                            }
+                                            else if ((int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k) >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k) < moteurgraphique_.longueur &&
+                                                 (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k >= 0 && (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k < moteurgraphique_.largeur)
+                                            {
+                                                if (moteurgraphique_.map[(int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k].cheminValid)
+                                                {
+                                                    ilABouger = true;
+                                                    moi_.PathFindingLoohy(moteurgraphique_, (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.X - (distanceQG - k), (int)gameplay_.listeDesJoueurs[moi_.numeroArmee].QG.Y + k);
+                                                }
                                             }
                                         }
                                     }
@@ -1672,15 +1672,15 @@ namespace animaltactics4
                             }
                         }
                     }
+                    #endregion
                 }
-                #endregion
-            }
 
-            else
-            {
-                if (ilABouger == false)
+                else
                 {
-                    deplacementMoyenJoute(moteurgraphique_, gameplay_, moi_, armee_, hud_);
+                    if (ilABouger == false)
+                    {
+                        deplacementMoyenJoute(moteurgraphique_, gameplay_, moi_, armee_, hud_);
+                    }
                 }
             }
         }
@@ -1965,13 +1965,6 @@ namespace animaltactics4
 
             finish = true;
         }
-
-        #endregion
-
-        // en construction
-        #region IAdifficiletresor
-
-
 
         #endregion
 
