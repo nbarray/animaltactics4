@@ -71,8 +71,7 @@ namespace animaltactics4
                     estRoi.ChangementTour();
                     Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
-
-                    Netools.Send(estRoi.sock, 57); // 9 
+                    //Netools.Send(estRoi.sock, 57); // 9 
                     estRoi.fileState = FileReseau.envoie_en_cours;
                 }
             }
@@ -101,7 +100,7 @@ namespace animaltactics4
                     garcon.ChangementTour();
                     Netools.Send(garcon.client, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
-                    Netools.Send(garcon.client, 57);
+                    //Netools.Send(garcon.client, 57);
                     garcon.fileState = FileReseau.envoie_en_cours;
                 }
             }
