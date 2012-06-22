@@ -72,18 +72,18 @@ namespace animaltactics4
                     Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
                     //Netools.Send(estRoi.sock, 57); // 9 
-                    estRoi.fileState = FileReseau.envoie_en_cours;
+                    if (gameplay.tourencours == 1)
+                    {
+                        estRoi.fileState = FileReseau.envoie_en_cours;
+                    }
+                    else
+                    {
+                        estRoi.fileState = FileReseau.reception_en_cours;
+                    }
                 }
             }
             lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
 
-            Console.SetCursorPosition(20, 2);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(time);
-            Console.ForegroundColor = ConsoleColor.Gray;
-
-            Console.SetCursorPosition(20, 2);
-            Console.WriteLine(time);
         }
 
         //Coldman
@@ -101,7 +101,14 @@ namespace animaltactics4
                     Netools.Send(garcon.client, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
                     //Netools.Send(garcon.client, 57);
-                    garcon.fileState = FileReseau.envoie_en_cours;
+                    if (gameplay.tourencours == 0)
+                    {
+                        garcon.fileState = FileReseau.envoie_en_cours;
+                    }
+                    else
+                    {
+                        garcon.fileState = FileReseau.reception_en_cours;
+                    }
                 }
             }
             lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
