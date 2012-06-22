@@ -204,7 +204,7 @@ namespace animaltactics4
                 int i;
                 if ((i = Netools.Read(client)) == 57) // 9
                 {
-                   // fileState = FileReseau.reception_en_cours;
+                     fileState = FileReseau.reception_en_cours;
                 }
             }
         }
@@ -218,6 +218,7 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(client)) == 93) // ']'
                 {
+                   
                     fileState = FileReseau.reception_en_cours;
                     priorite = true;
                     ChangementTour();

@@ -84,6 +84,7 @@ namespace animaltactics4
                         estRoi.priorite = false;
                     }
                     Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
+                    Netools.Send(estRoi.sock, 57);
                     estRoi.ChangementTour();
                 }
             }
@@ -118,6 +119,7 @@ namespace animaltactics4
                         garcon.priorite = false;
                     }
                     Netools.Send(garcon.client, "]"); // => fin du tour : 93
+                    Netools.Send(garcon.client, 57);
                     garcon.ChangementTour();
                 }
             }
