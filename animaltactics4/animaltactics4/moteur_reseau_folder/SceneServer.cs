@@ -75,10 +75,6 @@ namespace animaltactics4
 
         public override void UpdateScene(GameTime gameTime)
         {
-            Console.SetCursorPosition(0, 0);
-            Console.Write(etape);
-            Console.SetCursorPosition(0, 1);
-            
             switch (etape)
             {
                 case EtapeReseau.etape1_initialisation:
@@ -118,7 +114,8 @@ namespace animaltactics4
                         try
                         {
                             Console.WriteLine("deserializer_avant");
-                            StreamWriter writer = new StreamWriter(new FileStream("G.bin", FileMode.Create, FileAccess.ReadWrite));
+                            StreamWriter writer = new StreamWriter(new FileStream("G", FileMode.Create, FileAccess.ReadWrite));
+                            writer.Write(receive);
                             partie.gameplay = (SystemeDeJeu)Divers.deserializer("G");
                             Netools.ClearPresence(partie.earthPenguin);
                             Console.WriteLine("deserializer_apres");
@@ -138,6 +135,7 @@ namespace animaltactics4
                             Console.WriteLine("serializer_");
                             Divers.serializer(partie.gameplay, "G.bin");
                             Console.WriteLine("send_serializer");
+                            Thread.Sleep(5000);
                             Netools.SendText(client, "G.bin");
                         }
                         catch (Exception e)
