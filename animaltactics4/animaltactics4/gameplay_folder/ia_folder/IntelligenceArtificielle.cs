@@ -1806,6 +1806,7 @@ namespace animaltactics4
             {
                 if (moteurgraphique_.map[gameplay_.tresor_i, gameplay_.tresor_j].pointeurArmee == -1 && moteurgraphique_.map[gameplay_.tresor_i, gameplay_.tresor_j].cheminValid)
                 {
+                    ilABouger = true;
                     moi_.PathFindingLoohy(moteurgraphique_, gameplay_.tresor_i, gameplay_.tresor_j);
                 }
 
@@ -2588,6 +2589,11 @@ namespace animaltactics4
                     deplacementFacileJoute(moteurgraphique_, gameplay_, moi_, armee_);
                 }
                 #endregion
+
+                //if (ilABouger == false && dejaBienPlace == false)
+                //{
+                //    deplacementFacileJoute(moteurgraphique_, gameplay_, moi_, armee_);
+                //}
             }
         }
 
