@@ -2643,7 +2643,7 @@ namespace animaltactics4
                     if (moteurgraphique_.map[absx, ordy].pointeurArmee == -1 || gameplay_.listeDesJoueurs[moteurgraphique_.map[absx, ordy].pointeurArmee].camp ==
                             gameplay_.listeDesJoueurs[moteurgraphique_.map[moi_.i, moi_.j].pointeurArmee].camp)
                     {
-                        checkContenuDansPorteeFacileJoute(moteurgraphique_, portee_, moi_, gameplay_, armee_, hud_);
+                        checkContenuDansPorteeMoyenJoute(moteurgraphique_, portee_, moi_, gameplay_, armee_, hud_);
                     }
 
                     #endregion
