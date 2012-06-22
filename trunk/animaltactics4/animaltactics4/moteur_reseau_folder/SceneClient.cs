@@ -176,15 +176,11 @@ namespace animaltactics4
         {
             while (true)
             {
-                Console.SetCursorPosition(20, 3);
-                Console.WriteLine("Thread" + new Random().Next());
                 int f;
                 if ((f = Netools.Read(sock)) == 93)
                 {
                     ChangementTour();
                     partie.time = 0;
-                    Console.SetCursorPosition(0, 3);
-                    Console.WriteLine("Orde de changement de tour reçu");
                 }
             }
         }
