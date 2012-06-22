@@ -96,6 +96,8 @@ namespace animaltactics4
                 estRoi.partie.time = 0;
                 Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
+                Netools.Send(estRoi.sock, 57); // 9 
+                estRoi.fileState = FileReseau.envoie_en_cours;
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))
@@ -116,7 +118,8 @@ namespace animaltactics4
                 garcon.partie.time = 0;
                 Netools.Send(garcon.client, "]"); // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
-                
+                Netools.Send(garcon.client, 57);
+                garcon.fileState = FileReseau.envoie_en_cours;
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))

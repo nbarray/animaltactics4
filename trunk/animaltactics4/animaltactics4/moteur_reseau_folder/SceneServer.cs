@@ -21,7 +21,7 @@ namespace animaltactics4
         Thread _TReceiveFile;
 
         public bool een3 = false, een4 = false;
-        private FileReseau fileState;
+        public FileReseau fileState;
         private string receive;
 
         public SceneServer()
@@ -118,7 +118,7 @@ namespace animaltactics4
                 case EtapeReseau.etape4_partie:
                     if (fileState == FileReseau.reception_en_cours)
                     {
-                        Netools.ReadText(sock, (byte)'$', receive);
+                        Netools.ReadText(client, (byte)'$', receive);
 
                         try
                         {
@@ -139,7 +139,7 @@ namespace animaltactics4
                         try
                         {
                             Divers.serializer(partie.gameplay, "G");
-                            Netools.SendText(sock, "G.bin");
+                            Netools.SendText(client, "G.bin");
                         }
                         catch (Exception e)
                         {
@@ -195,7 +195,7 @@ namespace animaltactics4
             int epita42epita = 0;
             bool epita41epita = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epita42epita, ref epita41epita);
-            Netools.Send(client, 57);
+            
         }
 
         private void TReceiveFile()
