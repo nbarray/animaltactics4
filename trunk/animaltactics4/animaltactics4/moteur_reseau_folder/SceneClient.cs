@@ -228,26 +228,22 @@ namespace animaltactics4
                 {
                     try
                     {
+                        Netools.ClearPresence(partie.earthPenguin);
+
                         StreamReader reader = new StreamReader(new NetworkStream(sock));
-                        FileStream file = new FileStream("g c.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                        
                         string temp = "";
                         while (reader.Peek() != '\0')
                         {
+                            Console.WriteLine(temp);
                             temp += reader.Read();
                         }
-                        
+
+                        FileStream file = new FileStream("g_c_.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
                         file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
                         temp = "";
 
-                        FileStream file2 = new FileStream("e c.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                        temp = reader.ReadToEnd();
-                        file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
-
-                        partie.gameplay = (SystemeDeJeu)Divers.deserializer("g c.bin");
-                        partie.earthPenguin = (MoteurGraphique)Divers.deserializer("e c.bin");
-
                         file.Close();
-                        file2.Close();
                         reader.Close();
                     }
                     catch (Exception e)

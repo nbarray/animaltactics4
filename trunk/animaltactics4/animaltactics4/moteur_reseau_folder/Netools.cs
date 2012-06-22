@@ -82,8 +82,48 @@ namespace animaltactics4
         public static void DrawMessage(string str)
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
-            Contents.DrawString(str, new Rectangle(600 - (int)Contents.MeasureString(str).X/2, 200, 1, 1), Color.White);
-        } 
+            Contents.DrawString(str, new Rectangle(600 - (int)Contents.MeasureString(str).X / 2, 200, 1, 1), Color.White);
+        }
+
+        public static void SendUpdatedMap(Socket sock, Partie p)
+        {
+            try
+            {
+                NetworkStream stream = new NetworkStream(sock);
+                for (int i = 0; i < p.earthPenguin.map.GetLength(0); i++)
+                {
+                    for (int j = 0; j < p.earthPenguin.map.GetLength(1); j++)
+                    {
+                        Send(sock, p.earthPenguin.map[i, j].pointeurUnite.ToString());
+                    }
+                }
+
+                int ii;
+                while (Read(sock) != 111) { }// reception d'une reponse
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static string ReadUpdatedMap(Socket sock)
+        {
+            return "";
+        }
+
+        public static void ClearPresence(MoteurGraphique g)
+        {
+            for (int i = 0; i < g.map.GetLength(0); i++)
+            {
+                for (int j = 0; j < g.map.GetLength(1); j++)
+                {
+                    g.map[i, j].presence = false;
+                }
+            }
+        }
+
         #endregion
     }
 }
