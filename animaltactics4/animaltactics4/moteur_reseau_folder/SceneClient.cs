@@ -16,8 +16,9 @@ namespace animaltactics4
         public Socket sock;
         int tentative = 5;
         EtapeReseau etape;
-
-        Thread _TFinDeTour;
+        FileReseau fileState;
+        string receive;
+        Thread _TFinDeTour, _TReceiveFile;
 
         bool een3, een4;
 
@@ -25,7 +26,10 @@ namespace animaltactics4
             : base()
         {
             _TFinDeTour = new Thread(TFinDeTour);
+            _TReceiveFile = new Thread(TReceiveFile);
             etape = EtapeReseau.etape1_initialisation;
+            fileState = FileReseau.sleep;
+            receive = "";
             een3 = false;
             een4 = false;
         }
@@ -88,24 +92,40 @@ namespace animaltactics4
 
                     etape = EtapeReseau.etape4_partie;
                     _TFinDeTour.Start();
+                    _TReceiveFile.Start();
                     break;
                 case EtapeReseau.etape4_partie:
-                    
-                    if (partie.gameplay.tourencours == 1) // Si c'est a mon tour
+                    if (fileState == FileReseau.running)
                     {
-                        partie.UpdateReseauClient(gameTime, this);
-                        //if (partie.time > 41)
-                        //{
-                        //    ChangementTour();
-                        //    Netools.Send(sock, "]"); // => fin du tour : 93
-                        //    Console.WriteLine("Orde de chang. de to. en.");
-                        //}
+                        int i;
+                        if ((i = Netools.Read(sock)) != 0)
+                        {
+                            receive += (char)i;
+                        }
+
+                        StreamWriter w = new StreamWriter(new FileStream("G.bin", FileMode.CreateNew, FileAccess.ReadWrite));
+                        w.Write(receive);
+                        receive = "";
+                        try
+                        {
+                            partie.gameplay = (SystemeDeJeu)Divers.deserializer("G");
+                        }
+                        catch { }
+                        
+                        fileState = FileReseau.sleep;
                     }
                     else
                     {
-                        
-                        Netools.UpdateTransition(gameTime);
+                        if (partie.gameplay.tourencours == 1) // Si c'est a mon tour
+                        {
+                            partie.UpdateReseauClient(gameTime, this);
+                        }
+                        else
+                        {
+                            Netools.UpdateTransition(gameTime);
+                        }
                     }
+                    
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
@@ -202,12 +222,7 @@ namespace animaltactics4
 
         public void ArreterLeClient()
         {
-            //Etape1_connection_du_client = false;
-            //Etape2_synchronisation_des_joueurs = false;
-            //Etape3_partie_en_cours = false;
-            //Etape3_SEtape1_partie_en_cours = false;
-            //Etape3_SEtape2_partie_en_cours = false;
-            //Etape4_fin_de_partie = false;
+            
         }
 
         public void ChangementTour()
@@ -215,6 +230,18 @@ namespace animaltactics4
             int epitaa = 0;
             bool epitaaa = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
+        }
+
+        private void TReceiveFile()
+        {
+            while (true)
+            {
+                int i;
+                if ((i = Netools.Read(sock)) == 57)
+                {
+                    fileState = FileReseau.running;
+                }
+            }
         }
 
         private void TFinDeTour()
@@ -228,6 +255,8 @@ namespace animaltactics4
                 {
                     try
                     {
+                        fileState = FileReseau.running;
+                        Netools.Send(sock, "9"); // 57 début d'envoie d'un fichier
                         Netools.ClearPresence(partie.earthPenguin);
 
                         StreamReader reader = new StreamReader(new NetworkStream(sock));
@@ -238,7 +267,7 @@ namespace animaltactics4
                             Console.WriteLine(temp);
                             temp += reader.Read();
                         }
-
+                        
                         FileStream file = new FileStream("g_c_.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
                         file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
                         temp = "";

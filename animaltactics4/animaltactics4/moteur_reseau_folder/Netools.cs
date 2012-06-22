@@ -11,6 +11,10 @@ namespace animaltactics4
     {
         etape1_initialisation, etape2_connection, etape3_synchronisation, etape4_partie, etap5_fin_de_partie
     }
+    enum FileReseau
+    {
+        running, sleep
+    }
 
     static class Netools
     {
@@ -83,34 +87,6 @@ namespace animaltactics4
         {
             Contents.Draw("px", new Rectangle(0, 0, 1200, 900), Color.Black);
             Contents.DrawString(str, new Rectangle(600 - (int)Contents.MeasureString(str).X / 2, 200, 1, 1), Color.White);
-        }
-
-        public static void SendUpdatedMap(Socket sock, Partie p)
-        {
-            try
-            {
-                NetworkStream stream = new NetworkStream(sock);
-                for (int i = 0; i < p.earthPenguin.map.GetLength(0); i++)
-                {
-                    for (int j = 0; j < p.earthPenguin.map.GetLength(1); j++)
-                    {
-                        Send(sock, p.earthPenguin.map[i, j].pointeurUnite.ToString());
-                    }
-                }
-
-                int ii;
-                while (Read(sock) != 111) { }// reception d'une reponse
-                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        public static string ReadUpdatedMap(Socket sock)
-        {
-            return "";
         }
 
         public static void ClearPresence(MoteurGraphique g)
