@@ -16,7 +16,7 @@ namespace animaltactics4
         public Socket sock;
         int tentative = 5;
         EtapeReseau etape;
-        FileReseau fileState;
+        public FileReseau fileState;
         string receive;
         Thread _TFinDeTour, _TReceiveFile;
 
@@ -191,21 +191,15 @@ namespace animaltactics4
             int epitaa = 0;
             bool epitaaa = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
-            Netools.Send(sock, 57);
         }
 
         private void TReceiveFile()
         {
             while (true)
             {
-
-                Console.SetCursorPosition(10, 4);
-                Console.Write("Thread : receive");
                 int i;
                 if ((i = Netools.Read(sock)) == 57)//9
                 {
-                    // serialization
-
                     fileState = FileReseau.reception_en_cours;
                 }
             }

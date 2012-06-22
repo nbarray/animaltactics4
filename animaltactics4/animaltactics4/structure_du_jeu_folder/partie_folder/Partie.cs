@@ -60,8 +60,6 @@ namespace animaltactics4
         //Coldman
         public void UpdateReseauClient(GameTime gameTime_, SceneClient estRoi)
         {
-            bool erence = false;
-            int inerance = 0;
             gameplay.UpdateReseauClient(earthPenguin, Jackman, estRoi);
             earthPenguin.Update(gameplay, Jackman);
 
@@ -73,6 +71,9 @@ namespace animaltactics4
                     estRoi.ChangementTour();
                     Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
+
+                    Netools.Send(estRoi.sock, 57); // 9 
+                    estRoi.fileState = FileReseau.envoie_en_cours;
                 }
             }
             lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
@@ -89,8 +90,6 @@ namespace animaltactics4
         //Coldman
         public void UpdateReseauServer(GameTime gameTime_, SceneServer garcon)
         {
-            bool erence = false;
-            int inerance = 0;
             gameplay.UpdateReseauServeur(earthPenguin, Jackman, garcon);
             earthPenguin.Update(gameplay, Jackman);
 
@@ -102,6 +101,8 @@ namespace animaltactics4
                     garcon.ChangementTour();
                     Netools.Send(garcon.client, "]"); // => fin du tour : 93
                     Console.WriteLine("Orde de chang. de to. en.");
+                    Netools.Send(garcon.client, 57);
+                    garcon.fileState = FileReseau.envoie_en_cours;
                 }
             }
             lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
