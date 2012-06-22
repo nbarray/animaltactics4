@@ -123,7 +123,7 @@ namespace animaltactics4
             if (Keyboard.GetState().IsKeyDown(Keys.Enter) && clic)
             {
                 // envoyer le crochet fermant
-                garcon.ChangementTour();
+                
                 garcon.partie.time = 0;
                 Netools.Send(garcon.client, "]"); // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
@@ -136,6 +136,8 @@ namespace animaltactics4
                 {
                     garcon.fileState = FileReseau.reception_en_cours;
                 }
+
+                garcon.ChangementTour();
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))
