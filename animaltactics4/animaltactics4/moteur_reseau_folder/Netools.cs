@@ -51,19 +51,6 @@ namespace animaltactics4
             }
         }
 
-        public static int ReadTime(Socket sock)
-        {
-            int i;
-            if ((i = Read(sock)) == 111)
-            {
-                return Read(sock);
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
         public static void UpdateTransition(GameTime gameTime_)
         {
             if (gameTime_.TotalGameTime.Milliseconds % 500 == 0)
