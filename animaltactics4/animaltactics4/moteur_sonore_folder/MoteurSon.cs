@@ -23,10 +23,18 @@ namespace animaltactics4
 
             bankEffect = new Dictionary<string, SoundEffectInstance>();
             bankEffect.Add("bouton", (content_.Load<SoundEffect>("Son\\Bruitage\\son_bouton")).CreateInstance());
-            bankEffect.Add("Pandawan", (content_.Load<SoundEffect>("Son\\Bruitage\\Chewbaka")).CreateInstance());
-            bankEffect.Add("Pingvin", (content_.Load<SoundEffect>("Son\\Bruitage\\Pingvin")).CreateInstance());
-            bankEffect.Add("Fenrir", (content_.Load<SoundEffect>("Son\\Bruitage\\fenrir")).CreateInstance());
-            bankEffect.Add("Krissa", (content_.Load<SoundEffect>("Son\\Bruitage\\sf_souris")).CreateInstance());
+            bankEffect.Add("Pandawan0", (content_.Load<SoundEffect>("Son\\Bruitage\\Chewbaka")).CreateInstance());
+            bankEffect.Add("Pingvin0", (content_.Load<SoundEffect>("Son\\Bruitage\\Pingvin")).CreateInstance());
+            bankEffect.Add("Fenrir0", (content_.Load<SoundEffect>("Son\\Bruitage\\fenrir")).CreateInstance());
+            bankEffect.Add("Krissa0", (content_.Load<SoundEffect>("Son\\Bruitage\\sf_souris")).CreateInstance());
+            bankEffect.Add("Pandawan1", (content_.Load<SoundEffect>("Son\\Bruitage\\panda")).CreateInstance());
+            bankEffect.Add("Pingvin1", (content_.Load<SoundEffect>("Son\\Bruitage\\pingvin2")).CreateInstance());
+            bankEffect.Add("Fenrir1", (content_.Load<SoundEffect>("Son\\Bruitage\\Meute")).CreateInstance());
+            bankEffect.Add("Krissa1", (content_.Load<SoundEffect>("Son\\Bruitage\\krissa")).CreateInstance());
+            bankEffect.Add("Pandawan2", (content_.Load<SoundEffect>("Son\\Bruitage\\panda2")).CreateInstance());
+            bankEffect.Add("Pingvin2", (content_.Load<SoundEffect>("Son\\Bruitage\\pingvin2")).CreateInstance());
+            bankEffect.Add("Fenrir2", (content_.Load<SoundEffect>("Son\\Bruitage\\fenrir2")).CreateInstance());
+            bankEffect.Add("Krissa2", (content_.Load<SoundEffect>("Son\\Bruitage\\krissa2")).CreateInstance());
 
             foreach (String item in bankEffect.Keys)
             {

@@ -81,7 +81,7 @@ namespace animaltactics4
             }
             Contents.Draw("px3", new Rectangle(0, 700, 1200, 200), Color.DarkGray);
             //Contents.Draw("Cercles", new Rectangle(0, 600, 100, 100), new Rectangle(100+200*sub, 0, 100, 100));
-            Contents.Draw("Cercles", new Rectangle(1100, 700, 100, 200), new Rectangle(200 * sub, 0, 100, 200));
+            Contents.Draw("Cercles", new Rectangle(500, 600, 200, 100), new Rectangle(200 * sub, 0, 200, 100));
             Contents.Draw("px3", new Rectangle(25, 725, 150, 150), Color.Red);
             Contents.DrawStringInBoxCenteredChrono(Math.Max(0, tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
             #endregion

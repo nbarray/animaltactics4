@@ -585,7 +585,8 @@ namespace animaltactics4
             if (Keyboard.GetState().IsKeyDown(Keys.Tab) && clic)
             {
                 suivant(moteurgraphique_, true, hud_);
-                MoteurSon.PlayFX(espece.ToString());
+                Random r = new Random();
+                MoteurSon.PlayFX(espece.ToString()+ r.Next(100)%3);
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.Tab) && Mouse.GetState().LeftButton != ButtonState.Pressed)
@@ -602,7 +603,8 @@ namespace animaltactics4
                     clic = false;
                     uniteselect = i;
                     bataillon[uniteselect].lookAtCheminsInitialize(moteurgraphique_);
-                    MoteurSon.PlayFX(espece.ToString());
+                    Random r = new Random();
+                    MoteurSon.PlayFX(espece.ToString() + r.Next(100) % 3);
                 }
             }
         }
