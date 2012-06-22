@@ -41,13 +41,13 @@ namespace animaltactics4
             switch (type)
             {
                 case e_modeAction.Attaque:
-            Contents.DrawString(Dico.langues[Dico.current][145], new Rectangle(rect.X+30,rect.Y,0,0));
+            Contents.DrawString(Dico.langues[Dico.current][145], new Rectangle(rect.X+34,rect.Y,0,0));
                     break;
                 case e_modeAction.Mouvement:
-            Contents.DrawString(Dico.langues[Dico.current][146], new Rectangle(rect.X+30,rect.Y,0,0));
+            Contents.DrawString(Dico.langues[Dico.current][146], new Rectangle(rect.X+34,rect.Y,0,0));
                     break;
                 default:
-            Contents.DrawString(Dico.langues[Dico.current][147], new Rectangle(rect.X+30,rect.Y,0,0));
+            Contents.DrawString(Dico.langues[Dico.current][147], new Rectangle(rect.X+34,rect.Y,0,0));
                     break;
             }
         }

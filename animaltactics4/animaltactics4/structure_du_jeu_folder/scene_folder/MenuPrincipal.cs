@@ -28,6 +28,7 @@ namespace animaltactics4
         public override void DrawScene()
         {
             base.DrawScene();
+            Contents.Draw("Titre", new Rectangle(Divers.X / 2 - 450,-300,900,900));
         }
     }
 }

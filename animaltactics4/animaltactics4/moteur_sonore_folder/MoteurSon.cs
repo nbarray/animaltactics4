@@ -23,6 +23,7 @@ namespace animaltactics4
 
             bankEffect = new Dictionary<string, SoundEffectInstance>();
             bankEffect.Add("bouton", (content_.Load<SoundEffect>("Son\\Bruitage\\son_bouton")).CreateInstance());
+            bankEffect.Add("clic", (content_.Load<SoundEffect>("Son\\Bruitage\\sf_os_broye_03")).CreateInstance());
             bankEffect.Add("Pandawan0", (content_.Load<SoundEffect>("Son\\Bruitage\\Chewbaka")).CreateInstance());
             bankEffect.Add("Pingvin0", (content_.Load<SoundEffect>("Son\\Bruitage\\Pingvin")).CreateInstance());
             bankEffect.Add("Fenrir0", (content_.Load<SoundEffect>("Son\\Bruitage\\fenrir")).CreateInstance());

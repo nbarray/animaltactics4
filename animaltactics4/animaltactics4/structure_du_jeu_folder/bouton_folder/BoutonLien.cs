@@ -10,6 +10,7 @@ namespace animaltactics4
     //Coldman
     class BoutonLien : Bouton
     {
+        bool sound;
         public Scene linkTo;
         Rectangle tuveuxvoir;
         int indexDico;
@@ -21,9 +22,10 @@ namespace animaltactics4
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
             indexDico = indexDico_;
             inGame = _inGame;
+            sound = true;
         }
-            public BoutonLien(int x, int y, int width, int height, Rectangle sub_, Scene linkTo_, int indexDico_)
-            : base(new Rectangle(Divers.X /2 - 200, y, width, height), sub_)
+        public BoutonLien(int x, int y, int width, int height, Rectangle sub_, Scene linkTo_, int indexDico_)
+            : base(new Rectangle(Divers.X / 2 - 200, y, width, height), sub_)
         {
             linkTo = linkTo_;
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
@@ -89,12 +91,16 @@ namespace animaltactics4
             if (!Contents.contientLaSouris(base.rect))
             {
                 Contents.Draw("bouton_normal", rect);
+                sound = true;
             }
             else
             {
+                if (sound)
+                    MoteurSon.PlayFX("clic");
+                sound = false;
                 //Fait la moins dure, loohy, c'est pour ton bien
                 if (!inGame)
-                Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
+                    Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
                 Contents.Draw("bouton_selected", rect);
             }
             Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][indexDico], rect);

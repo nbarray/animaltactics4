@@ -9,6 +9,7 @@ namespace animaltactics4
 {
     class BoutonNouvellePartie : Bouton
     {
+        bool sound;
         Rectangle tuveuxvoir;
         int indexDico;
 
@@ -16,6 +17,7 @@ namespace animaltactics4
             : base(new Rectangle(Divers.X / 2 - 200, y, 400, 75), sub_)
         {
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
+            sound = true;
             indexDico = indexDico_;
         }
 
@@ -50,9 +52,13 @@ namespace animaltactics4
             if (!Contents.contientLaSouris(base.rect))
             {
                 Contents.Draw("bouton_normal", rect);
+                sound = true;
             }
             else
             {
+                if (sound)
+                    MoteurSon.PlayFX("clic");
+                sound = false;
                 //Fait la moins dure, loohy, c'est pour ton bien
                 Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
                 Contents.Draw("bouton_selected", rect);
