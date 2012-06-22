@@ -113,8 +113,10 @@ namespace animaltactics4
             {
                 // envoyer le crochet fermant
                 garcon.ChangementTour();
+                garcon.partie.time = 0;
                 Netools.Send(garcon.client, "]"); // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
+                
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))

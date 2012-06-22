@@ -229,16 +229,22 @@ namespace animaltactics4
                     try
                     {
                         StreamReader reader = new StreamReader(new NetworkStream(sock));
-                        FileStream file = new FileStream("g c", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                        string temp = reader.ReadToEnd();
+                        FileStream file = new FileStream("g c.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                        string temp = "";
+                        while (reader.Peek() != '\0')
+                        {
+                            temp += reader.Read();
+                        }
+                        
                         file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
                         temp = "";
-                        FileStream file2 = new FileStream("e c", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+                        FileStream file2 = new FileStream("e c.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
                         temp = reader.ReadToEnd();
                         file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
 
-                        partie.gameplay = (SystemeDeJeu)Divers.deserializer("g c");
-                        partie.earthPenguin = (MoteurGraphique)Divers.deserializer("e c");
+                        partie.gameplay = (SystemeDeJeu)Divers.deserializer("g c.bin");
+                        partie.earthPenguin = (MoteurGraphique)Divers.deserializer("e c.bin");
 
                         file.Close();
                         file2.Close();
