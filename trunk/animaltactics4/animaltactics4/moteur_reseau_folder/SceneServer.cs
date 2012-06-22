@@ -20,7 +20,7 @@ namespace animaltactics4
         Thread _TFinDeTour;
         Thread _TReceiveFile;
 
-        public bool een3 = false, een4 = false;
+        public bool een3 = false, een4 = false, priorite = false;
         public FileReseau fileState;
         private string receive;
 
@@ -209,6 +209,8 @@ namespace animaltactics4
             }
         }
 
+
+
         public void TFinDeTour()
         {
             while (true)
@@ -216,6 +218,8 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(client)) == 93) // ']'
                 {
+                    fileState = FileReseau.reception_en_cours;
+                    priorite = true;
                     ChangementTour();
                     partie.time = 0;
                 }

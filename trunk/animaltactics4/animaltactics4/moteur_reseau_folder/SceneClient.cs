@@ -20,7 +20,7 @@ namespace animaltactics4
         string receive;
         Thread _TFinDeTour, _TReceiveFile;
 
-        bool een3, een4;
+        public bool een3 = false, priorite = false;
 
         public SceneClient()
             : base()
@@ -30,8 +30,6 @@ namespace animaltactics4
             etape = EtapeReseau.etape1_initialisation;
             fileState = FileReseau.sleep;
             receive = "";
-            een3 = false;
-            een4 = false;
         }
 
         public override void UpdateScene(GameTime gameTime)
