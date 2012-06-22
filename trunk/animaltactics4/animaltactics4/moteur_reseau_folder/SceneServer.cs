@@ -18,7 +18,7 @@ namespace animaltactics4
 
         Thread _TFinDeTour;
 
-        public bool een3 = false;
+        public bool een3 = false, een4 = false;
 
         public SceneServer()
             : base()
@@ -117,9 +117,9 @@ namespace animaltactics4
             Console.SetCursorPosition(0, 2);
             if (etape == EtapeReseau.etape4_partie)
             {
-                Console.Write(partie.gameplay.tourencours);
+                Console.Write("Tour en cours : " + partie.gameplay.tourencours);
             }
-            
+
             switch (etape)
             {
                 case EtapeReseau.etape1_initialisation:
@@ -143,7 +143,7 @@ namespace animaltactics4
                         if ((j = Netools.Read(client)) == 105)// i
                         {
                             Console.SetCursorPosition(0, 2);
-                            Console.WriteLine((char)i +" "+ (char)j);
+                            Console.WriteLine((char)i + " " + (char)j);
                             etape = EtapeReseau.etape4_partie;
                         }
                     }
@@ -152,12 +152,14 @@ namespace animaltactics4
                 case EtapeReseau.etape4_partie:
                     if (partie.gameplay.tourencours == 0)
                     {
-                        if (partie.Jackman.tempsRestant == 0)
+
+                        if (partie.time > 10)
                         {
                             ChangementTour();
                             Netools.Send(client, "]"); // => fin du tour : 93
-                            Console.WriteLine("Ordre de changementde tour envoyé !");
+                            Console.WriteLine("Ordre de changement de tour envoyé !");
                         }
+
                         partie.UpdateReseau(gameTime);
                     }
                     else
@@ -205,6 +207,8 @@ namespace animaltactics4
         {
             while (true)
             {
+                Console.SetCursorPosition(20, 3);
+                Console.Write("Thread: " + new Random().Next(42));
                 int f;
                 if ((f = Netools.Read(client)) == 93)
                 {
@@ -213,7 +217,7 @@ namespace animaltactics4
                     Console.WriteLine("Ordre de changementde tour reçu !");
                 }
             }
-            
+
         }
     }
 }

@@ -30,11 +30,11 @@ namespace animaltactics4
             base.Initialize();
             graphics.PreferredBackBufferWidth = /*GraphicsDevice.DisplayMode.Width*/ 800;
             graphics.PreferredBackBufferHeight = /*GraphicsDevice.DisplayMode.Height*/ 600;
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            //graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.PreferredBackBufferFormat = GraphicsDevice.DisplayMode.Format;
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+           // graphics.PreferredBackBufferFormat = GraphicsDevice.DisplayMode.Format;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
             graphics.ApplyChanges();
 
             Dico.Initialize();
