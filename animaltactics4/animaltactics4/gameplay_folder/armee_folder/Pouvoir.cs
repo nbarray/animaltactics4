@@ -9,14 +9,14 @@ namespace animaltactics4
     class Pouvoir
     {
         e_pouvoir nom;
-        e_typeDePouvoir type;
-        e_typeDeBoost boost;
+        public e_typeDePouvoir type;
+        public e_typeDeBoost boost;
         public List<int> porteePouvoir;
-        bool estPhysique; // vrai = pouvoir physique
-        bool affectepv;
-        bool affectEnergie;
+        public bool estPhysique; // vrai = pouvoir physique
+        public bool affectepv;
+        public bool affectEnergie;
         public bool vertical;
-        int coutEnergie;
+        public int coutEnergie;
         int recharge;
         int efficacite;
 
