@@ -112,32 +112,10 @@ namespace animaltactics4
                             etape = EtapeReseau.etape4_partie;
                         }
                     }
-                    _TReceiveFile.Start();
                     _TFinDeTour.Start();
                     break;
                 case EtapeReseau.etape4_partie:
-                    if (fileState == FileReseau.running)
-                    {
-                        Netools.Send(client, "6");
-                        int ii;
-                        if ((ii = Netools.Read(client)) != 0)
-                        {
-                            receive += (char)ii;
-                        }
-
-                        StreamWriter w = new StreamWriter(new FileStream("G.bin", FileMode.CreateNew, FileAccess.ReadWrite));
-                        w.Write(receive);
-                        receive = "";
-                        try
-                        {
-                            partie.gameplay = (SystemeDeJeu)Divers.deserializer("G");
-                        }
-                        catch { }
-
-                        fileState = FileReseau.sleep;
-                    }
-                    else
-                    {
+                   
                         if (partie.gameplay.tourencours == 0)
                         {
                             partie.UpdateReseauServer(gameTime, this);
@@ -146,7 +124,7 @@ namespace animaltactics4
                         {
                             Netools.UpdateTransition(gameTime);
                         }
-                    }
+                    
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
@@ -183,11 +161,6 @@ namespace animaltactics4
             int epita42epita = 0;
             bool epita41epita = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epita42epita, ref epita41epita);
-            Netools.Send(client, "9");
-            int i;
-            while ((i = Netools.Read(client)) != 54) { }
-            Divers.serializer(partie.gameplay, "G");
-            client.SendFile("G.bin");
         }
 
         private void TReceiveFile()

@@ -92,31 +92,10 @@ namespace animaltactics4
 
                     etape = EtapeReseau.etape4_partie;
                     _TFinDeTour.Start();
-                    _TReceiveFile.Start();
                     break;
                 case EtapeReseau.etape4_partie:
-                    if (fileState == FileReseau.running)
-                    {
-                        Netools.Send(sock, "6");
-                        int i;
-                        while ((i = Netools.Read(sock)) != 3)
-                        {
-                            receive += (char)i;
-                        }
-
-                        StreamWriter w = new StreamWriter(new FileStream("G.bin", FileMode.Create, FileAccess.ReadWrite));
-                        w.Write(receive);
-                        receive = "";
-                        try
-                        {
-                            partie.gameplay = (SystemeDeJeu)Divers.deserializer("G");
-                        }
-                        catch { }
-                        
-                        fileState = FileReseau.sleep;
-                    }
-                    else
-                    {
+                    
+                    
                         if (partie.gameplay.tourencours == 1) // Si c'est a mon tour
                         {
                             partie.UpdateReseauClient(gameTime, this);
@@ -125,8 +104,6 @@ namespace animaltactics4
                         {
                             Netools.UpdateTransition(gameTime);
                         }
-                    }
-                    
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
@@ -181,11 +158,6 @@ namespace animaltactics4
             int epitaa = 0;
             bool epitaaa = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
-            Netools.Send(sock, "9");
-            int i;
-            while ((i = Netools.Read(sock)) != 54) { } // receive 6
-            Divers.serializer(partie.gameplay, "G");
-            sock.SendFile("G.bin");
         }
 
         private void TReceiveFile()
