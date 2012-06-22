@@ -92,6 +92,7 @@ namespace animaltactics4
             {
                 // envoyer le crochet fermant
                 estRoi.ChangementTour();
+                estRoi.partie.time = 0;
                 Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                 Console.WriteLine("Orde de chang. de to. en.");
                 clic = false;
