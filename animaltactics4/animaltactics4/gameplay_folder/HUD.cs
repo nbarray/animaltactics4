@@ -81,7 +81,8 @@ namespace animaltactics4
             }
             Contents.Draw("px3", new Rectangle(0, 700, 1200, 200), Color.DarkGray);
             //Contents.Draw("Cercles", new Rectangle(0, 600, 100, 100), new Rectangle(100+200*sub, 0, 100, 100));
-            Contents.Draw("Cercles", new Rectangle(500, 600, 200, 100), new Rectangle(200 * sub, 0, 200, 100));
+            if (!Victory)
+                Contents.Draw("Cercles", new Rectangle(500, 620, 200, 80), new Rectangle(200 * sub, 0, 200, 80));
             Contents.Draw("px3", new Rectangle(25, 725, 150, 150), Color.Red);
             Contents.DrawStringInBoxCenteredChrono(Math.Max(0, tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
             #endregion
@@ -324,7 +325,7 @@ namespace animaltactics4
             }
             #endregion
             #region score
-                DrawScore(gameplay_, new Point(900, 840));
+            DrawScore(gameplay_, new Point(900, 840));
             #endregion
             if (Victory /*&& AffichageCombat <= 0*/)
             {
@@ -334,8 +335,8 @@ namespace animaltactics4
                 {
                     Contents.Draw("e_race", new Rectangle(602 + 254 * i - 127 * VictoryRace.Count, 375, 250,
                         250), new Rectangle(250 * VictoryRace[i], 0, 250, 250));
-                    Contents.Draw("e_race", new Rectangle(602+254*i-127*VictoryRace.Count, 375, 250,
-                        250), new Color(VictoryColor[i].R, VictoryColor[i].G, VictoryColor[i].B, VictoryColor[i].A/3), new Rectangle(250 * VictoryRace[i], 0, 250, 250));
+                    Contents.Draw("e_race", new Rectangle(602 + 254 * i - 127 * VictoryRace.Count, 375, 250,
+                        250), new Color(VictoryColor[i].R, VictoryColor[i].G, VictoryColor[i].B, VictoryColor[i].A / 3), new Rectangle(250 * VictoryRace[i], 0, 250, 250));
                 }
                 //DrawScore(gameplay_, tex_, new Vector2(450, 720), (int)gameplay_.numeroDeTour);
                 #endregion
@@ -352,7 +353,7 @@ namespace animaltactics4
             for (int i = 0; i < gameplay_.listeDesJoueurs.Count; i++)
             {
                 Contents.Draw("px",
-                    new Rectangle(v_.X + 5 - 20 * gameplay_.listeDesJoueurs.Count + 40 * i, v_.Y - 5 - gameplay_.listeDesJoueurs[i].score /( gameplay_.listeDesJoueurs.Count * 2), 20, gameplay_.listeDesJoueurs[i].score / (gameplay_.listeDesJoueurs.Count * 2)), 
+                    new Rectangle(v_.X + 5 - 20 * gameplay_.listeDesJoueurs.Count + 40 * i, v_.Y - 5 - gameplay_.listeDesJoueurs[i].score / (gameplay_.listeDesJoueurs.Count * 2), 20, gameplay_.listeDesJoueurs[i].score / (gameplay_.listeDesJoueurs.Count * 2)),
                     gameplay_.listeDesJoueurs[i].couleur);
                 Contents.DrawString(gameplay_.listeDesJoueurs[i].score.ToString(), new Rectangle(v_.X - 20 * gameplay_.listeDesJoueurs.Count + 40 * i, v_.Y, 30, 30),
                     gameplay_.listeDesJoueurs[i].couleur);
