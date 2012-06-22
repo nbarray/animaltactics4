@@ -2810,13 +2810,13 @@ namespace animaltactics4
                                 PlayMoyenJoute(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Tresor:
-                                finish = true;
+                                PlayFacileTresor(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Echiquier:
                                 PlayMoyenEchiquier(gameplay_, moteurgraphique_, moi_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Colline:
-                                finish = true;
+                                PlayFacileColline(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             default:
                                 break;
@@ -2829,13 +2829,13 @@ namespace animaltactics4
                                 PlayDifficileJoute(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Tresor:
-                                finish = true;
+                                PlayFacileTresor(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Echiquier:
-                                finish = true;
+                                PlayMoyenEchiquier(gameplay_, moteurgraphique_, moi_, armee_, hud_);
                                 break;
                             case e_typeDePartie.Colline:
-                                finish = true;
+                                PlayFacileColline(moi_, moteurgraphique_, gameplay_, armee_, hud_);
                                 break;
                             default:
                                 break;

@@ -8,21 +8,26 @@ namespace animaltactics4
 {
     class MenuCredit : Scene
     {
+        public CreditBox credits;
         public MenuCredit()
             : base()
         {
 
-            boutons.Add(new BoutonLien(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), null, 5));
+            boutons.Add(new BoutonLien(0, 800, new Rectangle(0, 0, 800, 300), null, 5, true));
+            credits = new CreditBox(new Rectangle(100, -15, 1000, 950));
         }
 
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
+            credits.Update();
         }
 
         public override void DrawScene()
         {
-            base.DrawScene();
+          //base.DrawScene();
+            credits.Draw();
+            boutons[0].Draw();
         }
     }
 }

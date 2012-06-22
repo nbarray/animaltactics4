@@ -10,7 +10,7 @@ namespace animaltactics4
     //Coldman
     class BoutonLien : Bouton
     {
-        Scene linkTo;
+        public Scene linkTo;
         Rectangle tuveuxvoir;
         int indexDico;
         bool inGame;

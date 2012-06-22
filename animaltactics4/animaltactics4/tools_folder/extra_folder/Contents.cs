@@ -128,6 +128,8 @@ namespace animaltactics4
             textures.Add("px2", content_.Load<Texture2D>("Image\\Divers\\px"));
             textures.Add("px3", content_.Load<Texture2D>("Image\\Divers\\pxbrillant"));
 
+            textures.Add("Cercles", content_.Load<Texture2D>("Image\\Divers\\Cercles"));
+
             textures.Add("bleuApp", content_.Load<Texture2D>("Image\\Animation\\bleu"));
             textures.Add("rougeApp", content_.Load<Texture2D>("Image\\Animation\\rouge"));
             textures.Add("vertApp", content_.Load<Texture2D>("Image\\Animation\\vert"));
