@@ -183,7 +183,9 @@ namespace animaltactics4
             bool epita41epita = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epita42epita, ref epita41epita);
             Netools.Send(client, "9");
-            Divers.serializer(partie.gameplay, "G");
+            int i;
+            while ((i = Netools.Read(client)) != 54) { } // receive 6
+            Divers.serializer(partie.gameplay, "G.bin");
             client.SendFile("G.bin");
         }
 
@@ -192,7 +194,7 @@ namespace animaltactics4
             while (true)
             {
                 int i;
-                if ((i = Netools.Read(sock)) == 57) // 9
+                if ((i = Netools.Read(client)) == 57) // 9
                 {
                     fileState = FileReseau.running;
                 }

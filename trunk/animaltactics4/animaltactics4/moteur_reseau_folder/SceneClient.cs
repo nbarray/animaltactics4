@@ -180,6 +180,11 @@ namespace animaltactics4
             int epitaa = 0;
             bool epitaaa = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
+            Netools.Send(sock, "9");
+            int i;
+            while ((i = Netools.Read(sock)) != 54) { } // receive 6
+            Divers.serializer(partie.gameplay, "G");
+            sock.SendFile("G.bin");
         }
 
         private void TReceiveFile()
