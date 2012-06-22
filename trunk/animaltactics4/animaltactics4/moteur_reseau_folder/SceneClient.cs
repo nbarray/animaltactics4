@@ -97,13 +97,13 @@ namespace animaltactics4
                             _TFinDeTour.Suspend(); // VA TE FAIRE METTRE PAR DES LUTINS
                         }
 
-                        partie.UpdateReseau(gameTime);
-                        if (partie.time > 41)
-                        {
-                            ChangementTour();
-                            Netools.Send(sock, "]"); // => fin du tour : 93
-                            Console.WriteLine("Orde de chang. de to. en.");
-                        }
+                        partie.UpdateReseauClient(gameTime, this);
+                        //if (partie.time > 41)
+                        //{
+                        //    ChangementTour();
+                        //    Netools.Send(sock, "]"); // => fin du tour : 93
+                        //    Console.WriteLine("Orde de chang. de to. en.");
+                        //}
                     }
                     else
                     {
@@ -229,6 +229,7 @@ namespace animaltactics4
             while (true)
             {
                 Console.SetCursorPosition(20, 3);
+                Console.WriteLine("Thread" + new Random().Next());
                 int f;
                 if ((f = Netools.Read(sock)) == 93)
                 {
