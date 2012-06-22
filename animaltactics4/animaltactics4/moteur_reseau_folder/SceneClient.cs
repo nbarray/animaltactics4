@@ -191,6 +191,7 @@ namespace animaltactics4
             int epitaa = 0;
             bool epitaaa = true;
             partie.gameplay.FinDeTour(partie.earthPenguin, partie.Jackman, ref epitaa, ref epitaaa);
+            Netools.Send(sock, 57);
         }
 
         private void TReceiveFile()
