@@ -9,6 +9,7 @@ namespace animaltactics4
 {
     class BoutonFullScreen : Bouton
     {
+        bool sound;
         public bool fullscreen;
         private Rectangle tuveuxvoir;
 
@@ -16,6 +17,7 @@ namespace animaltactics4
             : base(rect_, sub_)
         {
             tuveuxvoir = new Rectangle(0, base.rect.Y - 12, Divers.X, 100);
+            sound = true;
             fullscreen = false;
             
         }
@@ -26,8 +28,8 @@ namespace animaltactics4
             {
                 if (!een && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
-                    MoteurSon.PlayFX("bouton");
                     // Action !
+                    MoteurSon.PlayFX("bouton");
                     Game1.toFullScreen = !Game1.toFullScreen;
                     een = true;
                 }
@@ -37,10 +39,14 @@ namespace animaltactics4
         {
             if (!Contents.contientLaSouris(base.rect))
             {
+                sound = true;
                 Contents.Draw("bouton_normal", rect);
             }
             else
             {
+                if (sound)
+                    MoteurSon.PlayFX("clic");
+                sound = false;
                 //Fait la moins dure, loohy, c'est pour ton bien
                 Contents.Draw("grosse", tuveuxvoir, Color.DeepSkyBlue);
                 Contents.Draw("bouton_selected", rect);

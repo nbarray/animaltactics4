@@ -22,8 +22,8 @@ namespace animaltactics4
         {
             boutons.Add(new BoutonNouvellePartie(Divers.X / 2 - 200, 700, new Rectangle(0, 0, 800, 300), 0));
             boutons.Add(new BoutonLien(Divers.X / 2 - 200, 800, new Rectangle(0, 0, 800, 300), null, 5));
-            boutons.Add(new BoutonChoix(new Rectangle(325, 200, 100, 100), new Rectangle(0, 0, 80, 80), 3, "fog"));
-            boutons.Add(new BoutonChoix(new Rectangle(200, 200, 100, 100), new Rectangle(0, 0, 100, 100), 4, "mod"));
+            boutons.Add(new BoutonChoix(new Rectangle(445, 150, 100, 100), new Rectangle(0, 0, 80, 80), 3, "fog"));
+            boutons.Add(new BoutonChoix(new Rectangle(320, 150, 100, 100), new Rectangle(0, 0, 100, 100), 4, "mod"));
             armees = new string[6];
             difficulte = new int[6];
             couleurs = new Color[6];
@@ -116,7 +116,7 @@ namespace animaltactics4
                 acwl.Y += acwl.Height + 3;
             } 
             #endregion
-
+            Contents.Draw("AT", new Rectangle(10,10,300,300));
             #region editer joueurs
             Rectangle blankass = new Rectangle(625, 30, (int)Contents.MeasureString("S").Y, (int)Contents.MeasureString("S").Y);
             Rectangle noOneIsInnocent = new Rectangle(628 + (int)Contents.MeasureString("S").Y, 30 + ((int)Contents.MeasureString("S").Y - 20) / 2, 20, 20);

@@ -136,11 +136,13 @@ namespace animaltactics4
             textures.Add("jauneApp", content_.Load<Texture2D>("Image\\Animation\\jaune"));
             textures.Add("blancApp", content_.Load<Texture2D>("Image\\Animation\\wwteam"));
             textures.Add("LOGO", content_.Load<Texture2D>("Image\\Animation\\logo fini"));
+            textures.Add("AT", content_.Load<Texture2D>("Image\\Animation\\animaltactics"));
 
             textures.Add("gordon", content_.Load<Texture2D>("Image\\Animation\\flash"));
             textures.Add("gordon inverse", content_.Load<Texture2D>("Image\\Animation\\flashreverse"));
 
             textures.Add("waitforplayer", content_.Load<Texture2D>("Image\\Divers\\waitforplayer"));
+            textures.Add("Titre", content_.Load<Texture2D>("Image\\Divers\\Titre"));
         }
 
         //Loohy
