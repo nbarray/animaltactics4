@@ -245,8 +245,8 @@ namespace animaltactics4
                 case e_classe.PingvinBerserker:
                     portee[1] = 10;
                     typedAttaque[1] = false;
-                    AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.PingvinRage, e_typeDePouvoir.Boost, new List<int> { 0 },
-                        true, 0, 0, 10, false), null,
+                    AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.PingvinRage, e_typeDePouvoir.Boost, new List<int> { 0,1,2 },
+                        true, 11, 0, 10, false), null,
                         Divers.getName(classe_), 15, 12, 15, 9, 9, 8, 15, portee, typedAttaque,
                         this.numeroarmee, 32, 10, ia_);
                     break;
@@ -258,7 +258,7 @@ namespace animaltactics4
                     portee[5] = 8;
                     portee[6] = 5;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.PingvinSoin, e_typeDePouvoir.Soin, new List<int> { 1 },
-                        true, 0, 0, 10, false), null,
+                        true, 10, 0, 10, false), null,
                         Divers.getName(classe_), 12, 11, 10, 7, 13, 12, 7, portee, typedAttaque,
                         this.numeroarmee, 36, 7, ia_);
                     break;
@@ -271,7 +271,7 @@ namespace animaltactics4
                     typedAttaque[3] = false;
                     typedAttaque[4] = false;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.PingvinThor, e_typeDePouvoir.Degat, new List<int> { 6, 8, 10, 12 },
-                        true, 0, 0, 10, false), null,
+                        true, 18, 0, 10, false), null,
                         Divers.getName(classe_), 14, 12, 13, 13, 12, 12, 15, portee, typedAttaque,
                         this.numeroarmee, 37, 9, ia_);
                     break;
@@ -322,7 +322,7 @@ namespace animaltactics4
                 case e_classe.FenrirDreadnought:
                     portee[1] = 8;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.FenrirMissiles, e_typeDePouvoir.Degat, new List<int> { 3, 4, 5, 6 },
-                        true, 0, 0, 10, false), null,
+                        true, 14, 0, 10, false), null,
                         Divers.getName(classe_), 18, 6, 16, 18, 12, 13, 6, portee, typedAttaque,
                         this.numeroarmee, 45, 8, ia_);
                     break;
@@ -332,7 +332,7 @@ namespace animaltactics4
                     portee[3] = 8;
                     typedAttaque[3] = false;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.FenrirBoost, e_typeDePouvoir.Boost, new List<int> { 1, 2 },
-                        true, 0, 0, 10, false), null,
+                        true, 9, 0, 10, false), null,
                         Divers.getName(classe_), 14, 10, 14, 12, 13, 11, 10, portee, typedAttaque,
                         this.numeroarmee, 50, 8, ia_);
                     break;
@@ -346,7 +346,7 @@ namespace animaltactics4
                     typedAttaque[3] = false;
                     typedAttaque[4] = false;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.FenrirRailgun, e_typeDePouvoir.Degat, new List<int> { 7, 8, 9, 10 }
-                        , true, 0, 0, 10, true), null,
+                        , true, 12, 0, 10, true), null,
                         Divers.getName(classe_), 7, 15, 12, 12, 17, 12, 11, portee, typedAttaque,
                         this.numeroarmee, 48, 8, ia_);
                     break;
@@ -384,7 +384,7 @@ namespace animaltactics4
                 case e_classe.PandawanMoine:
                     portee[1] = 10;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.PandaSceau, e_typeDePouvoir.Soin, new List<int> { 1, 2, 3 },
-                        false, 0, 0, 10, false), null,
+                        false, 10, 0, 10, false), null,
                         Divers.getName(classe_), 10, 10, 14, 8, 16, 12, 8, portee, typedAttaque,
                         this.numeroarmee, 57, 8, ia_);
                     break;
@@ -416,7 +416,7 @@ namespace animaltactics4
                     portee[5] = 9;
                     portee[6] = 8;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.PandaSniper, e_typeDePouvoir.Degat, new List<int> { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 },
-                        true, 5, 0, 15, true), null,
+                        true, 20, 0, 12, true), null,
                         Divers.getName(classe_), 15, 10, 11, 8, 12, 17, 9, portee, typedAttaque,
                         this.numeroarmee, 62, 8, ia_);
                     break;
@@ -440,13 +440,13 @@ namespace animaltactics4
                 case e_classe.KrissaAssassin:
                     portee[1] = 10;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Assassinat, e_typeDePouvoir.Degat, new List<int> { 1 },
-                        true, 28, 0, 28, false), null, Divers.getName(classe_), 7, 14, 6, 7, 14, 12, 13, portee, typedAttaque,
+                        true, 28, 0, 35, false), null, Divers.getName(classe_), 7, 14, 6, 7, 14, 12, 13, portee, typedAttaque,
                         this.numeroarmee, 69, 10, ia_);
                     break;
                 case e_classe.KrissaLegionnaire:
                     portee[1] = 9;
                     AddUnite(classe_, e_typeUnite.Elite, new Pouvoir(e_pouvoir.Legionnaire, e_typeDePouvoir.Boost, new List<int> { 0, 1, 2 },
-                        true, 10, 1, 6, false), null, Divers.getName(classe_), 12, 11, 10, 12, 10, 11, 11, portee, typedAttaque,
+                        true, 10, 1, 12, false), null, Divers.getName(classe_), 12, 11, 10, 12, 10, 11, 11, portee, typedAttaque,
                         this.numeroarmee, 70, 8, ia_);
                     break;
                 case e_classe.KrissaGeolier:
