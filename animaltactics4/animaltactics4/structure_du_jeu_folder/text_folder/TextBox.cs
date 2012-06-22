@@ -83,10 +83,10 @@ namespace animaltactics4
         {
 
             Contents.Draw("textbox", rect);
-            for (int i = 0; i < line.Count; i++)
+            for (int i = 0; i < Math.Min(29, line.Count); i++)
             {
                 Rectangle r = new Rectangle(rect.X + margin_left, rect.Y + (i * 20) - offset + margin_top, rect.Width, 10);
-                if (r.Y < Contents.GetRealRect(rect).Y + Contents.GetRealRect(rect).Height && r.Y > Contents.GetRealRect(rect).Y + margin_top)
+                if (Contents.GetRealRect(r).Y < Contents.GetRealRect(rect).Y + Contents.GetRealRect(rect).Height && Contents.GetRealRect(r).Y >= Contents.GetRealRect(rect).Y + margin_top)
                 {
                     Contents.DrawString(line[i], r);
                 }

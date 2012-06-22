@@ -18,9 +18,9 @@ namespace animaltactics4
             labels = new List<Label>();
         }
 
-        public void Add(string text)
+        public void Add(int index_)
         {
-            labels.Add(new Label(new Rectangle(rect.X+5, rect.Y+5 + 50*labels.Count, rect.Width - 10, 50), text));
+            labels.Add(new Label(new Rectangle(rect.X+5, rect.Y+5 + 50*labels.Count, rect.Width - 10, 50), index_));
         }
 
         public void Update(TextBox box)
@@ -29,27 +29,27 @@ namespace animaltactics4
             {
                 if (Contents.contientLaSouris(item.rect) && Mouse.GetState().LeftButton == ButtonState.Pressed) // histoire
                 {
-                    if (item.text == Dico.langues[Dico.current][52])
+                    if (item.index == 52)
                     {
                         box.Add(Dico.langues[Dico.current][58]);
                     }
-                    else if (item.text == Dico.langues[Dico.current][53])
+                    else if (item.index == 53)
                     {
                         box.Add(Dico.langues[Dico.current][59]);
                     }
-                    else if (item.text == Dico.langues[Dico.current][54])
+                    else if (item.index == 54)
                     {
                         box.Add(Dico.langues[Dico.current][60]);
                     }
-                    else if (item.text == Dico.langues[Dico.current][55])
+                    else if (item.index == 55)
                     {
                         box.Add(Dico.langues[Dico.current][61]);
                     }
-                    else if (item.text == Dico.langues[Dico.current][56])
+                    else if (item.index == 56)
                     {
                         box.Add(Dico.langues[Dico.current][62]);
                     }
-                    else if (item.text == Dico.langues[Dico.current][57])
+                    else if (item.index == 57)
                     {
                         box.Add(Dico.langues[Dico.current][63]);
                     }
@@ -70,12 +70,12 @@ namespace animaltactics4
     class Label
     {
         public Rectangle rect;
-        public string text;
+        public int index;
 
-        public Label(Rectangle rect_, string text_)
+        public Label(Rectangle rect_, int index_)
         {
             rect = rect_;
-            text = text_;
+            index = index_;
         }
 
         public void Draw()
@@ -88,7 +88,7 @@ namespace animaltactics4
             {
                 Contents.Draw("bouton_selected", rect);
             }
-            Contents.DrawStringInBoxCentered(text, rect);
+            Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][index], rect);
         }
     }
 }

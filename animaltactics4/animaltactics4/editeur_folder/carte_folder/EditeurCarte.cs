@@ -25,6 +25,8 @@ namespace animaltactics4
             //titanAE.viderVue();
             writer = new WriteBox(new Rectangle(600, Divers.Y - 220, 450, 75));
             titanAE.centrerSur(16, 16);
+            titanAE.NEW(32, 32);
+            
         }
 
         public override void UpdateScene(GameTime gameTime)
@@ -84,6 +86,10 @@ namespace animaltactics4
                 Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][155], mike, Color.White);
             }
             #endregion
+            foreach (Bouton item in boutons)
+            {
+                item.Draw();
+            }
         }
         public void Sauvegarde(ref string txt_)
         {

@@ -355,6 +355,7 @@ namespace animaltactics4
             #endregion
 
             writer.Draw();
+            boutons[0].Draw();
         }
 
         public void Sauvegarde(ref string txt_)
