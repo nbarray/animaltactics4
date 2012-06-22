@@ -105,8 +105,13 @@ namespace animaltactics4
                 {
                     estRoi.fileState = FileReseau.reception_en_cours;
                 }
-                estRoi.ChangementTour();
+                if (estRoi.priorite)
+                {
+                    estRoi.fileState = FileReseau.reception_en_cours;
+                    estRoi.priorite = false;
+                }
                 Netools.Send(estRoi.sock, "]");
+                estRoi.ChangementTour();
                 clic = false;
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Enter))
@@ -135,6 +140,11 @@ namespace animaltactics4
                 else
                 {
                     garcon.fileState = FileReseau.reception_en_cours;
+                }
+                if (garcon.priorite)
+                {
+                    garcon.fileState = FileReseau.reception_en_cours;
+                    garcon.priorite = false;
                 }
                 garcon.ChangementTour();
                 Netools.Send(garcon.client, "]");

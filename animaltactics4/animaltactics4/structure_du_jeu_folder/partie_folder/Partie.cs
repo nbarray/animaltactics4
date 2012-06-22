@@ -78,7 +78,11 @@ namespace animaltactics4
                     {
                         estRoi.fileState = FileReseau.reception_en_cours;
                     }
-
+                    if (estRoi.priorite)
+                    {
+                        estRoi.fileState = FileReseau.reception_en_cours;
+                        estRoi.priorite = false;
+                    }
                     Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
                     estRoi.ChangementTour();
                 }
@@ -107,6 +111,11 @@ namespace animaltactics4
                     else
                     {
                         garcon.fileState = FileReseau.reception_en_cours;
+                    }
+                    if (garcon.priorite)
+                    {
+                        garcon.fileState = FileReseau.reception_en_cours;
+                        garcon.priorite = false;
                     }
                     Netools.Send(garcon.client, "]"); // => fin du tour : 93
                     garcon.ChangementTour();
