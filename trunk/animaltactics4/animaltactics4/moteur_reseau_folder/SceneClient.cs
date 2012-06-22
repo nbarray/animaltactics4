@@ -97,7 +97,7 @@ namespace animaltactics4
                     if (fileState == FileReseau.reception_en_cours)
                     {
                         Netools.ReadText(sock, (byte)'$', receive);
-
+                        Console.WriteLine("Receive : " + receive);
                         try
                         {
                             StreamWriter writer = new StreamWriter(new FileStream("G.bin", FileMode.Create, FileAccess.ReadWrite));
@@ -198,6 +198,9 @@ namespace animaltactics4
         {
             while (true)
             {
+
+                Console.SetCursorPosition(10, 4);
+                Console.Write("Thread : receive");
                 int i;
                 if ((i = Netools.Read(sock)) == 57)//9
                 {
