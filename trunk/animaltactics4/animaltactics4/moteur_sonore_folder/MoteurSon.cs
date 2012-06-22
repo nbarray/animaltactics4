@@ -14,7 +14,7 @@ namespace animaltactics4
 
         static public Dictionary<string, Song> bankSong;
         static public Dictionary<string, SoundEffectInstance> bankEffect;
-
+        static public Random r = new Random();
         static public void Initialize(ContentManager content_)
         {
             MediaPlayer.IsRepeating = false;
@@ -37,10 +37,21 @@ namespace animaltactics4
             bankEffect.Add("Fenrir2", (content_.Load<SoundEffect>("Son\\Bruitage\\fenrir2")).CreateInstance());
             bankEffect.Add("Krissa2", (content_.Load<SoundEffect>("Son\\Bruitage\\krissa2")).CreateInstance());
 
+
+            bankSong.Add("0", content_.Load<Song>("Son\\Musique\\0"));
+            bankSong.Add("1", content_.Load<Song>("Son\\Musique\\1"));
+            bankSong.Add("2", content_.Load<Song>("Son\\Musique\\2"));
+            bankSong.Add("3", content_.Load<Song>("Son\\Musique\\3"));
+            bankSong.Add("4", content_.Load<Song>("Son\\Musique\\4"));
             foreach (String item in bankEffect.Keys)
             {
                 bankEffect[item].Volume = 0.1f;
             }
+        }
+
+        static public void PlayRandom()
+        {
+            Play(r.Next(0, 5).ToString());
         }
 
         static public void Play(string name_)
