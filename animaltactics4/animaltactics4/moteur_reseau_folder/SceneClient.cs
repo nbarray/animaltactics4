@@ -103,7 +103,7 @@ namespace animaltactics4
                             receive += (char)i;
                         }
 
-                        StreamWriter w = new StreamWriter(new FileStream("G.bin", FileMode.CreateNew, FileAccess.ReadWrite));
+                        StreamWriter w = new StreamWriter(new FileStream("G.bin", FileMode.Create, FileAccess.ReadWrite));
                         w.Write(receive);
                         receive = "";
                         try
@@ -132,56 +132,6 @@ namespace animaltactics4
                 default:
                     break;
             }
-
-            #region Olddies
-
-
-            //if (!Etape0_connection)
-            //{
-            //    if (tentative > 0)
-            //    {
-            //        Connecter();
-            //        Console.WriteLine(tentative);
-            //        tentative--;
-            //        Thread.Sleep(500);
-            //    }
-            //    else
-            //    {
-            //        ArreterLeClient();
-            //        Engine.scenes.Pop();
-            //    }
-            //}
-            //else
-            //{
-            //    if (!Etape1_connection_du_client)
-            //    {
-            //        Netools.Send(sock, "1");
-            //        Etape1_connection_du_client = true;
-            //    }
-            //    else
-            //    {
-            //        if (!Etape2_synchronisation_des_joueurs)
-            //        {
-            //            p.Initialize("carte reseau",
-            //                          new List<string>() { "Pandawan01", "Pingvin01" },
-            //                          new List<int>() { 0, 0 },
-            //                          new List<int>() { 0, 1 },
-            //                          new List<Color>() { Color.Blue, Color.Red },
-            //                          e_typeDePartie.Joute,
-            //                          e_brouillardDeGuerre.Normal,
-            //                          42);
-            //            Netools.Send(sock, "2");
-
-            //        }
-            //        else
-            //        {
-            //            p.UpdateReseau(gameTime);
-            //        }
-            //    }
-
-            //    base.UpdateScene(gameTime);
-            //} 
-            #endregion
         }
 
         public override void DrawScene()
@@ -253,33 +203,6 @@ namespace animaltactics4
                 int f;
                 if ((f = Netools.Read(sock)) == 93)
                 {
-                    try
-                    {
-                        fileState = FileReseau.running;
-                        Netools.Send(sock, "9"); // 57 début d'envoie d'un fichier
-                        Netools.ClearPresence(partie.earthPenguin);
-
-                        StreamReader reader = new StreamReader(new NetworkStream(sock));
-                        
-                        string temp = "";
-                        while (reader.Peek() != '\0')
-                        {
-                            Console.WriteLine(temp);
-                            temp += reader.Read();
-                        }
-                        
-                        FileStream file = new FileStream("g_c_.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                        file.Write(ASCIIEncoding.ASCII.GetBytes(temp), 0, ASCIIEncoding.ASCII.GetByteCount(temp));
-                        temp = "";
-
-                        file.Close();
-                        reader.Close();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("FILE : " + e.Message);
-                    }
-                    
                     ChangementTour();
                     partie.time = 0;
                     Console.SetCursorPosition(0, 3);
