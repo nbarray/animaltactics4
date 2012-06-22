@@ -36,18 +36,43 @@ namespace animaltactics4
                 Console.WriteLine("42." + e.Message);
             }
         }
-
-        public static int Read(Socket sock)
+        static void Send(Socket sock, byte i)
         {
             try
             {
-                NetworkStream str = new NetworkStream(sock);
-                return str.ReadByte();
+                NetworkStream stream = new NetworkStream(sock);
+                stream.WriteByte(i);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return -1;
+            }
+        }
+        static void ReadText(Socket sock, byte endOfStream)
+        {
+            string text = "";
+
+            int s;
+            while ((s = Read(sock)) != endOfStream)
+            {
+                text += (char)s;
+            }
+
+            Console.Write(text);
+            Console.Read();
+        }
+
+        public static byte Read(Socket sock)
+        {
+            try
+            {
+                NetworkStream str = new NetworkStream(sock);
+                return (byte)str.ReadByte();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return 0;
             }
         }
 
