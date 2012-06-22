@@ -13,7 +13,7 @@ namespace animaltactics4
     }
     enum FileReseau
     {
-        running, sleep
+        envoie_en_cours, reception_en_cours, sleep
     }
 
     static class Netools
@@ -36,7 +36,8 @@ namespace animaltactics4
                 Console.WriteLine("42." + e.Message);
             }
         }
-        static void Send(Socket sock, byte i)
+
+        public static void Send(Socket sock, byte i)
         {
             try
             {
@@ -48,10 +49,9 @@ namespace animaltactics4
                 Console.WriteLine(e.Message);
             }
         }
-        static void ReadText(Socket sock, byte endOfStream)
-        {
-            string text = "";
 
+        public static void ReadText(Socket sock, byte endOfStream, string text)
+        {
             int s;
             while ((s = Read(sock)) != endOfStream)
             {
@@ -59,7 +59,15 @@ namespace animaltactics4
             }
 
             Console.Write(text);
-            Console.Read();
+        }
+
+        public static void SendText(Socket sock, string text)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                Send(sock, (byte)text[i]);
+            }
+            Send(sock, (byte)'$');
         }
 
         public static byte Read(Socket sock)

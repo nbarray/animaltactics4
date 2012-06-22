@@ -113,9 +113,43 @@ namespace animaltactics4
                         }
                     }
                     _TFinDeTour.Start();
+                    _TReceiveFile.Start();
                     break;
                 case EtapeReseau.etape4_partie:
-                   
+                    if (fileState == FileReseau.reception_en_cours)
+                    {
+                        Netools.ReadText(sock, (byte)'$', receive);
+
+                        try
+                        {
+                            StreamWriter writer = new StreamWriter(new FileStream("G.bin", FileMode.Create, FileAccess.ReadWrite));
+                            partie.gameplay = (SystemeDeJeu)Divers.deserializer("G");
+                            Netools.ClearPresence(partie.earthPenguin);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                        fileState = FileReseau.sleep;
+                    }
+                    else if (fileState == FileReseau.envoie_en_cours)
+                    {
+                        Divers.serializer(partie.gameplay, "G");
+                        try
+                        {
+                            Divers.serializer(partie.gameplay, "G");
+                            Netools.SendText(sock, "G.bin");
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                        fileState = FileReseau.sleep;
+                    }
+                    else
+                    {
                         if (partie.gameplay.tourencours == 0)
                         {
                             partie.UpdateReseauServer(gameTime, this);
@@ -124,7 +158,7 @@ namespace animaltactics4
                         {
                             Netools.UpdateTransition(gameTime);
                         }
-                    
+                    }
                     break;
                 case EtapeReseau.etap5_fin_de_partie:
                     break;
@@ -170,7 +204,7 @@ namespace animaltactics4
                 int i;
                 if ((i = Netools.Read(client)) == 57) // 9
                 {
-                    fileState = FileReseau.running;
+                    fileState = FileReseau.reception_en_cours;
                 }
             }
         }
