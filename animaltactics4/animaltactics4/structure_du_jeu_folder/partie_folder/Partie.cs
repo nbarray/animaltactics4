@@ -58,13 +58,54 @@ namespace animaltactics4
         }
 
         //Coldman
-        public void UpdateReseau(GameTime gameTime_)
+        public void UpdateReseauClient(GameTime gameTime_, SceneClient estRoi)
         {
             bool erence = false;
             int inerance = 0;
             gameplay.Update(earthPenguin, Jackman, ref inerance, ref erence);
             earthPenguin.Update(gameplay, Jackman);
-            
+
+            if (lastUpdatesTime > gameTime_.TotalGameTime.Milliseconds)
+            {
+                time++;
+                if (tempsMax - time <= 0)
+                {
+                    estRoi.ChangementTour();
+                    Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
+                    Console.WriteLine("Orde de chang. de to. en.");
+                }
+            }
+            lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
+
+            Console.SetCursorPosition(20, 2);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(time);
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+            Console.SetCursorPosition(20, 2);
+            Console.WriteLine(time);
+        }
+
+        //Coldman
+        public void UpdateReseauServer(GameTime gameTime_, SceneServer garcon)
+        {
+            bool erence = false;
+            int inerance = 0;
+            gameplay.Update(earthPenguin, Jackman, ref inerance, ref erence);
+            earthPenguin.Update(gameplay, Jackman);
+
+            if (lastUpdatesTime > gameTime_.TotalGameTime.Milliseconds)
+            {
+                time++;
+                if (tempsMax - time <= 0)
+                {
+                    garcon.ChangementTour();
+                    Netools.Send(garcon.sock, "]"); // => fin du tour : 93
+                    Console.WriteLine("Orde de chang. de to. en.");
+                }
+            }
+            lastUpdatesTime = gameTime_.TotalGameTime.Milliseconds;
+
             Console.SetCursorPosition(20, 2);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(time);
