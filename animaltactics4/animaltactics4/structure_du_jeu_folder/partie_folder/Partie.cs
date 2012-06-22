@@ -62,7 +62,7 @@ namespace animaltactics4
         {
             bool erence = false;
             int inerance = 0;
-            gameplay.Update(earthPenguin, Jackman, ref inerance, ref erence);
+            gameplay.UpdateReseauClient(earthPenguin, Jackman, estRoi);
             earthPenguin.Update(gameplay, Jackman);
 
             if (lastUpdatesTime > gameTime_.TotalGameTime.Milliseconds)
@@ -91,7 +91,7 @@ namespace animaltactics4
         {
             bool erence = false;
             int inerance = 0;
-            gameplay.Update(earthPenguin, Jackman, ref inerance, ref erence);
+            gameplay.UpdateReseauServeur(earthPenguin, Jackman, garcon);
             earthPenguin.Update(gameplay, Jackman);
 
             if (lastUpdatesTime > gameTime_.TotalGameTime.Milliseconds)

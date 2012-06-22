@@ -160,7 +160,7 @@ namespace animaltactics4
                             Console.WriteLine("Ordre de changement de tour envoyé !");
                         }
 
-                        partie.UpdateReseau(gameTime);
+                        partie.UpdateReseauServer(gameTime, this);
                     }
                     else
                     {
@@ -197,7 +197,7 @@ namespace animaltactics4
                                   42);
         }
 
-        private void ChangementTour()
+        public void ChangementTour()
         {
             int epita42epita = 0;
             bool epita41epita = true;

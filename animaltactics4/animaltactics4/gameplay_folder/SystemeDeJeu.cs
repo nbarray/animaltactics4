@@ -85,11 +85,40 @@ namespace animaltactics4
         }
 
         //Coldman
-        public void UpdateReseau(MoteurGraphique loohy_, HUD hud_)
+        public void UpdateReseauClient(MoteurGraphique loohy_, HUD hud_, SceneClient estRoi)
         {
-
             listeDesJoueurs[tourencours].Update(loohy_, this, ref mood, hud_);
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && clic)
+            {
+                // envoyer le crochet fermant
+                estRoi.ChangementTour();
+                Netools.Send(estRoi.sock, "]"); // => fin du tour : 93
+                Console.WriteLine("Orde de chang. de to. en.");
+                clic = false;
+            }
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+            {
+                clic = true;
+            }
+            Afficher(loohy_);
+        }
 
+        //Coldman
+        public void UpdateReseauServeur(MoteurGraphique loohy_, HUD hud_, SceneServer garcon)
+        {
+            listeDesJoueurs[tourencours].Update(loohy_, this, ref mood, hud_);
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && clic)
+            {
+                // envoyer le crochet fermant
+                garcon.ChangementTour();
+                Netools.Send(garcon.sock, "]"); // => fin du tour : 93
+                Console.WriteLine("Orde de chang. de to. en.");
+                clic = false;
+            }
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter))
+            {
+                clic = true;
+            }
             Afficher(loohy_);
         }
 
