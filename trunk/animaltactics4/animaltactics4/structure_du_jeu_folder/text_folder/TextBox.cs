@@ -96,4 +96,66 @@ namespace animaltactics4
             Contents.Draw("play", arrowDown, SpriteEffects.FlipVertically);
         }
     }
+
+    class CreditBox
+    {
+        public Rectangle rect, arrowUp, arrowDown;
+        private string text;
+        private List<int> line;
+        public int offset;
+        private int margin_top, margin_left;
+
+        public CreditBox(Rectangle rect_, int margin_t = 0, int margin_l = 15)
+        {
+            margin_left = margin_l;
+            margin_top = margin_t;
+            text = "";
+            rect = rect_;
+            line = new List<int>();
+            arrowUp = new Rectangle(rect.X + rect.Width + 10, rect.Y, 50, 50);
+            arrowDown = new Rectangle(rect.X + rect.Width + 10, rect.Y + rect.Height - 50, 50, 50);
+            offset = -950;
+            for (int i = 156; i < 206; i++)
+            {
+                Add(i);
+            }
+        }
+
+        public void Clear()
+        {
+            text = "";
+        }
+        public void Add(int text_)//156-187
+        {
+            line.Add(text_);
+        }
+
+        public void Update()
+        {
+           offset += 1;
+        }
+
+        public void Draw()
+        {
+            //Contents.Draw("textbox", rect);
+            Contents.Draw("px3", new Rectangle(0, 0, 1200, 900), Color.DarkBlue);
+            for (int i = 0; i < line.Count; i++)
+            {
+                Rectangle r = new Rectangle(rect.X + margin_left, rect.Y + (i * 40) - offset + margin_top, rect.Width, 10);
+                if (Contents.GetRealRect(r).Y < Contents.GetRealRect(rect).Y + Contents.GetRealRect(rect).Height && Contents.GetRealRect(r).Y >= Contents.GetRealRect(rect).Y + margin_top)
+                {
+                    Console.WriteLine(i);
+                    if (line[i] == 156 || line[i] == 158 || line[i] == 160 || line[i] == 164 || line[i] == 166 || line[i] == 168 || line[i] == 170 ||
+                        line[i] == 172 || line[i] == 177 || line[i] == 179 || line[i] == 184 || line[i] == 186 || line[i] == 197)
+                    {
+                        Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][line[i]], r, Color.Yellow);
+                    }
+                    else
+                    {
+                        Contents.DrawStringInBoxCentered(Dico.langues[Dico.current][line[i]], r);
+                    }
+                }
+            }
+        }
+    }
 }

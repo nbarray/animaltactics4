@@ -19,6 +19,7 @@ namespace animaltactics4
         public override void UpdateScene(GameTime gameTime)
         {
             base.UpdateScene(gameTime);
+            ((MenuCredit)(((BoutonLien)(boutons[1])).linkTo)).credits.offset = -950;
         }
 
         public override void DrawScene()

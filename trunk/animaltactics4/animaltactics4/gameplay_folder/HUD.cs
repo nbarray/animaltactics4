@@ -63,7 +63,25 @@ namespace animaltactics4
         public void Draw(SystemeDeJeu gameplay_, MoteurGraphique moteurgraphique_, int tempsRestant_)
         {
             #region HUD+Time
+            int sub;
+            switch (gameplay_.listeDesJoueurs[gameplay_.tourencours].espece)
+            {
+                case e_race.Fenrir:
+                    sub = 3;
+                    break;
+                case e_race.Krissa:
+                    sub = 2;
+                    break;
+                case e_race.Pandawan:
+                    sub = 1;
+                    break;
+                default:
+                    sub = 0;
+                    break;
+            }
             Contents.Draw("px3", new Rectangle(0, 700, 1200, 200), Color.DarkGray);
+            //Contents.Draw("Cercles", new Rectangle(0, 600, 100, 100), new Rectangle(100+200*sub, 0, 100, 100));
+            Contents.Draw("Cercles", new Rectangle(1100, 700, 100, 200), new Rectangle(200 * sub, 0, 100, 200));
             Contents.Draw("px3", new Rectangle(25, 725, 150, 150), Color.Red);
             Contents.DrawStringInBoxCenteredChrono(Math.Max(0, tempsRestant_).ToString(), new Rectangle(25, 725, 150, 150));
             #endregion

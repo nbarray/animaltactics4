@@ -100,7 +100,7 @@ namespace animaltactics4
             "Retour au jeu", // 69
             "Walkyries",//70
             "Répurgateurs",
-            "Tank",
+            "Tanks",
             "Ugins",
             "Pillards",
             "Berserkers",//75
@@ -132,8 +132,8 @@ namespace animaltactics4
             "Maraudeurs",
             "Vermines",
             "Abominations",
-            "Alvin dort tout le temps",
-            "Alvin branle que dalle",//105
+            "Canonniers",
+            "Desperados",//105
             "Animal Spirit",
             "Unité de base des Pingvin présente dans toutes les armées. \nElle attaque au corps-à-corps à l'aide de son épée tronconneuse, \net possède un bouclier. Très polyvalente.",//107
             "Unité utilisant un lance-flamme qui contrairement à la pensée\n commune ne fait pas très mal mais ne risque pas de manquer \nsouvent sa cible.",
@@ -184,6 +184,59 @@ namespace animaltactics4
             "Sons", //153
             "Prêt ?", //154
             "Sauvegarde", //155
+            "Conception du jeu",                    //156
+            "wwteam", //157
+            "Producteur executif",                  //158
+            "EPITA", //159
+            "Directeurs du jeu",                    //160
+            "Cristophe Krisboul Boulay", //161
+            "Nathalie Junior Bouquet", //161
+            "Max Testemale", //161
+            "Directeur production",                //164
+            "Nicolas Barray", //163
+            "Directeur artistique",                  //166
+            "Louis Aumaitre", //165
+            "Responsable programmation",           //168
+            "Nicolas Barray", //167
+            "Responsable multijoueur",             //170
+            "Nicolas Barray", //169
+            "Equipe programmation",                  //172
+            "Louis Aumaitre", //171
+            "Nicolas Barray", //172
+            "Alvin Le Metayer", //173
+            "Marvin Moreno", //174
+            "Equipe artistique",                   //177
+            "Louis Aumaitre", //165
+            "Equipe conception",                  //179
+            "Nicolas Barray", //163
+            "Louis Aumaitre", //165
+            "Alvin Le Metayer", //180
+            "Marvin Moreno", //174
+            "Equipe son",                             //184
+            "Nicolas Barray", //163
+            "Remerciements",                       //186
+            "Maxime Aroen Prou",
+            "Guillaume Yunne Lengrand",
+            "Romaric Igor Thiam",
+            "Krazadax",
+            "ardesignwork",
+            "Anders Hejlsberg",//190
+            "La musique en général",
+            "Nos familles",
+            "MacDonald",
+            "internet",
+            "Spéciale dédicace à ",                  //197
+            "Karim Tonton Guiga",
+            "LaTeX",
+            "God of War III",//
+            "Dark Souls",//
+            "MineCraft",//200
+            "Le Reseau",
+            "Les Chipmunks",
+            "Les Moutons",
+            "Les Pandas",
+            "Les Manchots",
+
             }); 
             #endregion
 
@@ -216,12 +269,12 @@ namespace animaltactics4
             "Luck : ",//24
             "Speed : ",//25
             "Movement : ",//26
-            "Extremly small",//27
+            "Very small",//27
             "Small",//28
             "Standard",//29
             "Medium",//30
             "Huge",//31
-            "Extremly huge",//32
+            "Very huge",//32
             "Plain",//33
             "Snow",//34
             "Ice",//35
@@ -260,41 +313,41 @@ namespace animaltactics4
             "Pause", // 68
             "Resume", // 69
             "Walkyries",//70
-            "Répurgateurs",
-            "Tank",
+            "Repurgators",
+            "Tanks",
             "Ugins",
-            "Pillards",
+            "Plunders",
             "Berserkers",//75
             "Thors",
             "Mugins",
             "Odin",
-            "Moines",
+            "Monks",
             "Yabusames",//80
             "Bushis",
-            "Chars Dragons",
-            "Mercenaires",
+            "Dragons Tanks",
+            "Mercenaries",
             "Sokeis",
             "Ninjas",//85
             "Snipers",
             "Sayan",
-            "Guerriers",
-            "Tireurs",
+            "Warriors",
+            "Marines",
             "Psykers",//90
-            "Porteurs de boucliers",
-            "Eclaireurs",
+            "Shield holders",
+            "Scouts",
             "Dreadnoughts",
-            "Fusils Rail",
-            "Instructeurs",//95
+            "Railguns",
+            "Masters",//95
             "Okami",
-            "Chef",
+            "Chief",
             "Assassins",
-            "Légionnaires",
-            "Geoliers",//100
-            "Maraudeurs",
-            "Vermines",
+            "Legionnaries",
+            "Jailers",//100
+            "Marauders",
+            "Vermins",
             "Abominations",
-            "Alvin dort tout le temps",
-            "Alvin branle que dalle",//105
+            "Gunners",
+            "Desperados",//105
             "Animal Spirit",
             "Basic unit which every Pingvin army has. It attacks body to body with its chainsaw sword and has a shield. Very polyvalent.",
             "Unit using a flamethrower that contrary to common thought is does not deal much damage but is not likely to miss its target often.",
@@ -345,6 +398,58 @@ namespace animaltactics4
             "Sound", //153
             "Ready ?", //154
             "Save", //155
+            "Developers",                    //156
+            "wwteam", //157
+            "Executive Producer",                  //158
+            "EPITA", //159
+            "Game Directors",                    //160
+            "Cristophe Krisboul Boulay", //161
+            "Nathalie Junior Bouquet", //161
+            "Max Testemale", //161
+            "Design Director",                //164
+            "Nicolas Barray", //163
+            "Artistic Director",                  //166
+            "Louis Aumaitre", //165
+            "Programming's Director",           //168
+            "Nicolas Barray", //167
+            "Multiplayer's Director",             //170
+            "Nicolas Barray", //169
+            "Programming's Team",                  //172
+            "Louis Aumaitre", //171
+            "Nicolas Barray", //172
+            "Alvin Le Metayer", //173
+            "Marvin Moreno", //174
+            "Artistic's Team",                   //177
+            "Louis Aumaitre", //165
+            "Design's Team",                  //179
+            "Nicolas Barray", //163
+            "Louis Aumaitre", //165
+            "Alvin Le Metayer", //180
+            "Marvin Moreno", //174
+            "Team son",                             //184
+            "Nicolas Barray", //163
+            "Thanks",                       //186
+            "Maxime Aroen Prou",
+            "Guillaume Yunne Lengrand",
+            "Romaric Igor Thiam",
+            "Krazadax",
+            "ardesignwork",
+            "Anders Hejlsberg",//190
+            "Music",
+            "Our families",
+            "MacDonald",
+            "Internet",
+            "Special dedication to ",                  //197
+            "Karim Tonton Guiga",
+            "LaTeX",
+            "God of War III",//
+            "Dark Souls",//
+            "MineCraft",//200
+            "Network",
+            "Chipmunks",
+            "Sheeps",
+            "Pandas",
+            "Penguins",
             }); 
             #endregion
 
@@ -506,6 +611,58 @@ namespace animaltactics4
             "Sons", //153
             "Schtroumpf ?", //154
             "Schtroumpf", //155
+            "Conception du jeu",                    //156
+            "wwteam", //157
+            "Producteur executif",                  //158
+            "EPITA", //159
+            "Directeurs du jeu",                    //160
+            "Cristophe Krisboul Boulay", //161
+            "Nathalie Junior Bouquet", //161
+            "Max Testemale", //161
+            "Directeur production",                //164
+            "Nicolas Barray", //163
+            "Directeur artistique",                  //166
+            "Louis Aumaitre", //165
+            "Responsable programmation",           //168
+            "Nicolas Barray", //167
+            "Responsable multijoueur",             //170
+            "Nicolas Barray", //169
+            "Equipe programmation",                  //172
+            "Louis Aumaitre", //171
+            "Nicolas Barray", //172
+            "Alvin Le Metayer", //173
+            "Marvin Moreno", //174
+            "Equipe artistique",                   //177
+            "Louis Aumaitre", //165
+            "Equipe conception",                  //179
+            "Nicolas Barray", //163
+            "Louis Aumaitre", //165
+            "Alvin Le Metayer", //180
+            "Marvin Moreno", //174
+            "Equipe son",                             //184
+            "Nicolas Barray", //163
+            "Remerciements",                       //186
+            "Maxime Aroen Prou",
+            "Guillaume Yunne Lengrand",
+            "Romaric Igor Thiam",
+            "Krazadax",
+            "ardesignwork",
+            "Anders Hejlsberg",//190
+            "La musique en général",
+            "Nos familles",
+            "MacDonald",
+            "internet",
+            "Spéciale dédicace à ",                  //197
+            "Karim Tonton Guiga",
+            "LaTeX",
+            "God of War III",//
+            "Dark Souls",//
+            "MineCraft",//200
+            "Le Reseau",
+            "Les Chipmunks",
+            "Les Moutons",
+            "Les Pandas",
+            "Les Manchots",
             }); 
             #endregion
 
@@ -667,6 +824,58 @@ namespace animaltactics4
             "FX", //153
             "Ser nisto ?", //154
             "Salvar", //155
+            "Concepcionador de juego",                    //156
+            "wwteam", //157
+            "Productor ejecutivo",                  //158
+            "EPITA", //159
+            "Director de juego",                    //160
+            "Cristophe Krisboul Boulay", //161
+            "Nathalie Junior Bouquet", //161
+            "Max Testemale", //161
+            "Director de producion",                //164
+            "Nicolas Barray", //163
+            "Director artistico",                  //166
+            "Louis Aumaitre", //165
+            "Responsable de programacion",           //168
+            "Nicolas Barray", //167
+            "Responsable del multijugador",             //170
+            "Nicolas Barray", //169
+            "Equipo de programacion",                  //172
+            "Louis Aumaitre", //171
+            "Nicolas Barray", //172
+            "Alvin Le Metayer", //173
+            "Marvin Moreno", //174
+            "Equipo artistico",                   //177
+            "Louis Aumaitre", //165
+            "Equipo de diseno",                  //179
+            "Nicolas Barray", //163
+            "Louis Aumaitre", //165
+            "Alvin Le Metayer", //180
+            "Marvin Moreno", //174
+            "Equipo de sonido",                             //184
+            "Nicolas Barray", //163
+            "Gracias",                       //186
+            "Maxime Aroen Prou",
+            "Guillaume Yunne Lengrand",
+            "Romaric Igor Thiam",
+            "Crazadax",
+            "ardesignwork",
+            "Anders Hejlsberg",//190
+            "La musique en général",
+            "Nuestras familias",
+            "MacDonald",
+            "Internet",
+            "Dedicacion especial a ",                  //197
+            "Karim Tonton Guiga",
+            "LaTeX",
+            "God of War III",//
+            "Dark Souls",//
+            "MineCraft",//200
+            "Le Reseau",
+            "Los Chipmunks",
+            "Las Ovejas",
+            "Los Pandas",
+            "Los Pinguinos",
             }); 
             #endregion
         }
